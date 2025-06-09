@@ -409,3 +409,12 @@
 {"level":"error","message":"Error: Email already in use\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\src\\controllers\\authController.ts:24:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-09T19:34:52.572Z"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T19:35:24.511Z"}
 {"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T19:35:24.529Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-09T19:35:46.530Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T19:35:55.780Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T19:36:03.603Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T19:38:36.270Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T19:38:36.284Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-09T19:39:38.248Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T19:39:47.193Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T19:40:12.170Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T19:40:12.200Z"}
