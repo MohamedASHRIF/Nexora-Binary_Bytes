@@ -1,0 +1,330 @@
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:30:33.630Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:30:33.644Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:30:43.585Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:30:43.600Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-09T15:36:00.719Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:43:07.636Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:43:07.650Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:43:16.005Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:43:16.018Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:43:26.382Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:43:26.396Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:43:58.556Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:43:58.571Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:44:29.025Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:44:29.039Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:49:48.611Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:49:48.626Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:49:57.285Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:49:57.300Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-09T15:50:59.040Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:51:31.127Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:51:31.142Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:51:35.249Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:51:35.264Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:51:42.505Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:51:42.520Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:51:53.164Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:51:53.181Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:52:42.904Z"}
+{"level":"info","message":"Admin user created successfully:","timestamp":"2025-06-09T15:52:42.999Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:55:51.050Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:55:51.064Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:56:12.609Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:56:12.627Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:56:22.119Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:56:22.133Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:56:29.187Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:56:29.204Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:59:26.818Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:59:26.832Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T15:59:37.085Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T15:59:37.099Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T15:59:58.678Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T16:00:14.841Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:00:15.593Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:00:20.623Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:00:20.638Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:00:20.703Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:00:20.720Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-09T16:01:22.072Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T16:01:50.109Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:01:51.175Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:03:29.735Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T16:06:15.679Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T16:06:15.694Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:06:27.415Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T16:07:36.446Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T16:07:36.463Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:07:51.072Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T16:09:44.042Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T16:09:44.057Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T16:10:28.850Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T16:10:28.868Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T16:10:37.021Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T16:10:37.041Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T16:10:59.227Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T16:10:59.244Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T16:11:39.767Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:11:41.632Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:11:45.852Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:11:45.872Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:11:45.886Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:11:45.939Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-09T16:12:28.175Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T16:12:44.271Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:12:45.273Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T16:15:56.865Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T16:16:05.556Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T16:24:26.698Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T16:24:26.718Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T16:24:42.604Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T16:24:42.618Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T16:25:00.448Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T16:25:00.463Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:25:23.550Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T16:25:25.768Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:27:14.196Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:27:28.556Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:27:28.570Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:27:28.586Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:27:28.672Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T16:27:48.731Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:27:49.017Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T16:27:49.022Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T16:27:49.027Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:27:49.048Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T16:27:49.052Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T16:27:49.055Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:28:10.844Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:28:10.846Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T16:28:10.850Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T16:28:10.852Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:28:13.525Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:28:13.528Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T16:28:13.530Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T16:28:13.533Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T16:28:50.440Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T16:28:50.443Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:28:50.446Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T16:29:15.697Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T16:29:15.879Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T16:29:15.883Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T16:29:15.894Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T16:29:15.897Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-09T16:29:53.853Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T16:30:59.357Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T16:30:59.360Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:30:59.364Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-09T16:31:07.776Z"}
+{"level":"error","message":"Error: Schedule validation failed: className: Class name is required, day: Day is required, startTime: Start time is required, endTime: End time is required, location: Location is required, instructor: Instructor is required","timestamp":"2025-06-09T16:31:07.783Z"}
+{"level":"error","message":"ValidationError: Schedule validation failed: className: Class name is required, day: Day is required, startTime: Start time is required, endTime: End time is required, location: Location is required, instructor: Instructor is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:31:07.786Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:33:04.488Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-09T16:37:46.726Z"}
+{"level":"error","message":"Error: Schedule validation failed: instructor: Instructor is required, location: Location is required, endTime: End time is required, startTime: Start time is required, className: Class name is required, day: `tuesday` is not a valid enum value for path `day`.","timestamp":"2025-06-09T16:37:46.730Z"}
+{"level":"error","message":"ValidationError: Schedule validation failed: instructor: Instructor is required, location: Location is required, endTime: End time is required, startTime: Start time is required, className: Class name is required, day: `tuesday` is not a valid enum value for path `day`.\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:37:46.731Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-09T16:38:00.189Z"}
+{"level":"error","message":"Error: Schedule validation failed: instructor: Instructor is required, location: Location is required, endTime: End time is required, startTime: Start time is required, className: Class name is required, day: `tuesday` is not a valid enum value for path `day`.","timestamp":"2025-06-09T16:38:00.192Z"}
+{"level":"error","message":"ValidationError: Schedule validation failed: instructor: Instructor is required, location: Location is required, endTime: End time is required, startTime: Start time is required, className: Class name is required, day: `tuesday` is not a valid enum value for path `day`.\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:38:00.193Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-09T16:39:56.049Z"}
+{"level":"error","message":"Error: Schedule validation failed: instructor: Instructor is required, location: Location is required, endTime: End time is required, startTime: Start time is required, className: Class name is required, day: `tuesday` is not a valid enum value for path `day`.","timestamp":"2025-06-09T16:39:56.054Z"}
+{"level":"error","message":"ValidationError: Schedule validation failed: instructor: Instructor is required, location: Location is required, endTime: End time is required, startTime: Start time is required, className: Class name is required, day: `tuesday` is not a valid enum value for path `day`.\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:39:56.055Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:40:05.500Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:40:05.510Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:40:05.595Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:40:05.606Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:40:26.268Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:40:26.277Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:40:30.470Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:40:30.480Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:40:30.491Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:40:30.568Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T16:42:11.582Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:42:11.759Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:42:11.770Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:42:11.828Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:42:11.839Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T16:42:22.619Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:42:22.798Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:42:22.808Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:42:22.817Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:42:22.865Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:44:35.922Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:44:35.924Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:44:35.939Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:46:02.167Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:46:02.211Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:46:13.568Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:46:13.570Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:46:13.627Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:46:23.450Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:46:23.453Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:46:23.487Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:46:41.600Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:46:41.603Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:46:41.638Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:47:50.910Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:47:50.912Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:47:50.952Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T16:48:40.141Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T16:48:40.146Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:48:40.147Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T16:48:41.549Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T16:48:41.554Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:48:41.554Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-09T16:49:11.792Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:52:21.464Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:52:21.467Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:52:21.488Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T16:52:21.500Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T16:52:21.511Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T16:52:55.985Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T16:52:55.989Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:52:55.990Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T16:52:56.809Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T16:52:56.813Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:52:56.813Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T16:52:56.937Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T16:52:56.941Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:52:56.942Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T16:52:57.160Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T16:52:57.165Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:52:57.165Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T16:57:34.221Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T16:57:34.223Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T16:57:34.242Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T16:57:34.253Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T16:57:34.264Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T16:57:59.654Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T16:57:59.658Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:57:59.658Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T16:58:00.280Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T16:58:00.284Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:58:00.285Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T16:58:00.499Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T16:58:00.504Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:58:00.504Z"}
+{"level":"info","message":"POST /events","timestamp":"2025-06-09T16:58:20.071Z"}
+{"level":"error","message":"Error: Event validation failed: time: Event time is required","timestamp":"2025-06-09T16:58:20.077Z"}
+{"level":"error","message":"ValidationError: Event validation failed: time: Event time is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:58:20.078Z"}
+{"level":"info","message":"POST /events","timestamp":"2025-06-09T16:58:20.661Z"}
+{"level":"error","message":"Error: Event validation failed: time: Event time is required","timestamp":"2025-06-09T16:58:20.665Z"}
+{"level":"error","message":"ValidationError: Event validation failed: time: Event time is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:58:20.666Z"}
+{"level":"info","message":"POST /events","timestamp":"2025-06-09T16:58:20.886Z"}
+{"level":"error","message":"Error: Event validation failed: time: Event time is required","timestamp":"2025-06-09T16:58:20.890Z"}
+{"level":"error","message":"ValidationError: Event validation failed: time: Event time is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:58:20.891Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T16:59:47.261Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T16:59:47.266Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T16:59:47.267Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T17:00:27.575Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:00:27.578Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:00:27.618Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:00:27.631Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:00:27.644Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T17:01:01.159Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T17:01:01.163Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T17:01:01.164Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T17:04:31.478Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:04:31.481Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:04:31.534Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:04:31.552Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:04:31.577Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T17:05:00.398Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T17:05:00.402Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T17:05:00.403Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T17:06:13.178Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:06:13.312Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:06:13.321Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:06:13.328Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:06:13.393Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:06:13.396Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:06:13.408Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:06:13.413Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:06:13.419Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T17:06:37.200Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T17:06:37.205Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T17:06:37.206Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:07:21.757Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T17:07:21.759Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:07:21.784Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:07:21.797Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:07:21.808Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T17:07:34.041Z"}
+{"level":"error","message":"Error: BusRoute validation failed: duration: Route duration is required","timestamp":"2025-06-09T17:07:34.045Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: duration: Route duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T17:07:34.045Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:08:28.239Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:08:28.252Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:08:28.265Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:08:28.277Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T17:09:44.911Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:09:44.913Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:09:44.933Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:09:44.943Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:09:44.955Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T17:10:08.264Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:11:25.714Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T17:11:25.717Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:11:25.743Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:11:25.754Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:11:25.767Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:11:56.628Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T17:11:56.630Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:11:56.662Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:11:56.675Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:11:56.689Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T17:12:24.367Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:12:24.369Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:12:24.396Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:12:24.410Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:12:24.422Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T17:13:03.563Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T17:18:29.088Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:18:29.091Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:18:29.127Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:18:29.140Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:18:29.159Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T17:19:04.256Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T17:19:45.384Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:19:45.590Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:19:45.599Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:19:45.661Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:19:45.671Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:19:45.678Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:19:45.688Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:19:45.695Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:19:45.704Z"}
+{"level":"info","message":"POST /events","timestamp":"2025-06-09T17:20:23.946Z"}
+{"level":"error","message":"Error: Event validation failed: time: Event time is required","timestamp":"2025-06-09T17:20:23.951Z"}
+{"level":"error","message":"ValidationError: Event validation failed: time: Event time is required\n    at model.Document.invalidate (C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\Downloads\\TIME2\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T17:20:23.952Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T17:21:14.962Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:21:15.095Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:21:15.103Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:21:15.110Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:21:15.171Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:21:15.173Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:21:15.181Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:21:15.187Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:21:15.193Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:21:28.290Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:21:28.316Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:21:28.333Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:21:28.349Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T17:21:39.863Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:21:39.865Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:21:39.882Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:21:39.893Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:21:39.906Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T17:22:20.204Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T17:24:50.411Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:24:50.413Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:24:50.453Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:24:50.466Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:24:50.482Z"}
+{"level":"info","message":"POST /bus-routes","timestamp":"2025-06-09T17:25:27.454Z"}
+{"level":"info","message":"POST /events","timestamp":"2025-06-09T17:25:56.308Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-09T17:27:19.652Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T17:27:19.655Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T17:27:19.695Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T17:27:19.707Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T17:27:19.722Z"}
+{"level":"info","message":"POST /events","timestamp":"2025-06-09T17:27:47.832Z"}

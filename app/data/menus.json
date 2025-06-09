@@ -1,0 +1,44 @@
+{
+  "daily_menus": {
+    "Monday": {
+      "breakfast": [
+        "Eggs and Toast",
+        "Oatmeal with Fruits",
+        "Pancakes",
+        "Coffee and Tea"
+      ],
+      "lunch": [
+        "Chicken Rice Bowl",
+        "Vegetable Pasta",
+        "Salad Bar",
+        "Fresh Fruit"
+      ],
+      "dinner": [
+        "Grilled Fish",
+        "Vegetable Curry",
+        "Rice and Bread",
+        "Ice Cream"
+      ]
+    },
+    "Tuesday": {
+      "breakfast": [
+        "Breakfast Burrito",
+        "Yogurt Parfait",
+        "Bagels",
+        "Coffee and Tea"
+      ],
+      "lunch": [
+        "Beef Stir Fry",
+        "Vegetable Soup",
+        "Sandwich Bar",
+        "Fresh Fruit"
+      ],
+      "dinner": [
+        "Chicken Curry",
+        "Vegetable Rice",
+        "Naan Bread",
+        "Fruit Salad"
+      ]
+    }
+  }
+} 
