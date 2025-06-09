@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
+import { usePathname } from 'next/navigation';
+
 
 interface User {
   name: string;
@@ -20,6 +22,8 @@ export default function Header() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const pathname = usePathname(); 
+  
   useEffect(() => {
     // First try to get user from localStorage
     const storedUser = localStorage.getItem('user');
@@ -124,12 +128,24 @@ export default function Header() {
             )}
           </>
         ) : (
-          <Link href="/auth/login" className="flex items-center space-x-2 px-4 py-2 text-blue-600 font-semibold hover:underline">
-            <svg className="w-6 h-6 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.485 0 4.797.755 6.879 2.047M15 11a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Login
-          </Link>
+          // <Link href="/auth/login" className="flex items-center space-x-2 px-4 py-2 text-blue-600 font-semibold hover:underline">
+          //   <svg className="w-6 h-6 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          //     <path strokeLinecap="round" strokeLinejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.485 0 4.797.755 6.879 2.047M15 11a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          //   </svg>
+          //   Login
+          // </Link>
+
+           <>
+            {pathname === '/auth/login' ? (
+              <Link href="/auth/signup" className="flex items-center space-x-2 px-4 py-2 text-blue-600 font-semibold hover:underline">
+                Sign Up
+              </Link>
+            ) : (
+              <Link href="/auth/login" className="flex items-center space-x-2 px-4 py-2 text-blue-600 font-semibold hover:underline">
+                Login
+              </Link>
+            )}
+          </>
         )}
       </div>
     </header>
