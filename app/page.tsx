@@ -7,16 +7,29 @@ import { DataInsights } from '../components/DataInsights';
 import { SuggestionBar } from '../components/SuggestionBar';
 import { useGamePoints } from '../hooks/useGamePoints';
 import { useLanguage } from '../hooks/useLanguage';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('chat');
   const { points, badges } = useGamePoints();
   const { language, setLanguage, translate, isInitialized } = useLanguage();
   const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    // Check for authentication
+    const token = Cookies.get('token') || localStorage.getItem('token');
+    if (!token) {
+      router.push('/auth/login');
+    }
+  }, [router]);
+
+  // If not mounted yet, return null to avoid hydration issues
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <main className="min-h-screen bg-gray-100">
@@ -27,10 +40,10 @@ export default function Home() {
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium">Points:</span>
               <span className="text-lg font-bold text-blue-600" suppressHydrationWarning>
-                {isMounted ? points : 0}
+                {points}
               </span>
             </div>
-            {isMounted && isInitialized && (
+            {isInitialized && (
               <div className="flex border rounded-md overflow-hidden">
                 <button
                   onClick={() => setLanguage('en')}
@@ -119,7 +132,7 @@ export default function Home() {
           </div>
         </div>
 
-        {isMounted && badges.length > 0 && (
+        {badges.length > 0 && (
           <div className="mt-6">
             <h3 className="text-lg font-semibold mb-2">Your Badges</h3>
             <div className="flex flex-wrap gap-2">

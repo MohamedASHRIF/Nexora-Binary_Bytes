@@ -12,7 +12,8 @@ export default function SignupPage() {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    role: 'student'
   });
   const [error, setError] = useState('');
 
@@ -29,6 +30,11 @@ export default function SignupPage() {
       return;
     }
 
+    if (formData.password.length < 8) {
+      setError('Password must be at least 8 characters long');
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:5000/api/auth/signup', {
         method: 'POST',
@@ -38,7 +44,8 @@ export default function SignupPage() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          password: formData.password
+          password: formData.password,
+          role: formData.role
         }),
         credentials: 'include'
       });
@@ -52,15 +59,18 @@ export default function SignupPage() {
       // Store the token
       localStorage.setItem('token', data.token);
       
+      // Store user data
+      localStorage.setItem('user', JSON.stringify(data.user));
+      
       // Redirect to the original destination or home page
       const from = searchParams.get('from') || '/';
       router.push(from);
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message || 'An error occurred during signup');
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -114,6 +124,23 @@ export default function SignupPage() {
           </div>
 
           <div>
+            <label htmlFor="role" className="block text-sm font-medium text-gray-700">
+              Role
+            </label>
+            <select
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            >
+              <option value="student">Student</option>
+              <option value="staff">Staff</option>
+            </select>
+          </div>
+
+          <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Password
             </label>
@@ -124,8 +151,10 @@ export default function SignupPage() {
               value={formData.password}
               onChange={handleChange}
               required
+              minLength={8}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
+            <p className="mt-1 text-sm text-gray-500">Password must be at least 8 characters long</p>
           </div>
 
           <div>
@@ -139,6 +168,7 @@ export default function SignupPage() {
               value={formData.confirmPassword}
               onChange={handleChange}
               required
+              minLength={8}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
           </div>

@@ -367,3 +367,45 @@
 {"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T18:23:10.936Z"}
 {"level":"info","message":"GET /users/me","timestamp":"2025-06-09T18:23:11.133Z"}
 {"level":"info","message":"GET /users/me","timestamp":"2025-06-09T18:23:11.143Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T18:28:45.780Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T18:28:59.633Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T18:28:59.837Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T18:28:59.848Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T18:28:59.913Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T18:28:59.921Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T18:28:59.927Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T18:28:59.936Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T18:28:59.942Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T18:28:59.950Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T19:27:11.248Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T19:27:11.262Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T19:30:16.403Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T19:30:37.868Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T19:30:39.441Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-09T19:30:39.460Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T19:30:39.507Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-09T19:30:39.520Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T19:30:39.531Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-09T19:30:39.547Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T19:30:39.555Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-09T19:30:39.570Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-09T19:30:57.061Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-09T19:32:35.600Z"}
+{"level":"error","message":"Error: User validation failed: role: `user` is not a valid enum value for path `role`.","timestamp":"2025-06-09T19:32:35.612Z"}
+{"level":"error","message":"ValidationError: User validation failed: role: `user` is not a valid enum value for path `role`.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T19:32:35.615Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-09T19:32:55.344Z"}
+{"level":"error","message":"Error: User validation failed: role: `user` is not a valid enum value for path `role`.","timestamp":"2025-06-09T19:32:55.349Z"}
+{"level":"error","message":"ValidationError: User validation failed: role: `user` is not a valid enum value for path `role`.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T19:32:55.350Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-09T19:33:10.166Z"}
+{"level":"error","message":"Error: User validation failed: password: Path `password` (`ashrif`) is shorter than the minimum allowed length (8)., role: `user` is not a valid enum value for path `role`.","timestamp":"2025-06-09T19:33:10.171Z"}
+{"level":"error","message":"ValidationError: User validation failed: password: Path `password` (`ashrif`) is shorter than the minimum allowed length (8)., role: `user` is not a valid enum value for path `role`.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T19:33:10.173Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-09T19:33:19.712Z"}
+{"level":"error","message":"Error: User validation failed: password: Path `password` (`ashrif`) is shorter than the minimum allowed length (8)., role: `user` is not a valid enum value for path `role`.","timestamp":"2025-06-09T19:33:19.717Z"}
+{"level":"error","message":"ValidationError: User validation failed: password: Path `password` (`ashrif`) is shorter than the minimum allowed length (8)., role: `user` is not a valid enum value for path `role`.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T19:33:19.717Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T19:33:56.760Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T19:33:56.775Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-09T19:34:52.546Z"}
+{"level":"error","message":"Error: Email already in use","timestamp":"2025-06-09T19:34:52.567Z"}
+{"level":"error","message":"Error: Email already in use\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\src\\controllers\\authController.ts:24:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-09T19:34:52.572Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T19:35:24.511Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T19:35:24.529Z"}

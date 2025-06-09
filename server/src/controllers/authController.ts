@@ -21,7 +21,10 @@ export const signup = catchAsync(async (req: Request, res: Response, next: NextF
   // Check if user already exists
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    return next(new AppError('Email already in use', 400));
+    return res.status(400).json({
+      status: 'error',
+      message: 'Email already in use'
+    });
   }
 
   // Create new user
@@ -29,7 +32,7 @@ export const signup = catchAsync(async (req: Request, res: Response, next: NextF
     name,
     email,
     password,
-    role: role || 'user'
+    role: role || 'student'
   });
 
   // Generate token
