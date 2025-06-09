@@ -9,6 +9,8 @@ interface User {
   name: string;
   email: string;
   role: string;
+  language: string;
+  createdAt: string;
 }
 
 export default function Header() {
@@ -19,11 +21,20 @@ export default function Header() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch user info from token if available
+    // First try to get user from localStorage
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      setIsLoading(false);
+      return;
+    }
+
+    // If not in localStorage, fetch from API
     const fetchUser = async () => {
       const token = Cookies.get('token') || localStorage.getItem('token');
       if (!token) {
         setUser(null);
+        setIsLoading(false);
         return;
       }
       try {
@@ -34,6 +45,8 @@ export default function Header() {
         if (!res.ok) throw new Error('Not authenticated');
         const data = await res.json();
         setUser(data.data.user);
+        // Store user data in localStorage
+        localStorage.setItem('user', JSON.stringify(data.data.user));
       } catch {
         setUser(null);
       } finally {
@@ -61,6 +74,7 @@ export default function Header() {
   const handleLogout = () => {
     Cookies.remove('token');
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setUser(null);
     setDropdownOpen(false);
     router.push('/auth/login');
@@ -74,15 +88,17 @@ export default function Header() {
           <div className="h-8 w-8 rounded-full bg-gray-200 animate-pulse"></div>
         ) : user ? (
           <>
-            <button
-              className="flex items-center space-x-2 focus:outline-none"
-              onClick={() => setDropdownOpen((open) => !open)}
-              aria-label="Profile"
-            >
-              <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white">
-                {user.name.charAt(0).toUpperCase()}
-              </div>
-            </button>
+            {user.role !== 'admin' && (
+              <button
+                className="flex items-center space-x-2 focus:outline-none"
+                onClick={() => setDropdownOpen((open) => !open)}
+                aria-label="Profile"
+              >
+                <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                  {user.name.charAt(0).toUpperCase()}
+                </div>
+              </button>
+            )}
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                 <div className="p-4 border-b border-gray-100">

@@ -8,6 +8,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
@@ -18,6 +19,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
 
     try {
       const response = await fetch('http://localhost:5000/api/auth/login', {
@@ -26,29 +28,32 @@ export default function LoginPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
+        credentials: 'include'
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.message || 'Login failed');
-      }
-
-      // Store token in both localStorage and cookies
-      localStorage.setItem('token', data.token);
-      Cookies.set('token', data.token, { expires: 90 });
-
-      // Store user data
-      localStorage.setItem('user', JSON.stringify(data.user));
-
-      // Redirect based on user role
-      if (data.user.role === 'admin') {
-        router.push('/admin');
+      if (response.ok) {
+        // Store the token
+        Cookies.set('token', data.token, { expires: 7 });
+        localStorage.setItem('token', data.token);
+        
+        // Store user data
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
+        // Redirect based on role
+        if (data.user.role === 'admin') {
+          router.push('/admin');
+        } else {
+          router.push('/');
+        }
       } else {
-        router.push('/profile');
+        setError(data.message || 'Login failed');
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError('An error occurred during login');
+    } finally {
+      setLoading(false);
     }
   };
 
