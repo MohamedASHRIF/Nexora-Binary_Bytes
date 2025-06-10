@@ -579,3 +579,5 @@
 {"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T13:16:38.694Z"}
 {"level":"info","message":"GET /events","timestamp":"2025-06-10T13:16:38.706Z"}
 {"level":"info","message":"GET /events","timestamp":"2025-06-10T13:16:38.719Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:17:11.223Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:17:11.252Z"}
