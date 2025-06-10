@@ -6,16 +6,42 @@ import { MapView } from '../components/MapView';
 import { DataInsights } from '../components/DataInsights';
 import { SuggestionBar } from '../components/SuggestionBar';
 import { useGamePoints } from '../hooks/useGamePoints';
-import { useLanguage } from '../hooks/useLanguage';
+
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 
+
+
+function ChatHistory() {
+  return (
+    <div className="w-64 flex-shrink-0 bg-gray-50 border-r p-4 flex flex-col">
+    <h2 className="text-lg font-semibold mb-4">Chat History</h2>
+    <div className="text-gray-400 flex-grow flex items-center justify-center">No chat history yet.</div>
+  </div>
+  );
+}
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState('chat');
-  const { points, badges } = useGamePoints();
-  const { language, setLanguage, translate, isInitialized } = useLanguage();
+  const { badges } = useGamePoints();
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
+   const [homeQuestion, setHomeQuestion] = useState('');
+   const [initialChatMessage, setInitialChatMessage] = useState('');
+
+
+   const handleAsk = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (homeQuestion.trim() === '') return;
+
+    setInitialChatMessage(homeQuestion);
+    setActiveTab('chat');
+    setHomeQuestion('');
+  };
+  // Callback when ChatWindow finishes sending the initial message
+  const handleInitialMessageSent = () => {
+    setInitialChatMessage('');
+  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -32,121 +58,112 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-100">
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Nexora Campus Copilot</h1>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium">Points:</span>
-              <span className="text-lg font-bold text-blue-600" suppressHydrationWarning>
-                {points}
-              </span>
-            </div>
-            {isInitialized && (
-              <div className="flex border rounded-md overflow-hidden">
-                <button
-                  onClick={() => setLanguage('en')}
-                  className={`px-3 py-1 ${
-                    language === 'en' ? 'bg-blue-500 text-white' : 'bg-white'
-                  }`}
-                >
-                  EN
-                </button>
-                <button
-                  onClick={() => setLanguage('si')}
-                  className={`px-3 py-1 ${
-                    language === 'si' ? 'bg-blue-500 text-white' : 'bg-white'
-                  }`}
-                >
-                  සිං
-                </button>
-                <button
-                  onClick={() => setLanguage('ta')}
-                  className={`px-3 py-1 ${
-                    language === 'ta' ? 'bg-blue-500 text-white' : 'bg-white'
-                  }`}
-                >
-                  தமி
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="flex border-b">
-            <button
-              onClick={() => setActiveTab('chat')}
-              className={`flex-1 py-3 text-center ${
-                activeTab === 'chat'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              Chat
-            </button>
-            <button
-              onClick={() => setActiveTab('map')}
-              className={`flex-1 py-3 text-center ${
-                activeTab === 'map'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              Map
-            </button>
-            <button
-              onClick={() => setActiveTab('insights')}
-              className={`flex-1 py-3 text-center ${
-                activeTab === 'insights'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              Insights
-            </button>
-          </div>
-
-          <div className="h-[calc(100vh-250px)]">
-            {activeTab === 'chat' && (
-              <div className="h-full flex flex-col">
-                <div className="flex-1 overflow-hidden">
-                  <ChatWindow />
-                </div>
-                <div className="flex-shrink-0">
-                  <SuggestionBar onSuggestionClick={() => {}} />
-                </div>
-              </div>
-            )}
-            {activeTab === 'map' && (
-              <div className="h-full">
-                <MapView />
-              </div>
-            )}
-            {activeTab === 'insights' && (
-              <div className="h-full">
-                <DataInsights />
-              </div>
-            )}
-          </div>
-        </div>
-
-        {badges.length > 0 && (
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold mb-2">Your Badges</h3>
-            <div className="flex flex-wrap gap-2">
-              {badges.map((badge) => (
-                <span
-                  key={badge.id}
-                  className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"
-                >
-                  {badge.name}
-                </span>
-              ))}
-            </div>
-          </div>
+    <main className="min-h-screen bg-gray-100 flex flex-col">
+      <nav className="w-full flex items-center bg-white justify-end px-8 py-2 gap-6">
+        <button
+          onClick={() => setActiveTab('home')}
+          className={`px-4 py-2 rounded font-semibold transition-colors ${
+            activeTab === 'home' ? 'bg-blue-500 text-white' : 'bg-white  text-gray-700 hover:bg-blue-100'
+          }`}
+        >
+          Home
+        </button>
+        <button
+          onClick={() => setActiveTab('chat')}
+          className={`px-4 py-2 rounded font-semibold transition-colors ${
+            activeTab === 'chat' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-blue-100'
+          }`}
+        >
+          Chat
+        </button>
+        <button
+          onClick={() => setActiveTab('map')}
+          className={`px-4 py-2 rounded font-semibold transition-colors ${
+            activeTab === 'map' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-blue-100'
+          }`}
+        >
+          Map
+        </button>
+        <button
+          onClick={() => setActiveTab('insights')}
+          className={`px-4 py-2 rounded font-semibold transition-colors ${
+            activeTab === 'insights' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-blue-100'
+          }`}
+        >
+          Insights
+        </button>
+      </nav>
+      {/* Main Content + Chat History Sidebar */}
+      <div className="flex flex-1 min-h-0">
+        {/* Chat History Sidebar */}
+        {activeTab === 'chat' && (
+          
+            <ChatHistory />
+         
         )}
+        {/* Main Content Area */}
+        <div className={`flex-1 flex flex-col justify-center items-center p-8 ${activeTab === 'chat' ? 'pl-0' : ''} min-h-0`}>
+          {activeTab === 'home' && (
+             <div className="text-center ">
+                              <h1 className="text-4xl font-bold mb-4">Welcome to Nexora Campus Copilot</h1>
+
+             <p className="text-lg text-gray-600 mb-8">Ask me anything</p>
+             <form onSubmit={handleAsk} className="flex gap-2">
+               <input
+                 type="text"
+                 value={homeQuestion}
+                 onChange={(e) => setHomeQuestion(e.target.value)}
+                 placeholder="Type your question here..."
+                 className="flex-grow px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+               />
+               <button
+                 type="submit"
+                 className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+               >
+                 Ask
+               </button>
+             </form>
+           </div>
+          )}
+          {activeTab === 'chat' && (
+            <div className="w-full h-full flex flex-col max-w-3xl mx-auto ">
+              <div className="flex-1 overflow-hidden">
+              <ChatWindow
+  initialMessage={initialChatMessage}
+  onMessageSent={handleInitialMessageSent}
+/>
+              </div>
+              <div className="flex-shrink-0">
+                <SuggestionBar onSuggestionClick={() => {}} />
+              </div>
+            </div>
+          )}
+          {activeTab === 'map' && (
+            <div className="w-full h-full max-w-3xl mx-auto">
+              <MapView />
+            </div>
+          )}
+          {activeTab === 'insights' && (
+            <div className="w-full h-full max-w-3xl mx-auto">
+              <DataInsights />
+            </div>
+          )}
+          {badges.length > 0 && (
+            <div className="mt-6">
+              <h3 className="text-lg font-semibold mb-2">Your Badges</h3>
+              <div className="flex flex-wrap gap-2">
+                {badges.map((badge) => (
+                  <span
+                    key={badge.id}
+                    className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"
+                  >
+                    {badge.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );

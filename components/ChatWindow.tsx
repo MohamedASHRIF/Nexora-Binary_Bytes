@@ -5,7 +5,13 @@ import { useGamePoints } from '../hooks/useGamePoints';
 import { useLanguage } from '../hooks/useLanguage';
 import type { Message } from '@/types';
 
-export const ChatWindow: React.FC = () => {
+
+interface ChatWindowProps {
+  initialMessage?: string;
+  onMessageSent?: () => void;
+}
+
+export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessageSent }) => {
   const [inputText, setInputText] = useState('');
   const [mounted, setMounted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -13,6 +19,7 @@ export const ChatWindow: React.FC = () => {
   const { messages, isProcessing, sendMessage, suggestions, clearChat } = useChatbot();
   const { addPoints } = useGamePoints();
   const { translate } = useLanguage();
+
 
   useEffect(() => {
     setMounted(true);
@@ -31,6 +38,16 @@ export const ChatWindow: React.FC = () => {
       setInputText(transcript);
     }
   }, [transcript]);
+    // Send initialMessage once when it arrives
+    useEffect(() => {
+      if (initialMessage && initialMessage.trim()) {
+        (async () => {
+          addPoints(5);
+          await sendMessage(initialMessage);
+          onMessageSent?.();
+        })();
+      }
+    }, [initialMessage, sendMessage, addPoints, onMessageSent]);
 
   const handleSend = async () => {
     if (!inputText.trim()) return;
