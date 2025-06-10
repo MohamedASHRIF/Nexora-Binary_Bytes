@@ -454,3 +454,70 @@
 {"level":"info","message":"GET /events","timestamp":"2025-06-10T05:37:38.565Z"}
 {"level":"info","message":"GET /events","timestamp":"2025-06-10T05:37:38.576Z"}
 {"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T05:37:49.290Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T06:35:25.519Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T06:35:25.544Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T06:38:36.919Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T06:38:36.936Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T06:48:15.358Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T06:48:43.044Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T06:48:43.055Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T06:48:43.066Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T06:49:08.635Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T06:49:08.640Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T06:49:08.641Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T06:49:10.021Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T06:49:10.029Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T06:49:10.031Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T06:49:57.163Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T06:50:18.074Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-10T06:50:34.531Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-10T06:50:34.579Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:47:32.236Z"}
+{"level":"info","message":"Admin user created successfully:","timestamp":"2025-06-10T11:47:32.368Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:50:56.256Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:51:00.619Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:51:00.681Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:51:00.745Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:51:00.803Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:51:00.829Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:51:00.867Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:51:00.901Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:51:00.927Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:55:39.818Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:55:39.839Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:57:56.687Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T11:57:56.712Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T11:57:56.718Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:58:02.856Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T11:58:02.864Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T11:58:02.866Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:58:04.161Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T11:58:04.169Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T11:58:04.171Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T11:59:17.902Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:59:46.819Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:01:43.187Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:01:43.507Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:01:43.557Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:01:43.611Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:01:43.632Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:01:43.647Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:01:43.664Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:01:43.679Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:01:43.696Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:02:19.250Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:02:19.270Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:03:08.514Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:03:08.531Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:05:09.800Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:05:09.819Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:05:20.990Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:05:21.002Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:13:14.796Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:13:14.931Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:13:14.953Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:13:14.985Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:33:52.547Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:33:52.566Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:34:25.556Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:34:25.569Z"}
