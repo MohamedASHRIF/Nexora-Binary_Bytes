@@ -420,3 +420,6 @@
 {"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T19:40:12.200Z"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2025-06-09T20:46:06.175Z"}
 {"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-09T20:46:06.201Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T05:26:44.937Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T05:26:44.953Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T05:27:24.061Z"}

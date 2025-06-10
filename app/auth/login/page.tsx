@@ -10,11 +10,11 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isClient, setIsClient] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    setIsClient(true);
+    setMounted(true);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -58,69 +58,75 @@ export default function LoginPage() {
     }
   };
 
-  if (!isClient) {
-    return null; // Return null on server-side to avoid hydration mismatch
+  if (!mounted) {
+    return null;
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
-          </h2>
+    <div className="min-h-screen flex">
+      {/* Left Side - Quote/Image Section */}
+      <div className="w-1/2 bg-gradient-to-br from-blue-900 to-indigo-900 text-white flex items-center justify-center p-12">
+        <div className="text-left max-w-md">
+          <h2 className="text-4xl font-semibold mb-4">Welcome Back!</h2>
+          <p className="text-lg leading-relaxed">
+            Continue your journey with Nexora — your smart assistant for campus life.
+          </p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm -space-y-px">
+      </div>
+
+      <div className="w-1/2 flex items-center justify-center bg-white">
+        <div className="p-8 w-96">
+          <h1 className="text-2xl font-bold mb-6">Sign In</h1>
+          
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="sr-only">
-                Email address
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email
               </label>
               <input
+                type="email"
                 id="email"
                 name="email"
-                type="email"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
+
             <div>
-              <label htmlFor="password" className="sr-only">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
               </label>
               <input
+                type="password"
                 id="password"
                 name="password"
-                type="password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-          </div>
 
-          {error && (
-            <div className="text-red-500 text-sm text-center">{error}</div>
-          )}
-
-          <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              disabled={loading}
+              className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Sign in
+              {loading ? 'Signing in...' : 'Sign In'}
             </button>
-          </div>
-        </form>
-        <div className="text-center mt-4">
-          <p className="text-sm text-gray-600">
+          </form>
+
+          <p className="mt-4 text-center text-sm text-gray-600">
             Don't have an account?{' '}
-            <Link href="/auth/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+            <Link href="/auth/signup" className="text-blue-500 hover:text-blue-600">
               Sign up
             </Link>
           </p>
