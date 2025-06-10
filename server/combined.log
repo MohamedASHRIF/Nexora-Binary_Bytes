@@ -1827,3 +1827,5 @@
 {"level":"info","message":"Received chat message: Find the location","timestamp":"2025-06-10T14:13:04.177Z","user":{"__v":0,"_id":"6848372d4aa33580e5c973cd","badges":[],"createdAt":"2025-06-10T13:46:21.133Z","degree":"Design","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T13:46:21.133Z"}}
 {"level":"info","message":"POST /chat","timestamp":"2025-06-10T14:13:14.067Z"}
 {"level":"info","message":"Received chat message: where is the library","timestamp":"2025-06-10T14:13:14.072Z","user":{"__v":0,"_id":"6848372d4aa33580e5c973cd","badges":[],"createdAt":"2025-06-10T13:46:21.133Z","degree":"Design","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T13:46:21.133Z"}}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T14:13:38.588Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T14:13:38.604Z"}
