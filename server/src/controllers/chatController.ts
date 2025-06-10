@@ -34,6 +34,8 @@ export const chat = catchAsync(async (req: Request, res: Response, next: NextFun
   const { message } = req.body;
   const lowerMessage = message.toLowerCase();
 
+  console.log('Received chat message:', message);
+
   // Check if the message is about class schedules
   if (lowerMessage.includes('class') || lowerMessage.includes('schedule')) {
     try {
@@ -155,12 +157,14 @@ export const chat = catchAsync(async (req: Request, res: Response, next: NextFun
 
   // For other messages, use OpenAI
   try {
+    console.log('Attempting to use OpenAI for response...');
+    
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",
-          content: "You are a helpful campus assistant. Provide concise and accurate information about the campus, classes, and facilities."
+          content: SYSTEM_PROMPT
         },
         {
           role: "user",
@@ -169,17 +173,86 @@ export const chat = catchAsync(async (req: Request, res: Response, next: NextFun
       ],
     });
 
-    res.status(200).json({
+    console.log('OpenAI response received:', {
+      status: 'success',
+      content: completion.choices[0].message?.content
+    });
+
+    return res.status(200).json({
       status: 'success',
       data: {
         message: completion.choices[0].message?.content
       }
     });
-  } catch (error) {
+  } catch (error: any) {
+    // Handle quota exceeded error
+    if (error.status === 429 || error.code === 'insufficient_quota' || error.type === 'insufficient_quota') {
+      console.log('Handling quota exceeded error with fallback response');
+      // Provide a fallback response
+      const fallbackResponse = getFallbackResponse(message);
+      return res.status(200).json({
+        status: 'success',
+        data: {
+          message: fallbackResponse
+        }
+      });
+    }
+
+    // Log other errors only once
+    console.error('OpenAI API error:', error);
     logger.error('OpenAI API error:', error);
-    return next(new AppError('Failed to get response from AI', 500));
+
+    // For other errors, return a generic error message
+    return res.status(500).json({
+      status: 'error',
+      message: 'I apologize, but I am currently experiencing technical difficulties. Please try again later.'
+    });
   }
 });
+
+// Helper function to generate fallback responses
+function getFallbackResponse(message: string): string {
+  const lowerMessage = message.toLowerCase();
+
+  // Handle greetings
+  if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+    return "Hello! I'm your campus assistant. I can help you with class schedules, bus timings, cafeteria menus, and campus events. What would you like to know?";
+  }
+
+  // Handle introductions
+  if (lowerMessage.includes('i am') || lowerMessage.includes('i\'m') || lowerMessage.includes('my name is')) {
+    return "Nice to meet you! I'm your campus assistant. How can I help you today?";
+  }
+
+  // Handle questions about classes
+  if (lowerMessage.includes('class') || lowerMessage.includes('schedule')) {
+    return "You can check your class schedule by asking 'What's my schedule?' or 'Show me my classes'. I'll help you find the right information.";
+  }
+
+  // Handle questions about buses
+  if (lowerMessage.includes('bus') || lowerMessage.includes('transport')) {
+    return "I can help you with bus schedules. Try asking 'When is the next bus?' or 'Show me bus routes' to get started.";
+  }
+
+  // Handle questions about food
+  if (lowerMessage.includes('food') || lowerMessage.includes('menu') || lowerMessage.includes('cafeteria')) {
+    return "You can check today's cafeteria menu by asking 'What's on the menu today?' or 'Show me the cafeteria menu'.";
+  }
+
+  // Handle questions about events
+  if (lowerMessage.includes('event') || lowerMessage.includes('activity')) {
+    return "I can show you upcoming campus events. Try asking 'What events are happening?' or 'Show me upcoming events'.";
+  }
+
+  // Default response
+  return "I'm here to help! You can ask me about:\n" +
+    "- Class schedules\n" +
+    "- Bus routes and timings\n" +
+    "- Cafeteria menus\n" +
+    "- Campus events\n" +
+    "- Location directions\n\n" +
+    "What would you like to know?";
+}
 
 export const getChatHistory = async (req: Request, res: Response, next: NextFunction) => {
   try {

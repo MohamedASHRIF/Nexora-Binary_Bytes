@@ -260,160 +260,34 @@ export const useChatbot = () => {
 
   // Modify the processMessage function to handle offline mode
   const processMessage = useCallback(async (text: string): Promise<Message> => {
+    const startTime = Date.now();
     try {
-      const lowerText = text.toLowerCase().trim();
-      let responseText = "";
-      let intent = detectIntent(text);
-      const timeRef = extractTimeReference(lowerText);
+      let responseText = '';
 
-      // Add offline mode message
+      // Check if we're offline
       if (isOffline) {
-        responseText = "You're currently offline. I'll try to use cached data, but some features may be limited.";
-      }
-
-      // Handle compound intents
-      if (intent.includes("_")) {
-        const [primary, secondary] = intent.split("_")
-        if (primary === "bus" && secondary === "schedule") {
-          // Handle bus schedule query
-          const busData = await fetchDataWithCache('bus', getBusData)
-          const nextBuses = busData.nextBuses
-            .filter((b: BusItem) => !timeRef || b.time.includes(timeRef))
-            .slice(0, 5)
-
-          if (nextBuses.length === 0) {
-            responseText = "I couldn't find any bus schedules for the requested time. Here are the main bus routes available:\n\n" +
-              busData.routes.map((route: { name: string; description: string }) => `- ${route.name}: ${route.description}`).join("\n") +
-              "\n\nWould you like to know the schedule for a specific route?"
-          } else {
-            const routeGroups = nextBuses.reduce((groups: { [key: string]: BusItem[] }, bus: BusItem) => {
-              if (!groups[bus.route]) {
-                groups[bus.route] = []
-              }
-              groups[bus.route].push(bus)
-              return groups
-            }, {})
-
-            responseText = "Here are the upcoming bus schedules:\n\n"
-            for (const [route, buses] of Object.entries(routeGroups) as [string, BusItem[]][]) {
-              responseText += `${route}:\n`
-              for (const bus of buses) {
-                responseText += `- ${bus.time} → ${bus.destination}\n`
-              }
-              responseText += "\n"
-            }
-            responseText += "\nWould you like to know more about a specific route or see the full schedule?"
-          }
-        }
+        responseText = "I'm currently offline. Please try again when you're back online.";
       } else {
-        // Handle single intents
-        switch (intent) {
-          case "greeting":
-            responseText = getRandomResponse(greetingResponses)
-            break
-          case "thanks":
-            responseText = getRandomResponse(thankYouResponses)
-            break
-          case "goodbye":
-            responseText = getRandomResponse(goodbyeResponses)
-            break
-          case "schedule":
-            const scheduleData = await fetchDataWithCache('schedule', getScheduleData)
-            if (scheduleData.classes.length === 0) {
-              responseText = "I couldn't find any classes scheduled for the requested time."
-            } else {
-              responseText = formatSchedule(scheduleData.classes)
-            }
-            break
-          case "bus":
-            const busData = await fetchDataWithCache('bus', getBusData)
-            const nextBuses = busData.nextBuses
-              .filter((b: BusItem) => !timeRef || b.time.includes(timeRef))
-              .slice(0, 5)
-
-            if (nextBuses.length === 0) {
-              responseText = "I couldn't find any bus schedules for the requested time."
-            } else {
-              responseText = "Here are the next buses:\n\n" +
-                nextBuses.map((bus: BusItem) => `- ${bus.time}: ${bus.route} to ${bus.destination}`).join("\n")
-            }
-            break
-          case "food":
-            const menuData = await getCafeteriaData()
-            const menu = timeRef === "tomorrow" ? menuData.tomorrow : menuData.today
-            if (!menu || Object.keys(menu).length === 0) {
-              responseText = "Menu information is not available for the requested time."
-            } else {
-              responseText = `Today's cafeteria menu:\n\n${Object.entries(menu)
-                .map(([meal, items]) => `${meal}: ${Array.isArray(items) ? items.join(", ") : items}`)
-                .join("\n\n")}`
-            }
-            break
-          case "event":
-            const eventData = await getEventData()
-            if (eventData.upcoming.length === 0) {
-              responseText = "No upcoming events found for the requested time."
-            } else {
-              responseText = `Upcoming events:\n\n${eventData.upcoming
-                .map((event: EventType) => `- ${event.name} (${event.date} at ${event.time})\n  Location: ${event.location}`)
-                .join("\n\n")}`
-            }
-            break
-          case "location":
-            responseText = "I can help you find locations on campus. Would you like to see the campus map or get directions to a specific place?"
-            break
-          case "help":
-            responseText = "I can help you with:\n" +
-              "- Class schedules and timetables\n" +
-              "- Bus routes and schedules\n" +
-              "- Cafeteria menus and food options\n" +
-              "- Campus events and activities\n" +
-              "- Location directions and maps\n\n" +
-              "What would you like to know more about?"
-            break
-          default:
-            // Try to find a matching FAQ
-            const faqData = await getFAQData()
-            const matchedFaq = faqData.find((faq: FAQItem) => lowerText.includes(faq.question.toLowerCase()))
-            if (matchedFaq) {
-              responseText = matchedFaq.answer
-            } else {
-              responseText = "I'm not sure I understand. Could you please rephrase your question or try asking about:\n" +
-                "- Class schedules\n" +
-                "- Bus routes\n" +
-                "- Cafeteria menu\n" +
-                "- Campus events\n" +
-                "- Location directions"
-            }
-        }
+        // Process the message and get response
+        responseText = "I understand your message. How can I help you further?";
       }
-
-      // Update suggestions based on the current context
-      const newSuggestions = getFollowUpSuggestion(intent)
-      setSuggestions(newSuggestions)
-
-      // Update context
-      setContext(prev => ({
-        ...prev,
-        lastTopic: intent,
-        lastTime: timeRef
-      }))
 
       // Log the query
       addQueryLog({
-        text,
+        query: text,
         timestamp: new Date(),
-        sentiment: 0
-      })
+        sentiment: 0,
+        responseTime: Date.now() - startTime
+      });
 
       return {
         text: responseText,
         isUser: false,
         timestamp: new Date(),
         isTampered: false
-      }
+      };
     } catch (error) {
-      console.error('Error processing message:', error)
+      console.error('Error processing message:', error);
       return {
         text: isOffline 
           ? "I'm having trouble accessing the data while offline. Please try again when you're back online."
@@ -421,13 +295,14 @@ export const useChatbot = () => {
         isUser: false,
         timestamp: new Date(),
         isTampered: false
-      }
+      };
     }
-  }, [isOffline])
+  }, [isOffline]);
 
   const sendMessage = async (text: string) => {
+    const startTime = Date.now();
     try {
-      setIsProcessing(true)
+      setIsProcessing(true);
 
       // Add user message
       const userMessage: Message = {
@@ -435,32 +310,59 @@ export const useChatbot = () => {
         isUser: true,
         timestamp: new Date(),
         isTampered: false
+      };
+      setMessages(prev => [...prev, userMessage]);
+
+      // Make API call to chat endpoint
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No authentication token found');
       }
-      setMessages(prev => [...prev, userMessage])
 
-      // Use local processing only
-      const response = await processMessage(text)
-      setMessages(prev => [...prev, response])
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ message: text })
+      });
 
-      // Log the query
-      addQueryLog({
-        text,
-        timestamp: new Date(),
-        sentiment: 0
-      })
-    } catch (error) {
-      console.error('Error sending message:', error)
-      const errorMessage: Message = {
-        text: "I'm sorry, I encountered an error while processing your request. Please try again.",
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to get response from server');
+      }
+
+      // Add bot response
+      const botMessage: Message = {
+        text: data.data.message,
         isUser: false,
         timestamp: new Date(),
         isTampered: false
-      }
-      setMessages(prev => [...prev, errorMessage])
+      };
+      setMessages(prev => [...prev, botMessage]);
+
+      // Log the query
+      addQueryLog({
+        query: text,
+        timestamp: new Date(),
+        sentiment: 0,
+        responseTime: Date.now() - startTime
+      });
+    } catch (error) {
+      console.error('Error sending message:', error);
+      const errorMessage: Message = {
+        text: error instanceof Error ? error.message : "I'm sorry, I encountered an error while processing your request. Please try again.",
+        isUser: false,
+        timestamp: new Date(),
+        isTampered: false
+      };
+      setMessages(prev => [...prev, errorMessage]);
     } finally {
-      setIsProcessing(false)
+      setIsProcessing(false);
     }
-  }
+  };
 
   // Clear chat history
   const clearChat = useCallback(() => {

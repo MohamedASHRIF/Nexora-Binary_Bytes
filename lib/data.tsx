@@ -263,10 +263,22 @@ export async function getEventData(): Promise<EventData> {
 // FAQ data
 export async function getFAQData(): Promise<FAQItem[]> {
   try {
-    const data = await fetchFromAPI('/faq');
-    return data.map((item: any) => ({
-      question: item.question,
-      answer: item.answer
+    const response = await fetchFromAPI('/faq');
+    console.log('FAQ API Response:', response);
+    
+    // Ensure we have the correct data structure with default values
+    const faqData = response?.data?.data || [];
+    
+    // Ensure faqData is an array
+    const faqsArray = Array.isArray(faqData) ? faqData : 
+                     Array.isArray(faqData.faqs) ? faqData.faqs :
+                     Array.isArray(faqData.data) ? faqData.data : [];
+    
+    console.log('FAQs Array:', faqsArray);
+    
+    return faqsArray.map((item: any) => ({
+      question: item.question || '',
+      answer: item.answer || ''
     }));
   } catch (error) {
     console.error('Error fetching FAQ:', error);
