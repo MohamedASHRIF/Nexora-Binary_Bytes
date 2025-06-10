@@ -1702,3 +1702,5 @@
 {"level":"info","message":"GET /events","timestamp":"2025-06-10T13:11:32.245Z"}
 {"level":"info","message":"DELETE /users/684828d424cdaf3f008385a7","timestamp":"2025-06-10T13:11:38.119Z"}
 {"level":"info","message":"DELETE /users/68482c9ca06d2db0a1f04e00","timestamp":"2025-06-10T13:11:39.589Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T14:06:28.595Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T14:06:28.618Z"}
