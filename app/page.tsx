@@ -22,7 +22,7 @@ function ChatHistory() {
 }
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('chat');
+  const [activeTab, setActiveTab] = useState('home');
   const { badges } = useGamePoints();
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();

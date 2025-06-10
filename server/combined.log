@@ -1941,3 +1941,9 @@
 {"level":"info","message":"Received chat message: event","timestamp":"2025-06-10T18:47:53.646Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
 {"level":"info","message":"GET /events/chat","timestamp":"2025-06-10T18:47:53.653Z"}
 {"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-10T18:47:53.654Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-10T18:49:11.237Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T18:49:23.484Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:49:23.663Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:49:23.673Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:49:28.840Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:49:28.848Z"}
