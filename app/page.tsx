@@ -6,14 +6,27 @@ import { MapView } from '../components/MapView';
 import { DataInsights } from '../components/DataInsights';
 import { SuggestionBar } from '../components/SuggestionBar';
 import { useGamePoints } from '../hooks/useGamePoints';
-import { useLanguage } from '../hooks/useLanguage';
+import Header from './components/Header';
+
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 
+
+function ChatHistory() {
+  return (
+    <div className="w-64 h-full bg-gray-50 border-r p-4">
+      <h2 className="text-lg font-semibold mb-4">Chat History</h2>
+
+      <div className="text-gray-400">No chat history yet.</div>
+    </div>
+  );
+}
+
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('chat');
-  const { points, badges } = useGamePoints();
-  const { language, setLanguage, translate, isInitialized } = useLanguage();
+
+  const [activeTab, setActiveTab] = useState<string | null>(null);
+  const { badges, points } = useGamePoints();
+
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
@@ -26,127 +39,98 @@ export default function Home() {
     }
   }, [router]);
 
-  // If not mounted yet, return null to avoid hydration issues
   if (!isMounted) {
     return null;
   }
 
   return (
-    <main className="min-h-screen bg-gray-100">
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Nexora Campus Copilot</h1>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium">Points:</span>
-              <span className="text-lg font-bold text-blue-600" suppressHydrationWarning>
-                {points}
-              </span>
+    <main className="min-h-screen bg-gray-100 flex flex-col">
+      {/* Header Component */}
+      <Header />
+      {/* New Navigation Bar */}
+      <nav className="w-full bg-white shadow flex items-center px-8 py-2 gap-6">
+        <button
+          onClick={() => setActiveTab(null)}
+          className={`px-4 py-2 rounded font-semibold transition-colors ${
+            activeTab === null ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-blue-100'
+          }`}
+        >
+          Home
+        </button>
+        <button
+          onClick={() => setActiveTab('chat')}
+          className={`px-4 py-2 rounded font-semibold transition-colors ${
+            activeTab === 'chat' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-blue-100'
+          }`}
+        >
+          Chat
+        </button>
+        <button
+          onClick={() => setActiveTab('map')}
+          className={`px-4 py-2 rounded font-semibold transition-colors ${
+            activeTab === 'map' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-blue-100'
+          }`}
+        >
+          Map
+        </button>
+        <button
+          onClick={() => setActiveTab('insights')}
+          className={`px-4 py-2 rounded font-semibold transition-colors ${
+            activeTab === 'insights' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-blue-100'
+          }`}
+        >
+          Insights
+        </button>
+      </nav>
+      {/* Main Content + Left Sidebar */}
+      <div className="flex flex-1">
+        {/* Left Sidebar for Chat History */}
+        {activeTab === 'chat' && <ChatHistory />}
+        {/* Main Content Area */}
+        <div className={`flex-1 flex flex-col justify-center items-center p-8 ${activeTab === 'chat' ? 'pl-0' : ''}`}>
+          {activeTab === null && (
+            <div className="text-center">
+              <h1 className="text-4xl font-bold mb-4">Welcome to Nexora Campus Copilot</h1>
+              <p className="text-lg text-gray-600 mb-8">Select an option from the navigation bar to get started!</p>
+              {/* You can add more welcome content or images here */}
             </div>
-            {isInitialized && (
-              <div className="flex border rounded-md overflow-hidden">
-                <button
-                  onClick={() => setLanguage('en')}
-                  className={`px-3 py-1 ${
-                    language === 'en' ? 'bg-blue-500 text-white' : 'bg-white'
-                  }`}
-                >
-                  EN
-                </button>
-                <button
-                  onClick={() => setLanguage('si')}
-                  className={`px-3 py-1 ${
-                    language === 'si' ? 'bg-blue-500 text-white' : 'bg-white'
-                  }`}
-                >
-                  සිං
-                </button>
-                <button
-                  onClick={() => setLanguage('ta')}
-                  className={`px-3 py-1 ${
-                    language === 'ta' ? 'bg-blue-500 text-white' : 'bg-white'
-                  }`}
-                >
-                  தமி
-                </button>
+          )}
+          {activeTab === 'chat' && (
+            <div className="w-full h-full flex flex-col max-w-3xl mx-auto">
+              <div className="flex-1 overflow-hidden">
+                <ChatWindow />
               </div>
-            )}
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="flex border-b">
-            <button
-              onClick={() => setActiveTab('chat')}
-              className={`flex-1 py-3 text-center ${
-                activeTab === 'chat'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              Chat
-            </button>
-            <button
-              onClick={() => setActiveTab('map')}
-              className={`flex-1 py-3 text-center ${
-                activeTab === 'map'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              Map
-            </button>
-            <button
-              onClick={() => setActiveTab('insights')}
-              className={`flex-1 py-3 text-center ${
-                activeTab === 'insights'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              Insights
-            </button>
-          </div>
-
-          <div className="h-[calc(100vh-250px)]">
-            {activeTab === 'chat' && (
-              <div className="h-full flex flex-col">
-                <div className="flex-1 overflow-hidden">
-                  <ChatWindow />
-                </div>
-                <div className="flex-shrink-0">
-                  <SuggestionBar onSuggestionClick={() => {}} />
-                </div>
+              <div className="flex-shrink-0">
+                <SuggestionBar onSuggestionClick={() => {}} />
               </div>
-            )}
-            {activeTab === 'map' && (
-              <div className="h-full">
-                <MapView />
-              </div>
-            )}
-            {activeTab === 'insights' && (
-              <div className="h-full">
-                <DataInsights />
-              </div>
-            )}
-          </div>
-        </div>
-
-        {badges.length > 0 && (
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold mb-2">Your Badges</h3>
-            <div className="flex flex-wrap gap-2">
-              {badges.map((badge) => (
-                <span
-                  key={badge.id}
-                  className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"
-                >
-                  {badge.name}
-                </span>
-              ))}
             </div>
-          </div>
-        )}
+          )}
+          {activeTab === 'map' && (
+            <div className="w-full h-full max-w-3xl mx-auto">
+              <MapView />
+            </div>
+          )}
+          {activeTab === 'insights' && (
+            <div className="w-full h-full max-w-3xl mx-auto">
+              <DataInsights />
+            </div>
+          )}
+          {badges.length > 0 && (
+            <div className="mt-6">
+              <h3 className="text-lg font-semibold mb-2">Your Badges</h3>
+              <div className="flex flex-wrap gap-2">
+                {badges.map((badge) => (
+                  <span
+                    key={badge.id}
+                    className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"
+                  >
+                    {badge.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );
