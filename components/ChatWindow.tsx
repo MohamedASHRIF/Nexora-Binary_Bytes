@@ -19,6 +19,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
   const { messages, isProcessing, sendMessage, suggestions, clearChat } = useChatbot();
   const { addPoints } = useGamePoints();
   const { translate } = useLanguage();
+  const initialMessageSentRef = useRef(false);
 
 
   useEffect(() => {
@@ -38,16 +39,20 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
       setInputText(transcript);
     }
   }, [transcript]);
-    // Send initialMessage once when it arrives
-    useEffect(() => {
-      if (initialMessage && initialMessage.trim()) {
-        (async () => {
-          addPoints(5);
-          await sendMessage(initialMessage);
-          onMessageSent?.();
-        })();
-      }
-    }, [initialMessage, sendMessage, addPoints, onMessageSent]);
+
+  useEffect(() => {
+    if (initialMessage && initialMessage.trim() && !initialMessageSentRef.current) {
+      initialMessageSentRef.current = true;
+      (async () => {
+        addPoints(5);
+        await sendMessage(initialMessage);
+        onMessageSent?.();
+      })();
+    }
+    if (!initialMessage) {
+      initialMessageSentRef.current = false;
+    }
+  }, [initialMessage, sendMessage, addPoints, onMessageSent]);
 
   const handleSend = async () => {
     if (!inputText.trim()) return;
