@@ -82,9 +82,23 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h1 className="text-2xl font-bold text-center mb-6">Create an Account</h1>
+
+  <div className="min-h-screen flex">
+    {/* Left Side - Quote/Image Section */}
+    <div className="w-1/2 bg-gradient-to-br from-blue-900 to-indigo-900 text-white flex items-center justify-center p-12">
+      <div className="text-left max-w-md">
+        <h2 className="text-4xl font-semibold mb-4">Welcome to Nexora!</h2>
+        <p className="text-lg leading-relaxed">
+          Start your journey with Nexora — your smart assistant for campus life.
+        </p>
+        {/* Optional: Add image or illustration below */}
+        {/* <img src="/some-campus-img.svg" alt="Campus" className="mt-6" /> */}
+      </div>
+    </div>
+
+    <div className="w-1/2 flex items-center justify-center bg-white">
+      <div className=" p-8  w-96">
+        <h1 className="text-2xl font-bold  mb-6">Create an Account</h1>
         
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
@@ -104,7 +118,7 @@ export default function SignupPage() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -119,7 +133,7 @@ export default function SignupPage() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -133,15 +147,15 @@ export default function SignupPage() {
               value={formData.role}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="student">Student</option>
-              <option value="staff">Staff</option>
+              <option value="staff">Admin</option>
             </select>
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="block text-md font-medium text-gray-700">
               Password
             </label>
             <input
@@ -152,7 +166,7 @@ export default function SignupPage() {
               onChange={handleChange}
               required
               minLength={8}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <p className="mt-1 text-sm text-gray-500">Password must be at least 8 characters long</p>
           </div>
@@ -169,7 +183,7 @@ export default function SignupPage() {
               onChange={handleChange}
               required
               minLength={8}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -187,6 +201,7 @@ export default function SignupPage() {
             Login
           </Link>
         </p>
+      </div>
       </div>
     </div>
   );
