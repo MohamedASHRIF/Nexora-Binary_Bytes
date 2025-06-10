@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { Event } from '../models/Event';
 import { catchAsync } from '../utils/catchAsync';
-import AppError from '../utils/appError';
+import { AppError } from '../middleware/errorHandler';
 import { logger } from '../utils/logger';
+import mongoose from 'mongoose';
 
 export const createEvent = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const event = await Event.create(req.body);
@@ -64,12 +65,33 @@ export const updateEvent = catchAsync(async (req: Request, res: Response, next: 
 });
 
 export const deleteEvent = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  const event = await Event.findByIdAndDelete(req.params.id);
+  const { id } = req.params;
+
+  // Validate ObjectId format
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return next(new AppError('Invalid event ID format', 400));
+  }
+
+  const event = await Event.findByIdAndDelete(id);
   if (!event) {
     return next(new AppError('No event found with that ID', 404));
   }
-  res.status(204).json({
+  
+  res.status(200).json({
     status: 'success',
-    data: null
+    data: {
+      message: 'Event deleted successfully'
+    }
+  });
+});
+
+export const getAllEvents = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+  const events = await Event.find().sort({ date: 1 });
+  
+  res.status(200).json({
+    status: 'success',
+    data: {
+      events
+    }
   });
 }); 

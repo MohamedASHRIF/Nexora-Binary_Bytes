@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { BusRoute } from '../models/BusRoute';
 import { AppError } from '../middleware/errorHandler';
 import { catchAsync } from '../utils/catchAsync';
+import mongoose from 'mongoose';
 
 // Get all bus timings
 export const getAllBusTimings = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
@@ -65,6 +66,11 @@ export const updateBusTiming = catchAsync(async (req: Request, res: Response, ne
 export const deleteBusTiming = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
 
+  // Validate ObjectId format
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return next(new AppError('Invalid bus timing ID format', 400));
+  }
+
   const busTiming = await BusRoute.findByIdAndDelete(id);
 
   if (!busTiming) {
@@ -73,6 +79,8 @@ export const deleteBusTiming = catchAsync(async (req: Request, res: Response, ne
 
   res.status(200).json({
     status: 'success',
-    message: 'Bus timing deleted successfully'
+    data: {
+      message: 'Bus timing deleted successfully'
+    }
   });
 }); 

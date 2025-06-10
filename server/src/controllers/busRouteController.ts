@@ -1,7 +1,8 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { BusRoute } from '../models/busRouteModel';
-import AppError from '../utils/appError';
+import { AppError } from '../middleware/errorHandler';
 import { catchAsync } from '../utils/catchAsync';
+import mongoose from 'mongoose';
 
 interface BusRouteDocument {
   _id: string;
@@ -14,7 +15,7 @@ interface BusRouteDocument {
 }
 
 // Get all bus routes
-export const getBusRoutes = catchAsync(async (req: Request, res: Response) => {
+export const getBusRoutes = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const routes = await BusRoute.find().sort({ time: 1 });
   
   // Format the response to match frontend expectations
@@ -37,11 +38,11 @@ export const getBusRoutes = catchAsync(async (req: Request, res: Response) => {
 });
 
 // Get a single bus route
-export const getBusRoute = catchAsync(async (req: Request, res: Response) => {
+export const getBusRoute = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const route = await BusRoute.findById(req.params.id);
   
   if (!route) {
-    throw new AppError('No bus route found with that ID', 404);
+    return next(new AppError('No bus route found with that ID', 404));
   }
 
   res.status(200).json({
@@ -61,7 +62,7 @@ export const getBusRoute = catchAsync(async (req: Request, res: Response) => {
 });
 
 // Create a new bus route (admin only)
-export const createBusRoute = catchAsync(async (req: Request, res: Response) => {
+export const createBusRoute = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const newRoute = await BusRoute.create(req.body);
 
   res.status(201).json({
@@ -81,14 +82,14 @@ export const createBusRoute = catchAsync(async (req: Request, res: Response) => 
 });
 
 // Update a bus route (admin only)
-export const updateBusRoute = catchAsync(async (req: Request, res: Response) => {
+export const updateBusRoute = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const route = await BusRoute.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
   });
 
   if (!route) {
-    throw new AppError('No bus route found with that ID', 404);
+    return next(new AppError('No bus route found with that ID', 404));
   }
 
   res.status(200).json({
@@ -108,15 +109,24 @@ export const updateBusRoute = catchAsync(async (req: Request, res: Response) => 
 });
 
 // Delete a bus route (admin only)
-export const deleteBusRoute = catchAsync(async (req: Request, res: Response) => {
-  const route = await BusRoute.findByIdAndDelete(req.params.id);
+export const deleteBusRoute = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params;
 
-  if (!route) {
-    throw new AppError('No bus route found with that ID', 404);
+  // Validate ObjectId format
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return next(new AppError('Invalid bus route ID format', 400));
   }
 
-  res.status(204).json({
+  const route = await BusRoute.findByIdAndDelete(id);
+
+  if (!route) {
+    return next(new AppError('No bus route found with that ID', 404));
+  }
+
+  res.status(200).json({
     status: 'success',
-    data: null
+    data: {
+      message: 'Bus route deleted successfully'
+    }
   });
 }); 

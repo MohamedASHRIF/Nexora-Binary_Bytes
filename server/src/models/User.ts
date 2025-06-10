@@ -56,7 +56,9 @@ const userSchema = new Schema<IUser>({
   degree: {
     type: String,
     enum: ['IT', 'AI', 'Design'],
-    required: false,
+    required: function(this: IUser) {
+      return this.role === 'student';
+    },
     validate: {
       validator: function(this: IUser, value: string | undefined) {
         if (this.role === 'student') {

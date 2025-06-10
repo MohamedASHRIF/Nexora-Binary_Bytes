@@ -1,8 +1,9 @@
 import express from 'express';
-import { protect } from '../middleware/auth';
+import { protect, restrictTo } from '../middleware/auth';
 import {
   createEvent,
   getEvents,
+  getAllEvents,
   getEvent,
   updateEvent,
   deleteEvent
@@ -13,8 +14,14 @@ const router = express.Router();
 // Protect all routes
 router.use(protect);
 
+// Public route for chatbot
+router.get('/chat', getEvents);
+
+// Admin routes
+router.use(restrictTo('admin'));
+
 router.route('/')
-  .get(getEvents)
+  .get(getAllEvents)
   .post(createEvent);
 
 router.route('/:id')

@@ -116,4 +116,63 @@ export const deleteUser = catchAsync(async (req: Request, res: Response, next: N
     status: 'success',
     message: 'User deleted successfully'
   });
+});
+
+// Debug endpoint to check user data
+export const debugUser = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+  const { email } = req.params;
+  
+  const user = await User.findOne({ email });
+  if (!user) {
+    return next(new AppError('User not found', 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        degree: user.degree,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+      }
+    }
+  });
+});
+
+// Update user degree (for fixing existing users)
+export const updateUserDegree = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+  const { email } = req.params;
+  const { degree } = req.body;
+
+  // Validate degree
+  if (!['IT', 'AI', 'Design'].includes(degree)) {
+    return next(new AppError('Invalid degree. Must be IT, AI, or Design', 400));
+  }
+
+  const user = await User.findOneAndUpdate(
+    { email, role: 'student' },
+    { degree },
+    { new: true, runValidators: true }
+  );
+
+  if (!user) {
+    return next(new AppError('Student not found', 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        degree: user.degree
+      }
+    }
+  });
 }); 

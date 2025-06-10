@@ -56,10 +56,20 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
           return next(new AppError('User not authenticated', 401));
         }
 
-        const user = await User.findById(req.user.id).select('+degree');
+        console.log('Chat request user ID:', req.user.id);
+        console.log('Chat request user object:', req.user);
+
+        const user = await User.findById(req.user.id);
         if (!user) {
           return next(new AppError('User not found', 404));
         }
+
+        console.log('Found user in database:', { 
+          id: user._id, 
+          role: user.role, 
+          degree: user.degree,
+          email: user.email 
+        });
 
         logger.info('User info:', { userId: user._id, role: user.role, degree: user.degree });
 
@@ -75,6 +85,7 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
 
         // If user doesn't have a degree set
         if (!user.degree) {
+          console.log('User degree is not set:', user.degree);
           return res.status(200).json({
             status: 'success',
             data: {
@@ -82,6 +93,8 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
             }
           });
         }
+
+        console.log('User degree is set:', user.degree);
 
         // Get schedules for the user's degree
         const schedules = await Schedule.find({ 
@@ -187,9 +200,10 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
     // Check if the message is about events
     if (lowerMessage.includes('event') || lowerMessage.includes('upcoming')) {
       try {
-        const events = await Event.find().sort({ date: 1 });
+        const eventsResponse = await fetch('http://localhost:5000/api/events/chat');
+        const eventsData = await eventsResponse.json() as any;
         
-        if (events.length === 0) {
+        if (!eventsData.data?.data?.upcoming || eventsData.data.data.upcoming.length === 0) {
           return res.status(200).json({
             status: 'success',
             data: {
@@ -198,14 +212,14 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
           });
         }
 
+        const events = eventsData.data.data.upcoming;
         let formattedResponse = "Here are the upcoming events:\n\n";
         
-        events.forEach(event => {
-          formattedResponse += `${event.title}\n`;
-          formattedResponse += `Date: ${event.date.toLocaleDateString()}\n`;
+        events.forEach((event: any) => {
+          formattedResponse += `${event.name}\n`;
+          formattedResponse += `Date: ${event.date}\n`;
           formattedResponse += `Time: ${event.time}\n`;
-          formattedResponse += `Location: ${event.location}\n`;
-          formattedResponse += `Description: ${event.description}\n\n`;
+          formattedResponse += `Location: ${event.location}\n\n`;
         });
 
         return res.status(200).json({

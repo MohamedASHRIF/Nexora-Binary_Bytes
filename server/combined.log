@@ -1525,3 +1525,180 @@
 {"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:42:09.788Z"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:42:18.500Z"}
 {"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:42:18.515Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:43:07.424Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:43:07.439Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:43:16.161Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:43:16.189Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:43:16.205Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:43:16.221Z"}
+{"level":"info","message":"DELETE /bus-timings/6847161fdcdea03422f180ec","timestamp":"2025-06-10T12:43:23.477Z"}
+{"level":"info","message":"DELETE /events/l1n8vaft5","timestamp":"2025-06-10T12:43:28.808Z"}
+{"level":"error","message":"Error: Cast to ObjectId failed for value \"l1n8vaft5\" (type string) at path \"_id\" for model \"Event\"","timestamp":"2025-06-10T12:43:28.815Z"}
+{"level":"error","message":"CastError: Cast to ObjectId failed for value \"l1n8vaft5\" (type string) at path \"_id\" for model \"Event\"\n    at SchemaObjectId.cast (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schema\\objectId.js:251:11)\n    at SchemaObjectId.SchemaType.applySetters (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1255:12)\n    at SchemaObjectId.SchemaType.castForQuery (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1673:17)\n    at cast (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\cast.js:390:32)\n    at model.Query.Query.cast (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\query.js:5055:12)\n    at model.Query.Query._castConditions (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\query.js:2351:10)\n    at model.Query._findOneAndDelete (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\query.js:3593:8)\n    at model.Query.exec (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\query.js:4604:80)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\src\\controllers\\eventController.ts:67:17","timestamp":"2025-06-10T12:43:28.821Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T12:45:08.634Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T12:45:16.647Z"}
+{"level":"info","message":"Received chat message: bus","timestamp":"2025-06-10T12:45:16.652Z","user":{"__v":0,"_id":"684828d424cdaf3f008385a7","badges":[],"createdAt":"2025-06-10T12:45:08.647Z","email":"ashrifjaleel@gmail.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T12:45:08.647Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T12:45:19.766Z"}
+{"level":"info","message":"Received chat message: event","timestamp":"2025-06-10T12:45:19.771Z","user":{"__v":0,"_id":"684828d424cdaf3f008385a7","badges":[],"createdAt":"2025-06-10T12:45:08.647Z","email":"ashrifjaleel@gmail.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T12:45:08.647Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T12:45:22.745Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T12:45:22.751Z","user":{"__v":0,"_id":"684828d424cdaf3f008385a7","badges":[],"createdAt":"2025-06-10T12:45:08.647Z","email":"ashrifjaleel@gmail.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T12:45:08.647Z"}}
+{"level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T12:45:22.756Z","userId":"684828d424cdaf3f008385a7"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:45:35.370Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:45:35.548Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:45:35.560Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:45:35.570Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:45:35.634Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:45:35.637Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:45:35.652Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:45:35.660Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:45:35.669Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:51:21.241Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:51:21.257Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:52:22.784Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:52:22.803Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:52:31.987Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:52:32.003Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:52:36.452Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:52:36.492Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:52:36.512Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:52:36.531Z"}
+{"level":"info","message":"DELETE /bus-timings/6847161fdcdea03422f180ec","timestamp":"2025-06-10T12:52:40.591Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:53:13.320Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:53:13.335Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:53:43.338Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:53:43.357Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:53:53.254Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:53:53.290Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:53:53.306Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:53:53.321Z"}
+{"level":"info","message":"DELETE /bus-timings/6847161fdcdea03422f180ec","timestamp":"2025-06-10T12:53:57.273Z"}
+{"level":"info","message":"DELETE /bus-timings/6847161fdcdea03422f180ec","timestamp":"2025-06-10T12:53:58.588Z"}
+{"level":"info","message":"DELETE /events/skr49ko2d","timestamp":"2025-06-10T12:54:05.009Z"}
+{"level":"error","message":"Error: Cast to ObjectId failed for value \"skr49ko2d\" (type string) at path \"_id\" for model \"Event\"","timestamp":"2025-06-10T12:54:05.019Z"}
+{"level":"error","message":"CastError: Cast to ObjectId failed for value \"skr49ko2d\" (type string) at path \"_id\" for model \"Event\"\n    at SchemaObjectId.cast (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schema\\objectId.js:251:11)\n    at SchemaObjectId.SchemaType.applySetters (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1255:12)\n    at SchemaObjectId.SchemaType.castForQuery (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1673:17)\n    at cast (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\cast.js:390:32)\n    at model.Query.Query.cast (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\query.js:5055:12)\n    at model.Query.Query._castConditions (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\query.js:2351:10)\n    at model.Query._findOneAndDelete (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\query.js:3593:8)\n    at model.Query.exec (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\query.js:4604:80)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\src\\controllers\\eventController.ts:67:17","timestamp":"2025-06-10T12:54:05.026Z"}
+{"level":"info","message":"DELETE /bus-timings/6847161fdcdea03422f180ec","timestamp":"2025-06-10T12:54:15.703Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:55:13.416Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:55:13.431Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:55:21.101Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:55:21.116Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:55:40.810Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:55:40.825Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:55:52.007Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:55:52.022Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:56:30.228Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:56:30.241Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:56:41.010Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:56:41.024Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:56:45.200Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:56:45.215Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:56:46.805Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:56:46.834Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:56:46.851Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:56:46.867Z"}
+{"level":"info","message":"DELETE /bus-timings/6847161fdcdea03422f180ec","timestamp":"2025-06-10T12:56:55.865Z"}
+{"level":"info","message":"DELETE /events/68471993dcdea03422f1814f","timestamp":"2025-06-10T12:57:00.217Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:58:38.333Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:58:38.349Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:58:55.736Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:58:55.751Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:59:00.602Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:59:00.630Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:59:00.647Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:59:00.662Z"}
+{"level":"info","message":"DELETE /bus-routes/6847161fdcdea03422f180ec","timestamp":"2025-06-10T12:59:08.843Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:59:23.308Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T12:59:23.313Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T12:59:23.317Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:59:40.143Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:59:40.347Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:59:40.361Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:59:40.439Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:59:40.450Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:59:40.460Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:59:40.470Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:59:40.479Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:59:40.488Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T13:00:11.646Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T13:00:11.830Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T13:00:11.842Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T13:00:11.918Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T13:00:11.929Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T13:00:11.937Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T13:00:11.948Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T13:00:11.954Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T13:00:11.966Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T13:00:26.295Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T13:01:16.024Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T13:01:20.546Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T13:01:20.551Z","user":{"__v":0,"_id":"68482c9ca06d2db0a1f04e00","badges":[],"createdAt":"2025-06-10T13:01:16.037Z","email":"ashrifjaleel123@gmail.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T13:01:16.037Z"}}
+{"level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T13:01:20.555Z","userId":"68482c9ca06d2db0a1f04e00"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T13:02:54.477Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T13:02:56.915Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T13:02:56.918Z","user":{"__v":0,"_id":"68482c9ca06d2db0a1f04e00","badges":[],"createdAt":"2025-06-10T13:01:16.037Z","email":"ashrifjaleel123@gmail.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T13:01:16.037Z"}}
+{"level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T13:02:56.919Z","userId":"68482c9ca06d2db0a1f04e00"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:03:50.780Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:03:50.796Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:03:58.418Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:03:58.432Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:04:21.425Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:04:21.440Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:04:33.564Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:04:33.580Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:04:43.518Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:04:43.533Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T13:05:00.573Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T13:05:00.599Z","user":{"__v":0,"_id":"68482c9ca06d2db0a1f04e00","badges":[],"createdAt":"2025-06-10T13:01:16.037Z","email":"ashrifjaleel123@gmail.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T13:01:16.037Z"}}
+{"level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T13:05:00.603Z","userId":"68482c9ca06d2db0a1f04e00"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T13:05:19.548Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T13:05:22.388Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T13:05:22.394Z","user":{"__v":0,"_id":"684828d424cdaf3f008385a7","badges":[],"createdAt":"2025-06-10T12:45:08.647Z","email":"ashrifjaleel@gmail.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T12:45:08.647Z"}}
+{"level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T13:05:22.399Z","userId":"684828d424cdaf3f008385a7"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:05:48.044Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:05:48.059Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T13:05:54.236Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T13:05:54.261Z","user":{"__v":0,"_id":"684828d424cdaf3f008385a7","badges":[],"createdAt":"2025-06-10T12:45:08.647Z","email":"ashrifjaleel@gmail.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T12:45:08.647Z"}}
+{"level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T13:05:54.268Z","userId":"684828d424cdaf3f008385a7"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:07:19.076Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:07:19.091Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:07:36.868Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:07:36.884Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:07:48.380Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:07:48.395Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:08:00.852Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:08:00.868Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:08:19.113Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:08:19.130Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:08:31.886Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:08:31.900Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T13:09:07.328Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T13:09:11.469Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T13:09:11.478Z","user":{"__v":0,"_id":"684828d424cdaf3f008385a7","badges":[],"createdAt":"2025-06-10T12:45:08.647Z","email":"ashrifjaleel@gmail.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T12:45:08.647Z"}}
+{"level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T13:09:11.485Z","userId":"684828d424cdaf3f008385a7"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:09:49.279Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:09:49.297Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:09:58.433Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:09:58.447Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:10:13.332Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:10:13.349Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:10:33.009Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:10:33.023Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T13:10:40.384Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T13:10:40.417Z","user":{"__v":0,"_id":"684828d424cdaf3f008385a7","badges":[],"createdAt":"2025-06-10T12:45:08.647Z","email":"ashrifjaleel@gmail.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T12:45:08.647Z"}}
+{"level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T13:10:40.427Z","userId":"684828d424cdaf3f008385a7"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T13:11:07.519Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T13:11:13.397Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T13:11:13.404Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T13:11:13.411Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":2,"degree":"IT","level":"info","message":"Found schedules:","schedules":[{"className":"GraphicS","degree":"IT"},{"className":"Software Engineering","degree":"IT"}],"timestamp":"2025-06-10T13:11:13.445Z"}
+{"level":"info","message":"Filtered schedules:","relevant":2,"schedules":[{"className":"GraphicS","day":"Tuesday","degree":"IT","startTime":"19:20"},{"className":"Software Engineering","day":"Tuesday","degree":"IT","startTime":"22:00"}],"timestamp":"2025-06-10T13:11:13.446Z","total":2}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T13:11:31.796Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T13:11:32.086Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T13:11:32.103Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T13:11:32.178Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T13:11:32.193Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T13:11:32.202Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T13:11:32.219Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T13:11:32.229Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T13:11:32.245Z"}
+{"level":"info","message":"DELETE /users/684828d424cdaf3f008385a7","timestamp":"2025-06-10T13:11:38.119Z"}
+{"level":"info","message":"DELETE /users/68482c9ca06d2db0a1f04e00","timestamp":"2025-06-10T13:11:39.589Z"}

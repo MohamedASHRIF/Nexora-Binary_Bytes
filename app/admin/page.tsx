@@ -225,17 +225,14 @@ export default function AdminPage() {
           const eventsData = await eventsResponse.json();
           console.log('Events API Response:', eventsData);
           
-          // Ensure we're accessing the correct data structure
-          const eventsArray = Array.isArray(eventsData.data?.data?.upcoming) ? eventsData.data.data.upcoming :
-                             Array.isArray(eventsData.data?.upcoming) ? eventsData.data.upcoming :
-                             Array.isArray(eventsData.data?.data) ? eventsData.data.data :
-                             Array.isArray(eventsData.data) ? eventsData.data : [];
+          // Access the events array from the correct data structure
+          const eventsArray = eventsData.data?.events || [];
           
           console.log('Events Array:', eventsArray);
 
           // Transform the data to match the Event interface
           const transformedEvents = eventsArray.map((event: any) => ({
-            _id: event._id || event.id || Math.random().toString(36).substr(2, 9),
+            _id: event._id || event.id,
             title: event.title || event.name || '',
             description: event.description || '',
             date: event.date || '',
@@ -548,7 +545,7 @@ export default function AdminPage() {
         throw new Error('No authentication token found');
       }
 
-      const response = await fetch(`http://localhost:5000/api/bus-timings/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/bus-routes/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
