@@ -8,7 +8,8 @@
     "dev": "nodemon src/index.ts",
     "build": "tsc",
     "test": "jest",
-    "create-admin": "ts-node src/scripts/createAdmin.ts"
+    "create-admin": "ts-node src/scripts/createAdmin.ts",
+    "populate-locations": "ts-node src/scripts/populateLocations.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

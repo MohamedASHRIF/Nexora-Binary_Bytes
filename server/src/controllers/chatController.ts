@@ -54,8 +54,51 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
 
     let botResponse = '';
 
+    // Check if the message is about locations/directions
+    if (lowerMessage.includes('where') || lowerMessage.includes('location') || lowerMessage.includes('directions') || 
+        lowerMessage.includes('how to get to') || lowerMessage.includes('find') || lowerMessage.includes('map')) {
+      
+      console.log('Location detection triggered for message:', lowerMessage);
+      
+      // Define common campus locations
+      const campusLocations = [
+        { name: 'IT Faculty', keywords: ['it faculty', 'information technology', 'computer science', 'cs faculty'] },
+        { name: 'Engineering Faculty', keywords: ['engineering faculty', 'engineering', 'eng faculty'] },
+        { name: 'Architecture Faculty', keywords: ['architecture faculty', 'architecture', 'arch faculty'] },
+        { name: 'Library', keywords: ['library', 'lib', 'study', 'books'] },
+        { name: 'Cafeteria', keywords: ['cafeteria', 'canteen', 'food', 'lunch', 'dining', 'restaurant'] },
+        { name: 'Main Building', keywords: ['main building', 'main', 'administration', 'admin', 'office'] }
+      ];
+
+      // Find matching location
+      let foundLocation = null;
+      for (const location of campusLocations) {
+        console.log('Checking location:', location.name, 'with keywords:', location.keywords);
+        if (location.keywords.some(keyword => lowerMessage.includes(keyword))) {
+          foundLocation = location;
+          console.log('Found matching location:', foundLocation.name);
+          break;
+        }
+      }
+
+      if (foundLocation) {
+        const encodedLocation = encodeURIComponent(foundLocation.name);
+        botResponse = `LOCATION_REDIRECT:${foundLocation.name}:${encodedLocation}`;
+        console.log('Generated location redirect response:', botResponse);
+      } else {
+        console.log('No location found for message:', lowerMessage);
+        botResponse = "I can help you find locations on campus! Try asking for:\n\n" +
+                     "• IT Faculty\n" +
+                     "• Engineering Faculty\n" +
+                     "• Architecture Faculty\n" +
+                     "• Library\n" +
+                     "• Cafeteria\n" +
+                     "• Main Building\n\n" +
+                     "Just ask 'Where is [location name]?' and I'll show you on the map!";
+      }
+    }
     // Check if the message is about class schedules
-    if (lowerMessage.includes('class') || lowerMessage.includes('schedule')) {
+    else if (lowerMessage.includes('class') || lowerMessage.includes('schedule')) {
       try {
         console.log('Chat request user ID:', req.user.id);
         console.log('Chat request user object:', req.user);
@@ -219,6 +262,7 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       // Don't fail the request if chat history saving fails
     }
 
+    console.log('Sending bot response:', botResponse);
     return res.status(200).json({
       status: 'success',
       data: {

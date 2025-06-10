@@ -24,6 +24,18 @@ export default function Home() {
     if (!token) {
       router.push('/auth/login');
     }
+
+    // Listen for map switch events from chatbot
+    const handleSwitchToMap = (event: CustomEvent) => {
+      console.log('Switching to map tab for location:', event.detail.location);
+      setActiveTab('map');
+    };
+
+    window.addEventListener('switchToMap', handleSwitchToMap as EventListener);
+
+    return () => {
+      window.removeEventListener('switchToMap', handleSwitchToMap as EventListener);
+    };
   }, [router]);
 
   // If not mounted yet, return null to avoid hydration issues

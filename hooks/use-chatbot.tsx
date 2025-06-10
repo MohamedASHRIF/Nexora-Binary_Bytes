@@ -401,10 +401,46 @@ export const useChatbot = () => {
       }
 
       const data = await response.json();
+      const botResponse = data.data.message;
 
-      // Add bot response
+      console.log('Received bot response:', botResponse);
+
+      // Check if this is a location redirect
+      if (botResponse.startsWith('LOCATION_REDIRECT:')) {
+        console.log('Location redirect detected, switching to map tab');
+        const parts = botResponse.split(':');
+        if (parts.length >= 3) {
+          const locationName = parts[1];
+          const encodedLocation = parts[2];
+          
+          console.log('Switching to map tab for:', locationName);
+          
+          // Store the location data in localStorage for the map to use
+          localStorage.setItem('highlightedLocation', JSON.stringify({
+            name: locationName,
+            encodedLocation: encodedLocation
+          }));
+          
+          // Switch to map tab by updating URL hash or using a custom event
+          setTimeout(() => {
+            // Use a custom event to communicate with the main page
+            window.dispatchEvent(new CustomEvent('switchToMap', {
+              detail: { location: locationName }
+            }));
+          }, 100);
+          
+          // Return a simple response to avoid errors
+          return {
+            type: 'redirected',
+            data: 'Switching to map...'
+          };
+        }
+      }
+
+      console.log('Normal response, adding to messages');
+      // Add bot response to messages only for normal responses
       const botMessage: Message = {
-        text: data.data.message,
+        text: botResponse,
         isUser: false,
         timestamp: new Date(),
         isTampered: false
@@ -418,6 +454,11 @@ export const useChatbot = () => {
         sentiment: 0,
         responseTime: Date.now() - startTime
       });
+
+      return {
+        type: 'normal',
+        data: botResponse
+      };
     } catch (error) {
       console.error('Error sending message:', error);
       const errorMessage: Message = {
@@ -427,6 +468,10 @@ export const useChatbot = () => {
         isTampered: false
       };
       setMessages(prev => [...prev, errorMessage]);
+      return {
+        type: 'error',
+        data: error instanceof Error ? error.message : 'Unknown error'
+      };
     } finally {
       setIsProcessing(false);
     }

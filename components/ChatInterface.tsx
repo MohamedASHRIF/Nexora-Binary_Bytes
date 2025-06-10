@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { useVoice } from '../hooks/use-voice';
 import { useChatbot } from '../hooks/use-chatbot';
 import { useGamification } from '../hooks/use-gamification';
@@ -20,6 +21,7 @@ export const ChatInterface: React.FC = () => {
   const [showProgress, setShowProgress] = useState(false);
   const [showInsights, setShowInsights] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const { isListening, toggleListening, transcript } = useVoice();
   const { sendMessage, isProcessing } = useChatbot();
   const { addPoints, checkAndAwardBadges, checkAndAwardAchievements } = useGamification();
@@ -43,6 +45,65 @@ export const ChatInterface: React.FC = () => {
     }
   }, [transcript]);
 
+  // Function to render message text with clickable links
+  const renderMessageText = (text: string) => {
+    console.log('Rendering message text:', text); // Debug log
+    
+    // Check for map redirection links in the format [text](/map/location)
+    // Updated regex to handle URL-encoded location names
+    const mapLinkRegex = /\[([^\]]+)\]\(\/map\/([^)]+)\)/g;
+    const parts: (string | JSX.Element)[] = [];
+    let lastIndex = 0;
+    let match: RegExpExecArray | null;
+    let linkCount = 0;
+
+    // Test the regex first
+    const testMatch = mapLinkRegex.exec(text);
+    console.log('Test match:', testMatch); // Debug log
+    
+    // Reset regex for actual processing
+    mapLinkRegex.lastIndex = 0;
+
+    while ((match = mapLinkRegex.exec(text)) !== null) {
+      console.log('Found match:', match); // Debug log
+      
+      // Add text before the link
+      if (match.index > lastIndex) {
+        parts.push(text.slice(lastIndex, match.index));
+      }
+
+      // Add the clickable link
+      const linkText = match[1];
+      const locationPath = match[2];
+      
+      if (linkText && locationPath) {
+        console.log('Creating button for:', linkText, '->', locationPath); // Debug log
+        parts.push(
+          <button
+            key={`link-${linkCount++}`}
+            onClick={() => {
+              console.log('Navigating to:', `/map/${locationPath}`); // Debug log
+              router.push(`/map/${locationPath}`);
+            }}
+            className="text-blue-600 hover:text-blue-800 underline font-medium bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded border border-blue-200"
+          >
+            {linkText}
+          </button>
+        );
+      }
+
+      lastIndex = match.index + match[0].length;
+    }
+
+    // Add remaining text
+    if (lastIndex < text.length) {
+      parts.push(text.slice(lastIndex));
+    }
+
+    console.log('Rendered parts:', parts); // Debug log
+    return parts.length > 0 ? parts : text;
+  };
+
   const handleSend = async () => {
     if (!inputText.trim() || isProcessing) return;
 
@@ -64,7 +125,18 @@ export const ChatInterface: React.FC = () => {
     // Log the query
     const startTime = Date.now();
     try {
-      const response = await sendMessage(inputText);
+      console.log('Sending message to chatbot...');
+      let response;
+      try {
+        response = await sendMessage(inputText);
+        console.log('=== RESPONSE RECEIVED ===');
+        console.log('Response type:', typeof response);
+        console.log('Response value:', response);
+        console.log('ChatInterface received response:', response);
+      } catch (sendError) {
+        console.error('Error in sendMessage call:', sendError);
+        throw sendError;
+      }
       const responseTime = Date.now() - startTime;
       
       // Log the query with sentiment analysis
@@ -84,6 +156,8 @@ export const ChatInterface: React.FC = () => {
         checkAndAwardBadges('check_menu');
       } else if (inputText.toLowerCase().includes('event')) {
         checkAndAwardBadges('check_events');
+      } else if (inputText.toLowerCase().includes('where') || inputText.toLowerCase().includes('location')) {
+        checkAndAwardBadges('check_location');
       }
     } catch (error) {
       console.error('Error sending message:', error);
@@ -148,7 +222,9 @@ export const ChatInterface: React.FC = () => {
                   : 'bg-white text-gray-800'
               }`}
             >
-              <div className="text-sm">{message.text}</div>
+              <div className="text-sm whitespace-pre-wrap">
+                {message.sender === 'bot' ? renderMessageText(message.text) : message.text}
+              </div>
               {isClient && (
                 <div
                   className={`text-xs mt-1 ${
