@@ -890,3 +890,61 @@
 {"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T09:17:06.219Z"}
 {"level":"info","message":"POST /chat","timestamp":"2025-06-10T09:17:10.903Z"}
 {"level":"info","message":"Received chat message: bus","timestamp":"2025-06-10T09:17:10.907Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T09:19:50.965Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T09:19:50.980Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T10:17:30.081Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:17:30.551Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:17:30.570Z"}
+{"level":"info","message":"GET /schedules/my-schedule","timestamp":"2025-06-10T10:17:30.645Z"}
+{"level":"info","message":"GET /schedules/my-schedule","timestamp":"2025-06-10T10:17:30.721Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:17:30.730Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:17:30.750Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:17:30.757Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:17:30.771Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T10:19:03.785Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T10:19:03.813Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T10:19:06.530Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:19:06.750Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:19:06.771Z"}
+{"level":"info","message":"GET /schedules/my-schedule","timestamp":"2025-06-10T10:19:06.814Z"}
+{"level":"info","message":"GET /schedules/my-schedule","timestamp":"2025-06-10T10:19:06.861Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:19:06.873Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:19:06.893Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:19:06.902Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:19:06.917Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:21:40.483Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T10:21:40.513Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:21:40.532Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:21:40.546Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T10:21:53.887Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T10:21:56.908Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T10:21:56.913Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T10:22:06.950Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:22:07.131Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:22:07.142Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T10:22:07.152Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T10:22:07.221Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:22:07.224Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:22:07.242Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:22:07.247Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:22:07.261Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-10T10:24:20.083Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-10T10:24:20.095Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T10:24:22.829Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:24:23.005Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:24:23.018Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T10:24:23.091Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T10:24:23.105Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:24:23.113Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:24:23.127Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:24:23.135Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:24:23.146Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T10:25:26.981Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:25:27.111Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:25:27.120Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T10:25:27.126Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T10:25:27.194Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:25:27.199Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:25:27.209Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:25:27.216Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:25:27.226Z"}

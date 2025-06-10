@@ -117,11 +117,12 @@ export function AdminDashboard() {
     }
 
     try {
-      console.log('Fetching schedules from:', `${process.env.NEXT_PUBLIC_API_URL}/schedules`);
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/schedules`;
+      console.log('Fetching schedules from:', apiUrl);
       const token = localStorage.getItem('token');
       console.log('Using token:', token ? 'Token exists' : 'No token found');
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/schedules`, {
+      const response = await fetch(apiUrl, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -135,7 +136,14 @@ export function AdminDashboard() {
       }
 
       const data = await response.json();
-      console.log('Fetched schedules data:', data);
+      console.log('Raw API response:', data);
+      
+      if (!data.data || !data.data.data) {
+        console.error('Invalid data structure received:', data);
+        throw new Error('Invalid data structure received from API');
+      }
+
+      console.log('Setting schedules:', data.data.data);
       setSchedules(data.data.data);
     } catch (error) {
       console.error('Error fetching schedules:', error);
@@ -368,42 +376,49 @@ export function AdminDashboard() {
           <Card className="mt-6">
             <CardHeader>
               <CardTitle>All Class Schedules</CardTitle>
+              <p className="text-sm text-gray-500">Total schedules: {schedules.length}</p>
             </CardHeader>
             <CardContent>
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr>
-                      <th className="text-left p-2">Day</th>
-                      <th className="text-left p-2">Time</th>
-                      <th className="text-left p-2">Class</th>
-                      <th className="text-left p-2">Location</th>
-                      <th className="text-left p-2">Instructor</th>
-                      <th className="text-left p-2">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {schedules.map((schedule) => (
-                      <tr key={schedule._id} className="border-t">
-                        <td className="p-2">{schedule.day}</td>
-                        <td className="p-2">{`${schedule.startTime} - ${schedule.endTime}`}</td>
-                        <td className="p-2">{schedule.className}</td>
-                        <td className="p-2">{schedule.location}</td>
-                        <td className="p-2">{schedule.instructor}</td>
-                        <td className="p-2">
-                          <Button
-                            variant="destructive"
-                            size="sm"
-                            onClick={() => handleDeleteSchedule(schedule._id)}
-                          >
-                            Delete
-                          </Button>
-                        </td>
+              {schedules.length === 0 ? (
+                <div className="text-center py-4 text-gray-500">
+                  No schedules found. Add a new schedule to get started.
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left p-2">Day</th>
+                        <th className="text-left p-2">Time</th>
+                        <th className="text-left p-2">Class</th>
+                        <th className="text-left p-2">Location</th>
+                        <th className="text-left p-2">Instructor</th>
+                        <th className="text-left p-2">Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {schedules.map((schedule) => (
+                        <tr key={schedule._id} className="border-t">
+                          <td className="p-2">{schedule.day}</td>
+                          <td className="p-2">{`${schedule.startTime} - ${schedule.endTime}`}</td>
+                          <td className="p-2">{schedule.className}</td>
+                          <td className="p-2">{schedule.location}</td>
+                          <td className="p-2">{schedule.instructor}</td>
+                          <td className="p-2">
+                            <Button
+                              variant="destructive"
+                              size="sm"
+                              onClick={() => handleDeleteSchedule(schedule._id)}
+                            >
+                              Delete
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>

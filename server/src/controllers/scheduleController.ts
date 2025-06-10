@@ -26,16 +26,25 @@ interface ClassDocument {
 
 // Get all schedules (admin only)
 export const getAllSchedules = catchAsync(async (req: Request, res: Response) => {
+  console.log('Getting all schedules for admin');
+  
   const schedules = await Schedule.find()
     .sort({ day: 1, startTime: 1 })
     .lean();
   
-  res.status(200).json({
+  console.log('Found schedules:', schedules);
+
+  // Ensure the response matches the expected structure
+  const response = {
     status: 'success',
     data: {
       data: schedules
     }
-  });
+  };
+
+  console.log('Sending response:', response);
+  
+  res.status(200).json(response);
 });
 
 // Get current user's schedule (for chatbot)
