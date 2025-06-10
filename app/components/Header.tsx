@@ -5,8 +5,6 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
 import { usePathname } from 'next/navigation';
-import { useGamePoints } from '../../hooks/useGamePoints';
-import { useLanguage } from '../../hooks/useLanguage';
 
 
 interface User {
@@ -24,10 +22,6 @@ export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  const { points, badges } = useGamePoints();
-  const { language, setLanguage, translate, isInitialized } = useLanguage();
-  
 
   const pathname = usePathname(); 
   
@@ -92,49 +86,11 @@ export default function Header() {
   return (
     <header className="w-full bg-white shadow flex items-center justify-between px-6 py-3">
       <Link href="/" className="text-xl font-bold text-blue-600">Nexora Campus Copilot</Link>
-
       <div className="relative" ref={dropdownRef}>
         {isLoading ? (
           <div className="h-8 w-8 rounded-full bg-gray-200 animate-pulse"></div>
         ) : user && !isAuthPage ? (
-
           <>
-           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium">Points:</span>
-              <span className="text-lg font-bold text-blue-600" suppressHydrationWarning>
-                {points}
-              </span>
-            </div>
-            {isInitialized && (
-              <div className="flex border rounded-md overflow-hidden">
-                <button
-                  onClick={() => setLanguage('en')}
-                  className={`px-3 py-1 ${
-                    language === 'en' ? 'bg-blue-500 text-white' : 'bg-white'
-                  }`}
-                >
-                  EN
-                </button>
-                <button
-                  onClick={() => setLanguage('si')}
-                  className={`px-3 py-1 ${
-                    language === 'si' ? 'bg-blue-500 text-white' : 'bg-white'
-                  }`}
-                >
-                  සිං
-                </button>
-                <button
-                  onClick={() => setLanguage('ta')}
-                  className={`px-3 py-1 ${
-                    language === 'ta' ? 'bg-blue-500 text-white' : 'bg-white'
-                  }`}
-                >
-                  தமி
-                </button>
-              </div>
-            )}
-          </div>
             <button
               className="flex items-center space-x-2 focus:outline-none"
               onClick={() => setDropdownOpen(!dropdownOpen)}
