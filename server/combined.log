@@ -1836,3 +1836,15 @@
 {"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-10T18:28:42.195Z"}
 {"level":"info","message":"POST /chat","timestamp":"2025-06-10T18:29:01.290Z"}
 {"level":"info","message":"Received chat message: where is the it faculty","timestamp":"2025-06-10T18:29:01.294Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:30:35.527Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:30:35.535Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T18:30:44.542Z"}
+{"level":"info","message":"Received chat message: where is the it faculty","timestamp":"2025-06-10T18:30:44.546Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T18:30:58.284Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:30:58.500Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:30:58.510Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T18:31:14.322Z"}
+{"level":"info","message":"Received chat message: where is the engineering faculty","timestamp":"2025-06-10T18:31:14.326Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:31:53.579Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:31:53.588Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-10T18:31:57.042Z"}
