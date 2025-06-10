@@ -85,7 +85,7 @@ export default function SignupPage() {
 
   <div className="min-h-screen flex">
     {/* Left Side - Quote/Image Section */}
-    <div className="w-1/2 bg-gradient-to-br from-blue-900 to-indigo-900 text-white flex items-center justify-center p-12">
+    <div className="w-1/2 bg-gradient-to-br from-[#0f172a] to-[#1e3a8a] text-white flex items-center justify-center p-12">
       <div className="text-left max-w-md">
         <h2 className="text-4xl font-semibold mb-4">Welcome to Nexora!</h2>
         <p className="text-lg leading-relaxed">

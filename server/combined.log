@@ -881,3 +881,12 @@
 {"level":"info","message":"GET /events","timestamp":"2025-06-10T09:13:27.105Z"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T09:15:06.771Z"}
 {"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T09:15:06.786Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T09:16:48.605Z"}
+{"level":"info","message":"GET /schedules/my-schedule","timestamp":"2025-06-10T09:16:48.633Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T09:16:48.666Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T09:16:48.679Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T09:17:02.685Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T09:17:06.213Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T09:17:06.219Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T09:17:10.903Z"}
+{"level":"info","message":"Received chat message: bus","timestamp":"2025-06-10T09:17:10.907Z"}
