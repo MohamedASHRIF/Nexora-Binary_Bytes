@@ -778,3 +778,17 @@
 {"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T08:44:24.881Z"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T08:46:49.458Z"}
 {"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T08:46:49.473Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T08:47:05.863Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T08:47:05.877Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T08:49:02.872Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T08:49:11.103Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T08:49:11.368Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T08:49:11.388Z"}
+{"level":"info","message":"GET /schedules/my-schedule","timestamp":"2025-06-10T08:49:11.438Z"}
+{"level":"info","message":"GET /schedules/my-schedule","timestamp":"2025-06-10T08:49:11.470Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T08:49:11.489Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T08:49:11.505Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T08:49:11.515Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T08:49:11.527Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T08:49:29.478Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T08:49:35.751Z"}

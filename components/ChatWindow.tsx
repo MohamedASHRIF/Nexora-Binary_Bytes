@@ -61,9 +61,9 @@ export const ChatWindow: React.FC = () => {
           >
             <div className="flex flex-col">
               <div
-                className={`max-w-[70%] rounded-lg p-3 ${
+                className={`max-w-full rounded-lg p-3 ${
                   message.isUser
-                    ? 'bg-blue-500 text-white'
+                    ? 'bg-blue-500 text-white whitespace-nowrap'
                     : 'bg-gray-100 text-gray-800'
                 }`}
               >
