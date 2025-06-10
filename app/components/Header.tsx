@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useGamePoints } from '../../hooks/useGamePoints';
+import { FiSettings } from 'react-icons/fi';
 
 
 interface User {
@@ -24,6 +25,7 @@ export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const pathname = usePathname(); 
   
@@ -94,34 +96,6 @@ export default function Header() {
       {/* Points and Language Switcher */}
       {!isAuthPage && (
         <div className="flex items-center gap-4 mr-4">
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-medium">Points:</span>
-            <span className="text-lg font-bold text-blue-600" suppressHydrationWarning>
-              {points}
-            </span>
-          </div>
-          {isInitialized && (
-            <div className="flex border rounded-md overflow-hidden">
-              <button
-                onClick={() => setLanguage('en')}
-                className={`px-3 py-1 ${language === 'en' ? 'bg-blue-500 text-white' : 'bg-white'}`}
-              >
-                EN
-              </button>
-              <button
-                onClick={() => setLanguage('si')}
-                className={`px-3 py-1 ${language === 'si' ? 'bg-blue-500 text-white' : 'bg-white'}`}
-              >
-                සිං
-              </button>
-              <button
-                onClick={() => setLanguage('ta')}
-                className={`px-3 py-1 ${language === 'ta' ? 'bg-blue-500 text-white' : 'bg-white'}`}
-              >
-                தமி
-              </button>
-            </div>
-          )}
         </div>
       )}
       <div className="relative" ref={dropdownRef}>
@@ -141,21 +115,17 @@ export default function Header() {
             
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                <div className="p-4 border-b border-gray-100">
-                  <div className="font-semibold text-lg">{user.name}</div>
-                  <div className="text-sm text-gray-600">{user.email}</div>
-                  <div className="text-xs text-gray-400 mt-1">Role: <span className="capitalize">{user.role}</span></div>
-                  {user.degree && (
-                    <div className="text-xs text-gray-400">Degree: <span className="uppercase">{user.degree}</span></div>
-                  )}
-                  <div className="text-xs text-gray-400">Language: <span className="uppercase">{user.language}</span></div>
-                  <div className="text-xs text-gray-400">Member since: {new Date(user.createdAt).toLocaleDateString()}</div>
-                </div>
                 <div className="p-2">
                   <Link href="/profile" className="block px-4 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded">View Profile</Link>
                   {user.role === 'admin' && (
                     <Link href="/admin" className="block px-4 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded mt-1">Admin Dashboard</Link>
                   )}
+                  <button
+                    onClick={() => { setSettingsOpen(true); setDropdownOpen(false); }}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded mt-1"
+                  >
+                    <span className="inline-flex items-center gap-2"><FiSettings /> Settings</span>
+                  </button>
                   <button
                     onClick={handleLogout}
                     className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded mt-1"
@@ -193,6 +163,44 @@ export default function Header() {
           </>
         )}
       </div>
+      {/* Settings Modal */}
+      {settingsOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm relative">
+            <button
+              className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+              onClick={() => setSettingsOpen(false)}
+              aria-label="Close settings"
+            >
+              ×
+            </button>
+            <h2 className="text-xl font-semibold mb-4">Settings</h2>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2">Language</label>
+              <div className="flex border rounded-md overflow-hidden">
+                <button
+                  onClick={() => setLanguage('en')}
+                  className={`flex-1 px-3 py-2 ${language === 'en' ? 'bg-blue-500 text-white' : 'bg-white'}`}
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => setLanguage('si')}
+                  className={`flex-1 px-3 py-2 ${language === 'si' ? 'bg-blue-500 text-white' : 'bg-white'}`}
+                >
+                  සිං
+                </button>
+                <button
+                  onClick={() => setLanguage('ta')}
+                  className={`flex-1 px-3 py-2 ${language === 'ta' ? 'bg-blue-500 text-white' : 'bg-white'}`}
+                >
+                  தமி
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 } 
