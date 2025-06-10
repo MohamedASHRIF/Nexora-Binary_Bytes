@@ -31,182 +31,197 @@ You can help with:
 Always be polite, professional, and accurate in your responses.`;
 
 export const chat = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  const { message } = req.body;
-  const lowerMessage = message.toLowerCase();
+  try {
+    const { message } = req.body;
+    if (!message) {
+      return next(new AppError('Message is required', 400));
+    }
 
-  console.log('Received chat message:', message);
+    const lowerMessage = message.toLowerCase();
+    logger.info('Received chat message:', { message });
 
-  // Check if the message is about class schedules
-  if (lowerMessage.includes('class') || lowerMessage.includes('schedule')) {
-    try {
-      const schedules = await Schedule.find().sort({ startTime: 1 });
-      
-      if (schedules.length === 0) {
-        return res.status(200).json({
-          status: 'success',
-          data: {
-            message: "I don't see any class schedules in the system yet. Please ask an admin to add some schedules."
-          }
-        });
-      }
-
-      // Group schedules by day
-      const schedulesByDay = schedules.reduce((acc, schedule) => {
-        if (!acc[schedule.day]) {
-          acc[schedule.day] = [];
+    // Check if the message is about class schedules
+    if (lowerMessage.includes('class') || lowerMessage.includes('schedule')) {
+      try {
+        const schedules = await Schedule.find().sort({ startTime: 1 });
+        
+        if (schedules.length === 0) {
+          return res.status(200).json({
+            status: 'success',
+            data: {
+              message: "I don't see any class schedules in the system yet. Please ask an admin to add some schedules."
+            }
+          });
         }
-        acc[schedule.day].push(schedule);
-        return acc;
-      }, {} as Record<string, typeof schedules>);
 
-      let formattedResponse = "Here's your class schedule:\n\n";
-      
-      Object.entries(schedulesByDay).forEach(([day, daySchedules]) => {
-        formattedResponse += `${day}:\n`;
-        daySchedules.forEach(schedule => {
+        // Get current day and time
+        const now = new Date();
+        const currentDay = now.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
+        const currentTime = now.toLocaleTimeString('en-US', { hour12: false });
+
+        // Filter schedules for current day and future times
+        const relevantSchedules = schedules.filter(schedule => 
+          schedule.day.toLowerCase() === currentDay && 
+          schedule.startTime >= currentTime
+        );
+
+        if (relevantSchedules.length === 0) {
+          return res.status(200).json({
+            status: 'success',
+            data: {
+              message: "You don't have any more classes scheduled for today."
+            }
+          });
+        }
+
+        let formattedResponse = "Here are your remaining classes for today:\n\n";
+        
+        relevantSchedules.forEach(schedule => {
           formattedResponse += `- ${schedule.startTime} to ${schedule.endTime}: ${schedule.className} (${schedule.location}) with ${schedule.instructor}\n`;
         });
-        formattedResponse += "\n";
+
+        return res.status(200).json({
+          status: 'success',
+          data: {
+            message: formattedResponse.trim()
+          }
+        });
+      } catch (error) {
+        logger.error('Error fetching schedules:', error);
+        return next(new AppError('Failed to fetch schedules', 500));
+      }
+    }
+
+    // Check if the message is about bus routes
+    if (lowerMessage.includes('bus') || lowerMessage.includes('transport')) {
+      try {
+        const busRoutes = await BusRoute.find().sort({ route: 1 });
+        
+        if (busRoutes.length === 0) {
+          return res.status(200).json({
+            status: 'success',
+            data: {
+              message: "I don't see any bus routes in the system yet. Please ask an admin to add some routes."
+            }
+          });
+        }
+
+        let formattedResponse = "Here are the available bus routes:\n\n";
+        
+        busRoutes.forEach(route => {
+          formattedResponse += `${route.route}:\n`;
+          formattedResponse += `Duration: ${route.duration}\n`;
+          formattedResponse += "Schedule:\n";
+          route.schedule.forEach(time => {
+            formattedResponse += `- ${time}\n`;
+          });
+          formattedResponse += "\n";
+        });
+
+        return res.status(200).json({
+          status: 'success',
+          data: {
+            message: formattedResponse.trim()
+          }
+        });
+      } catch (error) {
+        logger.error('Error fetching bus routes:', error);
+        return next(new AppError('Failed to fetch bus routes', 500));
+      }
+    }
+
+    // Check if the message is about events
+    if (lowerMessage.includes('event') || lowerMessage.includes('upcoming')) {
+      try {
+        const events = await Event.find().sort({ date: 1 });
+        
+        if (events.length === 0) {
+          return res.status(200).json({
+            status: 'success',
+            data: {
+              message: "I don't see any upcoming events in the system yet. Please ask an admin to add some events."
+            }
+          });
+        }
+
+        let formattedResponse = "Here are the upcoming events:\n\n";
+        
+        events.forEach(event => {
+          formattedResponse += `${event.title}\n`;
+          formattedResponse += `Date: ${event.date.toLocaleDateString()}\n`;
+          formattedResponse += `Time: ${event.time}\n`;
+          formattedResponse += `Location: ${event.location}\n`;
+          formattedResponse += `Description: ${event.description}\n\n`;
+        });
+
+        return res.status(200).json({
+          status: 'success',
+          data: {
+            message: formattedResponse.trim()
+          }
+        });
+      } catch (error) {
+        logger.error('Error fetching events:', error);
+        return next(new AppError('Failed to fetch events', 500));
+      }
+    }
+
+    // For other messages, use OpenAI
+    try {
+      console.log('Attempting to use OpenAI for response...');
+      
+      const completion = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: SYSTEM_PROMPT
+          },
+          {
+            role: "user",
+            content: message
+          }
+        ],
+      });
+
+      console.log('OpenAI response received:', {
+        status: 'success',
+        content: completion.choices[0].message?.content
       });
 
       return res.status(200).json({
         status: 'success',
         data: {
-          message: formattedResponse.trim()
+          message: completion.choices[0].message?.content
         }
       });
-    } catch (error) {
-      logger.error('Error fetching schedules:', error);
-      return next(new AppError('Failed to fetch schedules', 500));
-    }
-  }
-
-  // Check if the message is about bus routes
-  if (lowerMessage.includes('bus') || lowerMessage.includes('transport')) {
-    try {
-      const busRoutes = await BusRoute.find().sort({ route: 1 });
-      
-      if (busRoutes.length === 0) {
+    } catch (error: any) {
+      // Handle quota exceeded error
+      if (error.status === 429 || error.code === 'insufficient_quota' || error.type === 'insufficient_quota') {
+        console.log('Handling quota exceeded error with fallback response');
+        // Provide a fallback response
+        const fallbackResponse = getFallbackResponse(message);
         return res.status(200).json({
           status: 'success',
           data: {
-            message: "I don't see any bus routes in the system yet. Please ask an admin to add some routes."
+            message: fallbackResponse
           }
         });
       }
 
-      let formattedResponse = "Here are the available bus routes:\n\n";
-      
-      busRoutes.forEach(route => {
-        formattedResponse += `${route.route}:\n`;
-        formattedResponse += `Duration: ${route.duration}\n`;
-        formattedResponse += "Schedule:\n";
-        route.schedule.forEach(time => {
-          formattedResponse += `- ${time}\n`;
-        });
-        formattedResponse += "\n";
-      });
+      // Log other errors only once
+      console.error('OpenAI API error:', error);
+      logger.error('OpenAI API error:', error);
 
-      return res.status(200).json({
-        status: 'success',
-        data: {
-          message: formattedResponse.trim()
-        }
-      });
-    } catch (error) {
-      logger.error('Error fetching bus routes:', error);
-      return next(new AppError('Failed to fetch bus routes', 500));
-    }
-  }
-
-  // Check if the message is about events
-  if (lowerMessage.includes('event') || lowerMessage.includes('upcoming')) {
-    try {
-      const events = await Event.find().sort({ date: 1 });
-      
-      if (events.length === 0) {
-        return res.status(200).json({
-          status: 'success',
-          data: {
-            message: "I don't see any upcoming events in the system yet. Please ask an admin to add some events."
-          }
-        });
-      }
-
-      let formattedResponse = "Here are the upcoming events:\n\n";
-      
-      events.forEach(event => {
-        formattedResponse += `${event.title}\n`;
-        formattedResponse += `Date: ${event.date.toLocaleDateString()}\n`;
-        formattedResponse += `Time: ${event.time}\n`;
-        formattedResponse += `Location: ${event.location}\n`;
-        formattedResponse += `Description: ${event.description}\n\n`;
-      });
-
-      return res.status(200).json({
-        status: 'success',
-        data: {
-          message: formattedResponse.trim()
-        }
-      });
-    } catch (error) {
-      logger.error('Error fetching events:', error);
-      return next(new AppError('Failed to fetch events', 500));
-    }
-  }
-
-  // For other messages, use OpenAI
-  try {
-    console.log('Attempting to use OpenAI for response...');
-    
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: SYSTEM_PROMPT
-        },
-        {
-          role: "user",
-          content: message
-        }
-      ],
-    });
-
-    console.log('OpenAI response received:', {
-      status: 'success',
-      content: completion.choices[0].message?.content
-    });
-
-    return res.status(200).json({
-      status: 'success',
-      data: {
-        message: completion.choices[0].message?.content
-      }
-    });
-  } catch (error: any) {
-    // Handle quota exceeded error
-    if (error.status === 429 || error.code === 'insufficient_quota' || error.type === 'insufficient_quota') {
-      console.log('Handling quota exceeded error with fallback response');
-      // Provide a fallback response
-      const fallbackResponse = getFallbackResponse(message);
-      return res.status(200).json({
-        status: 'success',
-        data: {
-          message: fallbackResponse
-        }
+      // For other errors, return a generic error message
+      return res.status(500).json({
+        status: 'error',
+        message: 'I apologize, but I am currently experiencing technical difficulties. Please try again later.'
       });
     }
-
-    // Log other errors only once
-    console.error('OpenAI API error:', error);
-    logger.error('OpenAI API error:', error);
-
-    // For other errors, return a generic error message
-    return res.status(500).json({
-      status: 'error',
-      message: 'I apologize, but I am currently experiencing technical difficulties. Please try again later.'
-    });
+  } catch (error) {
+    logger.error('Error in chat controller:', error);
+    return next(new AppError('An error occurred while processing your request', 500));
   }
 });
 

@@ -319,7 +319,10 @@ export const useChatbot = () => {
         throw new Error('No authentication token found');
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/chat`, {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+      console.log('Sending request to:', `${apiUrl}/chat`);
+
+      const response = await fetch(`${apiUrl}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -328,11 +331,12 @@ export const useChatbot = () => {
         body: JSON.stringify({ message: text })
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to get response from server');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to get response from server');
       }
+
+      const data = await response.json();
 
       // Add bot response
       const botMessage: Message = {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Button } from './ui/button';
@@ -7,12 +7,15 @@ import { Textarea } from './ui/textarea';
 import { useToast } from './ui/use-toast';
 
 interface Schedule {
-  id: string;
-  course: string;
-  time: string;
+  _id: string;
+  className: string;
+  day: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday';
+  startTime: string;
+  endTime: string;
   location: string;
   instructor: string;
-  days: string[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface Event {
@@ -30,19 +33,31 @@ interface BusRoute {
   duration: string;
 }
 
+interface NewSchedule {
+  className: string;
+  day: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday';
+  startTime: string;
+  endTime: string;
+  location: string;
+  instructor: string;
+}
+
 export function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('schedules');
   const { toast } = useToast();
 
   // Schedule Management
   const [schedules, setSchedules] = useState<Schedule[]>([]);
-  const [newSchedule, setNewSchedule] = useState<Partial<Schedule>>({
-    course: '',
-    time: '',
+  const [newSchedule, setNewSchedule] = useState<NewSchedule>({
+    className: '',
+    day: 'Monday',
+    startTime: '',
+    endTime: '',
     location: '',
-    instructor: '',
-    days: []
+    instructor: ''
   });
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Event Management
   const [events, setEvents] = useState<Event[]>([]);
@@ -62,6 +77,101 @@ export function AdminDashboard() {
     duration: ''
   });
 
+  // Check if user is admin
+  const checkAdminStatus = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found');
+        setIsAdmin(false);
+        setIsLoading(false);
+        return;
+      }
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/me`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch user data');
+      }
+
+      const data = await response.json();
+      console.log('User data:', data);
+      setIsAdmin(data.data.data.role === 'admin');
+    } catch (error) {
+      console.error('Error checking admin status:', error);
+      setIsAdmin(false);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Fetch schedules
+  const fetchSchedules = async () => {
+    if (!isAdmin) {
+      console.log('User is not an admin, skipping schedule fetch');
+      return;
+    }
+
+    try {
+      console.log('Fetching schedules from:', `${process.env.NEXT_PUBLIC_API_URL}/schedules`);
+      const token = localStorage.getItem('token');
+      console.log('Using token:', token ? 'Token exists' : 'No token found');
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/schedules`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      console.log('Response status:', response.status);
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        console.error('Error response:', errorData);
+        throw new Error(`Failed to fetch schedules: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('Fetched schedules data:', data);
+      setSchedules(data.data.data);
+    } catch (error) {
+      console.error('Error fetching schedules:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to fetch schedules',
+        variant: 'destructive'
+      });
+    }
+  };
+
+  // Check admin status and fetch schedules when component mounts
+  useEffect(() => {
+    checkAdminStatus();
+  }, []);
+
+  // Fetch schedules when admin status is confirmed
+  useEffect(() => {
+    if (isAdmin) {
+      fetchSchedules();
+    }
+  }, [isAdmin]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="container mx-auto p-6">
+        <h1 className="text-3xl font-bold mb-6">Access Denied</h1>
+        <p>You must be an admin to access this page.</p>
+      </div>
+    );
+  }
+
   const handleAddSchedule = async () => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/schedules`, {
@@ -76,19 +186,21 @@ export function AdminDashboard() {
       if (!response.ok) throw new Error('Failed to add schedule');
 
       const data = await response.json();
-      setSchedules([...schedules, data]);
+      setSchedules([...schedules, data.data.data]);
       setNewSchedule({
-        course: '',
-        time: '',
+        className: '',
+        day: 'Monday',
+        startTime: '',
+        endTime: '',
         location: '',
-        instructor: '',
-        days: []
+        instructor: ''
       });
       toast({
         title: 'Success',
         description: 'Schedule added successfully'
       });
     } catch (error) {
+      console.error('Error adding schedule:', error);
       toast({
         title: 'Error',
         description: 'Failed to add schedule',
@@ -165,6 +277,34 @@ export function AdminDashboard() {
     }
   };
 
+  const handleDeleteSchedule = async (id: string) => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/schedules/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+
+      if (!response.ok) throw new Error('Failed to delete schedule');
+
+      // Remove the deleted schedule from the state
+      setSchedules(schedules.filter(schedule => schedule._id !== id));
+      
+      toast({
+        title: 'Success',
+        description: 'Schedule deleted successfully'
+      });
+    } catch (error) {
+      console.error('Error deleting schedule:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to delete schedule',
+        variant: 'destructive'
+      });
+    }
+  };
+
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
@@ -184,14 +324,30 @@ export function AdminDashboard() {
             <CardContent>
               <div className="space-y-4">
                 <Input
-                  placeholder="Course"
-                  value={newSchedule.course}
-                  onChange={(e) => setNewSchedule({...newSchedule, course: e.target.value})}
+                  placeholder="Class Name"
+                  value={newSchedule.className}
+                  onChange={(e) => setNewSchedule({...newSchedule, className: e.target.value})}
+                />
+                <select
+                  className="w-full p-2 border rounded-md"
+                  value={newSchedule.day}
+                  onChange={(e) => setNewSchedule({...newSchedule, day: e.target.value as 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday'})}
+                >
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                </select>
+                <Input
+                  placeholder="Start Time (e.g., 09:00)"
+                  value={newSchedule.startTime}
+                  onChange={(e) => setNewSchedule({...newSchedule, startTime: e.target.value})}
                 />
                 <Input
-                  placeholder="Time"
-                  value={newSchedule.time}
-                  onChange={(e) => setNewSchedule({...newSchedule, time: e.target.value})}
+                  placeholder="End Time (e.g., 10:30)"
+                  value={newSchedule.endTime}
+                  onChange={(e) => setNewSchedule({...newSchedule, endTime: e.target.value})}
                 />
                 <Input
                   placeholder="Location"
@@ -204,6 +360,49 @@ export function AdminDashboard() {
                   onChange={(e) => setNewSchedule({...newSchedule, instructor: e.target.value})}
                 />
                 <Button onClick={handleAddSchedule}>Add Schedule</Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Display existing schedules */}
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle>All Class Schedules</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr>
+                      <th className="text-left p-2">Day</th>
+                      <th className="text-left p-2">Time</th>
+                      <th className="text-left p-2">Class</th>
+                      <th className="text-left p-2">Location</th>
+                      <th className="text-left p-2">Instructor</th>
+                      <th className="text-left p-2">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {schedules.map((schedule) => (
+                      <tr key={schedule._id} className="border-t">
+                        <td className="p-2">{schedule.day}</td>
+                        <td className="p-2">{`${schedule.startTime} - ${schedule.endTime}`}</td>
+                        <td className="p-2">{schedule.className}</td>
+                        <td className="p-2">{schedule.location}</td>
+                        <td className="p-2">{schedule.instructor}</td>
+                        <td className="p-2">
+                          <Button
+                            variant="destructive"
+                            size="sm"
+                            onClick={() => handleDeleteSchedule(schedule._id)}
+                          >
+                            Delete
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </CardContent>
           </Card>

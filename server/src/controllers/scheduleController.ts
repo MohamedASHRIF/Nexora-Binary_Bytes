@@ -26,7 +26,9 @@ interface ClassDocument {
 
 // Get all schedules (admin only)
 export const getAllSchedules = catchAsync(async (req: Request, res: Response) => {
-  const schedules = await Schedule.find();
+  const schedules = await Schedule.find()
+    .sort({ day: 1, startTime: 1 })
+    .lean();
   
   res.status(200).json({
     status: 'success',
@@ -36,14 +38,23 @@ export const getAllSchedules = catchAsync(async (req: Request, res: Response) =>
   });
 });
 
-// Get current user's schedule
+// Get current user's schedule (for chatbot)
 export const getMySchedule = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   try {
     console.log('Fetching schedules...');
     
-    // For chatbot, return all schedules
-    const schedules = await Schedule.find()
-      .lean() // Convert to plain JavaScript objects
+    // Get current day and time
+    const now = new Date();
+    const currentDay = now.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
+    const currentTime = now.toLocaleTimeString('en-US', { hour12: false });
+
+    // For chatbot, return schedules for the current day and after the current time
+    const schedules = await Schedule.find({
+      day: currentDay,
+      startTime: { $gte: currentTime }
+    })
+      .sort({ startTime: 1 })
+      .lean()
       .exec();
 
     console.log('Found schedules:', schedules);
