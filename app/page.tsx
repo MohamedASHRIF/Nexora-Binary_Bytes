@@ -102,7 +102,7 @@ export default function Home() {
          
         )}
         {/* Main Content Area */}
-        <div className={`flex-1 flex flex-col justify-center items-center p-8 ${activeTab === 'chat' ? 'pl-0' : ''} min-h-0`}>
+        <div className={`flex-1 flex flex-col justify-center items-center  ${activeTab === 'chat' ? 'pl-0' : ''} min-h-0`}>
           {activeTab === 'home' && (
              <div className="text-center ">
                               <h1 className="text-4xl font-bold mb-4">Welcome to Nexora Campus Copilot</h1>
@@ -126,8 +126,8 @@ export default function Home() {
            </div>
           )}
           {activeTab === 'chat' && (
-            <div className="w-full h-full flex flex-col max-w-3xl mx-auto ">
-              <div className="flex-1 overflow-hidden">
+            <div className="w-full h-full flex flex-col  mx-auto p-2 ">
+              <div className="flex-1 overflow-auto">
               <ChatWindow
   initialMessage={initialChatMessage}
   onMessageSent={handleInitialMessageSent}
