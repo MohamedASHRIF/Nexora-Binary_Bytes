@@ -28,6 +28,7 @@ export default function Home() {
   const router = useRouter();
    const [homeQuestion, setHomeQuestion] = useState('');
    const [initialChatMessage, setInitialChatMessage] = useState('');
+   const [recentMessages, setRecentMessages] = useState<string[]>([]);
 
 
    const handleAsk = (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,6 +42,19 @@ export default function Home() {
   // Callback when ChatWindow finishes sending the initial message
   const handleInitialMessageSent = () => {
     setInitialChatMessage('');
+  };
+
+  // Handle recent messages change from ChatWindow
+  const handleRecentMessagesChange = (messages: string[]) => {
+    setRecentMessages(messages);
+  };
+
+  // Handle suggestion click - this will be passed to ChatWindow to set input
+  const handleSuggestionClick = (suggestion: string) => {
+    // We'll need to communicate this to the ChatWindow component
+    // For now, we'll use a custom event
+    const event = new CustomEvent('setChatInput', { detail: { text: suggestion } });
+    window.dispatchEvent(event);
   };
 
   useEffect(() => {
@@ -141,12 +155,16 @@ export default function Home() {
             <div className="w-full h-full flex flex-col  mx-auto p-2 ">
               <div className="flex-1 overflow-auto">
               <ChatWindow
-  initialMessage={initialChatMessage}
-  onMessageSent={handleInitialMessageSent}
-/>
+                initialMessage={initialChatMessage}
+                onMessageSent={handleInitialMessageSent}
+                onRecentMessagesChange={handleRecentMessagesChange}
+              />
               </div>
               <div className="flex-shrink-0">
-                <SuggestionBar onSuggestionClick={() => {}} />
+                <SuggestionBar 
+                  onSuggestionClick={handleSuggestionClick} 
+                  recentMessages={recentMessages}
+                />
               </div>
             </div>
           )}

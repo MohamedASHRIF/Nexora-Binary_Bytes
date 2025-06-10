@@ -9,11 +9,13 @@ import type { Message } from '@/types';
 interface ChatWindowProps {
   initialMessage?: string;
   onMessageSent?: () => void;
+  onRecentMessagesChange?: (messages: string[]) => void;
 }
 
-export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessageSent }) => {
+export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessageSent, onRecentMessagesChange }) => {
   const [inputText, setInputText] = useState('');
   const [mounted, setMounted] = useState(false);
+  const [recentUserMessages, setRecentUserMessages] = useState<string[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { isListening, startListening, stopListening, transcript } = useVoiceInput();
   const { messages, isProcessing, sendMessage, suggestions, clearChat } = useChatbot();
@@ -24,6 +26,19 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  // Listen for suggestion clicks to set input text
+  useEffect(() => {
+    const handleSetChatInput = (event: CustomEvent) => {
+      setInputText(event.detail.text);
+    };
+
+    window.addEventListener('setChatInput', handleSetChatInput as EventListener);
+
+    return () => {
+      window.removeEventListener('setChatInput', handleSetChatInput as EventListener);
+    };
   }, []);
 
   const scrollToBottom = () => {
@@ -56,6 +71,11 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
 
   const handleSend = async () => {
     if (!inputText.trim()) return;
+
+    // Add the message to recent messages
+    const newRecentMessages = [...recentUserMessages, inputText].slice(-5); // Keep last 5 messages
+    setRecentUserMessages(newRecentMessages);
+    onRecentMessagesChange?.(newRecentMessages);
 
     addPoints(5);
     await sendMessage(inputText);
