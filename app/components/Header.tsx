@@ -13,6 +13,7 @@ interface User {
   role: string;
   language: string;
   createdAt: string;
+  degree?: string;
 }
 
 export default function Header() {
@@ -29,25 +30,32 @@ export default function Header() {
 
   useEffect(() => {
     const checkUser = () => {
-      const token = Cookies.get('token') || localStorage.getItem('token');
-      const storedUser = localStorage.getItem('user');
-      
-      if (token && storedUser) {
-        try {
-          const parsedUser = JSON.parse(storedUser);
-          setUser(parsedUser);
-        } catch (error) {
-          console.error('Error parsing user data:', error);
+      try {
+        const token = Cookies.get('token') || localStorage.getItem('token');
+        const storedUser = localStorage.getItem('user');
+        
+        if (token && storedUser) {
+          try {
+            const parsedUser = JSON.parse(storedUser);
+            setUser(parsedUser);
+          } catch (error) {
+            console.error('Error parsing user data:', error);
+            setUser(null);
+            localStorage.removeItem('user');
+          }
+        } else {
           setUser(null);
         }
-      } else {
+      } catch (error) {
+        console.error('Error checking user:', error);
         setUser(null);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     checkUser();
-  }, [pathname]); // Re-run when pathname changes
+  }, [pathname]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -85,11 +93,11 @@ export default function Header() {
           <>
             <button
               className="flex items-center space-x-2 focus:outline-none"
-              onClick={() => setDropdownOpen((open) => !open)}
+              onClick={() => setDropdownOpen(!dropdownOpen)}
               aria-label="Profile"
             >
               <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white">
-                {user.name.charAt(0).toUpperCase()}
+                {user.name ? user.name.charAt(0).toUpperCase() : '?'}
               </div>
             </button>
             
@@ -99,6 +107,9 @@ export default function Header() {
                   <div className="font-semibold text-lg">{user.name}</div>
                   <div className="text-sm text-gray-600">{user.email}</div>
                   <div className="text-xs text-gray-400 mt-1">Role: <span className="capitalize">{user.role}</span></div>
+                  {user.degree && (
+                    <div className="text-xs text-gray-400">Degree: <span className="uppercase">{user.degree}</span></div>
+                  )}
                   <div className="text-xs text-gray-400">Language: <span className="uppercase">{user.language}</span></div>
                   <div className="text-xs text-gray-400">Member since: {new Date(user.createdAt).toLocaleDateString()}</div>
                 </div>
@@ -133,7 +144,14 @@ export default function Header() {
               >
                 Sign In
               </Link>
-            ) : null}
+            ) : (
+              <Link 
+                href="/auth/login" 
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                Sign In
+              </Link>
+            )}
           </>
         )}
       </div>

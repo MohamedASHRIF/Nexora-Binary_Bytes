@@ -77,14 +77,14 @@ const detectIntent = (message: string, learningData: LearningData): Intent => {
 const generateResponse = async (
   intent: Intent,
   message: string,
-  learningData: LearningData
+  learningData: LearningData,
+  userDegree?: string
 ): Promise<string> => {
   // Handle learned patterns
   if (intent.type === 'learned' && intent.entities?.pattern) {
     const pattern = intent.entities.pattern;
     const responses = learningData.responses[pattern] || [];
     if (responses.length > 0) {
-      // Return the response with highest feedback score
       const bestResponse = responses.reduce((best, current) => {
         const bestScore = learningData.feedback[best] || 0;
         const currentScore = learningData.feedback[current] || 0;
@@ -97,9 +97,31 @@ const generateResponse = async (
   // Handle structured data responses
   switch (intent.type) {
     case 'schedule':
-      return `Here are today's classes:\n${schedules.schedules
-        .map(s => `${s.course} at ${s.time} in ${s.location}`)
-        .join('\n')}`;
+      if (!userDegree) {
+        return "I need to know your degree to show your schedule. Please make sure you're logged in with your student account.";
+      }
+      try {
+        const response = await fetch(`/api/schedules?degree=${userDegree}`);
+        const data = await response.json();
+        
+        if (!data.data.schedules || data.data.schedules.length === 0) {
+          return "I couldn't find any schedules for your degree. Please check back later.";
+        }
+
+        const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+        const todaySchedules = data.data.schedules.filter((s: any) => s.day === today);
+        
+        if (todaySchedules.length === 0) {
+          return "You don't have any classes scheduled for today.";
+        }
+
+        return `Here are your classes for today:\n${todaySchedules
+          .map((s: any) => `${s.className} at ${s.startTime} in ${s.location}`)
+          .join('\n')}`;
+      } catch (error) {
+        console.error('Error fetching schedules:', error);
+        return "Sorry, I couldn't fetch your schedule. Please try again later.";
+      }
     
     case 'bus':
       return `Next bus timings:\n${busTimings.bus_routes

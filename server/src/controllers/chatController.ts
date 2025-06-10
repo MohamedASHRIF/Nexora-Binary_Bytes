@@ -9,6 +9,14 @@ import { BusRoute } from '../models/BusRoute';
 import { Event } from '../models/Event';
 import { catchAsync } from '../utils/catchAsync';
 
+interface AuthenticatedRequest extends Request {
+  user?: {
+    id: string;
+    role: string;
+    degree?: string;
+  };
+}
+
 // Debug: Log environment variables
 console.log('Environment variables:', {
   OPENAI_API_KEY: process.env.OPENAI_API_KEY ? 'Present' : 'Missing',
@@ -30,7 +38,7 @@ You can help with:
 - Sharing campus news and events
 Always be polite, professional, and accurate in your responses.`;
 
-export const chat = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   try {
     const { message } = req.body;
     if (!message) {
@@ -38,43 +46,93 @@ export const chat = catchAsync(async (req: Request, res: Response, next: NextFun
     }
 
     const lowerMessage = message.toLowerCase();
-    logger.info('Received chat message:', { message });
+    logger.info('Received chat message:', { message, user: req.user });
 
     // Check if the message is about class schedules
     if (lowerMessage.includes('class') || lowerMessage.includes('schedule')) {
       try {
-        const schedules = await Schedule.find().sort({ startTime: 1 });
+        // Get user's degree from the request
+        if (!req.user?.id) {
+          return next(new AppError('User not authenticated', 401));
+        }
+
+        const user = await User.findById(req.user.id).select('+degree');
+        if (!user) {
+          return next(new AppError('User not found', 404));
+        }
+
+        logger.info('User info:', { userId: user._id, role: user.role, degree: user.degree });
+
+        // If user is not a student, return a message
+        if (user.role !== 'student') {
+          return res.status(200).json({
+            status: 'success',
+            data: {
+              message: "I can only show class schedules for students. Please contact the admin for more information."
+            }
+          });
+        }
+
+        // If user doesn't have a degree set
+        if (!user.degree) {
+          return res.status(200).json({
+            status: 'success',
+            data: {
+              message: "Your degree information is not set. Please contact the admin to set your degree."
+            }
+          });
+        }
+
+        // Get schedules for the user's degree
+        const schedules = await Schedule.find({ 
+          degree: user.degree,
+          day: new Date().toLocaleDateString('en-US', { weekday: 'long' })
+        }).sort({ startTime: 1 });
+
+        logger.info('Found schedules:', { 
+          count: schedules.length, 
+          degree: user.degree,
+          schedules: schedules.map(s => ({ className: s.className, degree: s.degree }))
+        });
         
         if (schedules.length === 0) {
           return res.status(200).json({
             status: 'success',
             data: {
-              message: "I don't see any class schedules in the system yet. Please ask an admin to add some schedules."
+              message: `I don't see any class schedules for ${user.degree} degree today.`
             }
           });
         }
 
-        // Get current day and time
-        const now = new Date();
-        const currentDay = now.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
-        const currentTime = now.toLocaleTimeString('en-US', { hour12: false });
+        // Get current time
+        const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false });
 
-        // Filter schedules for current day and future times
+        // Filter schedules for future times
         const relevantSchedules = schedules.filter(schedule => 
-          schedule.day.toLowerCase() === currentDay && 
           schedule.startTime >= currentTime
         );
+
+        logger.info('Filtered schedules:', { 
+          total: schedules.length, 
+          relevant: relevantSchedules.length,
+          schedules: relevantSchedules.map(s => ({ 
+            className: s.className, 
+            day: s.day, 
+            startTime: s.startTime,
+            degree: s.degree 
+          }))
+        });
 
         if (relevantSchedules.length === 0) {
           return res.status(200).json({
             status: 'success',
             data: {
-              message: "You don't have any more classes scheduled for today."
+              message: `You don't have any more ${user.degree} classes scheduled for today.`
             }
           });
         }
 
-        let formattedResponse = "Here are your remaining classes for today:\n\n";
+        let formattedResponse = `Here are your remaining ${user.degree} classes for today:\n\n`;
         
         relevantSchedules.forEach(schedule => {
           formattedResponse += `- ${schedule.startTime} to ${schedule.endTime}: ${schedule.className} (${schedule.location}) with ${schedule.instructor}\n`;
@@ -111,11 +169,7 @@ export const chat = catchAsync(async (req: Request, res: Response, next: NextFun
         busRoutes.forEach(route => {
           formattedResponse += `${route.route}:\n`;
           formattedResponse += `Duration: ${route.duration}\n`;
-          formattedResponse += "Schedule:\n";
-          route.schedule.forEach(time => {
-            formattedResponse += `- ${time}\n`;
-          });
-          formattedResponse += "\n";
+          formattedResponse += `Schedule: ${route.schedule}\n\n`;
         });
 
         return res.status(200).json({

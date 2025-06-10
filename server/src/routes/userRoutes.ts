@@ -1,17 +1,16 @@
 import express from 'express';
+import { register, getMe, getAllUsers, deleteUser } from '../controllers/userController';
 import { protect, restrictTo } from '../middleware/auth';
-import { getMe, getAllUsers } from '../controllers/userController';
 
 const router = express.Router();
 
-// Protect all routes after this middleware
+// Public routes
+router.post('/signup', register);
+
+// Protected routes
 router.use(protect);
-
-// Get current user profile
 router.get('/me', getMe);
-
-// Admin only routes
-router.use(restrictTo('admin'));
-router.get('/', getAllUsers);
+router.get('/', restrictTo('admin'), getAllUsers);
+router.delete('/:id', restrictTo('admin'), deleteUser);
 
 export default router; 

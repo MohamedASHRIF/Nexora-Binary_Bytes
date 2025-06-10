@@ -26,6 +26,7 @@ interface ClassSchedule {
   endTime: string;
   location: string;
   instructor: string;
+  degree: string;
 }
 
 interface BusTiming {
@@ -63,7 +64,8 @@ export default function AdminPage() {
     startTime: '',
     endTime: '',
     location: '',
-    instructor: ''
+    instructor: '',
+    degree: 'IT' // Default to IT
   });
 
   // Add state for bus timings and events
@@ -150,22 +152,21 @@ export default function AdminPage() {
           const schedulesData = await schedulesResponse.json();
           console.log('Raw Schedules API Response:', schedulesData);
           
-          // Ensure we're accessing the correct data structure
-          const schedulesArray = Array.isArray(schedulesData.data?.data) ? schedulesData.data.data :
-                               Array.isArray(schedulesData.data) ? schedulesData.data :
-                               Array.isArray(schedulesData) ? schedulesData : [];
+          // Access the schedules array from the correct data structure
+          const schedulesArray = schedulesData.data?.schedules || [];
           
           console.log('Schedules Array:', schedulesArray);
 
           // Transform the data to ensure each schedule has a unique ID
-          const transformedSchedules = schedulesArray.map((schedule: any, index: number) => ({
-            _id: schedule._id || schedule.id || `schedule-${index}-${Math.random().toString(36).substr(2, 9)}`,
+          const transformedSchedules = schedulesArray.map((schedule: any) => ({
+            _id: schedule._id || schedule.id,
             className: schedule.className || '',
             day: schedule.day || '',
             startTime: schedule.startTime || '',
             endTime: schedule.endTime || '',
             location: schedule.location || '',
-            instructor: schedule.instructor || ''
+            instructor: schedule.instructor || '',
+            degree: schedule.degree || ''
           }));
           
           console.log('Transformed Schedules:', transformedSchedules);
@@ -302,7 +303,8 @@ export default function AdminPage() {
             startTime: newScheduleData.startTime || newSchedule.startTime,
             endTime: newScheduleData.endTime || newSchedule.endTime,
             location: newScheduleData.location || newSchedule.location,
-            instructor: newScheduleData.instructor || newSchedule.instructor
+            instructor: newScheduleData.instructor || newSchedule.instructor,
+            degree: newScheduleData.degree || newSchedule.degree
           };
 
           setSchedules(prevSchedules => [...prevSchedules, transformedSchedule]);
@@ -313,7 +315,8 @@ export default function AdminPage() {
             startTime: '',
             endTime: '',
             location: '',
-            instructor: ''
+            instructor: '',
+            degree: 'IT'
           });
           // Clear success message after 3 seconds
           setTimeout(() => setSuccessMessage(''), 3000);
@@ -744,45 +747,56 @@ export default function AdminPage() {
               <CardTitle>Add New Schedule</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                <Input
-                  placeholder="Class Name"
-                  value={newSchedule.className}
-                  onChange={(e) => setNewSchedule({...newSchedule, className: e.target.value})}
-                />
-                <select
-                  className="w-full p-2 border rounded-md"
-                  value={newSchedule.day}
-                  onChange={(e) => setNewSchedule({...newSchedule, day: e.target.value as 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday'})}
-                >
-                  <option value="Monday">Monday</option>
-                  <option value="Tuesday">Tuesday</option>
-                  <option value="Wednesday">Wednesday</option>
-                  <option value="Thursday">Thursday</option>
-                  <option value="Friday">Friday</option>
-                </select>
-                <Input
-                  placeholder="Start Time (e.g., 09:00)"
-                  value={newSchedule.startTime}
-                  onChange={(e) => setNewSchedule({...newSchedule, startTime: e.target.value})}
-                />
-                <Input
-                  placeholder="End Time (e.g., 10:30)"
-                  value={newSchedule.endTime}
-                  onChange={(e) => setNewSchedule({...newSchedule, endTime: e.target.value})}
-                />
-                <Input
-                  placeholder="Location"
-                  value={newSchedule.location}
-                  onChange={(e) => setNewSchedule({...newSchedule, location: e.target.value})}
-                />
-                <Input
-                  placeholder="Instructor"
-                  value={newSchedule.instructor}
-                  onChange={(e) => setNewSchedule({...newSchedule, instructor: e.target.value})}
-                />
+              <form onSubmit={handleScheduleSubmit} className="space-y-4">
+                <div className="space-y-4">
+                  <Input
+                    placeholder="Class Name"
+                    value={newSchedule.className}
+                    onChange={(e) => setNewSchedule({...newSchedule, className: e.target.value})}
+                  />
+                  <select
+                    className="w-full p-2 border rounded-md"
+                    value={newSchedule.degree}
+                    onChange={(e) => setNewSchedule({...newSchedule, degree: e.target.value})}
+                  >
+                    <option value="IT">IT</option>
+                    <option value="AI">AI</option>
+                    <option value="Design">Design</option>
+                  </select>
+                  <select
+                    className="w-full p-2 border rounded-md"
+                    value={newSchedule.day}
+                    onChange={(e) => setNewSchedule({...newSchedule, day: e.target.value as 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday'})}
+                  >
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                  </select>
+                  <Input
+                    placeholder="Start Time (e.g., 09:00)"
+                    value={newSchedule.startTime}
+                    onChange={(e) => setNewSchedule({...newSchedule, startTime: e.target.value})}
+                  />
+                  <Input
+                    placeholder="End Time (e.g., 10:30)"
+                    value={newSchedule.endTime}
+                    onChange={(e) => setNewSchedule({...newSchedule, endTime: e.target.value})}
+                  />
+                  <Input
+                    placeholder="Location"
+                    value={newSchedule.location}
+                    onChange={(e) => setNewSchedule({...newSchedule, location: e.target.value})}
+                  />
+                  <Input
+                    placeholder="Instructor"
+                    value={newSchedule.instructor}
+                    onChange={(e) => setNewSchedule({...newSchedule, instructor: e.target.value})}
+                  />
+                </div>
                 <Button onClick={handleScheduleSubmit}>Add Schedule</Button>
-              </div>
+              </form>
             </CardContent>
           </Card>
 

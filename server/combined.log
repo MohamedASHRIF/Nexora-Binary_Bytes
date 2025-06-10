@@ -948,3 +948,580 @@
 {"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:25:27.209Z"}
 {"level":"info","message":"GET /events","timestamp":"2025-06-10T10:25:27.216Z"}
 {"level":"info","message":"GET /events","timestamp":"2025-06-10T10:25:27.226Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-10T10:26:43.674Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T10:26:54.717Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T10:26:57.661Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T10:26:57.664Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T10:27:12.665Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T10:27:26.629Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:27:26.763Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T10:27:26.772Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T10:27:26.781Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T10:27:26.856Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:27:26.859Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T10:27:26.870Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:27:26.874Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T10:27:26.882Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T10:29:55.267Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T10:30:21.857Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T10:30:26.939Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T10:30:26.943Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T10:58:56.572Z"}
+{"level":"info","message":"Received chat message: bus routes","timestamp":"2025-06-10T10:58:56.576Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T10:59:01.474Z"}
+{"level":"info","message":"Received chat message: bus time","timestamp":"2025-06-10T10:59:01.478Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T10:59:07.331Z"}
+{"level":"info","message":"Received chat message: bus in the town","timestamp":"2025-06-10T10:59:07.335Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:03:31.576Z"}
+{"level":"info","message":"Received chat message: class schedule","timestamp":"2025-06-10T11:03:31.582Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:03:54.660Z"}
+{"level":"info","message":"Received chat message: tell the bus times","timestamp":"2025-06-10T11:03:54.664Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:04:06.753Z"}
+{"level":"info","message":"Received chat message: bus Tera","timestamp":"2025-06-10T11:04:06.757Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:04:19.726Z"}
+{"level":"info","message":"Received chat message: bus","timestamp":"2025-06-10T11:04:19.730Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:04:24.782Z"}
+{"level":"info","message":"Received chat message: bus lao Akhiyan","timestamp":"2025-06-10T11:04:24.785Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:04:33.008Z"}
+{"level":"info","message":"Received chat message: perund","timestamp":"2025-06-10T11:04:33.012Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:07:31.413Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:07:31.429Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:09:40.698Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:09:40.715Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:09:47.690Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:09:47.970Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:09:47.987Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:09:48.012Z"}
+{"level":"error","message":"Error: Degree not specified for this user","timestamp":"2025-06-10T11:09:48.017Z"}
+{"level":"error","message":"Error: Degree not specified for this user\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\src\\controllers\\scheduleController.ts:32:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\src\\utils\\catchAsync.ts:7:5\n    at Layer.handle [as handle_request] (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\src\\middleware\\auth.ts:52:5","timestamp":"2025-06-10T11:09:48.023Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:09:48.029Z"}
+{"level":"error","message":"Error: Degree not specified for this user","timestamp":"2025-06-10T11:09:48.032Z"}
+{"level":"error","message":"Error: Degree not specified for this user\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\src\\controllers\\scheduleController.ts:32:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\src\\utils\\catchAsync.ts:7:5\n    at Layer.handle [as handle_request] (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\src\\middleware\\auth.ts:52:5","timestamp":"2025-06-10T11:09:48.033Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:09:48.105Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:09:48.116Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:09:48.154Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:09:48.163Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:10:36.311Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:10:36.332Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:10:52.986Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:10:53.229Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:10:53.254Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:10:53.285Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:10:53.389Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:10:53.400Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:10:53.418Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:10:53.425Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:10:53.443Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:11:29.589Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:11:37.535Z"}
+{"level":"info","message":"Received chat message: hi","timestamp":"2025-06-10T11:11:37.544Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:11:45.953Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T11:11:45.958Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:14:16.600Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:14:16.853Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:14:16.864Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:14:16.876Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:14:16.942Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:14:16.947Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:14:16.967Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:14:16.970Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:14:17.015Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-10T11:15:51.066Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:16:04.217Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-10T11:16:09.885Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-10T11:16:09.897Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:17:06.713Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:17:12.302Z"}
+{"level":"info","message":"Received chat message: bus","timestamp":"2025-06-10T11:17:12.306Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:17:15.519Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T11:17:15.524Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:19:22.927Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:19:22.942Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:19:42.705Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:19:47.543Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T11:19:47.551Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:19:56.180Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:19:56.365Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:19:56.380Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:19:56.461Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:19:56.475Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:19:56.486Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:19:56.501Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:19:56.510Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:19:56.524Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:22:34.100Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:22:34.118Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T11:23:32.952Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T11:23:32.982Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T11:23:32.986Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:24:11.769Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:24:11.784Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T11:24:39.631Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T11:24:39.662Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T11:24:39.665Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T11:27:43.087Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T11:27:43.094Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T11:27:43.095Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:28:25.847Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:28:25.863Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T11:28:31.174Z"}
+{"level":"error","message":"Error: User validation failed: degree: Degree is required for students","timestamp":"2025-06-10T11:28:31.192Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Degree is required for students\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T11:28:31.194Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:29:10.175Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:29:10.192Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:29:19.495Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:29:19.510Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T11:29:40.064Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T11:29:40.081Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T11:29:40.083Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T11:29:44.740Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T11:29:44.747Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T11:29:44.749Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T11:29:46.546Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T11:29:46.553Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T11:29:46.555Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:30:12.586Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:30:12.599Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:30:21.853Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:30:21.866Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T11:30:56.598Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:31:03.647Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:31:14.370Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T11:31:14.380Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:31:28.326Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:31:28.589Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:31:28.605Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:31:28.669Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:31:28.684Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:31:28.694Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:31:28.709Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:31:28.718Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:31:28.729Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:33:23.217Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:33:23.234Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:33:47.064Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:33:50.594Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T11:33:50.602Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:34:12.362Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:34:12.539Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T11:34:12.555Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:34:12.631Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T11:34:12.645Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:34:12.654Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T11:34:12.670Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:34:12.678Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T11:34:12.692Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:34:58.798Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:34:58.815Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-10T11:35:45.493Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:36:00.134Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:36:03.603Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T11:36:03.610Z","user":{"__v":0,"_id":"6848177016e22212cadecbc9","badges":[],"createdAt":"2025-06-10T11:30:56.628Z","email":"mohamed@gmail.com","language":"en","name":"Ashrif Jaleel","points":0,"role":"student","updatedAt":"2025-06-10T11:30:56.628Z"}}
+{"level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T11:36:03.615Z","userId":"6848177016e22212cadecbc9"}
+{"count":12,"level":"info","message":"Found schedules:","timestamp":"2025-06-10T11:36:03.621Z"}
+{"currentDay":"Tuesday","currentTime":"17:06:03","level":"info","message":"Current time info:","timestamp":"2025-06-10T11:36:03.647Z"}
+{"level":"info","message":"Filtered schedules:","relevant":1,"schedules":[{"className":"Tamil","day":"Tuesday","startTime":"18:00"}],"timestamp":"2025-06-10T11:36:03.649Z","total":12}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:36:14.377Z"}
+{"level":"info","message":"Received chat message: bus","timestamp":"2025-06-10T11:36:14.381Z","user":{"__v":0,"_id":"6848177016e22212cadecbc9","badges":[],"createdAt":"2025-06-10T11:30:56.628Z","email":"mohamed@gmail.com","language":"en","name":"Ashrif Jaleel","points":0,"role":"student","updatedAt":"2025-06-10T11:30:56.628Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:36:16.675Z"}
+{"level":"info","message":"Received chat message: event","timestamp":"2025-06-10T11:36:16.679Z","user":{"__v":0,"_id":"6848177016e22212cadecbc9","badges":[],"createdAt":"2025-06-10T11:30:56.628Z","email":"mohamed@gmail.com","language":"en","name":"Ashrif Jaleel","points":0,"role":"student","updatedAt":"2025-06-10T11:30:56.628Z"}}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:38:21.246Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:38:21.260Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:38:38.656Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T11:38:38.686Z","user":{"__v":0,"_id":"6848177016e22212cadecbc9","badges":[],"createdAt":"2025-06-10T11:30:56.628Z","email":"mohamed@gmail.com","language":"en","name":"Ashrif Jaleel","points":0,"role":"student","updatedAt":"2025-06-10T11:30:56.628Z"}}
+{"level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T11:38:38.695Z","userId":"6848177016e22212cadecbc9"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:39:22.970Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:39:22.988Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:45:08.807Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:45:08.823Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T11:45:18.311Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T11:45:18.327Z","user":{"id":"6848177016e22212cadecbc9","role":"student"}}
+{"level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T11:45:18.331Z","userId":"6848177016e22212cadecbc9"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T11:45:55.966Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:46:00.756Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:46:04.261Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:46:34.941Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:46:36.295Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:47:54.626Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:47:54.642Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:47:58.737Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:47:59.839Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:48:00.504Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:48:04.664Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:48:33.393Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:48:33.410Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:48:51.685Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:48:51.702Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:48:57.857Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:48:57.860Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:48:57.871Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:48:57.937Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:48:57.941Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:48:58.766Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:48:58.767Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:48:58.772Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:48:58.830Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:48:58.832Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:48:59.500Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:48:59.501Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:48:59.505Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:48:59.562Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:48:59.564Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:48:59.935Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:48:59.935Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:48:59.940Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:48:59.999Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:49:00.001Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:49:00.311Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:49:00.311Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:49:00.316Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:49:00.375Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:49:00.377Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:49:05.751Z"}
+{"email":"mohamedashrif@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:49:05.752Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:49:05.754Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:49:05.812Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T11:49:05.814Z","userId":"68481af37a7ace2aedff533c"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:49:06.913Z"}
+{"email":"mohamedashrif@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:49:06.914Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:49:06.917Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:49:06.977Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T11:49:06.979Z","userId":"68481af37a7ace2aedff533c"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:50:10.025Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:50:10.042Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:53:14.959Z"}
+{"email":"mohamedashrif@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:53:14.960Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:53:14.971Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:53:15.040Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T11:53:15.044Z","userId":"68481af37a7ace2aedff533c"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:53:21.285Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:53:21.285Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:53:21.289Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:53:21.346Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:53:21.349Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:55:54.723Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:55:54.724Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:55:54.729Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:55:54.787Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:55:54.788Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:56:10.912Z"}
+{"email":"ashrifmuhamed@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:56:10.912Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:56:10.915Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:56:10.975Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T11:56:10.977Z","userId":"6846ff202d02ad5f9dc48a2b"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T11:57:00.986Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T11:57:01.002Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:57:16.115Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:57:16.116Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:57:16.127Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:57:16.193Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:57:16.197Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:58:26.312Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:58:26.313Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:58:26.318Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:58:26.380Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:58:26.382Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:58:27.521Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:58:27.521Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:58:27.526Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:58:27.587Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:58:27.589Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:58:28.183Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:58:28.184Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:58:28.187Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:58:28.246Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:58:28.248Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:58:30.952Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:58:30.952Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:58:30.956Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:58:31.015Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:58:31.016Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T11:58:31.619Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T11:58:31.620Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T11:58:31.623Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T11:58:31.680Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T11:58:31.682Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:00:00.674Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:00:00.688Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:00:24.333Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:00:24.334Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:00:24.346Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:00:24.413Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:00:24.417Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:02:48.542Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:02:48.559Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:03:06.060Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:03:06.076Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:03:34.122Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:03:34.124Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:03:34.137Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:03:34.204Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:03:34.208Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:04:28.149Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:04:28.150Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:04:28.154Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:04:28.213Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:04:28.215Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:04:29.040Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:04:29.040Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:04:29.042Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:04:29.101Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:04:29.102Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:04:29.652Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:04:29.653Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:04:29.656Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:04:29.714Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:04:29.716Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:04:30.290Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:04:30.290Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:04:30.293Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:04:30.349Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:04:30.351Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:04:30.701Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:04:30.702Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:04:30.705Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:04:30.762Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:04:30.764Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:05:29.615Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:05:29.615Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:05:29.618Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:05:29.676Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:05:29.677Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:06:30.071Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:06:30.071Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:06:30.075Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:06:30.184Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:06:30.186Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:07:06.533Z"}
+{"email":"ashrif@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:07:06.534Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:07:06.538Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:07:06.650Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:07:06.652Z","userId":"68473792aeeea98b7e03955f"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:07:13.602Z"}
+{"email":"ashrifmuhamed@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:07:13.603Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:07:13.607Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:07:13.728Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T12:07:13.730Z","userId":"6846ff202d02ad5f9dc48a2b"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:08:40.411Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:08:40.412Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:08:40.415Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:08:40.525Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:08:40.526Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:08:41.670Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:08:41.670Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:08:41.674Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:08:41.785Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:08:41.786Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:10:24.662Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:10:24.663Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:10:24.666Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:10:24.779Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:10:24.781Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:10:29.027Z"}
+{"email":"ashrifmuhamed@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:10:29.028Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:10:29.030Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:10:29.145Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T12:10:29.146Z","userId":"6846ff202d02ad5f9dc48a2b"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:12:36.946Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:12:36.947Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:12:36.950Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:12:37.046Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:12:37.047Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:13:57.146Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:13:57.146Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:13:57.149Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:13:57.259Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:13:57.260Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:13:58.859Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:13:58.860Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:13:58.863Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:13:58.972Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:13:58.974Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:14:01.957Z"}
+{"email":"ashrifmuhamed@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:14:01.958Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:14:01.961Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:14:02.077Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T12:14:02.079Z","userId":"6846ff202d02ad5f9dc48a2b"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:14:27.892Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:14:27.892Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:14:27.895Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:14:28.006Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:14:28.008Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:17:12.207Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:17:12.208Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:17:12.211Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:17:12.282Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:17:12.283Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:17:56.711Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:17:56.711Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:17:56.714Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:17:56.783Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:17:56.784Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:18:07.214Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:18:07.214Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:18:07.218Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:18:07.339Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:18:07.341Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:18:10.830Z"}
+{"email":"ashrifmuhamed@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:18:10.830Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:18:10.833Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:18:10.942Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T12:18:10.945Z","userId":"6846ff202d02ad5f9dc48a2b"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:18:16.354Z"}
+{"email":"mohamedashrif@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:18:16.355Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:18:16.358Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:18:16.465Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T12:18:16.467Z","userId":"68481af37a7ace2aedff533c"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:19:10.476Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:19:10.477Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:19:10.479Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:19:10.586Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:19:10.587Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:20:14.591Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:20:14.591Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:20:14.594Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:20:14.702Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:20:14.704Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:20:17.058Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:20:17.059Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:20:17.062Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:20:17.172Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:20:17.173Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:20:20.736Z"}
+{"email":"ashrifmuhamed@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:20:20.736Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:20:20.739Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:20:20.875Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T12:20:20.877Z","userId":"6846ff202d02ad5f9dc48a2b"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:21:55.193Z"}
+{"email":"ashrifmuhamed@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:21:55.193Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:21:55.196Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:21:55.303Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T12:21:55.305Z","userId":"6846ff202d02ad5f9dc48a2b"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:22:00.523Z"}
+{"email":"ashrifmuhamed@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:22:00.523Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:22:00.526Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:22:00.639Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T12:22:00.641Z","userId":"6846ff202d02ad5f9dc48a2b"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T12:22:28.731Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T12:22:28.745Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T12:22:28.749Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T12:23:46.814Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T12:23:46.817Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T12:23:46.817Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T12:23:47.756Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T12:23:47.759Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T12:23:47.759Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T12:23:48.414Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T12:23:48.418Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T12:23:48.419Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T12:23:48.857Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T12:23:48.860Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T12:23:48.860Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T12:23:49.151Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T12:23:49.154Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T12:23:49.155Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T12:23:49.371Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T12:23:49.374Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T12:23:49.375Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:23:55.761Z"}
+{"email":"ashrifmuhamed@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:23:55.762Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:23:55.764Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:23:55.877Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T12:23:55.878Z","userId":"6846ff202d02ad5f9dc48a2b"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:23:59.965Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:23:59.966Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:23:59.968Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:24:00.079Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:24:00.081Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:25:14.805Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:25:14.821Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:33:31.381Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:33:31.398Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:33:44.126Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:33:44.144Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:33:50.964Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:33:50.982Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T12:33:56.663Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T12:33:56.679Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T12:33:56.681Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-10T12:33:57.618Z"}
+{"level":"error","message":"Error: User validation failed: degree: Path `degree` is required.","timestamp":"2025-06-10T12:33:57.623Z"}
+{"level":"error","message":"ValidationError: User validation failed: degree: Path `degree` is required.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-10T12:33:57.624Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:34:02.116Z"}
+{"email":"ashrifmuhamed@gmail.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:34:02.117Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:34:02.124Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:34:02.250Z"}
+{"level":"info","message":"Login successful:","role":"student","timestamp":"2025-06-10T12:34:02.255Z","userId":"6846ff202d02ad5f9dc48a2b"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:34:07.169Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:34:07.170Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:34:07.174Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:34:07.300Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:34:07.303Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:34:08.080Z"}
+{"email":"admin@nexora.com","level":"info","message":"Login attempt:","timestamp":"2025-06-10T12:34:08.081Z"}
+{"level":"info","message":"User found, comparing password","timestamp":"2025-06-10T12:34:08.086Z"}
+{"level":"info","message":"Password correct, generating token","timestamp":"2025-06-10T12:34:08.196Z"}
+{"level":"info","message":"Login successful:","role":"admin","timestamp":"2025-06-10T12:34:08.198Z","userId":"6847034a394cf1b849718865"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:36:48.527Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:36:48.546Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:37:04.441Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:37:04.455Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:37:15.237Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:37:15.613Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:37:15.640Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:37:15.700Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:37:15.720Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:37:15.734Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:37:15.755Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:37:15.764Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:37:15.781Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:37:29.184Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-10T12:37:32.310Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-10T12:37:32.316Z","user":{"__v":0,"_id":"6846ff202d02ad5f9dc48a2b","badges":[],"createdAt":"2025-06-09T15:34:56.145Z","email":"ashrifmuhamed@gmail.com","language":"en","name":"test1","points":0,"role":"student","updatedAt":"2025-06-09T15:34:56.145Z"}}
+{"level":"info","message":"User info:","role":"student","timestamp":"2025-06-10T12:37:32.320Z","userId":"6846ff202d02ad5f9dc48a2b"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:39:21.596Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:39:37.313Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:39:37.565Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:39:37.577Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:39:37.624Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:39:37.636Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:39:37.650Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:39:37.662Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:39:37.669Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:39:37.682Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T12:39:51.066Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:39:51.244Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:39:51.254Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:39:51.263Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:39:51.317Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:39:51.319Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:39:51.332Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:39:51.341Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:39:51.351Z"}
+{"level":"info","message":"DELETE /users/6846ff202d02ad5f9dc48a2b","timestamp":"2025-06-10T12:39:55.606Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:40:27.478Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:40:27.495Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:40:36.473Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:40:36.488Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:40:45.838Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:40:45.856Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T12:40:50.052Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T12:40:50.083Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T12:40:50.100Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T12:40:50.115Z"}
+{"level":"info","message":"DELETE /users/6847387ae64ef2bf3e8d53d7","timestamp":"2025-06-10T12:40:58.676Z"}
+{"level":"info","message":"DELETE /users/68481af37a7ace2aedff533c","timestamp":"2025-06-10T12:41:02.629Z"}
+{"level":"info","message":"DELETE /users/6848177016e22212cadecbc9","timestamp":"2025-06-10T12:41:03.625Z"}
+{"level":"info","message":"DELETE /users/6847d09966f9203a64aa7711","timestamp":"2025-06-10T12:41:06.304Z"}
+{"level":"info","message":"DELETE /users/6846ff202d02ad5f9dc48a2b","timestamp":"2025-06-10T12:41:09.022Z"}
+{"level":"info","message":"DELETE /schedules/6847046bfe44769b94bb7e02","timestamp":"2025-06-10T12:41:14.547Z"}
+{"level":"info","message":"DELETE /schedules/68470552d03529f4078b06e3","timestamp":"2025-06-10T12:41:17.336Z"}
+{"level":"info","message":"DELETE /bus-timings/6847161fdcdea03422f180ec","timestamp":"2025-06-10T12:41:23.907Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:41:58.664Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:41:58.679Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:42:03.416Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:42:03.432Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:42:09.772Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:42:09.788Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T12:42:18.500Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T12:42:18.515Z"}

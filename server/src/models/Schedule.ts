@@ -1,36 +1,51 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-const scheduleSchema = new mongoose.Schema({
+export interface ISchedule extends Document {
+  className: string;
+  day: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday';
+  startTime: string;
+  endTime: string;
+  location: string;
+  instructor: string;
+  degree: 'IT' | 'AI' | 'Design';
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const scheduleSchema = new Schema<ISchedule>({
   className: {
     type: String,
-    required: [true, 'Class name is required'],
+    required: [true, 'Please add a class name'],
     trim: true
   },
   day: {
     type: String,
-    required: [true, 'Day is required'],
-    enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+    enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    required: [true, 'Please specify the day']
   },
   startTime: {
     type: String,
-    required: [true, 'Start time is required']
+    required: [true, 'Please add a start time']
   },
   endTime: {
     type: String,
-    required: [true, 'End time is required']
+    required: [true, 'Please add an end time']
   },
   location: {
     type: String,
-    required: [true, 'Location is required'],
-    trim: true
+    required: [true, 'Please add a location']
   },
   instructor: {
     type: String,
-    required: [true, 'Instructor is required'],
-    trim: true
+    required: [true, 'Please add an instructor']
+  },
+  degree: {
+    type: String,
+    enum: ['IT', 'AI', 'Design'],
+    required: [true, 'Please specify the degree']
   }
 }, {
   timestamps: true
 });
 
-export const Schedule = mongoose.model('Schedule', scheduleSchema); 
+export const Schedule = mongoose.model<ISchedule>('Schedule', scheduleSchema); 
