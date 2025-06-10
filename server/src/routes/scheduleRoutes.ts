@@ -2,6 +2,7 @@ import express from 'express';
 import { protect, restrictTo } from '../middleware/auth';
 import {
   getAllSchedules,
+  getMySchedule,
   createSchedule,
   updateSchedule,
   deleteSchedule
@@ -11,6 +12,9 @@ const router = express.Router();
 
 // Protect all routes
 router.use(protect);
+
+// Public routes (for authenticated users)
+router.get('/my-schedule', getMySchedule);
 
 // Admin only routes
 router.use(restrictTo('admin'));

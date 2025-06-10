@@ -1,43 +1,94 @@
 import { Request, Response, NextFunction } from 'express';
-import { Schedule } from '../models/Schedule';
+import { Schedule } from '../models/scheduleModel';
 import { catchAsync } from '../utils/catchAsync';
 import AppError from '../utils/appError';
+import mongoose from 'mongoose';
 
-export const getAllSchedules = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+interface PopulatedClass {
+  name: string;
+  location: string;
+  instructor?: string;
+}
+
+interface PopulatedSchedule {
+  time: string;
+  class: PopulatedClass;
+}
+
+interface ClassDocument {
+  _id: mongoose.Types.ObjectId;
+  name: string;
+  location: string;
+  instructor: {
+    name: string;
+  };
+}
+
+// Get all schedules (admin only)
+export const getAllSchedules = catchAsync(async (req: Request, res: Response) => {
   const schedules = await Schedule.find();
+  
   res.status(200).json({
     status: 'success',
     data: {
-      schedules
+      data: schedules
     }
   });
 });
 
-export const createSchedule = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+// Get current user's schedule
+export const getMySchedule = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    console.log('Fetching schedules...');
+    
+    // For chatbot, return all schedules
+    const schedules = await Schedule.find()
+      .lean() // Convert to plain JavaScript objects
+      .exec();
+
+    console.log('Found schedules:', schedules);
+
+    // Format the schedule data directly from the schedule documents
+    const formattedSchedule = schedules.map(item => {
+      console.log('Processing schedule item:', item);
+      
+      return {
+        className: item.className || '',
+        day: item.day || '',
+        startTime: item.startTime || '',
+        endTime: item.endTime || '',
+        location: item.location || '',
+        instructor: item.instructor || 'TBA'
+      };
+    });
+
+    console.log('Formatted schedule:', formattedSchedule);
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        data: formattedSchedule
+      }
+    });
+  } catch (error) {
+    console.error('Error in getMySchedule:', error);
+    next(new AppError('Failed to fetch schedules', 500));
+  }
+});
+
+// Create a new schedule (admin only)
+export const createSchedule = catchAsync(async (req: Request, res: Response) => {
   const schedule = await Schedule.create(req.body);
+
   res.status(201).json({
     status: 'success',
     data: {
-      schedule
+      data: schedule
     }
   });
 });
 
-export const getSchedule = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const schedule = await Schedule.findById(req.params.id);
-    if (!schedule) {
-      return next(new AppError('No schedule found with that ID', 404));
-    }
-    res.status(200).json({
-      status: 'success',
-      data: schedule
-    });
-  } catch (error) {
-    next(new AppError('Failed to fetch schedule', 400));
-  }
-};
-
+// Update a schedule (admin only)
 export const updateSchedule = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const schedule = await Schedule.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -51,11 +102,12 @@ export const updateSchedule = catchAsync(async (req: Request, res: Response, nex
   res.status(200).json({
     status: 'success',
     data: {
-      schedule
+      data: schedule
     }
   });
 });
 
+// Delete a schedule (admin only)
 export const deleteSchedule = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const schedule = await Schedule.findByIdAndDelete(req.params.id);
 

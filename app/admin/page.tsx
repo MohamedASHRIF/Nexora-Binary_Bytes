@@ -108,10 +108,29 @@ export default function AdminPage() {
         }
 
         const usersData = await usersResponse.json();
-        setUsers(usersData.data.users);
+        console.log('Users API Response:', usersData);
+
+        // Ensure we're accessing the correct data structure
+        const usersArray = Array.isArray(usersData.data) ? usersData.data : 
+                          Array.isArray(usersData.data?.users) ? usersData.data.users :
+                          Array.isArray(usersData.users) ? usersData.users : [];
+
+        console.log('Users Array:', usersArray);
+
+        // Transform the data to ensure each user has a unique ID
+        const transformedUsers = usersArray.map((user: any, index: number) => ({
+          _id: user._id || user.id || `user-${index}-${Math.random().toString(36).substr(2, 9)}`, // Ensure we always have a unique ID
+          name: user.name || '',
+          email: user.email || '',
+          role: user.role || '',
+          createdAt: user.createdAt || new Date().toISOString()
+        }));
+
+        console.log('Transformed Users:', transformedUsers);
+        setUsers(transformedUsers);
 
         // Fetch schedules
-        const schedulesResponse = await fetch('http://localhost:5000/api/schedules', {
+        const schedulesResponse = await fetch('http://localhost:5000/api/schedules/my-schedule', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -119,12 +138,30 @@ export default function AdminPage() {
         });
         if (schedulesResponse.ok) {
           const schedulesData = await schedulesResponse.json();
-          if (schedulesData.data && schedulesData.data.schedules) {
-            setSchedules(schedulesData.data.schedules);
-          } else {
-            setSchedules([]);
-          }
+          console.log('Schedules API Response:', schedulesData);
+          
+          // Ensure we're accessing the correct data structure
+          const schedulesArray = Array.isArray(schedulesData.data?.data) ? schedulesData.data.data :
+                               Array.isArray(schedulesData.data) ? schedulesData.data :
+                               Array.isArray(schedulesData) ? schedulesData : [];
+          
+          console.log('Schedules Array:', schedulesArray);
+
+          // Transform the data to ensure each schedule has a unique ID
+          const transformedSchedules = schedulesArray.map((schedule: any, index: number) => ({
+            _id: schedule._id || schedule.id || `schedule-${index}-${Math.random().toString(36).substr(2, 9)}`,
+            className: schedule.className || '',
+            day: schedule.day || '',
+            startTime: schedule.startTime || '',
+            endTime: schedule.endTime || '',
+            location: schedule.location || '',
+            instructor: schedule.instructor || ''
+          }));
+          
+          console.log('Transformed Schedules:', transformedSchedules);
+          setSchedules(transformedSchedules);
         } else {
+          console.error('Failed to fetch schedules:', schedulesResponse.statusText);
           setSchedules([]);
         }
 
@@ -137,12 +174,29 @@ export default function AdminPage() {
         });
         if (busResponse.ok) {
           const busData = await busResponse.json();
-          if (busData.data) {
-            setBusTimings(busData.data);
-          } else {
-            setBusTimings([]);
-          }
+          console.log('Bus API Response:', busData);
+          
+          // Ensure we're accessing the correct data structure
+          const routesArray = Array.isArray(busData.data?.data) ? busData.data.data :
+                             Array.isArray(busData.data?.routes) ? busData.data.routes :
+                             Array.isArray(busData.routes) ? busData.routes : [];
+          
+          console.log('Routes Array:', routesArray);
+
+          // Transform the data to match the BusTiming interface
+          const transformedBusTimings = routesArray.map((route: any) => ({
+            _id: route._id || route.id || Math.random().toString(36).substr(2, 9),
+            route: route.route || route.name || '',
+            departureTime: route.time || '',
+            arrivalTime: route.arrivalTime || '',
+            stops: route.stops || [],
+            duration: route.duration || ''
+          }));
+          
+          console.log('Transformed Bus Timings:', transformedBusTimings);
+          setBusTimings(transformedBusTimings);
         } else {
+          console.error('Failed to fetch bus timings:', busResponse.statusText);
           setBusTimings([]);
         }
 
@@ -155,12 +209,30 @@ export default function AdminPage() {
         });
         if (eventsResponse.ok) {
           const eventsData = await eventsResponse.json();
-          if (eventsData.data) {
-            setEvents(eventsData.data);
-          } else {
-            setEvents([]);
-          }
+          console.log('Events API Response:', eventsData);
+          
+          // Ensure we're accessing the correct data structure
+          const eventsArray = Array.isArray(eventsData.data?.data?.upcoming) ? eventsData.data.data.upcoming :
+                             Array.isArray(eventsData.data?.upcoming) ? eventsData.data.upcoming :
+                             Array.isArray(eventsData.data?.data) ? eventsData.data.data :
+                             Array.isArray(eventsData.data) ? eventsData.data : [];
+          
+          console.log('Events Array:', eventsArray);
+
+          // Transform the data to match the Event interface
+          const transformedEvents = eventsArray.map((event: any) => ({
+            _id: event._id || event.id || Math.random().toString(36).substr(2, 9),
+            title: event.title || event.name || '',
+            description: event.description || '',
+            date: event.date || '',
+            time: event.time || '',
+            location: event.location || ''
+          }));
+          
+          console.log('Transformed Events:', transformedEvents);
+          setEvents(transformedEvents);
         } else {
+          console.error('Failed to fetch events:', eventsResponse.statusText);
           setEvents([]);
         }
       } catch (err: any) {
@@ -193,11 +265,37 @@ export default function AdminPage() {
         credentials: 'include'
       });
 
+      const responseText = await response.text();
+      console.log('Raw response:', responseText);
+
+      let responseData;
+      try {
+        responseData = JSON.parse(responseText);
+        console.log('Parsed response data:', responseData);
+      } catch (e) {
+        console.error('Failed to parse response as JSON:', e);
+        setError('Server returned invalid response format');
+        return;
+      }
+
       if (response.ok) {
-        const data = await response.json();
-        console.log('Schedule created successfully:', data);
-        if (data.data && data.data.schedule) {
-          setSchedules(prevSchedules => [...prevSchedules, data.data.schedule]);
+        // Check if the response has the expected structure
+        if (responseData.status === 'success' && responseData.data) {
+          const newScheduleData = responseData.data.schedule || responseData.data;
+          console.log('New schedule to add:', newScheduleData);
+          
+          // Ensure the new schedule has all required fields
+          const transformedSchedule = {
+            _id: newScheduleData._id || newScheduleData.id || Math.random().toString(36).substr(2, 9),
+            className: newScheduleData.className || newSchedule.className,
+            day: newScheduleData.day || newSchedule.day,
+            startTime: newScheduleData.startTime || newSchedule.startTime,
+            endTime: newScheduleData.endTime || newSchedule.endTime,
+            location: newScheduleData.location || newSchedule.location,
+            instructor: newScheduleData.instructor || newSchedule.instructor
+          };
+
+          setSchedules(prevSchedules => [...prevSchedules, transformedSchedule]);
           setSuccessMessage('Schedule created successfully!');
           setNewSchedule({
             className: '',
@@ -210,13 +308,17 @@ export default function AdminPage() {
           // Clear success message after 3 seconds
           setTimeout(() => setSuccessMessage(''), 3000);
         } else {
-          console.error('Invalid schedule data format:', data);
+          console.error('Invalid schedule data format:', responseData);
           setError('Failed to create schedule: Invalid response format');
         }
       } else {
-        const errorText = await response.text();
-        console.error('Failed to create schedule:', errorText);
-        setError('Failed to create schedule: ' + errorText);
+        const errorMessage = responseData.message || responseData.error || 'Unknown error occurred';
+        console.error('Failed to create schedule:', {
+          status: response.status,
+          statusText: response.statusText,
+          data: responseData
+        });
+        setError(`Failed to create schedule: ${errorMessage}`);
       }
     } catch (error) {
       console.error('Error creating schedule:', error);
@@ -442,8 +544,8 @@ export default function AdminPage() {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                      {users.map((user) => (
-                        <tr key={user._id}>
+                      {users.map((user, index) => (
+                        <tr key={user._id || `user-${index}`}>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="text-sm font-medium text-gray-900">{user.name}</div>
                           </td>
@@ -576,8 +678,8 @@ export default function AdminPage() {
                           </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                          {schedules.map((schedule) => (
-                            <tr key={schedule._id}>
+                          {schedules.map((schedule, index) => (
+                            <tr key={schedule._id || `schedule-${index}`}>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="text-sm font-medium text-gray-900">{schedule.className}</div>
                               </td>
@@ -682,8 +784,8 @@ export default function AdminPage() {
                           </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                          {busTimings.map((timing) => (
-                            <tr key={timing._id}>
+                          {busTimings.map((timing, index) => (
+                            <tr key={timing._id || `bus-${index}`}>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="text-sm font-medium text-gray-900">{timing.route}</div>
                               </td>
@@ -767,8 +869,8 @@ export default function AdminPage() {
                           </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                          {events.map((event) => (
-                            <tr key={event._id}>
+                          {events.map((event, index) => (
+                            <tr key={event._id || `event-${index}`}>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="text-sm font-medium text-gray-900">{event.title}</div>
                               </td>

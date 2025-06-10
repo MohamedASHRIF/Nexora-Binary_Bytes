@@ -14,9 +14,27 @@ export const createEvent = catchAsync(async (req: Request, res: Response, next: 
 
 export const getEvents = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const events = await Event.find().sort({ date: 1 });
+  
+  // Format the response to match frontend expectations
+  const formattedEvents = events.map(event => ({
+    date: event.date,
+    name: event.title,
+    location: event.location,
+    time: event.time
+  }));
+
   res.status(200).json({
     status: 'success',
-    data: events
+    data: {
+      data: {
+        upcoming: formattedEvents,
+        categories: ['Academic', 'Social', 'Sports', 'Cultural'],
+        registration: {
+          required: [],
+          link: ''
+        }
+      }
+    }
   });
 });
 
