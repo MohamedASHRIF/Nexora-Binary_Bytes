@@ -147,17 +147,81 @@ export const useChatbot = () => {
     };
   }, []);
 
-  // Initialize with a welcome message
+  // Load chat history when component mounts
   useEffect(() => {
-    setMessages([
-      {
-        text: "Hello! I'm your campus assistant. How can I help you today?",
-        isUser: false,
-        timestamp: new Date(),
-        isTampered: false
+    const loadChatHistory = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          // If no token, just show welcome message
+          setMessages([
+            {
+              text: "Hello! I'm your campus assistant. How can I help you today?",
+              isUser: false,
+              timestamp: new Date(),
+              isTampered: false
+            }
+          ]);
+          return;
+        }
+
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+        const response = await fetch(`${apiUrl}/chat/history`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.data.messages && data.data.messages.length > 0) {
+            // Convert server messages to local format
+            const formattedMessages: Message[] = data.data.messages.map((msg: any) => ({
+              text: msg.text,
+              isUser: msg.isUser,
+              timestamp: new Date(msg.timestamp),
+              isTampered: false
+            }));
+            setMessages(formattedMessages);
+          } else {
+            // No history, show welcome message
+            setMessages([
+              {
+                text: "Hello! I'm your campus assistant. How can I help you today?",
+                isUser: false,
+                timestamp: new Date(),
+                isTampered: false
+              }
+            ]);
+          }
+        } else {
+          // Error loading history, show welcome message
+          setMessages([
+            {
+              text: "Hello! I'm your campus assistant. How can I help you today?",
+              isUser: false,
+              timestamp: new Date(),
+              isTampered: false
+            }
+          ]);
+        }
+      } catch (error) {
+        console.error('Error loading chat history:', error);
+        // Error loading history, show welcome message
+        setMessages([
+          {
+            text: "Hello! I'm your campus assistant. How can I help you today?",
+            isUser: false,
+            timestamp: new Date(),
+            isTampered: false
+          }
+        ]);
       }
-    ])
-  }, [])
+    };
+
+    loadChatHistory();
+  }, []);
 
   // Helper function to get random response
   const getRandomResponse = (responses: string[]) => {
@@ -369,10 +433,33 @@ export const useChatbot = () => {
   };
 
   // Clear chat history
-  const clearChat = useCallback(() => {
-    setMessages([])
-    setContext({})
-  }, [])
+  const clearChat = useCallback(async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+        await fetch(`${apiUrl}/chat/clear`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Error clearing server chat history:', error);
+    }
+
+    // Clear local messages and context
+    setMessages([
+      {
+        text: "Hello! I'm your campus assistant. How can I help you today?",
+        isUser: false,
+        timestamp: new Date(),
+        isTampered: false
+      }
+    ]);
+    setContext({});
+  }, []);
 
   return {
     messages,

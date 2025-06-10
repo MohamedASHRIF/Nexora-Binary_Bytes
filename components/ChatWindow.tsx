@@ -10,7 +10,7 @@ export const ChatWindow: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { isListening, startListening, stopListening, transcript } = useVoiceInput();
-  const { messages, isProcessing, sendMessage, suggestions } = useChatbot();
+  const { messages, isProcessing, sendMessage, suggestions, clearChat } = useChatbot();
   const { addPoints } = useGamePoints();
   const { translate } = useLanguage();
 
@@ -38,6 +38,10 @@ export const ChatWindow: React.FC = () => {
     addPoints(5);
     await sendMessage(inputText);
     setInputText('');
+  };
+
+  const handleClearChat = async () => {
+    await clearChat();
   };
 
   if (!mounted) {
@@ -99,6 +103,13 @@ export const ChatWindow: React.FC = () => {
             className="p-2 bg-blue-500 text-white rounded-lg disabled:bg-gray-400"
           >
             Send
+          </button>
+          <button
+            onClick={handleClearChat}
+            className="p-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
+            title="Clear chat history"
+          >
+            Clear
           </button>
         </div>
       </div>

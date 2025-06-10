@@ -1,6 +1,7 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IMessage {
+  _id?: mongoose.Types.ObjectId;
   text: string;
   isUser: boolean;
   timestamp: Date;
