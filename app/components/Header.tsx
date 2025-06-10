@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
 import { usePathname } from 'next/navigation';
+import { useLanguage } from '../../hooks/useLanguage';
+import { useGamePoints } from '../../hooks/useGamePoints';
 
 
 interface User {
@@ -27,6 +29,9 @@ export default function Header() {
   
   // Check if current path is an auth page
   const isAuthPage = pathname === '/auth/login' || pathname === '/auth/signup';
+
+  const { language, setLanguage, isInitialized } = useLanguage();
+  const { points } = useGamePoints();
 
   useEffect(() => {
     const checkUser = () => {
@@ -86,6 +91,39 @@ export default function Header() {
   return (
     <header className="w-full bg-white shadow flex items-center justify-between px-6 py-3">
       <Link href="/" className="text-xl font-bold text-blue-600">Nexora Campus Copilot</Link>
+      {/* Points and Language Switcher */}
+      {!isAuthPage && (
+        <div className="flex items-center gap-4 mr-4">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium">Points:</span>
+            <span className="text-lg font-bold text-blue-600" suppressHydrationWarning>
+              {points}
+            </span>
+          </div>
+          {isInitialized && (
+            <div className="flex border rounded-md overflow-hidden">
+              <button
+                onClick={() => setLanguage('en')}
+                className={`px-3 py-1 ${language === 'en' ? 'bg-blue-500 text-white' : 'bg-white'}`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLanguage('si')}
+                className={`px-3 py-1 ${language === 'si' ? 'bg-blue-500 text-white' : 'bg-white'}`}
+              >
+                සිං
+              </button>
+              <button
+                onClick={() => setLanguage('ta')}
+                className={`px-3 py-1 ${language === 'ta' ? 'bg-blue-500 text-white' : 'bg-white'}`}
+              >
+                தமி
+              </button>
+            </div>
+          )}
+        </div>
+      )}
       <div className="relative" ref={dropdownRef}>
         {isLoading ? (
           <div className="h-8 w-8 rounded-full bg-gray-200 animate-pulse"></div>
