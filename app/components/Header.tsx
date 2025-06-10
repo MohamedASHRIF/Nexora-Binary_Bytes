@@ -24,41 +24,30 @@ export default function Header() {
 
   const pathname = usePathname(); 
   
-  useEffect(() => {
-    // First try to get user from localStorage
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setIsLoading(false);
-      return;
-    }
+  // Check if current path is an auth page
+  const isAuthPage = pathname === '/auth/login' || pathname === '/auth/signup';
 
-    // If not in localStorage, fetch from API
-    const fetchUser = async () => {
+  useEffect(() => {
+    const checkUser = () => {
       const token = Cookies.get('token') || localStorage.getItem('token');
-      if (!token) {
+      const storedUser = localStorage.getItem('user');
+      
+      if (token && storedUser) {
+        try {
+          const parsedUser = JSON.parse(storedUser);
+          setUser(parsedUser);
+        } catch (error) {
+          console.error('Error parsing user data:', error);
+          setUser(null);
+        }
+      } else {
         setUser(null);
-        setIsLoading(false);
-        return;
       }
-      try {
-        const res = await fetch('http://localhost:5000/api/users/me', {
-          headers: { 'Authorization': `Bearer ${token}` },
-          credentials: 'include',
-        });
-        if (!res.ok) throw new Error('Not authenticated');
-        const data = await res.json();
-        setUser(data.data.user);
-        // Store user data in localStorage
-        localStorage.setItem('user', JSON.stringify(data.data.user));
-      } catch {
-        setUser(null);
-      } finally {
-        setIsLoading(false);
-      }
+      setIsLoading(false);
     };
-    fetchUser();
-  }, []);
+
+    checkUser();
+  }, [pathname]); // Re-run when pathname changes
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -84,25 +73,26 @@ export default function Header() {
     router.push('/auth/login');
   };
 
+  console.log('Current state:', { user, isLoading, isAuthPage, pathname });
+
   return (
     <header className="w-full bg-white shadow flex items-center justify-between px-6 py-3">
       <Link href="/" className="text-xl font-bold text-blue-600">Nexora Campus Copilot</Link>
       <div className="relative" ref={dropdownRef}>
         {isLoading ? (
           <div className="h-8 w-8 rounded-full bg-gray-200 animate-pulse"></div>
-        ) : user ? (
+        ) : user && !isAuthPage ? (
           <>
-            {user.role !== 'admin' && (
-              <button
-                className="flex items-center space-x-2 focus:outline-none"
-                onClick={() => setDropdownOpen((open) => !open)}
-                aria-label="Profile"
-              >
-                <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white">
-                  {user.name.charAt(0).toUpperCase()}
-                </div>
-              </button>
-            )}
+            <button
+              className="flex items-center space-x-2 focus:outline-none"
+              onClick={() => setDropdownOpen((open) => !open)}
+              aria-label="Profile"
+            >
+              <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                {user.name.charAt(0).toUpperCase()}
+              </div>
+            </button>
+            
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                 <div className="p-4 border-b border-gray-100">
@@ -128,23 +118,22 @@ export default function Header() {
             )}
           </>
         ) : (
-          // <Link href="/auth/login" className="flex items-center space-x-2 px-4 py-2 text-blue-600 font-semibold hover:underline">
-          //   <svg className="w-6 h-6 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          //     <path strokeLinecap="round" strokeLinejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.485 0 4.797.755 6.879 2.047M15 11a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          //   </svg>
-          //   Login
-          // </Link>
-
-           <>
+          <>
             {pathname === '/auth/login' ? (
-              <Link href="/auth/signup" className="flex items-center space-x-2 px-4 py-2 text-blue-600 font-semibold hover:underline">
+              <Link 
+                href="/auth/signup" 
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
                 Sign Up
               </Link>
-            ) : (
-              <Link href="/auth/login" className="flex items-center space-x-2 px-4 py-2 text-blue-600 font-semibold hover:underline">
-                Login
+            ) : pathname === '/auth/signup' ? (
+              <Link 
+                href="/auth/login" 
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                Sign In
               </Link>
-            )}
+            ) : null}
           </>
         )}
       </div>
