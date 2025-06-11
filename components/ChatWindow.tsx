@@ -223,21 +223,29 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
           </div>
         )}
         {messages.map((message, index) => {
-          // Check if message contains class schedule data
-          const isClassSchedule = message.text.includes('Computer Networks') && 
-                                 message.text.includes('Fundamentals of Programming') &&
-                                 message.text.includes('Dilumika') && 
-                                 message.text.includes('Roshani');
+          // Check if message contains class schedule data - look for specific pattern
+          const isClassSchedule = !message.isUser && 
+                                 message.text.includes('remaining') && 
+                                 message.text.includes('classes') && 
+                                 message.text.includes('for today') &&
+                                 (message.text.includes('Computer Networks') || message.text.includes('Fundamentals of Programming')) &&
+                                 (message.text.includes('Dilumika') || message.text.includes('Roshani')) &&
+                                 message.text.includes('with'); // Indicates instructor format
           
-          // Check if message contains bus schedule data
-          const isBusSchedule = message.text.includes('bus') && 
-                               (message.text.includes('route') || message.text.includes('platform') || 
-                                message.text.includes('departure') || message.text.includes('arrival'));
+          // Check if message contains bus schedule data - make detection extremely specific
+          const isBusSchedule = !message.isUser && 
+                               message.text.includes('bus') && 
+                               message.text.includes('available') && 
+                               message.text.includes('routes') &&
+                               (message.text.includes('Route') || message.text.includes('route')) &&
+                               (message.text.includes('Duration:') || message.text.includes('Schedule:'));
           
-          // Check if message contains events data
-          const isEvents = message.text.includes('event') && 
-                          (message.text.includes('upcoming') || message.text.includes('schedule') ||
-                           message.text.includes('workshop') || message.text.includes('seminar'));
+          // Check if message contains events data - make detection more specific
+          const isEvents = !message.isUser && 
+                          message.text.includes('upcoming events') &&
+                          message.text.includes('Date:') &&
+                          message.text.includes('Time:') &&
+                          message.text.includes('Location:');
           
           // Extract class data if it's a class schedule message
           let classScheduleData = null;
@@ -273,21 +281,67 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
             }));
           }
 
-          // Extract events data if it's an events message - use real data from database
+          // Extract events data if it's an events message - parse from chatbot response
           let eventsDisplayData = null;
-          if (isEvents && eventsData) {
-            eventsDisplayData = eventsData.upcoming.map((event: any, idx: number) => ({
-              title: event.name,
-              date: event.date,
-              time: event.time,
-              location: event.location,
-              description: `Event at ${event.location}`,
-              attendees: Math.floor(Math.random() * 50) + 10,
-              category: idx % 3 === 0 ? "academic" as const : 
-                       idx % 3 === 1 ? "cultural" as const : "workshop" as const,
-              priority: idx === 0 ? "high" as const : 
-                       idx === 1 ? "medium" as const : "low" as const
-            }));
+          if (isEvents) {
+            try {
+              // Parse the events from the chatbot response
+              const lines = message.text.split('\n');
+              const events = [];
+              let currentEvent = null;
+              
+              for (const line of lines) {
+                const trimmedLine = line.trim();
+                if (trimmedLine && !trimmedLine.includes('upcoming events') && !trimmedLine.includes('Here are the')) {
+                  if (!trimmedLine.startsWith('Date:') && !trimmedLine.startsWith('Time:') && !trimmedLine.startsWith('Location:')) {
+                    // This is an event title
+                    if (currentEvent) {
+                      events.push(currentEvent);
+                    }
+                    currentEvent = {
+                      title: trimmedLine,
+                      date: '',
+                      time: '',
+                      location: '',
+                      description: '',
+                      attendees: Math.floor(Math.random() * 50) + 10,
+                      category: 'academic' as const,
+                      priority: 'medium' as const
+                    };
+                  } else if (trimmedLine.startsWith('Date:')) {
+                    if (currentEvent) {
+                      currentEvent.date = trimmedLine.replace('Date:', '').trim();
+                    }
+                  } else if (trimmedLine.startsWith('Time:')) {
+                    if (currentEvent) {
+                      currentEvent.time = trimmedLine.replace('Time:', '').trim();
+                    }
+                  } else if (trimmedLine.startsWith('Location:')) {
+                    if (currentEvent) {
+                      currentEvent.location = trimmedLine.replace('Location:', '').trim();
+                      currentEvent.description = `Event at ${currentEvent.location}`;
+                    }
+                  }
+                }
+              }
+              
+              // Add the last event if exists
+              if (currentEvent) {
+                events.push(currentEvent);
+              }
+              
+              if (events.length > 0) {
+                eventsDisplayData = events.map((event, idx) => ({
+                  ...event,
+                  category: idx % 3 === 0 ? "academic" as const : 
+                           idx % 3 === 1 ? "cultural" as const : "workshop" as const,
+                  priority: idx === 0 ? "high" as const : 
+                           idx === 1 ? "medium" as const : "low" as const
+                }));
+              }
+            } catch (error) {
+              console.error('Error parsing events from chatbot response:', error);
+            }
           }
 
           return (
