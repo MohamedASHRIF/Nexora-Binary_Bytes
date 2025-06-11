@@ -2068,3 +2068,141 @@
 {"language":"en","level":"info","message":"Received chat message: பேருந்து","timestamp":"2025-06-11T06:40:18.743Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
 {"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:40:19.389Z"}
 {"language":"en","level":"info","message":"Received chat message: பேருந்து","timestamp":"2025-06-11T06:40:19.396Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:41:03.825Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:41:03.839Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T06:41:06.814Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:41:10.525Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-06-11T06:41:10.531Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:41:14.033Z"}
+{"language":"en","level":"info","message":"Received chat message: hello","timestamp":"2025-06-11T06:41:14.039Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:41:16.196Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-06-11T06:41:16.202Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:41:20.587Z"}
+{"language":"en","level":"info","message":"Received chat message: time","timestamp":"2025-06-11T06:41:20.592Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:41:26.554Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:41:26.568Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:43:35.578Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T06:43:42.603Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:43:53.958Z"}
+{"language":"en","level":"info","message":"Received chat message: vahupu","timestamp":"2025-06-11T06:43:53.962Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:44:03.290Z"}
+{"language":"en","level":"info","message":"Received chat message: vahupu","timestamp":"2025-06-11T06:44:03.295Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T06:44:05.692Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:44:24.440Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:44:24.449Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:44:31.891Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-06-11T06:44:31.895Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:44:35.125Z"}
+{"language":"en","level":"info","message":"Received chat message: hello","timestamp":"2025-06-11T06:44:35.130Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:44:38.446Z"}
+{"language":"en","level":"info","message":"Received chat message: how are u","timestamp":"2025-06-11T06:44:38.451Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:44:41.317Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-06-11T06:44:41.322Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:44:50.201Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T06:44:50.205Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T06:44:50.209Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T06:44:50.238Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:46:17.867Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T06:46:24.677Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:46:29.608Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T06:46:29.612Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T06:46:29.616Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T06:46:29.619Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:46:32.116Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-06-11T06:46:32.122Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:46:34.791Z"}
+{"language":"en","level":"info","message":"Received chat message: time","timestamp":"2025-06-11T06:46:34.796Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:46:40.909Z"}
+{"language":"en","level":"info","message":"Received chat message: time","timestamp":"2025-06-11T06:46:40.914Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:48:21.938Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:48:21.951Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:48:33.828Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:48:44.275Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:48:44.284Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T06:48:47.420Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:48:52.461Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-06-11T06:48:52.466Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:48:58.433Z"}
+{"language":"en","level":"info","message":"Received chat message: how are","timestamp":"2025-06-11T06:48:58.437Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:49:00.696Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T06:49:00.700Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T06:49:00.704Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T06:49:00.706Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:49:02.605Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-06-11T06:49:02.609Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:49:21.135Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T06:49:21.139Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T06:49:21.142Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T06:49:21.145Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:51:53.987Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:51:53.997Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:52:38.377Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:53:12.987Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:53:26.088Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:53:52.829Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:53:52.837Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:54:36.478Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-06-11T06:54:36.483Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:54:41.218Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-06-11T06:54:41.222Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:56:50.435Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:57:12.028Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:57:12.040Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:57:19.930Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:57:19.940Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:58:32.460Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:58:32.469Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:00:02.021Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:00:02.028Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:00:15.935Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:00:15.945Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:00:30.016Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:00:30.027Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T07:00:41.879Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T07:00:41.883Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T07:00:41.887Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T07:00:41.890Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T07:00:42.054Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T07:00:42.059Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T07:00:42.063Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T07:00:42.066Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T07:00:42.272Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T07:00:42.277Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T07:00:42.280Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T07:00:42.283Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T07:00:47.010Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T07:00:49.563Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-06-11T07:00:49.567Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T07:00:52.749Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T07:00:52.753Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T07:00:52.758Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T07:00:52.761Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:00:59.338Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:00:59.349Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:02:18.681Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:02:18.692Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:02:21.402Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:02:21.412Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:02:23.363Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:02:23.372Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T07:06:58.638Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T07:06:58.642Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T07:06:58.645Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T07:06:58.648Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T07:07:07.997Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T07:07:43.813Z"}
+{"language":"en","level":"info","message":"Received chat message:  வகுப்பு","timestamp":"2025-06-11T07:07:43.816Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T07:07:43.819Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T07:07:43.821Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T07:07:59.524Z"}
+{"language":"en","level":"info","message":"Received chat message:  பேருந்து","timestamp":"2025-06-11T07:07:59.528Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-11T07:19:49.848Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-11T07:19:49.859Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-11T07:20:04.072Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:20:55.623Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:20:55.631Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:21:14.558Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:21:14.566Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:22:29.803Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:22:42.339Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:22:42.347Z"}

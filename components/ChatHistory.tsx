@@ -112,9 +112,9 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
   }
 
   return (
-    <div className="w-64 flex-shrink-0 bg-gray-50 border-r flex flex-col">
+    <div className="w-64 h-full bg-gray-50 border-r flex flex-col">
       {/* Header */}
-      <div className="p-4 border-b bg-white">
+      <div className="p-4 border-b bg-white flex-shrink-0">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
             <Calendar className="h-5 w-5" />
@@ -157,7 +157,7 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
         </div>
       </div>
 
-      {/* Content */}
+      {/* Content - Scrollable */}
       <div className="flex-1 overflow-y-auto">
         {viewMode === 'today' ? (
           <div className="p-4">

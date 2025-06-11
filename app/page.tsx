@@ -91,8 +91,9 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-100 flex flex-col">
-      <nav className="w-full flex items-center bg-white justify-end px-8 py-2 gap-6">
+    <div className="h-screen flex flex-col bg-gray-100">
+      {/* Fixed Navigation Bar - Below main header */}
+      <nav className="fixed top-16 left-0 right-0 z-40 w-full flex items-center bg-white justify-end px-8 py-2 gap-6 border-t border-gray-100 shadow-sm">
         <button
           onClick={() => setActiveTab('home')}
           className={`px-4 py-2 rounded font-semibold transition-colors ${
@@ -126,14 +127,18 @@ export default function Home() {
           Insights
         </button>
       </nav>
-      {/* Main Content + Chat History Sidebar */}
-      <div className="flex flex-1 min-h-0">
-        {/* Chat History Sidebar */}
+
+      {/* Main Content Area - Below fixed headers */}
+      <div className="flex flex-1 pt-28 min-h-0"> {/* pt-28 accounts for fixed main header (64px) + navigation height (48px) + gap */}
+        {/* Chat History Sidebar - Fixed to left side when chat tab is active */}
         {activeTab === 'chat' && (
-          <ChatHistory onPromptClick={handleHistoryPromptClick} />
+          <div className="fixed left-0 top-28 bottom-0 z-30">
+            <ChatHistory onPromptClick={handleHistoryPromptClick} />
+          </div>
         )}
-        {/* Main Content Area */}
-        <div className={`flex-1 flex flex-col ${activeTab === 'chat' ? 'pl-0' : ''} min-h-0`}>
+        
+        {/* Main Content Area - Adjusted for sidebar when chat is active */}
+        <div className={`flex-1 flex flex-col ${activeTab === 'chat' ? 'ml-64' : ''} min-h-0`}>
           {activeTab === 'home' && (
             <div className="flex-1 flex flex-col justify-center items-center p-8">
               <div className="text-center max-w-2xl">
@@ -164,6 +169,7 @@ export default function Home() {
                   initialMessage={initialChatMessage}
                   onMessageSent={handleInitialMessageSent}
                   onRecentMessagesChange={handleRecentMessagesChange}
+                  hasSidebar={true}
                 />
               </div>
               <div className="flex-shrink-0">
@@ -205,6 +211,6 @@ export default function Home() {
           )}
         </div>
       </div>
-    </main>
+    </div>
   );
 }

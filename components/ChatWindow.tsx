@@ -11,9 +11,10 @@ interface ChatWindowProps {
   initialMessage?: string;
   onMessageSent?: () => void;
   onRecentMessagesChange?: (messages: string[]) => void;
+  hasSidebar?: boolean;
 }
 
-export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessageSent, onRecentMessagesChange }) => {
+export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessageSent, onRecentMessagesChange, hasSidebar = false }) => {
   const [inputText, setInputText] = useState('');
   const [mounted, setMounted] = useState(false);
   const [recentUserMessages, setRecentUserMessages] = useState<string[]>([]);
@@ -165,29 +166,23 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
   return (
     <div className="flex flex-col h-full" suppressHydrationWarning>
       {/* Language Selector */}
-      <div className="bg-gray-50 border-b border-gray-200 p-3">
+      <div className="bg-gray-50 border-b border-gray-200 p-3 flex-shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <span className="text-sm font-medium text-gray-700">
               {language === 'en' ? 'Language' : language === 'si' ? 'භාෂාව' : 'மொழி'}:
             </span>
-            <div className="flex space-x-1">
+            <select
+              value={language}
+              onChange={(e) => handleLanguageChange(e.target.value)}
+              className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
+            >
               {languageOptions.map((option) => (
-                <button
-                  key={option.code}
-                  onClick={() => handleLanguageChange(option.code)}
-                  className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
-                    language === option.code
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
-                  }`}
-                  title={option.name}
-                >
-                  <span className="mr-1">{option.flag}</span>
-                  {option.name}
-                </button>
+                <option key={option.code} value={option.code}>
+                  {option.flag} {option.name}
+                </option>
               ))}
-            </div>
+            </select>
           </div>
           <div className="text-xs text-gray-500">
             {language === 'en' ? 'Current' : language === 'si' ? 'වර්තමාන' : 'தற்போதைய'}: {languageOptions.find(opt => opt.code === language)?.name}
@@ -195,7 +190,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      {/* Messages Area - Scrollable within chat container */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 pb-28">
         {messages.length === 0 && (
           <div className="text-center text-gray-500">
             {translate('welcome')}
@@ -212,9 +208,10 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
               <div
                 className={`max-w-full rounded-lg p-3 ${
                   message.isUser
-                    ? 'bg-blue-500 text-white whitespace-nowrap'
+                    ? 'bg-blue-500 text-white'
                     : 'bg-gray-100 text-gray-800'
                 }`}
+                style={{ wordBreak: 'break-word' }}
               >
                 {message.text}
               </div>
@@ -224,8 +221,9 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="border-t border-gray-200 p-4 bg-white">
-        <div className="flex space-x-2">
+      {/* Input Bar - Fixed at bottom of viewport (laptop screen) */}
+      <div className={`fixed bottom-0 border-t border-gray-200 p-4 bg-white shadow-lg z-50 ${hasSidebar ? 'left-64 right-0' : 'left-0 right-0'}`}>
+        <div className="flex space-x-2 max-w-full">
           <input
             type="text"
             value={inputText}
