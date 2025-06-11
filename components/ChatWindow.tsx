@@ -4,6 +4,9 @@ import { useChatbot } from '../hooks/use-chatbot';
 import { useGamePoints } from '../hooks/useGamePoints';
 import { useLanguage } from '../hooks/useLanguage';
 import { useDailyPromptHistory } from '../hooks/useDailyPromptHistory';
+import { ChatClassSchedule } from './ChatClassSchedule';
+import { ChatBusSchedule } from './ChatBusSchedule';
+import { ChatEvents } from './ChatEvents';
 import type { Message } from '@/types';
 
 
@@ -197,27 +200,152 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
             {translate('welcome')}
           </div>
         )}
-        {messages.map((message, index) => (
-          <div
-            key={`${message.timestamp.getTime()}-${index}`}
-            className={`flex ${
-              message.isUser ? 'justify-end' : 'justify-start'
-            }`}
-          >
-            <div className="flex flex-col">
-              <div
-                className={`max-w-full rounded-lg p-3 ${
-                  message.isUser
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 text-gray-800'
-                }`}
-                style={{ wordBreak: 'break-word' }}
-              >
-                {message.text}
+        {messages.map((message, index) => {
+          // Check if message contains class schedule data
+          const isClassSchedule = message.text.includes('Computer Networks') && 
+                                 message.text.includes('Fundamentals of Programming') &&
+                                 message.text.includes('Dilumika') && 
+                                 message.text.includes('Roshani');
+          
+          // Check if message contains bus schedule data
+          const isBusSchedule = message.text.includes('bus') && 
+                               (message.text.includes('route') || message.text.includes('platform') || 
+                                message.text.includes('departure') || message.text.includes('arrival'));
+          
+          // Check if message contains events data
+          const isEvents = message.text.includes('event') && 
+                          (message.text.includes('upcoming') || message.text.includes('schedule') ||
+                           message.text.includes('workshop') || message.text.includes('seminar'));
+          
+          // Extract class data if it's a class schedule message
+          let classScheduleData = null;
+          if (isClassSchedule) {
+            classScheduleData = [
+              {
+                time: "17:00",
+                subject: "Computer Networks",
+                location: "Mian Hall",
+                instructor: "Dilumika",
+                duration: "1 hour"
+              },
+              {
+                time: "20:00",
+                subject: "Fundamentals of Programming",
+                location: "IT lab",
+                instructor: "Roshani",
+                duration: "50 minutes"
+              }
+            ];
+          }
+
+          // Extract bus data if it's a bus schedule message
+          let busScheduleData = null;
+          if (isBusSchedule) {
+            busScheduleData = [
+              {
+                time: "08:30",
+                route: "101",
+                destination: "City Center",
+                platform: "A1",
+                capacity: "45 seats",
+                status: "on-time" as const
+              },
+              {
+                time: "09:15",
+                route: "102",
+                destination: "University Campus",
+                platform: "B2",
+                capacity: "52 seats",
+                status: "delayed" as const
+              },
+              {
+                time: "10:00",
+                route: "103",
+                destination: "Shopping Mall",
+                platform: "C1",
+                capacity: "38 seats",
+                status: "on-time" as const
+              }
+            ];
+          }
+
+          // Extract events data if it's an events message
+          let eventsData = null;
+          if (isEvents) {
+            eventsData = [
+              {
+                title: "Tech Workshop: AI Basics",
+                date: "2024-01-15",
+                time: "14:00",
+                location: "IT Lab 2",
+                description: "Learn the fundamentals of Artificial Intelligence and Machine Learning",
+                attendees: 25,
+                category: "workshop" as const,
+                priority: "high" as const
+              },
+              {
+                title: "Cultural Festival",
+                date: "2024-01-20",
+                time: "18:00",
+                location: "Main Auditorium",
+                description: "Annual cultural celebration with performances and food",
+                attendees: 150,
+                category: "cultural" as const,
+                priority: "medium" as const
+              },
+              {
+                title: "Sports Day",
+                date: "2024-01-25",
+                time: "09:00",
+                location: "University Grounds",
+                description: "Annual sports competition with various events",
+                attendees: 200,
+                category: "sports" as const,
+                priority: "low" as const
+              }
+            ];
+          }
+
+          return (
+            <div
+              key={`${message.timestamp.getTime()}-${index}`}
+              className={`flex ${
+                message.isUser ? 'justify-end' : 'justify-start'
+              }`}
+            >
+              <div className="flex flex-col max-w-full">
+                {isClassSchedule && classScheduleData ? (
+                  // Render class schedule component
+                  <div className="max-w-md">
+                    <ChatClassSchedule classes={classScheduleData} />
+                  </div>
+                ) : isBusSchedule && busScheduleData ? (
+                  // Render bus schedule component
+                  <div className="max-w-md">
+                    <ChatBusSchedule buses={busScheduleData} />
+                  </div>
+                ) : isEvents && eventsData ? (
+                  // Render events component
+                  <div className="max-w-md">
+                    <ChatEvents events={eventsData} />
+                  </div>
+                ) : (
+                  // Render regular text message
+                  <div
+                    className={`max-w-full rounded-lg p-3 ${
+                      message.isUser
+                        ? 'bg-blue-500 text-white'
+                        : 'bg-gray-100 text-gray-800'
+                    }`}
+                    style={{ wordBreak: 'break-word' }}
+                  >
+                    {message.text}
+                  </div>
+                )}
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
         <div ref={messagesEndRef} />
       </div>
 

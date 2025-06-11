@@ -2206,3 +2206,69 @@
 {"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:22:29.803Z"}
 {"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:22:42.339Z"}
 {"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:22:42.347Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:48:42.184Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T07:48:42.188Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-06-11T07:48:42.194Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T07:48:42.200Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T07:48:49.506Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-11T10:06:11.631Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-11T10:06:14.899Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-11T10:06:15.323Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-11T10:06:15.338Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-11T10:06:15.347Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-11T10:06:15.364Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-11T10:06:15.421Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-11T10:06:15.433Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-11T10:06:15.441Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-11T10:06:15.450Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-11T10:07:19.554Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-11T10:08:17.324Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-11T10:08:26.849Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T10:08:28.911Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T10:08:28.923Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T10:08:33.030Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T10:08:33.035Z","user":{"__v":0,"_id":"6848372d4aa33580e5c973cd","badges":[],"createdAt":"2025-06-10T13:46:21.133Z","degree":"Design","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T13:46:21.133Z"}}
+{"degree":"Design","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T10:08:33.038Z","userId":"6848372d4aa33580e5c973cd"}
+{"count":0,"degree":"Design","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T10:08:33.042Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-11T10:08:46.992Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-11T10:08:47.177Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-11T10:08:47.188Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-11T10:08:47.202Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-11T10:08:47.262Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-11T10:08:47.271Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-11T10:08:47.281Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-11T10:08:47.287Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-11T10:08:47.297Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-11T10:09:01.684Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T10:09:04.595Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T10:09:04.597Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T10:09:04.603Z","user":{"__v":0,"_id":"6848372d4aa33580e5c973cd","badges":[],"createdAt":"2025-06-10T13:46:21.133Z","degree":"Design","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T13:46:21.133Z"}}
+{"degree":"Design","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T10:09:04.607Z","userId":"6848372d4aa33580e5c973cd"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T10:09:04.610Z"}
+{"count":0,"degree":"Design","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T10:09:04.613Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T10:09:10.227Z"}
+{"language":"en","level":"info","message":"Received chat message: clear","timestamp":"2025-06-11T10:09:10.231Z","user":{"__v":0,"_id":"6848372d4aa33580e5c973cd","badges":[],"createdAt":"2025-06-10T13:46:21.133Z","degree":"Design","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","updatedAt":"2025-06-10T13:46:21.133Z"}}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T10:09:12.251Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-11T10:09:17.768Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T10:09:19.519Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T10:09:19.527Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T10:09:22.292Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T10:09:22.295Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T10:09:22.299Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":2,"degree":"IT","level":"info","message":"Found schedules:","schedules":[{"className":"Computer Networks","degree":"IT"},{"className":"Fundamentals of Programming","degree":"IT"}],"timestamp":"2025-06-11T10:09:22.303Z"}
+{"level":"info","message":"Filtered schedules:","relevant":2,"schedules":[{"className":"Computer Networks","day":"Wednesday","degree":"IT","startTime":"17:00"},{"className":"Fundamentals of Programming","day":"Wednesday","degree":"IT","startTime":"20:00"}],"timestamp":"2025-06-11T10:09:22.304Z","total":2}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T10:11:19.766Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T10:11:19.770Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T10:11:19.776Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T10:11:19.781Z","userId":"68482eeb4aa33580e5c97373"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T10:11:19.784Z"}
+{"count":2,"degree":"IT","level":"info","message":"Found schedules:","schedules":[{"className":"Computer Networks","degree":"IT"},{"className":"Fundamentals of Programming","degree":"IT"}],"timestamp":"2025-06-11T10:11:19.788Z"}
+{"level":"info","message":"Filtered schedules:","relevant":2,"schedules":[{"className":"Computer Networks","day":"Wednesday","degree":"IT","startTime":"17:00"},{"className":"Fundamentals of Programming","day":"Wednesday","degree":"IT","startTime":"20:00"}],"timestamp":"2025-06-11T10:11:19.789Z","total":2}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T10:13:35.687Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T10:13:35.697Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T10:13:53.074Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T10:13:55.542Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-06-11T10:13:55.547Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T10:13:55.551Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":2,"degree":"IT","level":"info","message":"Found schedules:","schedules":[{"className":"Computer Networks","degree":"IT"},{"className":"Fundamentals of Programming","degree":"IT"}],"timestamp":"2025-06-11T10:13:55.555Z"}
+{"level":"info","message":"Filtered schedules:","relevant":2,"schedules":[{"className":"Computer Networks","day":"Wednesday","degree":"IT","startTime":"17:00"},{"className":"Fundamentals of Programming","day":"Wednesday","degree":"IT","startTime":"20:00"}],"timestamp":"2025-06-11T10:13:55.555Z","total":2}
