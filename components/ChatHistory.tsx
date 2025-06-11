@@ -21,6 +21,7 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [expandedDates, setExpandedDates] = useState<Set<string>>(new Set());
   const [viewMode, setViewMode] = useState<'today' | 'all'>('today');
+  const [isTodayExpanded, setIsTodayExpanded] = useState(false);
 
   // Get today's date in YYYY-MM-DD format
   const today = new Date().toISOString().split('T')[0];
@@ -74,6 +75,10 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
       }
       return newSet;
     });
+  };
+
+  const toggleTodayExpansion = () => {
+    setIsTodayExpanded(!isTodayExpanded);
   };
 
   const handlePromptClick = (prompt: string) => {
@@ -156,47 +161,67 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
       <div className="flex-1 overflow-y-auto">
         {viewMode === 'today' ? (
           <div className="p-4">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-medium text-gray-900">Today's Prompts</h3>
-              <span className="text-xs text-gray-500">{formatDate(today)}</span>
-            </div>
-            
-            {todayPrompts.length === 0 ? (
-              <div className="text-center text-gray-400 py-8">
-                <Search className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                <p className="text-sm">No prompts today</p>
-                <p className="text-xs">Start chatting to see your history here</p>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                {todayPrompts.map((prompt) => (
-                  <div
-                    key={prompt.id}
-                    onClick={() => handlePromptClick(prompt.prompt)}
-                    className="p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-sm cursor-pointer transition-all group"
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <p className="text-sm text-gray-800 flex-1 overflow-hidden">
-                        <span className="block truncate" title={prompt.prompt}>
-                          {prompt.prompt}
-                        </span>
-                      </p>
-                      <button
-                        onClick={(e) => handleDeletePrompt(e, prompt.id)}
-                        className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-100 rounded transition-opacity flex-shrink-0"
-                        title="Delete prompt"
+            {/* Today's Prompts Dropdown */}
+            <div className="border border-gray-200 rounded-lg overflow-hidden">
+              <button
+                onClick={toggleTodayExpansion}
+                className="w-full p-3 bg-white hover:bg-gray-50 flex items-center justify-between text-left transition-colors"
+              >
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-gray-500" />
+                  <span className="text-sm font-medium text-gray-900">
+                    Today's Prompts
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    ({todayPrompts.length} prompt{todayPrompts.length !== 1 ? 's' : ''})
+                  </span>
+                </div>
+                {isTodayExpanded ? (
+                  <ChevronUp className="h-4 w-4 text-gray-500" />
+                ) : (
+                  <ChevronDown className="h-4 w-4 text-gray-500" />
+                )}
+              </button>
+              
+              {isTodayExpanded && (
+                <div className="border-t bg-gray-50 p-3 space-y-2">
+                  {todayPrompts.length === 0 ? (
+                    <div className="text-center text-gray-400 py-4">
+                      <Search className="h-6 w-6 mx-auto mb-2 opacity-50" />
+                      <p className="text-sm">No prompts today</p>
+                      <p className="text-xs">Start chatting to see your history here</p>
+                    </div>
+                  ) : (
+                    todayPrompts.map((prompt) => (
+                      <div
+                        key={prompt.id}
+                        onClick={() => handlePromptClick(prompt.prompt)}
+                        className="p-2 bg-white rounded border border-gray-200 hover:border-blue-300 hover:shadow-sm cursor-pointer transition-all group"
                       >
-                        <Trash2 className="h-3 w-3 text-red-500" />
-                      </button>
-                    </div>
-                    <div className="flex items-center gap-1 mt-2 text-xs text-gray-500">
-                      <Clock className="h-3 w-3" />
-                      {formatTime(prompt.timestamp)}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+                        <div className="flex items-start justify-between gap-2">
+                          <p className="text-sm text-gray-800 flex-1 overflow-hidden">
+                            <span className="block truncate" title={prompt.prompt}>
+                              {prompt.prompt}
+                            </span>
+                          </p>
+                          <button
+                            onClick={(e) => handleDeletePrompt(e, prompt.id)}
+                            className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-100 rounded transition-opacity flex-shrink-0"
+                            title="Delete prompt"
+                          >
+                            <Trash2 className="h-3 w-3 text-red-500" />
+                          </button>
+                        </div>
+                        <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
+                          <Clock className="h-3 w-3" />
+                          {formatTime(prompt.timestamp)}
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           <div className="p-4">

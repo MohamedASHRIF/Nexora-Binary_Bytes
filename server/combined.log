@@ -2000,3 +2000,71 @@
 {"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:13:58.718Z"}
 {"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:19:33.894Z"}
 {"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:19:33.901Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:21:11.982Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:21:11.992Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:21:15.847Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:21:15.855Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:23:47.653Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:23:47.663Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:24:08.272Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:24:08.281Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:24:14.456Z"}
+{"level":"info","message":"Received chat message: where is the bus stop","timestamp":"2025-06-11T06:24:14.460Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:24:30.412Z"}
+{"level":"info","message":"Received chat message: where is the cafeteria","timestamp":"2025-06-11T06:24:30.418Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:24:35.718Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:24:35.729Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T06:24:51.049Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:24:52.178Z"}
+{"level":"info","message":"Received chat message: where is the cafeteria","timestamp":"2025-06-11T06:24:52.184Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:24:57.246Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:24:57.255Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:25:49.906Z"}
+{"level":"info","message":"Received chat message:  பேருந்து","timestamp":"2025-06-11T06:25:49.909Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:26:07.385Z"}
+{"level":"info","message":"Received chat message: peruntu","timestamp":"2025-06-11T06:26:07.388Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:26:11.791Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:26:11.802Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:27:54.045Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-11T06:32:29.661Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-11T06:32:29.678Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-11T06:32:36.313Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-11T06:32:36.330Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:32:43.264Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:32:43.310Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:32:46.075Z"}
+{"language":"en","level":"info","message":"Received chat message: பேருந்து","timestamp":"2025-06-11T06:32:46.082Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:33:06.713Z"}
+{"language":"en","level":"info","message":"Received chat message: பேருந்து","timestamp":"2025-06-11T06:33:06.720Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:33:15.207Z"}
+{"language":"en","level":"info","message":"Received chat message: vahupu","timestamp":"2025-06-11T06:33:15.213Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:33:32.362Z"}
+{"language":"en","level":"info","message":"Received chat message: பேருந்து","timestamp":"2025-06-11T06:33:32.367Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T06:33:38.716Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:34:06.474Z"}
+{"language":"en","level":"info","message":"Received chat message:  வகுப்பு","timestamp":"2025-06-11T06:34:06.479Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-11T06:34:51.737Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-11T06:34:51.754Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-11T06:34:55.987Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-11T06:34:56.003Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-11T06:35:28.336Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-11T06:35:28.355Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:35:55.728Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:35:55.771Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T06:36:00.013Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:36:06.850Z"}
+{"language":"en","level":"info","message":"Received chat message: வகுப்பு","timestamp":"2025-06-11T06:36:06.856Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T06:36:06.863Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T06:36:06.905Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-11T06:36:52.768Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-11T06:36:52.784Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:37:21.308Z"}
+{"language":"en","level":"info","message":"Received chat message: பேருந்து","timestamp":"2025-06-11T06:37:21.325Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-11T06:38:39.640Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-11T06:38:39.656Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:40:18.137Z"}
+{"language":"en","level":"info","message":"Received chat message: பேருந்து","timestamp":"2025-06-11T06:40:18.173Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:40:18.736Z"}
+{"language":"en","level":"info","message":"Received chat message: பேருந்து","timestamp":"2025-06-11T06:40:18.743Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:40:19.389Z"}
+{"language":"en","level":"info","message":"Received chat message: பேருந்து","timestamp":"2025-06-11T06:40:19.396Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}

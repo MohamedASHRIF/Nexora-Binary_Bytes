@@ -147,6 +147,35 @@ export const useChatbot = () => {
     };
   }, []);
 
+  // Update suggestions based on language
+  useEffect(() => {
+    const languageSuggestions = {
+      en: [
+        "What's my class schedule?",
+        "When is the next bus?",
+        "What's on the cafeteria menu today?",
+        "Any events happening today?",
+        "Where is the library?",
+      ],
+      si: [
+        "මගේ පන්ති කාලසටහන කුමක්ද?",
+        "ඊළඟ බස් එක කවදාද?",
+        "අද කෑමෝටුවේ මෙනුව කුමක්ද?",
+        "අද සිදුවන සිදුවීම් තිබේද?",
+        "පුස්තකාලය කොහෙද?",
+      ],
+      ta: [
+        "என் வகுப்பு அட்டவணை என்ன?",
+        "அடுத்த பேருந்து எப்போது?",
+        "இன்று உணவக மெனுவில் என்ன இருக்கிறது?",
+        "இன்று நடக்கும் நிகழ்வுகள் உள்ளதா?",
+        "நூலகம் எங்கே?",
+      ]
+    };
+    
+    setSuggestions(languageSuggestions[language] || languageSuggestions.en);
+  }, [language]);
+
   // Load chat history when component mounts
   useEffect(() => {
     const loadChatHistory = async () => {
@@ -156,7 +185,7 @@ export const useChatbot = () => {
           // If no token, just show welcome message
           setMessages([
             {
-              text: "Hello! I'm your campus assistant. How can I help you today?",
+              text: translate('welcome'),
               isUser: false,
               timestamp: new Date(),
               isTampered: false
@@ -188,7 +217,7 @@ export const useChatbot = () => {
             // No history, show welcome message
             setMessages([
               {
-                text: "Hello! I'm your campus assistant. How can I help you today?",
+                text: translate('welcome'),
                 isUser: false,
                 timestamp: new Date(),
                 isTampered: false
@@ -199,7 +228,7 @@ export const useChatbot = () => {
           // Error loading history, show welcome message
           setMessages([
             {
-              text: "Hello! I'm your campus assistant. How can I help you today?",
+              text: translate('welcome'),
               isUser: false,
               timestamp: new Date(),
               isTampered: false
@@ -211,7 +240,7 @@ export const useChatbot = () => {
         // Error loading history, show welcome message
         setMessages([
           {
-            text: "Hello! I'm your campus assistant. How can I help you today?",
+            text: translate('welcome'),
             isUser: false,
             timestamp: new Date(),
             isTampered: false
@@ -221,7 +250,7 @@ export const useChatbot = () => {
     };
 
     loadChatHistory();
-  }, []);
+  }, [translate]);
 
   // Helper function to get random response
   const getRandomResponse = (responses: string[]) => {
@@ -330,10 +359,10 @@ export const useChatbot = () => {
 
       // Check if we're offline
       if (isOffline) {
-        responseText = "I'm currently offline. Please try again when you're back online.";
+        responseText = translate('offline');
       } else {
         // Process the message and get response
-        responseText = "I understand your message. How can I help you further?";
+        responseText = translate('unknown');
       }
 
       // Log the query
@@ -353,15 +382,13 @@ export const useChatbot = () => {
     } catch (error) {
       console.error('Error processing message:', error);
       return {
-        text: isOffline 
-          ? "I'm having trouble accessing the data while offline. Please try again when you're back online."
-          : "Sorry, I encountered an error. Please try again.",
+        text: translate('error'),
         isUser: false,
         timestamp: new Date(),
         isTampered: false
       };
     }
-  }, [isOffline]);
+  }, [isOffline, translate, addQueryLog]);
 
   const sendMessage = async (text: string) => {
     const startTime = Date.now();
@@ -392,7 +419,10 @@ export const useChatbot = () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ message: text })
+        body: JSON.stringify({ 
+          message: text,
+          language: language // Send language preference to server
+        })
       });
 
       if (!response.ok) {
@@ -430,9 +460,12 @@ export const useChatbot = () => {
           }, 100);
           
           // Return a simple response to avoid errors
+          const redirectMessage = language === 'si' ? 'සිතියම වෙත මාරු වෙමින්...' : 
+                                 language === 'ta' ? 'வரைபடத்திற்கு மாற்றுகிறேன்...' : 
+                                 'Switching to map...';
           return {
             type: 'redirected',
-            data: 'Switching to map...'
+            data: redirectMessage
           };
         }
       }
@@ -462,7 +495,7 @@ export const useChatbot = () => {
     } catch (error) {
       console.error('Error sending message:', error);
       const errorMessage: Message = {
-        text: error instanceof Error ? error.message : "I'm sorry, I encountered an error while processing your request. Please try again.",
+        text: translate('error'),
         isUser: false,
         timestamp: new Date(),
         isTampered: false
@@ -470,7 +503,7 @@ export const useChatbot = () => {
       setMessages(prev => [...prev, errorMessage]);
       return {
         type: 'error',
-        data: error instanceof Error ? error.message : 'Unknown error'
+        data: translate('error')
       };
     } finally {
       setIsProcessing(false);
@@ -497,14 +530,14 @@ export const useChatbot = () => {
     // Clear local messages and context
     setMessages([
       {
-        text: "Hello! I'm your campus assistant. How can I help you today?",
+        text: translate('welcome'),
         isUser: false,
         timestamp: new Date(),
         isTampered: false
       }
     ]);
     setContext({});
-  }, []);
+  }, [translate]);
 
   return {
     messages,
