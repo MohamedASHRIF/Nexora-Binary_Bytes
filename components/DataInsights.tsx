@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useQueryLogs } from '../hooks/use-query-logs';
 
 interface QueryStats {
@@ -24,41 +24,41 @@ export const DataInsights: React.FC = () => {
       bus: 0,
       menu: 0,
       events: 0,
-      other: 0
+      other: 0,
     },
     averageSentiment: 0,
     sentimentTrend: [],
-    peakHours: []
+    peakHours: [],
   });
 
-  useEffect(() => {
-    if (queryLogs.length === 0) return;
+  const computedStats = useMemo(() => {
+    if (!queryLogs || queryLogs.length === 0) return stats;
 
-    // Calculate total queries
     const totalQueries = queryLogs.length;
 
-    // Calculate queries by type
     const queriesByType = {
-      schedule: queryLogs.filter(log => log.query?.toLowerCase().includes('schedule')).length,
-      bus: queryLogs.filter(log => log.query?.toLowerCase().includes('bus')).length,
-      menu: queryLogs.filter(log => log.query?.toLowerCase().includes('menu') || log.query?.toLowerCase().includes('food')).length,
-      events: queryLogs.filter(log => log.query?.toLowerCase().includes('event')).length,
-      other: queryLogs.filter(log => 
-        log.query && !log.query.toLowerCase().includes('schedule') &&
-        !log.query.toLowerCase().includes('bus') &&
-        !log.query.toLowerCase().includes('menu') &&
-        !log.query.toLowerCase().includes('food') &&
-        !log.query.toLowerCase().includes('event')
-      ).length
+      schedule: queryLogs.filter(log => /schedule/i.test(log.query)).length,
+      
+      // Count queries containing bus-related terms (case insensitive)
+      bus: queryLogs.filter(log => /bus|transport|shuttle|route|stop|station|transit/i.test(log.query)).length,
+      
+      // Count queries containing "menu" or "food" (case insensitive)
+      menu: queryLogs.filter(log => /menu|food/i.test(log.query)).length,
+      
+      events: queryLogs.filter(log => /event/i.test(log.query)).length,
+      
+      other: queryLogs.filter(log =>
+        log.query &&
+        !/schedule|bus|transport|shuttle|route|stop|station|transit|menu|food|event/i.test(log.query)
+      ).length,
     };
+ 
+    const averageSentiment =
+      queryLogs.reduce((sum, log) => sum + (log.sentiment || 0), 0) / totalQueries;
 
-    // Calculate average sentiment
-    const averageSentiment = queryLogs.reduce((sum, log) => sum + (log.sentiment || 0), 0) / totalQueries;
-
-    // Calculate sentiment trend (last 7 queries)
     const sentimentTrend = queryLogs.slice(-7).map(log => log.sentiment || 0);
 
-    // Calculate peak hours
+    // Count total queries per hour
     const hourCounts = new Array(24).fill(0);
     queryLogs.forEach(log => {
       if (log.timestamp) {
@@ -66,19 +66,24 @@ export const DataInsights: React.FC = () => {
         hourCounts[hour]++;
       }
     });
+
     const peakHours = hourCounts
       .map((count, hour) => ({ hour, count }))
       .sort((a, b) => b.count - a.count)
-      .slice(0, 5);
+      .slice(0, 5); // Top 5 peak hours
 
-    setStats({
+    return {
       totalQueries,
       queriesByType,
       averageSentiment,
       sentimentTrend,
-      peakHours
-    });
+      peakHours,
+    };
   }, [queryLogs]);
+
+  useEffect(() => {
+    setStats(computedStats);
+  }, [computedStats]);
 
   const getSentimentColor = (sentiment: number) => {
     if (sentiment > 0.5) return 'text-green-600';
@@ -97,6 +102,7 @@ export const DataInsights: React.FC = () => {
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Usage Insights</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Query Distribution */}
         <div>
           <h3 className="text-lg font-semibold text-gray-800 mb-3">Query Distribution</h3>
           <div className="space-y-2">
@@ -106,22 +112,17 @@ export const DataInsights: React.FC = () => {
                 <span className="font-medium">{count}</span>
               </div>
             ))}
-            <div className="pt-2 border-t">
-              <div className="flex justify-between items-center font-semibold">
-                <span>Total Queries</span>
-                <span>{stats.totalQueries}</span>
-              </div>
-            </div>
           </div>
         </div>
 
+        {/* Sentiment Analysis */}
         <div>
           <h3 className="text-lg font-semibold text-gray-800 mb-3">Sentiment Analysis</h3>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-gray-600">Average Sentiment</span>
               <span className={`font-medium ${getSentimentColor(stats.averageSentiment)}`}>
-                {getSentimentEmoji(stats.averageSentiment)} {stats.averageSentiment.toFixed(2)}
+                {getSentimentEmoji(stats.averageSentiment)} {stats.averageSentiment.toFixed(1)}
               </span>
             </div>
             <div>
@@ -131,7 +132,7 @@ export const DataInsights: React.FC = () => {
                   <div
                     key={index}
                     className={`w-8 h-8 rounded-full flex items-center justify-center ${getSentimentColor(sentiment)}`}
-                    title={`Sentiment: ${sentiment.toFixed(2)}`}
+                    title={`Sentiment: ${sentiment.toFixed(1)}`}
                   >
                     {getSentimentEmoji(sentiment)}
                   </div>
@@ -141,16 +142,15 @@ export const DataInsights: React.FC = () => {
           </div>
         </div>
 
+        {/* Peak Usage Hours */}
         <div className="md:col-span-2">
-          <h3 className="text-lg font-semibold text-gray-800 mb-3">Peak Usage Hours</h3>
-          <div className="grid grid-cols-5 gap-4">
+          <h3 className="text-lg font-semibold text-gray-800 mb-3">Peak Usage Hours and Using the chatbot</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
             {stats.peakHours.map(({ hour, count }) => (
               <div key={hour} className="text-center">
-                <div className="text-sm text-gray-600">
-                  {hour.toString().padStart(2, '0')}:00
-                </div>
+                <div className="text-sm text-gray-600">{hour.toString().padStart(1, '0')}:00</div>
                 <div className="text-lg font-medium">{count}</div>
-                <div className="text-xs text-gray-500">queries</div>
+                <div className="text-xs text-gray-500">total queries</div>
               </div>
             ))}
           </div>
@@ -158,4 +158,4 @@ export const DataInsights: React.FC = () => {
       </div>
     </div>
   );
-}; 
+};

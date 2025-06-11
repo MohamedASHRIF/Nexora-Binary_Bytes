@@ -67,14 +67,6 @@ export const ChatInterface: React.FC = () => {
       const response = await sendMessage(inputText);
       const responseTime = Date.now() - startTime;
       
-      // Log the query with sentiment analysis
-      addQueryLog({
-        query: inputText,
-        timestamp: new Date(),
-        sentiment: 0.5, // This should be calculated using a sentiment analysis library
-        responseTime
-      });
-      
       // Check for specific actions to award badges
       if (inputText.toLowerCase().includes('schedule')) {
         checkAndAwardBadges('check_schedule_morning');

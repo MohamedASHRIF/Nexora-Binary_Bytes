@@ -581,3 +581,56 @@
 {"level":"info","message":"GET /events","timestamp":"2025-06-10T13:16:38.719Z"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2025-06-10T13:17:11.223Z"}
 {"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-10T13:17:11.252Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T16:57:16.918Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-10T16:57:17.143Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T16:57:17.165Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-10T16:57:17.176Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T16:57:17.189Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-10T16:57:17.208Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T16:57:17.220Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-10T16:57:17.236Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-10T17:03:06.507Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-10T17:03:06.527Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:03:41.746Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:41.852Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:41.859Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:03:43.799Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:43.870Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:43.871Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:03:44.653Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:44.727Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:44.728Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:03:45.375Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:45.445Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:45.446Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:03:46.144Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:46.212Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:46.213Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:03:46.850Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:46.913Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:46.914Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:03:47.641Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:47.710Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:47.711Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:03:51.588Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:51.649Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:51.649Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:03:54.583Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:44:29.604Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:44:29.792Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:44:29.793Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:44:33.184Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:49:29.355Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:49:29.463Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:49:29.464Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T17:49:32.201Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T18:09:38.915Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-10T18:25:33.501Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-10T18:25:33.621Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T18:25:52.631Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T18:31:49.929Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-11T13:56:29.033Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-11T14:20:02.701Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-11T14:20:02.908Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-11T14:20:02.912Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-11T14:20:05.299Z"}

@@ -399,13 +399,6 @@ export const useChatbot = () => {
         lastTime: timeRef
       }))
 
-      // Log the query
-      addQueryLog({
-        text,
-        timestamp: new Date(),
-        sentiment: 0
-      })
-
       return {
         text: responseText,
         isUser: false,
@@ -439,14 +432,17 @@ export const useChatbot = () => {
       setMessages(prev => [...prev, userMessage])
 
       // Use local processing only
+      const startTime = Date.now()
       const response = await processMessage(text)
       setMessages(prev => [...prev, response])
 
-      // Log the query
+      // Analyze sentiment and log the query
+      const sentimentScore = analyzeSentiment(text)
       addQueryLog({
-        text,
+        query: text,
         timestamp: new Date(),
-        sentiment: 0
+        sentiment: sentimentScore,
+        responseTime: Date.now() - startTime
       })
     } catch (error) {
       console.error('Error sending message:', error)
