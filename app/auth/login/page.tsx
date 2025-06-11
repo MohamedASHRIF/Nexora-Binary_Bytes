@@ -63,7 +63,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex pt-16">
       {/* Left Side - Quote/Image Section */}
       <div className="w-1/2 bg-gradient-to-br from-[#0f172a] to-[#1e3a8a]
       text-white flex items-center justify-center p-12">

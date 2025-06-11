@@ -91,13 +91,13 @@ export default function Home() {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-gray-100">
+    <div className="h-screen flex flex-col bg-gray-100 dark:bg-slate-900">
       {/* Fixed Navigation Bar - Below main header */}
-      <nav className="fixed top-16 left-0 right-0 z-40 w-full flex items-center bg-white justify-end px-8 py-2 gap-6 border-t border-gray-100 shadow-sm">
+      <nav className="fixed top-16 left-0 right-0 z-40 w-full flex items-center bg-white dark:bg-slate-800 justify-end px-8 py-2 gap-6 border-t border-gray-100 dark:border-slate-700 shadow-sm">
         <button
           onClick={() => setActiveTab('home')}
           className={`px-4 py-2 rounded font-semibold transition-colors ${
-            activeTab === 'home' ? 'bg-blue-500 text-white' : 'bg-white  text-gray-700 hover:bg-blue-100'
+            activeTab === 'home' ? 'bg-blue-500 dark:bg-blue-600 text-white' : 'bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
           }`}
         >
           Home
@@ -105,7 +105,7 @@ export default function Home() {
         <button
           onClick={() => setActiveTab('chat')}
           className={`px-4 py-2 rounded font-semibold transition-colors ${
-            activeTab === 'chat' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-blue-100'
+            activeTab === 'chat' ? 'bg-blue-500 dark:bg-blue-600 text-white' : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
           }`}
         >
           Chat
@@ -113,7 +113,7 @@ export default function Home() {
         <button
           onClick={() => setActiveTab('map')}
           className={`px-4 py-2 rounded font-semibold transition-colors ${
-            activeTab === 'map' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-blue-100'
+            activeTab === 'map' ? 'bg-blue-500 dark:bg-blue-600 text-white' : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
           }`}
         >
           Map
@@ -121,7 +121,7 @@ export default function Home() {
         <button
           onClick={() => setActiveTab('insights')}
           className={`px-4 py-2 rounded font-semibold transition-colors ${
-            activeTab === 'insights' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-blue-100'
+            activeTab === 'insights' ? 'bg-blue-500 dark:bg-blue-600 text-white' : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
           }`}
         >
           Insights
@@ -142,19 +142,19 @@ export default function Home() {
           {activeTab === 'home' && (
             <div className="flex-1 flex flex-col justify-center items-center p-8">
               <div className="text-center max-w-2xl">
-                <h1 className="text-4xl font-bold mb-4">Welcome to Nexora Campus Copilot</h1>
-                <p className="text-lg text-gray-600 mb-8">Ask me anything</p>
+                <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Welcome to Nexora Campus Copilot</h1>
+                <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">Ask me anything</p>
                 <form onSubmit={handleAsk} className="flex gap-2 max-w-md mx-auto">
                   <input
                     type="text"
                     value={homeQuestion}
                     onChange={(e) => setHomeQuestion(e.target.value)}
                     placeholder="Type your question here..."
-                    className="flex-grow px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="flex-grow px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                   />
                   <button
                     type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+                    className="bg-blue-500 dark:bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-600 dark:hover:bg-blue-700 transition"
                   >
                     Ask
                   </button>
@@ -182,7 +182,7 @@ export default function Home() {
           )}
           {activeTab === 'map' && (
             <div className="w-full h-full p-4">
-              <div className="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="w-full h-full bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
                 <MapView />
               </div>
             </div>
@@ -196,7 +196,7 @@ export default function Home() {
           )}
           {badges.length > 0 && activeTab === 'home' && (
             <div className="mt-6 text-center">
-              <h3 className="text-lg font-semibold mb-2">Your Badges</h3>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Your Badges</h3>
               <div className="flex flex-wrap gap-2 justify-center">
                 {badges.map((badge) => (
                   <span

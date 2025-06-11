@@ -191,16 +191,16 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
   return (
     <div className="flex flex-col h-full" suppressHydrationWarning>
       {/* Language Selector */}
-      <div className="bg-gray-50 border-b border-gray-200 p-3 flex-shrink-0">
+      <div className="bg-gray-50 dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 p-3 flex-shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
               {language === 'en' ? 'Language' : language === 'si' ? 'භාෂාව' : 'மொழி'}:
             </span>
             <select
               value={language}
               onChange={(e) => handleLanguageChange(e.target.value)}
-              className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
+              className="px-3 py-1 border border-gray-300 dark:border-slate-600 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
             >
               {languageOptions.map((option) => (
                 <option key={option.code} value={option.code}>
@@ -209,7 +209,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
               ))}
             </select>
           </div>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-gray-500 dark:text-gray-400">
             {language === 'en' ? 'Current' : language === 'si' ? 'වර්තමාන' : 'தற்போதைய'}: {languageOptions.find(opt => opt.code === language)?.name}
           </div>
         </div>
@@ -218,7 +218,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
       {/* Messages Area - Scrollable within chat container */}
       <div className="flex-1 overflow-y-auto p-2 space-y-1 pb-28">
         {messages.length === 0 && (
-          <div className="text-center text-gray-500">
+          <div className="text-center text-gray-500 dark:text-gray-400">
             {translate('welcome')}
           </div>
         )}
@@ -372,8 +372,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
                   <div
                     className={`max-w-full rounded-lg p-3 ${
                       message.isUser
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-100 text-gray-800'
+                        ? 'bg-blue-500 dark:bg-blue-600 text-white'
+                        : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-gray-200'
                     }`}
                     style={{ wordBreak: 'break-word' }}
                   >
@@ -388,7 +388,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
       </div>
 
       {/* Input Bar - Fixed at bottom of viewport (laptop screen) */}
-      <div className={`fixed bottom-0 border-t border-gray-200 p-4 bg-white shadow-lg z-50 ${hasSidebar ? 'left-64 right-0' : 'left-0 right-0'}`}>
+      <div className={`fixed bottom-0 border-t border-gray-200 dark:border-slate-700 p-4 bg-white dark:bg-slate-800 shadow-lg z-50 ${hasSidebar ? 'left-64 right-0' : 'left-0 right-0'}`}>
         <div className="flex space-x-2 max-w-full">
           <input
             type="text"
@@ -396,12 +396,12 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
             placeholder={getPlaceholderText()}
-            className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+            className="flex-1 p-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
           />
           <button
             onClick={() => (isListening ? stopListening() : startListening())}
             className={`p-2 rounded-lg ${
-              isListening ? 'bg-red-500' : 'bg-blue-500'
+              isListening ? 'bg-red-500 dark:bg-red-600' : 'bg-blue-500 dark:bg-blue-600'
             } text-white min-w-[60px]`}
             title={language === 'en' ? 'Voice input' : language === 'si' ? 'හඬ ඇතුළත් කිරීම' : 'குரல் உள்ளீடு'}
           >
@@ -410,13 +410,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
           <button
             onClick={handleSend}
             disabled={isProcessing}
-            className="p-2 bg-blue-500 text-white rounded-lg disabled:bg-gray-400 min-w-[60px]"
+            className="p-2 bg-blue-500 dark:bg-blue-600 text-white rounded-lg disabled:bg-gray-400 dark:disabled:bg-slate-600 min-w-[60px]"
           >
             {getSendButtonText()}
           </button>
           <button
             onClick={handleClearChat}
-            className="p-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 min-w-[60px]"
+            className="p-2 bg-gray-500 dark:bg-slate-600 text-white rounded-lg hover:bg-gray-600 dark:hover:bg-slate-700 min-w-[60px]"
             title={language === 'en' ? 'Clear chat history' : language === 'si' ? 'චැට් ඉතිහාසය මකන්න' : 'அரட்டை வரலாற்றை அழி'}
           >
             {getClearButtonText()}

@@ -98,13 +98,13 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
 
   if (!isInitialized) {
     return (
-      <div className="w-64 flex-shrink-0 bg-gray-50 border-r p-4 flex flex-col">
+      <div className="w-64 flex-shrink-0 bg-gray-50 dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 p-4 flex flex-col">
         <div className="animate-pulse">
-          <div className="h-6 bg-gray-200 rounded mb-4"></div>
+          <div className="h-6 bg-gray-200 dark:bg-slate-700 rounded mb-4"></div>
           <div className="space-y-2">
-            <div className="h-4 bg-gray-200 rounded"></div>
-            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+            <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded"></div>
+            <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded w-3/4"></div>
+            <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded w-1/2"></div>
           </div>
         </div>
       </div>
@@ -112,11 +112,11 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
   }
 
   return (
-    <div className="w-64 h-full bg-gray-50 border-r flex flex-col">
+    <div className="w-64 h-full bg-gray-50 dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col">
       {/* Header */}
-      <div className="p-4 border-b bg-white flex-shrink-0">
+      <div className="p-4 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex-shrink-0">
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
             <Calendar className="h-5 w-5" />
             Chat History
           </h2>
@@ -125,8 +125,8 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
               onClick={() => setViewMode('today')}
               className={`px-2 py-1 text-xs rounded ${
                 viewMode === 'today' 
-                  ? 'bg-blue-500 text-white' 
-                  : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                  ? 'bg-blue-500 dark:bg-blue-600 text-white' 
+                  : 'bg-gray-200 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-slate-600'
               }`}
             >
               Today
@@ -135,8 +135,8 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
               onClick={() => setViewMode('all')}
               className={`px-2 py-1 text-xs rounded ${
                 viewMode === 'all' 
-                  ? 'bg-blue-500 text-white' 
-                  : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                  ? 'bg-blue-500 dark:bg-blue-600 text-white' 
+                  : 'bg-gray-200 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-slate-600'
               }`}
             >
               All
@@ -145,7 +145,7 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
         </div>
         
         {/* Stats */}
-        <div className="text-xs text-gray-600 space-y-1">
+        <div className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
           <div className="flex justify-between">
             <span>Today's prompts:</span>
             <span className="font-medium">{stats.todayPrompts}</span>
@@ -162,31 +162,31 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
         {viewMode === 'today' ? (
           <div className="p-4">
             {/* Today's Prompts Dropdown */}
-            <div className="border border-gray-200 rounded-lg overflow-hidden">
+            <div className="border border-gray-200 dark:border-slate-700 rounded-lg overflow-hidden">
               <button
                 onClick={toggleTodayExpansion}
-                className="w-full p-3 bg-white hover:bg-gray-50 flex items-center justify-between text-left transition-colors"
+                className="w-full p-3 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center justify-between text-left transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-gray-500" />
-                  <span className="text-sm font-medium text-gray-900">
+                  <Calendar className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                  <span className="text-sm font-medium text-gray-900 dark:text-white">
                     Today's Prompts
                   </span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
                     ({todayPrompts.length} prompt{todayPrompts.length !== 1 ? 's' : ''})
                   </span>
                 </div>
                 {isTodayExpanded ? (
-                  <ChevronUp className="h-4 w-4 text-gray-500" />
+                  <ChevronUp className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                 ) : (
-                  <ChevronDown className="h-4 w-4 text-gray-500" />
+                  <ChevronDown className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                 )}
               </button>
               
               {isTodayExpanded && (
-                <div className="border-t bg-gray-50 p-3 space-y-2">
+                <div className="border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700 p-3 space-y-2">
                   {todayPrompts.length === 0 ? (
-                    <div className="text-center text-gray-400 py-4">
+                    <div className="text-center text-gray-400 dark:text-gray-500 py-4">
                       <Search className="h-6 w-6 mx-auto mb-2 opacity-50" />
                       <p className="text-sm">No prompts today</p>
                       <p className="text-xs">Start chatting to see your history here</p>
@@ -196,23 +196,23 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
                       <div
                         key={prompt.id}
                         onClick={() => handlePromptClick(prompt.prompt)}
-                        className="p-2 bg-white rounded border border-gray-200 hover:border-blue-300 hover:shadow-sm cursor-pointer transition-all group"
+                        className="p-2 bg-white dark:bg-slate-800 rounded border border-gray-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-sm cursor-pointer transition-all group"
                       >
                         <div className="flex items-start justify-between gap-2">
-                          <p className="text-sm text-gray-800 flex-1 overflow-hidden">
+                          <p className="text-sm text-gray-800 dark:text-gray-200 flex-1 overflow-hidden">
                             <span className="block truncate" title={prompt.prompt}>
                               {prompt.prompt}
                             </span>
                           </p>
                           <button
                             onClick={(e) => handleDeletePrompt(e, prompt.id)}
-                            className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-100 rounded transition-opacity flex-shrink-0"
+                            className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-100 dark:hover:bg-red-900/20 rounded transition-opacity flex-shrink-0"
                             title="Delete prompt"
                           >
                             <Trash2 className="h-3 w-3 text-red-500" />
                           </button>
                         </div>
-                        <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
+                        <div className="flex items-center gap-1 mt-1 text-xs text-gray-500 dark:text-gray-400">
                           <Clock className="h-3 w-3" />
                           {formatTime(prompt.timestamp)}
                         </div>
@@ -226,11 +226,11 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
         ) : (
           <div className="p-4">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-medium text-gray-900">All History</h3>
+              <h3 className="text-sm font-medium text-gray-900 dark:text-white">All History</h3>
               {availableDates.length > 0 && (
                 <button
                   onClick={handleClearHistory}
-                  className="text-xs text-red-500 hover:text-red-700"
+                  className="text-xs text-red-500 hover:text-red-700 dark:hover:text-red-400"
                 >
                   Clear All
                 </button>
@@ -238,7 +238,7 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
             </div>
             
             {availableDates.length === 0 ? (
-              <div className="text-center text-gray-400 py-8">
+              <div className="text-center text-gray-400 dark:text-gray-500 py-8">
                 <Search className="h-8 w-8 mx-auto mb-2 opacity-50" />
                 <p className="text-sm">No chat history</p>
                 <p className="text-xs">Start chatting to see your history here</p>
@@ -250,50 +250,50 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
                   const isExpanded = expandedDates.has(date);
                   
                   return (
-                    <div key={date} className="border border-gray-200 rounded-lg overflow-hidden">
+                    <div key={date} className="border border-gray-200 dark:border-slate-700 rounded-lg overflow-hidden">
                       <button
                         onClick={() => toggleDateExpansion(date)}
-                        className="w-full p-3 bg-white hover:bg-gray-50 flex items-center justify-between text-left transition-colors"
+                        className="w-full p-3 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center justify-between text-left transition-colors"
                       >
                         <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4 text-gray-500" />
-                          <span className="text-sm font-medium text-gray-900">
+                          <Calendar className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                          <span className="text-sm font-medium text-gray-900 dark:text-white">
                             {formatDate(date)}
                           </span>
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-gray-500 dark:text-gray-400">
                             ({prompts.length} prompt{prompts.length !== 1 ? 's' : ''})
                           </span>
                         </div>
                         {isExpanded ? (
-                          <ChevronUp className="h-4 w-4 text-gray-500" />
+                          <ChevronUp className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                         ) : (
-                          <ChevronDown className="h-4 w-4 text-gray-500" />
+                          <ChevronDown className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                         )}
                       </button>
                       
                       {isExpanded && (
-                        <div className="border-t bg-gray-50 p-3 space-y-2">
+                        <div className="border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700 p-3 space-y-2">
                           {prompts.map((prompt) => (
                             <div
                               key={prompt.id}
                               onClick={() => handlePromptClick(prompt.prompt)}
-                              className="p-2 bg-white rounded border border-gray-200 hover:border-blue-300 hover:shadow-sm cursor-pointer transition-all group"
+                              className="p-2 bg-white dark:bg-slate-800 rounded border border-gray-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-sm cursor-pointer transition-all group"
                             >
                               <div className="flex items-start justify-between gap-2">
-                                <p className="text-sm text-gray-800 flex-1 overflow-hidden">
+                                <p className="text-sm text-gray-800 dark:text-gray-200 flex-1 overflow-hidden">
                                   <span className="block truncate" title={prompt.prompt}>
                                     {prompt.prompt}
                                   </span>
                                 </p>
                                 <button
                                   onClick={(e) => handleDeletePrompt(e, prompt.id)}
-                                  className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-100 rounded transition-opacity flex-shrink-0"
+                                  className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-100 dark:hover:bg-red-900/20 rounded transition-opacity flex-shrink-0"
                                   title="Delete prompt"
                                 >
                                   <Trash2 className="h-3 w-3 text-red-500" />
                                 </button>
                               </div>
-                              <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
+                              <div className="flex items-center gap-1 mt-1 text-xs text-gray-500 dark:text-gray-400">
                                 <Clock className="h-3 w-3" />
                                 {formatTime(prompt.timestamp)}
                               </div>
