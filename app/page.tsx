@@ -133,37 +133,38 @@ export default function Home() {
           <ChatHistory onPromptClick={handleHistoryPromptClick} />
         )}
         {/* Main Content Area */}
-        <div className={`flex-1 flex flex-col justify-center items-center  ${activeTab === 'chat' ? 'pl-0' : ''} min-h-0`}>
+        <div className={`flex-1 flex flex-col ${activeTab === 'chat' ? 'pl-0' : ''} min-h-0`}>
           {activeTab === 'home' && (
-             <div className="text-center ">
-                              <h1 className="text-4xl font-bold mb-4">Welcome to Nexora Campus Copilot</h1>
-
-             <p className="text-lg text-gray-600 mb-8">Ask me anything</p>
-             <form onSubmit={handleAsk} className="flex gap-2">
-               <input
-                 type="text"
-                 value={homeQuestion}
-                 onChange={(e) => setHomeQuestion(e.target.value)}
-                 placeholder="Type your question here..."
-                 className="flex-grow px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-               />
-               <button
-                 type="submit"
-                 className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
-               >
-                 Ask
-               </button>
-             </form>
-           </div>
+            <div className="flex-1 flex flex-col justify-center items-center p-8">
+              <div className="text-center max-w-2xl">
+                <h1 className="text-4xl font-bold mb-4">Welcome to Nexora Campus Copilot</h1>
+                <p className="text-lg text-gray-600 mb-8">Ask me anything</p>
+                <form onSubmit={handleAsk} className="flex gap-2 max-w-md mx-auto">
+                  <input
+                    type="text"
+                    value={homeQuestion}
+                    onChange={(e) => setHomeQuestion(e.target.value)}
+                    placeholder="Type your question here..."
+                    className="flex-grow px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  />
+                  <button
+                    type="submit"
+                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+                  >
+                    Ask
+                  </button>
+                </form>
+              </div>
+            </div>
           )}
           {activeTab === 'chat' && (
-            <div className="w-full h-full flex flex-col  mx-auto p-2 ">
+            <div className="w-full h-full flex flex-col mx-auto p-2">
               <div className="flex-1 overflow-auto">
-              <ChatWindow
-                initialMessage={initialChatMessage}
-                onMessageSent={handleInitialMessageSent}
-                onRecentMessagesChange={handleRecentMessagesChange}
-              />
+                <ChatWindow
+                  initialMessage={initialChatMessage}
+                  onMessageSent={handleInitialMessageSent}
+                  onRecentMessagesChange={handleRecentMessagesChange}
+                />
               </div>
               <div className="flex-shrink-0">
                 <SuggestionBar 
@@ -174,19 +175,23 @@ export default function Home() {
             </div>
           )}
           {activeTab === 'map' && (
-            <div className="w-full h-full max-w-3xl mx-auto">
-              <MapView />
+            <div className="w-full h-full p-4">
+              <div className="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden">
+                <MapView />
+              </div>
             </div>
           )}
           {activeTab === 'insights' && (
-            <div className="w-full h-full max-w-3xl mx-auto">
-              <DataInsights />
+            <div className="w-full h-full p-4 overflow-y-auto">
+              <div className="max-w-6xl mx-auto">
+                <DataInsights />
+              </div>
             </div>
           )}
-          {badges.length > 0 && (
-            <div className="mt-6">
+          {badges.length > 0 && activeTab === 'home' && (
+            <div className="mt-6 text-center">
               <h3 className="text-lg font-semibold mb-2">Your Badges</h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 justify-center">
                 {badges.map((badge) => (
                   <span
                     key={badge.id}

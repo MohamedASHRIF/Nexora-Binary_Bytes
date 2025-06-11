@@ -1974,3 +1974,29 @@
 {"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:05:59.780Z"}
 {"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:06:02.406Z"}
 {"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:06:02.416Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:12:22.056Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:12:22.067Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:12:28.669Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-11T06:12:28.673Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T06:12:28.677Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T06:12:28.681Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:12:33.994Z"}
+{"level":"info","message":"Received chat message: tired","timestamp":"2025-06-11T06:12:33.998Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:12:38.888Z"}
+{"level":"info","message":"Received chat message: hungry","timestamp":"2025-06-11T06:12:38.892Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:12:47.750Z"}
+{"level":"info","message":"Received chat message: bus","timestamp":"2025-06-11T06:12:47.755Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:12:56.787Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:12:56.799Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T06:13:12.488Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:13:21.850Z"}
+{"level":"info","message":"Received chat message: it faculty","timestamp":"2025-06-11T06:13:21.854Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:13:32.019Z"}
+{"level":"info","message":"Received chat message: engineering faculty","timestamp":"2025-06-11T06:13:32.023Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:13:36.972Z"}
+{"level":"info","message":"Received chat message: help","timestamp":"2025-06-11T06:13:36.977Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T06:13:52.729Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:13:58.707Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:13:58.718Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:19:33.894Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:19:33.901Z"}
