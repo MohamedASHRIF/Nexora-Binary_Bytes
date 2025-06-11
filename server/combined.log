@@ -1947,3 +1947,30 @@
 {"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:49:23.673Z"}
 {"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:49:28.840Z"}
 {"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:49:28.848Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-10T18:50:23.052Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:50:24.666Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-10T18:50:24.674Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-11T06:04:10.483Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-11T06:04:10.499Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-11T06:05:03.696Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:05:06.802Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:05:06.809Z"}
+{"level":"info","message":"Received chat message: hi","timestamp":"2025-06-11T06:05:06.823Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:05:06.854Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:05:12.928Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:05:12.936Z"}
+{"level":"info","message":"Received chat message: hello","timestamp":"2025-06-11T06:05:12.944Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:05:12.947Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-11T06:05:16.678Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-11T06:05:22.425Z"}
+{"level":"info","message":"Received chat message: class","timestamp":"2025-06-11T06:05:22.430Z","user":{"__v":0,"_id":"68482eeb4aa33580e5c97373","badges":[],"createdAt":"2025-06-10T13:11:07.538Z","degree":"IT","email":"wishwa@gmail.com","language":"en","name":"Wishwa kumar","points":0,"role":"student","updatedAt":"2025-06-10T13:11:07.538Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-06-11T06:05:22.435Z","userId":"68482eeb4aa33580e5c97373"}
+{"count":0,"degree":"IT","level":"info","message":"Found schedules:","schedules":[],"timestamp":"2025-06-11T06:05:22.510Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:05:33.463Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:05:33.475Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:05:49.743Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:05:49.753Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:05:59.770Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:05:59.780Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:06:02.406Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-11T06:06:02.416Z"}

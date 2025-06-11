@@ -3,6 +3,7 @@ import { useVoiceInput } from '../hooks/useVoiceInput';
 import { useChatbot } from '../hooks/use-chatbot';
 import { useGamePoints } from '../hooks/useGamePoints';
 import { useLanguage } from '../hooks/useLanguage';
+import { useDailyPromptHistory } from '../hooks/useDailyPromptHistory';
 import type { Message } from '@/types';
 
 
@@ -21,6 +22,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
   const { messages, isProcessing, sendMessage, suggestions, clearChat } = useChatbot();
   const { addPoints } = useGamePoints();
   const { translate } = useLanguage();
+  const { addPrompt } = useDailyPromptHistory();
   const initialMessageSentRef = useRef(false);
 
 
@@ -60,6 +62,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
       initialMessageSentRef.current = true;
       (async () => {
         addPoints(5);
+        // Save the initial message to daily history
+        addPrompt(initialMessage.trim());
         await sendMessage(initialMessage);
         onMessageSent?.();
       })();
@@ -67,7 +71,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
     if (!initialMessage) {
       initialMessageSentRef.current = false;
     }
-  }, [initialMessage, sendMessage, addPoints, onMessageSent]);
+  }, [initialMessage, sendMessage, addPoints, onMessageSent, addPrompt]);
 
   const handleSend = async () => {
     if (!inputText.trim()) return;
@@ -76,6 +80,9 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
     const newRecentMessages = [...recentUserMessages, inputText].slice(-5); // Keep last 5 messages
     setRecentUserMessages(newRecentMessages);
     onRecentMessagesChange?.(newRecentMessages);
+
+    // Save the prompt to daily history
+    addPrompt(inputText.trim());
 
     addPoints(5);
     await sendMessage(inputText);

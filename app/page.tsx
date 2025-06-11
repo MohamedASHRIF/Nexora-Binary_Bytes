@@ -5,40 +5,37 @@ import { ChatWindow } from '../components/ChatWindow';
 import { MapView } from '../components/MapView';
 import { DataInsights } from '../components/DataInsights';
 import { SuggestionBar } from '../components/SuggestionBar';
+import { ChatHistory } from '../components/ChatHistory';
 import { useGamePoints } from '../hooks/useGamePoints';
+import { useDailyPromptHistory } from '../hooks/useDailyPromptHistory';
 
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
-
-
-
-function ChatHistory() {
-  return (
-    <div className="w-64 flex-shrink-0 bg-gray-50 border-r p-4 flex flex-col">
-    <h2 className="text-lg font-semibold mb-4">Chat History</h2>
-    <div className="text-gray-400 flex-grow flex items-center justify-center">No chat history yet.</div>
-  </div>
-  );
-}
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('home');
   const { badges } = useGamePoints();
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
-   const [homeQuestion, setHomeQuestion] = useState('');
-   const [initialChatMessage, setInitialChatMessage] = useState('');
-   const [recentMessages, setRecentMessages] = useState<string[]>([]);
+  const [homeQuestion, setHomeQuestion] = useState('');
+  const [initialChatMessage, setInitialChatMessage] = useState('');
+  const [recentMessages, setRecentMessages] = useState<string[]>([]);
+  
+  // Daily prompt history hook
+  const { addPrompt } = useDailyPromptHistory();
 
-
-   const handleAsk = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleAsk = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (homeQuestion.trim() === '') return;
+
+    // Add the prompt to daily history
+    addPrompt(homeQuestion.trim());
 
     setInitialChatMessage(homeQuestion);
     setActiveTab('chat');
     setHomeQuestion('');
   };
+
   // Callback when ChatWindow finishes sending the initial message
   const handleInitialMessageSent = () => {
     setInitialChatMessage('');
@@ -55,6 +52,16 @@ export default function Home() {
     // For now, we'll use a custom event
     const event = new CustomEvent('setChatInput', { detail: { text: suggestion } });
     window.dispatchEvent(event);
+  };
+
+  // Handle prompt click from ChatHistory
+  const handleHistoryPromptClick = (prompt: string) => {
+    // Add the clicked prompt to daily history
+    addPrompt(prompt);
+    
+    // Set it as the initial message for the chat
+    setInitialChatMessage(prompt);
+    setActiveTab('chat');
   };
 
   useEffect(() => {
@@ -123,9 +130,7 @@ export default function Home() {
       <div className="flex flex-1 min-h-0">
         {/* Chat History Sidebar */}
         {activeTab === 'chat' && (
-          
-            <ChatHistory />
-         
+          <ChatHistory onPromptClick={handleHistoryPromptClick} />
         )}
         {/* Main Content Area */}
         <div className={`flex-1 flex flex-col justify-center items-center  ${activeTab === 'chat' ? 'pl-0' : ''} min-h-0`}>
