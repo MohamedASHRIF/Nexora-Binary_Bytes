@@ -1,31 +1,21 @@
 import { Request, Response, NextFunction } from 'express';
-import { BusRoute } from '../models/busRouteModel';
+import { BusRoute, IBusRoute } from '../models/BusRoute';
 import { AppError } from '../middleware/errorHandler';
 import { catchAsync } from '../utils/catchAsync';
 import mongoose from 'mongoose';
 
-interface BusRouteDocument {
-  _id: string;
-  route: string;
-  time: string;
-  destination: string;
-  description: string;
-  stops: string[];
-  duration: string;
-}
-
 // Get all bus routes
 export const getBusRoutes = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  const routes = await BusRoute.find().sort({ time: 1 });
+  const routes = await BusRoute.find().sort({ schedule: 1 });
   
   // Format the response to match frontend expectations
-  const formattedRoutes = routes.map((route: BusRouteDocument) => ({
+  const formattedRoutes = routes.map((route: any) => ({
     _id: route._id,
     route: route.route,
-    time: route.time,
-    destination: route.destination,
-    description: route.description,
-    stops: route.stops,
+    time: route.schedule,
+    destination: 'Unknown Destination',
+    description: `Bus route ${route.route}`,
+    stops: [],
     duration: route.duration
   }));
 
@@ -51,10 +41,10 @@ export const getBusRoute = catchAsync(async (req: Request, res: Response, next: 
       route: {
         _id: route._id,
         name: route.route,
-        time: route.time,
-        destination: route.destination,
-        description: route.description,
-        stops: route.stops,
+        time: route.schedule,
+        destination: 'Unknown Destination',
+        description: `Bus route ${route.route}`,
+        stops: [],
         duration: route.duration
       }
     }
@@ -71,10 +61,10 @@ export const createBusRoute = catchAsync(async (req: Request, res: Response, nex
       route: {
         _id: newRoute._id,
         name: newRoute.route,
-        time: newRoute.time,
-        destination: newRoute.destination,
-        description: newRoute.description,
-        stops: newRoute.stops,
+        time: newRoute.schedule,
+        destination: 'Unknown Destination',
+        description: `Bus route ${newRoute.route}`,
+        stops: [],
         duration: newRoute.duration
       }
     }
@@ -98,10 +88,10 @@ export const updateBusRoute = catchAsync(async (req: Request, res: Response, nex
       route: {
         _id: route._id,
         name: route.route,
-        time: route.time,
-        destination: route.destination,
-        description: route.description,
-        stops: route.stops,
+        time: route.schedule,
+        destination: 'Unknown Destination',
+        description: `Bus route ${route.route}`,
+        stops: [],
         duration: route.duration
       }
     }

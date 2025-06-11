@@ -180,16 +180,16 @@ export async function getBusData(): Promise<BusData> {
   try {
     const response = await fetchFromAPI('/bus-routes');
     // Ensure we have the correct data structure with default values
-    const busData = response?.data?.data || { nextBuses: [], routes: [] };
+    const busData = response?.data?.data || [];
     
     return {
-      nextBuses: (busData.nextBuses || []).map((item: any) => ({
+      nextBuses: (busData || []).map((item: any) => ({
         route: item.route || '',
         time: item.time || '',
         destination: item.destination || ''
       })),
-      routes: (busData.routes || []).map((item: any) => ({
-        name: item.name || '',
+      routes: (busData || []).map((item: any) => ({
+        name: item.route || '',
         description: item.description || ''
       }))
     };
@@ -233,7 +233,7 @@ export async function getCafeteriaData(): Promise<MenuData> {
 // Campus events data
 export async function getEventData(): Promise<EventData> {
   try {
-    const response = await fetchFromAPI('/events');
+    const response = await fetchFromAPI('/events/chat');
     // Ensure we have the correct data structure with default values
     const eventData = response?.data?.data || { upcoming: [], categories: [], registration: { required: [], link: '' } };
     

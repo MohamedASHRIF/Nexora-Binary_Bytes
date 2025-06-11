@@ -201,9 +201,9 @@ export default function AdminPage() {
           const transformedBusTimings = routesArray.map((route: any) => ({
             _id: route._id || route.id || Math.random().toString(36).substr(2, 9),
             route: route.route || route.name || '',
-            departureTime: route.time || '',
-            arrivalTime: route.arrivalTime || '',
-            stops: route.stops || [],
+            departureTime: route.schedule || route.time || '',
+            arrivalTime: '',
+            stops: [],
             duration: route.duration || ''
           }));
           
@@ -352,9 +352,7 @@ export default function AdminPage() {
 
       const busTimingData = {
         route: newBusTiming.route,
-        departureTime: formattedDepartureTime,
-        arrivalTime: formattedArrivalTime,
-        stops: Array.isArray(newBusTiming.stops) ? newBusTiming.stops : [],
+        schedule: formattedDepartureTime,
         duration: newBusTiming.duration
       };
       
@@ -385,10 +383,21 @@ export default function AdminPage() {
 
       if (response.ok) {
         // Check if the response has the expected structure
-        if (responseData.status === 'success' && responseData.data) {
-          const newBusRoute = responseData.data;
+        if (responseData.status === 'success' && responseData.data && responseData.data.route) {
+          const newBusRoute = responseData.data.route;
           console.log('New bus route to add:', newBusRoute);
-          setBusTimings(prevBusTimings => [...prevBusTimings, newBusRoute]);
+          
+          // Transform the response to match the BusTiming interface
+          const transformedBusTiming = {
+            _id: newBusRoute._id,
+            route: newBusRoute.name || newBusRoute.route,
+            departureTime: newBusRoute.time,
+            arrivalTime: '',
+            stops: [],
+            duration: newBusRoute.duration
+          };
+          
+          setBusTimings(prevBusTimings => [...prevBusTimings, transformedBusTiming]);
           setSuccessMessage('Bus timing created successfully!');
           setNewBusTiming({
             route: '',

@@ -141,3 +141,25 @@
 {"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-10T18:47:17.046Z"}
 {"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-10T18:47:43.928Z"}
 {"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-10T18:47:53.654Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-11T10:20:35.594Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-11T10:21:37.777Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:28:00.185Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:28:02.879Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:28:07.876Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-11T10:28:54.726Z"}
+{"level":"error","message":"Error: BusRoute validation failed: schedule: Schedule is required","timestamp":"2025-06-11T10:30:57.917Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: schedule: Schedule is required\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-11T10:30:57.997Z"}
+{"level":"error","message":"Error: BusRoute validation failed: schedule: Schedule is required","timestamp":"2025-06-11T10:36:56.511Z"}
+{"level":"error","message":"ValidationError: BusRoute validation failed: schedule: Schedule is required\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-11T10:36:56.512Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:38:50.869Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:38:50.890Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:38:52.897Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:38:52.944Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:38:57.874Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:38:57.883Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:42:16.897Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:42:16.921Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:42:18.922Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:42:18.977Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:42:23.880Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-11T10:42:23.890Z"}

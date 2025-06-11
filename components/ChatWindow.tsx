@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useRef, useEffect } from 'react';
 import { useVoiceInput } from '../hooks/useVoiceInput';
 import { useChatbot } from '../hooks/use-chatbot';
@@ -8,6 +10,7 @@ import { ChatClassSchedule } from './ChatClassSchedule';
 import { ChatBusSchedule } from './ChatBusSchedule';
 import { ChatEvents } from './ChatEvents';
 import type { Message } from '@/types';
+import { getBusData, getEventData } from '../lib/data';
 
 
 interface ChatWindowProps {
@@ -28,6 +31,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
   const { language, setLanguage, translate } = useLanguage();
   const { addPrompt } = useDailyPromptHistory();
   const initialMessageSentRef = useRef(false);
+  const [busData, setBusData] = useState<any>(null);
+  const [eventsData, setEventsData] = useState<any>(null);
 
   // Language options
   const languageOptions = [
@@ -82,6 +87,23 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
       initialMessageSentRef.current = false;
     }
   }, [initialMessage, sendMessage, addPoints, onMessageSent, addPrompt]);
+
+  // Fetch real data from database
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [busResponse, eventsResponse] = await Promise.all([
+          getBusData(),
+          getEventData()
+        ]);
+        setBusData(busResponse);
+        setEventsData(eventsResponse);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleSend = async () => {
     if (!inputText.trim()) return;
@@ -194,7 +216,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
       </div>
 
       {/* Messages Area - Scrollable within chat container */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 pb-28">
+      <div className="flex-1 overflow-y-auto p-2 space-y-1 pb-28">
         {messages.length === 0 && (
           <div className="text-center text-gray-500">
             {translate('welcome')}
@@ -238,72 +260,34 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
             ];
           }
 
-          // Extract bus data if it's a bus schedule message
+          // Extract bus data if it's a bus schedule message - use real data from database
           let busScheduleData = null;
-          if (isBusSchedule) {
-            busScheduleData = [
-              {
-                time: "08:30",
-                route: "101",
-                destination: "City Center",
-                platform: "A1",
-                capacity: "45 seats",
-                status: "on-time" as const
-              },
-              {
-                time: "09:15",
-                route: "102",
-                destination: "University Campus",
-                platform: "B2",
-                capacity: "52 seats",
-                status: "delayed" as const
-              },
-              {
-                time: "10:00",
-                route: "103",
-                destination: "Shopping Mall",
-                platform: "C1",
-                capacity: "38 seats",
-                status: "on-time" as const
-              }
-            ];
+          if (isBusSchedule && busData) {
+            busScheduleData = busData.nextBuses.map((bus: any, idx: number) => ({
+              time: bus.time,
+              route: bus.route,
+              destination: bus.destination,
+              platform: `P${idx + 1}`,
+              capacity: "45 seats",
+              status: idx === 0 ? "on-time" as const : "scheduled" as const
+            }));
           }
 
-          // Extract events data if it's an events message
-          let eventsData = null;
-          if (isEvents) {
-            eventsData = [
-              {
-                title: "Tech Workshop: AI Basics",
-                date: "2024-01-15",
-                time: "14:00",
-                location: "IT Lab 2",
-                description: "Learn the fundamentals of Artificial Intelligence and Machine Learning",
-                attendees: 25,
-                category: "workshop" as const,
-                priority: "high" as const
-              },
-              {
-                title: "Cultural Festival",
-                date: "2024-01-20",
-                time: "18:00",
-                location: "Main Auditorium",
-                description: "Annual cultural celebration with performances and food",
-                attendees: 150,
-                category: "cultural" as const,
-                priority: "medium" as const
-              },
-              {
-                title: "Sports Day",
-                date: "2024-01-25",
-                time: "09:00",
-                location: "University Grounds",
-                description: "Annual sports competition with various events",
-                attendees: 200,
-                category: "sports" as const,
-                priority: "low" as const
-              }
-            ];
+          // Extract events data if it's an events message - use real data from database
+          let eventsDisplayData = null;
+          if (isEvents && eventsData) {
+            eventsDisplayData = eventsData.upcoming.map((event: any, idx: number) => ({
+              title: event.name,
+              date: event.date,
+              time: event.time,
+              location: event.location,
+              description: `Event at ${event.location}`,
+              attendees: Math.floor(Math.random() * 50) + 10,
+              category: idx % 3 === 0 ? "academic" as const : 
+                       idx % 3 === 1 ? "cultural" as const : "workshop" as const,
+              priority: idx === 0 ? "high" as const : 
+                       idx === 1 ? "medium" as const : "low" as const
+            }));
           }
 
           return (
@@ -311,7 +295,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
               key={`${message.timestamp.getTime()}-${index}`}
               className={`flex ${
                 message.isUser ? 'justify-end' : 'justify-start'
-              }`}
+              } mb-1`}
             >
               <div className="flex flex-col max-w-full">
                 {isClassSchedule && classScheduleData ? (
@@ -324,10 +308,10 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
                   <div className="max-w-md">
                     <ChatBusSchedule buses={busScheduleData} />
                   </div>
-                ) : isEvents && eventsData ? (
+                ) : isEvents && eventsDisplayData ? (
                   // Render events component
                   <div className="max-w-md">
-                    <ChatEvents events={eventsData} />
+                    <ChatEvents events={eventsDisplayData} />
                   </div>
                 ) : (
                   // Render regular text message

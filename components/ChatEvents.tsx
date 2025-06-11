@@ -17,50 +17,32 @@ interface ChatEventsProps {
   title?: string;
 }
 
-export const ChatEvents: React.FC<ChatEventsProps> = ({ 
-  events, 
-  title = "📅 Upcoming Events" 
-}) => {
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    if (date.toDateString() === today.toDateString()) {
-      return 'Today';
-    } else if (date.toDateString() === tomorrow.toDateString()) {
-      return 'Tomorrow';
-    } else {
-      return date.toLocaleDateString('en-US', { 
-        month: 'short', 
-        day: 'numeric',
-        year: date.getFullYear() !== today.getFullYear() ? 'numeric' : undefined
-      });
-    }
+export const ChatEvents: React.FC<ChatEventsProps> = ({ events, title = "Upcoming Events" }) => {
+  const formatDate = (date: string) => {
+    const eventDate = new Date(date);
+    return eventDate.toLocaleDateString('en-US', { 
+      month: 'short', 
+      day: 'numeric' 
+    });
   };
 
   const formatTime = (time: string) => {
-    const [hours, minutes] = time.split(':');
-    const hour = parseInt(hours);
-    const ampm = hour >= 12 ? 'PM' : 'AM';
-    const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
-    return `${displayHour}:${minutes} ${ampm}`;
+    return time;
   };
 
-  const getDaysUntil = (dateString: string) => {
-    const eventDate = new Date(dateString);
+  const getDaysUntil = (date: string) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
+    const eventDate = new Date(date);
     eventDate.setHours(0, 0, 0, 0);
     
-    const diff = eventDate.getTime() - today.getTime();
-    const daysUntil = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const diffTime = eventDate.getTime() - today.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     
-    if (daysUntil === 0) return 'Today';
-    if (daysUntil === 1) return 'Tomorrow';
-    if (daysUntil < 0) return 'Past';
-    return `in ${daysUntil} days`;
+    if (diffDays === 0) return 'Today';
+    if (diffDays === 1) return 'Tomorrow';
+    if (diffDays < 0) return 'Past';
+    return `${diffDays} days`;
   };
 
   const getCategoryColor = (category?: string) => {
@@ -96,48 +78,34 @@ export const ChatEvents: React.FC<ChatEventsProps> = ({
 
   if (events.length === 0) {
     return (
-      <div className="bg-gray-50 rounded-lg p-4 text-center">
-        <p className="text-gray-600">No upcoming events scheduled!</p>
+      <div className="bg-gray-50 rounded-lg p-3 text-center">
+        <p className="text-gray-600 text-sm">No upcoming events scheduled!</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-4 py-3">
-        <div className="flex items-center justify-between">
-          <h3 className="text-white font-semibold text-sm">
-            {title}
-          </h3>
-          <span className="text-white text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">
-            {events.length} event{events.length !== 1 ? 's' : ''}
-          </span>
-        </div>
+    <div className="bg-white border border-gray-200 rounded-lg shadow-sm">
+      <div className="p-3 border-b border-gray-100">
+        <h3 className="text-sm font-semibold text-gray-800 flex items-center">
+          <Calendar className="h-4 w-4 mr-2 text-blue-600" />
+          {title}
+        </h3>
       </div>
-
-      {/* Events List */}
-      <div className="p-3 space-y-3">
+      
+      <div className="p-2 space-y-2">
         {events.map((event, index) => (
-          <div
-            key={index}
-            className="border border-gray-100 rounded-lg p-3 hover:bg-gray-50 transition-colors"
-          >
-            {/* Header with Category and Priority */}
+          <div key={index} className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+            {/* Title and Priority */}
             <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center space-x-2">
-                <span className="text-lg">{getCategoryIcon(event.category)}</span>
-                <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getCategoryColor(event.category)}`}>
-                  {event.category || 'Event'}
-                </span>
+              <h4 className="text-sm font-semibold text-gray-800 flex-1">
+                {event.title}
+              </h4>
+              <div className="flex items-center space-x-1">
+                <span className="text-xs">{getPriorityIcon(event.priority)}</span>
+                <span className="text-xs">{getCategoryIcon(event.category)}</span>
               </div>
-              <span className="text-lg">{getPriorityIcon(event.priority)}</span>
             </div>
-
-            {/* Event Title */}
-            <h4 className="font-bold text-gray-900 text-sm mb-2">
-              {event.title}
-            </h4>
 
             {/* Date and Time */}
             <div className="flex items-center justify-between mb-2">
@@ -172,48 +140,12 @@ export const ChatEvents: React.FC<ChatEventsProps> = ({
                   <span className="text-xs">{event.attendees} attending</span>
                 </div>
               )}
-              <span className="text-xs text-gray-500">
+              <span className="text-xs text-blue-600 font-medium">
                 {getDaysUntil(event.date)}
               </span>
             </div>
-
-            {/* Progress Bar for Days Until */}
-            <div className="mt-2">
-              <div className="w-full bg-gray-200 rounded-full h-1">
-                <div 
-                  className={`h-1 rounded-full transition-all duration-300 ${
-                    getCategoryColor(event.category).includes('blue') ? 'bg-blue-400' :
-                    getCategoryColor(event.category).includes('purple') ? 'bg-purple-400' :
-                    getCategoryColor(event.category).includes('green') ? 'bg-green-400' :
-                    getCategoryColor(event.category).includes('orange') ? 'bg-orange-400' :
-                    getCategoryColor(event.category).includes('indigo') ? 'bg-indigo-400' : 'bg-gray-400'
-                  }`}
-                  style={{ 
-                    width: `${Math.max(0, Math.min(100, 100 - (new Date(event.date).getTime() - new Date().getTime()) / (30 * 24 * 60 * 60 * 1000) * 100))}%` 
-                  }}
-                ></div>
-              </div>
-            </div>
           </div>
         ))}
-      </div>
-
-      {/* Footer Legend */}
-      <div className="bg-gray-50 px-3 py-2 border-t border-gray-100">
-        <div className="flex items-center justify-center space-x-3 text-xs text-gray-600">
-          <div className="flex items-center space-x-1">
-            <span>🔴</span>
-            <span>High priority</span>
-          </div>
-          <div className="flex items-center space-x-1">
-            <span>🟡</span>
-            <span>Medium priority</span>
-          </div>
-          <div className="flex items-center space-x-1">
-            <span>🟢</span>
-            <span>Low priority</span>
-          </div>
-        </div>
       </div>
     </div>
   );
