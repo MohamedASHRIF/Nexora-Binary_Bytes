@@ -17,10 +17,33 @@ export const useDailyPromptHistory = () => {
   const [history, setHistory] = useState<DailyPromptHistory>({});
   const [isInitialized, setIsInitialized] = useState(false);
 
+  // Get user ID from localStorage
+  const getUserId = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const userData = localStorage.getItem('user');
+        if (userData) {
+          const user = JSON.parse(userData);
+          return user.id || user._id || 'anonymous';
+        }
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+      }
+    }
+    return 'anonymous';
+  }, []);
+
+  // Get storage key with user ID
+  const getStorageKey = useCallback(() => {
+    const userId = getUserId();
+    return `dailyPromptHistory_${userId}`;
+  }, [getUserId]);
+
   // Initialize from localStorage on client side
   useEffect(() => {
     if (typeof window !== 'undefined' && !isInitialized) {
-      const savedHistory = getItem<DailyPromptHistory>('dailyPromptHistory');
+      const storageKey = getStorageKey();
+      const savedHistory = getItem<DailyPromptHistory>(storageKey);
       if (savedHistory) {
         // Convert timestamp strings back to Date objects
         const convertedHistory: DailyPromptHistory = {};
@@ -34,14 +57,15 @@ export const useDailyPromptHistory = () => {
       }
       setIsInitialized(true);
     }
-  }, [isInitialized]);
+  }, [isInitialized, getStorageKey]);
 
   // Save to localStorage when history changes
   useEffect(() => {
     if (typeof window !== 'undefined' && isInitialized) {
-      setItem('dailyPromptHistory', history, 24 * 30); // Keep for 30 days
+      const storageKey = getStorageKey();
+      setItem(storageKey, history, 24 * 30); // Keep for 30 days
     }
-  }, [history, isInitialized]);
+  }, [history, isInitialized, getStorageKey]);
 
   // Add a new prompt to today's history
   const addPrompt = useCallback((prompt: string, topic?: string) => {
