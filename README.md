@@ -1,11 +1,13 @@
 # Nexora Campus Copilot
 
 ## Project Overview
+
 Nexora Campus Copilot is an intelligent AI-powered campus assistant designed to enhance the university experience for students, staff, and administrators. The application provides real-time information about class schedules, bus timings, campus events, cafeteria menus, and interactive campus navigation. Built with modern web technologies, it offers a seamless, multilingual interface with voice interaction capabilities and personalized user experiences.
 
 ## Features
 
 ### Core Features
+
 - **Intelligent Chat Interface**: AI-powered chatbot with natural language processing for campus-related queries
 - **Real-time Class Schedules**: Dynamic class schedule management with instructor and location details
 - **Bus Route Management**: Live bus timing updates and route information for campus transportation
@@ -17,6 +19,7 @@ Nexora Campus Copilot is an intelligent AI-powered campus assistant designed to 
 - **Dark Mode**: Elegant dark blue theme with smooth transitions and user preference persistence
 
 ### Additional Features
+
 - **Chat History**: Persistent conversation history with user-specific storage and search functionality
 - **Daily Prompt Tracking**: Intelligent prompt history management with date-based organization
 - **Admin Dashboard**: Comprehensive administrative interface for content management
@@ -27,6 +30,7 @@ Nexora Campus Copilot is an intelligent AI-powered campus assistant designed to 
 - **Offline Support**: Cached data functionality for improved performance
 
 ## Tech Stack
+
 - **Frontend**: Next.js 15, React 18, TypeScript, Tailwind CSS
 - **Backend**: Node.js, Express.js, TypeScript, Socket.io
 - **Database**: MongoDB with Mongoose ODM
@@ -37,16 +41,19 @@ Nexora Campus Copilot is an intelligent AI-powered campus assistant designed to 
 - **Development**: ESLint, Prettier, nodemon, ts-node
 
 ## Screenshots/Demo (Optional)
-*Screenshots and demo videos can be added here to showcase the application's interface and functionality.*
+
+_Screenshots and demo videos can be added here to showcase the application's interface and functionality._
 
 ## Setup Instructions
 
 ### Prerequisites
+
 - Node.js (v18 or higher)
 - MongoDB (v6 or higher)
 - Google Maps API key
 
 ### Frontend Setup
+
 ```bash
 # Clone the repository
 git clone <repo-url>
@@ -63,7 +70,8 @@ cp .env.example .env.local
 npm run dev
 ```
 
-### Backend Setup
+### Backend Setup in Server Folder
+
 ```bash
 # Navigate to server directory
 cd server
@@ -83,6 +91,7 @@ npm run dev
 ```
 
 ### Database Setup
+
 ```bash
 # Start MongoDB service
 mongod
@@ -95,56 +104,28 @@ npm run populate-locations
 ```
 
 ### Environment Variables
+
 Create the following environment files:
 
 **Frontend (.env.local):**
+
 ```
 NEXT_PUBLIC_API_URL=http://localhost:5000
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIzaSyCdvsWg1xTYr5VvR5-YiSkGmIMfLVX7lUU
 ```
 
-**Backend (.env):**
+**Server (.env):**
+
 ```
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/nexora-campus
 JWT_SECRET=your_jwt_secret_key
-GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+GOOGLE_MAPS_API_KEY=AIzaSyCdvsWg1xTYr5VvR5-YiSkGmIMfLVX7lUU
 NODE_ENV=development
 ```
 
 ## Team
+
 - **Mohamed Ashrif** – Full Stack Developer & Project Lead
-- **Dilumika** – Backend Developer & Database Architect
-- **Roshani** – Frontend Developer & UI/UX Designer
-
-## Contributing
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-For support and questions, please contact the development team or create an issue in the repository.
-
-## Project Structure
-
-```
-nexora-campus-copilot/
-├── app/
-│   ├── data/           # Mock data files
-│   └── page.tsx        # Main page component
-├── components/         # React components
-├── hooks/             # Custom React hooks
-├── public/            # Static assets
-└── styles/            # Global styles
-```
-
-## Acknowledgments
-
-- NovaCore University for the inspiration
-- The hackathon team for their dedication
-- All contributors who help improve the project
+- **Nishmy** – Backend Developer & Database Architect
+- **Muski** – Frontend Developer & UI/UX Designer
