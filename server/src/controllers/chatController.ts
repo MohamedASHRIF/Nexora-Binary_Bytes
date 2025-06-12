@@ -178,6 +178,44 @@ You can help with:
 - Sharing campus news and events
 Always be polite, professional, and accurate in your responses.`;
 
+// Simple sentiment analysis function
+const analyzeSentiment = (text: string): number => {
+  const lowerText = text.toLowerCase();
+  
+  // Positive words
+  const positiveWords = ['good', 'great', 'excellent', 'amazing', 'wonderful', 'perfect', 'love', 'like', 'happy', 'thanks', 'thank you', 'helpful', 'nice', 'awesome', 'fantastic', 'brilliant', 'super', 'cool', 'yes', 'okay', 'ok', 'sure', 'fine', 'well', 'better', 'best'];
+  
+  // Negative words
+  const negativeWords = ['bad', 'terrible', 'awful', 'horrible', 'hate', 'dislike', 'wrong', 'error', 'problem', 'issue', 'broken', 'failed', 'no', 'not', 'never', 'worst', 'worse', 'sad', 'angry', 'frustrated', 'annoyed', 'upset', 'disappointed'];
+  
+  let score = 0;
+  
+  // Count positive words
+  positiveWords.forEach(word => {
+    const regex = new RegExp(`\\b${word}\\b`, 'g');
+    const matches = lowerText.match(regex);
+    if (matches) {
+      score += matches.length;
+    }
+  });
+  
+  // Count negative words
+  negativeWords.forEach(word => {
+    const regex = new RegExp(`\\b${word}\\b`, 'g');
+    const matches = lowerText.match(regex);
+    if (matches) {
+      score -= matches.length;
+    }
+  });
+  
+  // Normalize score to range [-1, 1]
+  const totalWords = text.split(' ').length;
+  if (totalWords === 0) return 0;
+  
+  const normalizedScore = Math.max(-1, Math.min(1, score / Math.max(totalWords / 10, 1)));
+  return normalizedScore;
+};
+
 export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   try {
     const { message, language: userLanguage } = req.body;
@@ -447,18 +485,23 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
         chat = new Chat({ userId: req.user.id, messages: [] });
       }
 
+      // Analyze sentiment for user message
+      const userSentiment = analyzeSentiment(message);
+
       // Add user message
       chat.messages.push({
         text: message,
         isUser: true,
-        timestamp: new Date()
+        timestamp: new Date(),
+        sentiment: userSentiment
       });
 
       // Add bot response
       chat.messages.push({
         text: botResponse,
         isUser: false,
-        timestamp: new Date()
+        timestamp: new Date(),
+        sentiment: 0 // Bot responses are neutral
       });
 
       await chat.save();

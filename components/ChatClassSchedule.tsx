@@ -62,42 +62,42 @@ export const ChatClassSchedule: React.FC<ChatClassScheduleProps> = ({ classes, t
 
   if (classes.length === 0) {
     return (
-      <div className="bg-gray-50 rounded-lg p-3 text-center">
-        <p className="text-gray-600 text-sm">No classes scheduled for today!</p>
+      <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3 text-center">
+        <p className="text-gray-600 dark:text-gray-300 text-sm">No classes scheduled for today!</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-sm">
-      <div className="p-3 border-b border-gray-100">
-        <h3 className="text-sm font-semibold text-gray-800 flex items-center">
-          <BookOpen className="h-4 w-4 mr-2 text-blue-600" />
+    <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+      <div className="p-3 border-b border-gray-100 dark:border-slate-600">
+        <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-100 flex items-center">
+          <BookOpen className="h-4 w-4 mr-2 text-blue-600 dark:text-blue-400" />
           {title}
         </h3>
       </div>
       
       <div className="p-2 space-y-2">
         {classes.map((classInfo, index) => (
-          <div key={index} className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+          <div key={index} className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3 border border-gray-100 dark:border-slate-600">
             {/* Time and Countdown */}
             <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center space-x-2 text-gray-700">
+              <div className="flex items-center space-x-2 text-gray-700 dark:text-gray-300">
                 <Clock className="h-3 w-3" />
                 <span className="text-sm font-medium">{formatTime(classInfo.time)}</span>
               </div>
-              <span className="text-xs text-blue-600 font-medium">
+              <span className="text-xs text-blue-600 dark:text-blue-400 font-medium">
                 {getTimeUntil(classInfo.time)} left
               </span>
             </div>
 
             {/* Subject */}
-            <h4 className="text-sm font-semibold text-gray-800 mb-1">
+            <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-1">
               {classInfo.subject}
             </h4>
 
             {/* Location and Instructor */}
-            <div className="flex items-center space-x-3 text-gray-600 mb-2">
+            <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-400 mb-2">
               <div className="flex items-center space-x-1">
                 <MapPin className="h-3 w-3" />
                 <span className="text-xs">{classInfo.location}</span>
@@ -110,12 +110,12 @@ export const ChatClassSchedule: React.FC<ChatClassScheduleProps> = ({ classes, t
 
             {/* Duration */}
             <div className="flex items-center justify-between">
-              <span className="text-xs text-gray-500">
+              <span className="text-xs text-gray-500 dark:text-gray-400">
                 Duration: {classInfo.duration}
               </span>
-              <div className="w-16 h-1 bg-gray-200 rounded-full overflow-hidden">
+              <div className="w-16 h-1 bg-gray-200 dark:bg-slate-600 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-blue-500 rounded-full transition-all duration-300"
+                  className="h-full bg-blue-500 dark:bg-blue-400 rounded-full transition-all duration-300"
                   style={{ width: `${getProgress(classInfo.time)}%` }}
                 />
               </div>

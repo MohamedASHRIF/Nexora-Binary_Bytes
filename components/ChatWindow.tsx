@@ -223,14 +223,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
           </div>
         )}
         {messages.map((message, index) => {
-          // Check if message contains class schedule data - look for specific pattern
+          // Check if message contains class schedule data - look for general pattern
           const isClassSchedule = !message.isUser && 
                                  message.text.includes('remaining') && 
                                  message.text.includes('classes') && 
                                  message.text.includes('for today') &&
-                                 (message.text.includes('Computer Networks') || message.text.includes('Fundamentals of Programming')) &&
-                                 (message.text.includes('Dilumika') || message.text.includes('Roshani')) &&
-                                 message.text.includes('with'); // Indicates instructor format
+                                 message.text.includes('with') && // Indicates instructor format
+                                 message.text.includes('to'); // Indicates time range
           
           // Check if message contains bus schedule data - make detection extremely specific
           const isBusSchedule = !message.isUser && 
@@ -250,22 +249,58 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
           // Extract class data if it's a class schedule message
           let classScheduleData = null;
           if (isClassSchedule) {
-            classScheduleData = [
-              {
-                time: "17:00",
-                subject: "Computer Networks",
-                location: "Mian Hall",
-                instructor: "Dilumika",
-                duration: "1 hour"
-              },
-              {
-                time: "20:00",
-                subject: "Fundamentals of Programming",
-                location: "IT lab",
-                instructor: "Roshani",
-                duration: "50 minutes"
+            try {
+              // Parse the class schedule from the chatbot response
+              const lines = message.text.split('\n');
+              const classes = [];
+              
+              for (const line of lines) {
+                const trimmedLine = line.trim();
+                // Look for lines that start with "- " and contain time, class name, location, and instructor
+                if (trimmedLine.startsWith('- ') && trimmedLine.includes('to') && trimmedLine.includes('with')) {
+                  // Extract time range (e.g., "15:00 to 17:30")
+                  const timeMatch = trimmedLine.match(/(\d{1,2}:\d{2})\s+to\s+(\d{1,2}:\d{2})/);
+                  if (timeMatch) {
+                    const startTime = timeMatch[1];
+                    const endTime = timeMatch[2];
+                    
+                    // Extract class name (between time and location)
+                    const timeEndIndex = trimmedLine.indexOf('to') + 2;
+                    const withIndex = trimmedLine.indexOf('with');
+                    const locationStartIndex = trimmedLine.lastIndexOf('(');
+                    const locationEndIndex = trimmedLine.lastIndexOf(')');
+                    
+                    if (timeEndIndex > 0 && withIndex > timeEndIndex && locationStartIndex > timeEndIndex && locationEndIndex > locationStartIndex) {
+                      const classInfo = trimmedLine.substring(timeEndIndex, locationStartIndex).trim();
+                      const location = trimmedLine.substring(locationStartIndex + 1, locationEndIndex).trim();
+                      const instructor = trimmedLine.substring(withIndex + 4).trim();
+                      
+                      // Calculate duration
+                      const start = new Date(`2000-01-01T${startTime}:00`);
+                      const end = new Date(`2000-01-01T${endTime}:00`);
+                      const durationMs = end.getTime() - start.getTime();
+                      const durationHours = Math.floor(durationMs / (1000 * 60 * 60));
+                      const durationMinutes = Math.floor((durationMs % (1000 * 60 * 60)) / (1000 * 60));
+                      const duration = durationHours > 0 ? `${durationHours}h ${durationMinutes}m` : `${durationMinutes}m`;
+                      
+                      classes.push({
+                        time: startTime,
+                        subject: classInfo,
+                        location: location,
+                        instructor: instructor,
+                        duration: duration
+                      });
+                    }
+                  }
+                }
               }
-            ];
+              
+              if (classes.length > 0) {
+                classScheduleData = classes;
+              }
+            } catch (error) {
+              console.error('Error parsing class schedule from chatbot response:', error);
+            }
           }
 
           // Extract bus data if it's a bus schedule message - use real data from database

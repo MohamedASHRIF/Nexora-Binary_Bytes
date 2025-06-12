@@ -3,7 +3,6 @@ import { useRouter } from 'next/navigation';
 import { useVoice } from '../hooks/use-voice';
 import { useChatbot } from '../hooks/use-chatbot';
 import { useGamification } from '../hooks/use-gamification';
-import { useQueryLogs } from '../hooks/use-query-logs';
 import { UserProgress } from './UserProgress';
 import { DataInsights } from './DataInsights';
 
@@ -25,7 +24,6 @@ export const ChatInterface: React.FC = () => {
   const { isListening, toggleListening, transcript } = useVoice();
   const { sendMessage, isProcessing } = useChatbot();
   const { addPoints, checkAndAwardBadges, checkAndAwardAchievements } = useGamification();
-  const { addQueryLog } = useQueryLogs();
 
   useEffect(() => {
     setIsClient(true);
@@ -137,15 +135,6 @@ export const ChatInterface: React.FC = () => {
         console.error('Error in sendMessage call:', sendError);
         throw sendError;
       }
-      const responseTime = Date.now() - startTime;
-      
-      // Log the query with sentiment analysis
-      addQueryLog({
-        query: inputText,
-        timestamp: new Date(),
-        sentiment: 0.5, // This should be calculated using a sentiment analysis library
-        responseTime
-      });
       
       // Check for specific actions to award badges
       if (inputText.toLowerCase().includes('schedule')) {

@@ -1,5 +1,5 @@
 import express from 'express';
-import { register, getMe, getAllUsers, deleteUser, debugUser, updateUserDegree } from '../controllers/userController';
+import { register, getMe, getAllUsers, deleteUser, debugUser, updateUserDegree, getUserInsights } from '../controllers/userController';
 import { protect, restrictTo } from '../middleware/auth';
 
 const router = express.Router();
@@ -12,6 +12,7 @@ router.use(protect);
 router.get('/me', getMe);
 router.get('/debug/:email', debugUser);
 router.patch('/degree/:email', updateUserDegree);
+router.get('/insights', getUserInsights);
 
 // Admin only routes
 router.use(restrictTo('admin'));

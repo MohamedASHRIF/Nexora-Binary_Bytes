@@ -2,12 +2,13 @@
 
 import { useState, useCallback, useEffect } from 'react';
 
-export interface QueryLog {
+interface QueryLog {
   id: string;
   query: string;
+  response: string;
   timestamp: Date;
-  sentiment: number;
-  responseTime: number;
+  sentiment?: number;
+  userId?: string;
 }
 
 interface QueryStats {
@@ -29,11 +30,34 @@ interface PopularQuery {
 
 const isBrowser = typeof window !== 'undefined';
 
-export const useQueryLogs = () => {
+// Helper function to get current user ID
+const getCurrentUserId = (): string => {
+  if (!isBrowser) return 'anonymous';
+  
+  try {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const user = JSON.parse(userData);
+      return user.id || user._id || 'anonymous';
+    }
+  } catch (error) {
+    console.error('Error parsing user data:', error);
+  }
+  return 'anonymous';
+};
+
+// Helper function to get storage key with user ID
+const getStorageKey = (): string => {
+  const userId = getCurrentUserId();
+  return `queryLogs_${userId}`;
+};
+
+export const useQueryLogs = (timeRange: "day" | "week" | "month" = "day") => {
   const [queryLogs, setQueryLogs] = useState<QueryLog[]>(() => {
     if (!isBrowser) return [];
     
-    const saved = localStorage.getItem('queryLogs');
+    const storageKey = getStorageKey();
+    const saved = localStorage.getItem(storageKey);
     return saved ? JSON.parse(saved).map((log: any) => ({
       ...log,
       timestamp: new Date(log.timestamp)
@@ -44,13 +68,16 @@ export const useQueryLogs = () => {
   useEffect(() => {
     if (!isBrowser) return;
     
-    localStorage.setItem('queryLogs', JSON.stringify(queryLogs));
+    const storageKey = getStorageKey();
+    localStorage.setItem(storageKey, JSON.stringify(queryLogs));
   }, [queryLogs]);
 
   const addQueryLog = useCallback((log: Omit<QueryLog, 'id'>) => {
+    const userId = getCurrentUserId();
     const newLog: QueryLog = {
       ...log,
-      id: `log-${Date.now()}`
+      id: `log-${Date.now()}`,
+      userId: userId
     };
     setQueryLogs(prev => [...prev, newLog]);
   }, []);
@@ -65,11 +92,16 @@ export const useQueryLogs = () => {
 
   // Calculate stats based on query logs and time range
   useEffect(() => {
-    // Filter logs based on time range
+    // Filter logs based on time range and current user
     const now = new Date()
-    const timeRangeMs = "day" === "day" ? 86400000 : "week" === "week" ? 604800000 : 2592000000 // month
+    const timeRangeMs = timeRange === "day" ? 86400000 : timeRange === "week" ? 604800000 : 2592000000 // month
+    const currentUserId = getCurrentUserId();
 
-    const filteredLogs = queryLogs.filter((log) => now.getTime() - log.timestamp.getTime() < timeRangeMs)
+    const filteredLogs = queryLogs.filter((log) => {
+      const isWithinTimeRange = now.getTime() - log.timestamp.getTime() < timeRangeMs;
+      const isCurrentUser = log.userId === currentUserId || !log.userId; // Include logs without userId for backward compatibility
+      return isWithinTimeRange && isCurrentUser;
+    });
 
     // Calculate query stats
     const total = filteredLogs.length
@@ -89,8 +121,8 @@ export const useQueryLogs = () => {
     })
 
     // Calculate sentiment stats
-    const positive = Math.round((filteredLogs.filter((log) => log.sentiment > 0.2).length / total) * 100) || 0
-    const negative = Math.round((filteredLogs.filter((log) => log.sentiment < -0.2).length / total) * 100) || 0
+    const positive = Math.round((filteredLogs.filter((log) => log.sentiment && log.sentiment > 0.2).length / total) * 100) || 0
+    const negative = Math.round((filteredLogs.filter((log) => log.sentiment && log.sentiment < -0.2).length / total) * 100) || 0
     const neutral = 100 - positive - negative
 
     setSentimentStats({
@@ -116,7 +148,7 @@ export const useQueryLogs = () => {
       .slice(0, 5)
 
     setPopularQueries(popular)
-  }, [queryLogs])
+  }, [queryLogs, timeRange])
 
   return {
     queryLogs,
