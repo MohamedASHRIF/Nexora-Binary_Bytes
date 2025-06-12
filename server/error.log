@@ -106,3 +106,5 @@
 {"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:49:29.464Z"}
 {"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-11T14:20:02.908Z"}
 {"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-11T14:20:02.912Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-12T01:59:03.743Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-12T01:59:03.749Z"}

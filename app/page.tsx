@@ -9,6 +9,12 @@ import { useGamePoints } from '../hooks/useGamePoints';
 import { useLanguage } from '../hooks/useLanguage';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import { MoodMap } from '../components/MoodMap';
+import { ChatWidoo } from '../components/ChatWidoo';
+
+
+
+
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('chat');
@@ -73,6 +79,7 @@ export default function Home() {
             )}
           </div>
         </div>
+        
 
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="flex border-b">
@@ -107,12 +114,14 @@ export default function Home() {
               Insights
             </button>
           </div>
+          
 
           <div className="h-[calc(100vh-250px)]">
             {activeTab === 'chat' && (
               <div className="h-full flex flex-col">
                 <div className="flex-1 overflow-hidden">
                   <ChatWindow />
+                  
                 </div>
                 <div className="flex-shrink-0">
                   <SuggestionBar onSuggestionClick={() => {}} />
@@ -127,6 +136,8 @@ export default function Home() {
             {activeTab === 'insights' && (
               <div className="h-full">
                 <DataInsights />
+                <MoodMap/>
+                <ChatWidoo/>
               </div>
             )}
           </div>
