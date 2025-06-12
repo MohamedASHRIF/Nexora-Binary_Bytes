@@ -126,6 +126,14 @@ JWT_EXPIRES_IN=90d
 PORT=5000
 FRONTEND_URL=http://localhost:3000
 
+## Test Users
+
+You can use the following demo account to log in and test the application:
+
+| Role  | Email                   | Password   |
+|-------|-------------------------|------------|
+| Admin | ashrifnexora@gmail.com  | ashrif123  |
+
 ## Team
 
 - **Mohamed Ashrif** – Full Stack Developer & Project Lead
