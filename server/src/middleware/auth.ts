@@ -36,6 +36,13 @@ export const protect = async (req: Request, res: Response, next: NextFunction) =
       return next(new AppError('User no longer exists', 401));
     }
 
+    console.log('Auth middleware - User found:', { 
+      id: user._id, 
+      role: user.role, 
+      degree: user.degree,
+      email: user.email 
+    });
+
     // 4) Grant access
     req.user = user;
     next();

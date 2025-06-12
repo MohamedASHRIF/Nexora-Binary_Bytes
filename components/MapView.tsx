@@ -52,7 +52,29 @@ const containerStyle = {
   height: '100%'
 };
 
-export const MapView: React.FC = () => {
+interface LocationData {
+  id: string;
+  name: string;
+  position: {
+    lat: number;
+    lng: number;
+  };
+  description: string;
+  type?: string;
+  category?: string;
+}
+
+interface MapViewProps {
+  highlightedLocation?: LocationData | null;
+  center?: { lat: number; lng: number };
+  zoom?: number;
+}
+
+export const MapView: React.FC<MapViewProps> = ({ 
+  highlightedLocation = null, 
+  center = UNIVERSITY_CENTER, 
+  zoom = 17 
+}) => {
   const [selectedLocation, setSelectedLocation] = useState<typeof LOCATIONS[0] | null>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [apiError, setApiError] = useState<string | null>(null);
@@ -69,14 +91,18 @@ export const MapView: React.FC = () => {
 
   const onLoad = useCallback((map: google.maps.Map) => {
     setMap(map);
-    const searchBox = new google.maps.places.SearchBox(
-      document.getElementById('search-input') as HTMLInputElement
-    );
-    searchBoxRef.current = searchBox;
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(
-      document.getElementById('search-container') as HTMLElement
-    );
-  }, []);
+    
+    // Only add search functionality if not in highlighted location mode
+    if (!highlightedLocation) {
+      const searchBox = new google.maps.places.SearchBox(
+        document.getElementById('search-input') as HTMLInputElement
+      );
+      searchBoxRef.current = searchBox;
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(
+        document.getElementById('search-container') as HTMLElement
+      );
+    }
+  }, [highlightedLocation]);
 
   const onUnmount = useCallback(() => {
     setMap(null);
@@ -120,6 +146,48 @@ export const MapView: React.FC = () => {
     );
   }, [map]);
 
+  // Auto-select highlighted location when component mounts
+  React.useEffect(() => {
+    if (highlightedLocation && map) {
+      setSelectedLocation({
+        id: parseInt(highlightedLocation.id),
+        name: highlightedLocation.name,
+        position: highlightedLocation.position,
+        description: highlightedLocation.description
+      });
+      // Temporarily disable directions to avoid API error
+      // getDirections(highlightedLocation.position);
+    } else {
+      // Check for highlighted location from localStorage (from chatbot redirect)
+      const storedLocation = localStorage.getItem('highlightedLocation');
+      if (storedLocation && map) {
+        try {
+          const locationData = JSON.parse(storedLocation);
+          console.log('Found highlighted location in localStorage:', locationData);
+          
+          // Find the location in our hardcoded locations
+          const foundLocation = LOCATIONS.find(loc => 
+            loc.name.toLowerCase().includes(locationData.name.toLowerCase()) ||
+            locationData.name.toLowerCase().includes(loc.name.toLowerCase())
+          );
+          
+          if (foundLocation) {
+            console.log('Highlighting location:', foundLocation.name);
+            setSelectedLocation(foundLocation);
+            // Temporarily disable directions to avoid API error
+            // getDirections(foundLocation.position);
+            
+            // Clear the stored location after using it
+            localStorage.removeItem('highlightedLocation');
+          }
+        } catch (error) {
+          console.error('Error parsing stored location:', error);
+          localStorage.removeItem('highlightedLocation');
+        }
+      }
+    }
+  }, [highlightedLocation, map]);
+
   if (loadError) {
     return (
       <div className="w-full h-full flex items-center justify-center">
@@ -157,29 +225,31 @@ export const MapView: React.FC = () => {
 
   return (
     <div className="relative w-full h-full">
-      <div id="search-container" className="absolute top-4 left-4 z-10">
-        <div className="bg-white p-4 rounded-lg shadow-lg">
-          <input
-            id="search-input"
-            type="text"
-            placeholder="Search locations..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-          />
-          <button
-            onClick={handleSearch}
-            className="mt-2 w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600"
-          >
-            Search
-          </button>
+      {!highlightedLocation && (
+        <div id="search-container" className="absolute top-4 left-4 z-10">
+          <div className="bg-white p-4 rounded-lg shadow-lg">
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Search locations..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+            />
+            <button
+              onClick={handleSearch}
+              className="mt-2 w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600"
+            >
+              Search
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={UNIVERSITY_CENTER}
-        zoom={17}
+        center={center}
+        zoom={zoom}
         onLoad={onLoad}
         onUnmount={onUnmount}
         options={{
@@ -203,6 +273,16 @@ export const MapView: React.FC = () => {
               setSelectedLocation(location);
               getDirections(location.position);
             }}
+            icon={highlightedLocation && highlightedLocation.name === location.name ? {
+              url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+                <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="20" cy="20" r="18" fill="#FF4444" stroke="#FFFFFF" stroke-width="3"/>
+                  <circle cx="20" cy="20" r="8" fill="#FFFFFF"/>
+                </svg>
+              `),
+              scaledSize: new google.maps.Size(40, 40),
+              anchor: new google.maps.Point(20, 20)
+            } : undefined}
           />
         ))}
 
@@ -217,12 +297,13 @@ export const MapView: React.FC = () => {
             <div className="p-2">
               <h3 className="font-semibold text-lg">{selectedLocation.name}</h3>
               <p className="text-gray-600">{selectedLocation.description}</p>
-              <button
+              {/* Temporarily hide directions button to avoid API error */}
+              {/* <button
                 onClick={() => getDirections(selectedLocation.position)}
                 className="mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
               >
                 Get Directions
-              </button>
+              </button> */}
             </div>
           </InfoWindow>
         )}
@@ -230,12 +311,14 @@ export const MapView: React.FC = () => {
         {directions && <DirectionsRenderer directions={directions} />}
       </GoogleMap>
 
-      <div className="absolute top-4 right-4 bg-white p-4 rounded-lg shadow-lg">
-        <h2 className="text-lg font-semibold mb-2">University of Moratuwa</h2>
-        <p className="text-sm text-gray-600">
-          Click on markers to see location details and get directions
-        </p>
-      </div>
+      {!highlightedLocation && (
+        <div className="absolute top-4 right-4 bg-white p-4 rounded-lg shadow-lg">
+          <h2 className="text-lg font-semibold mb-2">University of Moratuwa</h2>
+          <p className="text-sm text-gray-600">
+            Click on markers to see location details and get directions
+          </p>
+        </div>
+      )}
     </div>
   );
 }; 

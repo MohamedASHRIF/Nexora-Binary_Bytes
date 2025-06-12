@@ -1,14 +1,29 @@
 import { useState, useCallback, useRef } from 'react';
+import { useLanguage } from './useLanguage';
 
 export const useVoiceInput = () => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const recognitionRef = useRef<any>(null);
+  const { language, translate } = useLanguage();
+
+  // Language codes for speech recognition
+  const getLanguageCode = (lang: string) => {
+    switch (lang) {
+      case 'si':
+        return 'si-LK'; // Sinhala (Sri Lanka)
+      case 'ta':
+        return 'ta-IN'; // Tamil (India)
+      case 'en':
+      default:
+        return 'en-US'; // English (US)
+    }
+  };
 
   const startListening = useCallback(() => {
     try {
       if (!('webkitSpeechRecognition' in window)) {
-        alert('Voice input is not supported in your browser. Please use Chrome.');
+        alert(translate('voice_not_supported'));
         return;
       }
 
@@ -26,7 +41,7 @@ export const useVoiceInput = () => {
       
       recognition.continuous = true;
       recognition.interimResults = true;
-      recognition.lang = 'en-US'; // Set default language
+      recognition.lang = getLanguageCode(language);
 
       recognition.onstart = () => {
         setIsListening(true);
@@ -42,7 +57,11 @@ export const useVoiceInput = () => {
       recognition.onerror = (event: any) => {
         console.error('Speech recognition error:', event.error);
         setIsListening(false);
-        // Don't throw error, just log it
+        
+        // Only show alert for critical errors
+        if (event.error === 'not-allowed') {
+          alert(translate('voice_error'));
+        }
       };
 
       recognition.onend = () => {
@@ -53,25 +72,31 @@ export const useVoiceInput = () => {
     } catch (error) {
       console.error('Error starting speech recognition:', error);
       setIsListening(false);
+      alert(translate('voice_start_error'));
     }
-  }, []);
+  }, [language, translate]);
 
   const stopListening = useCallback(() => {
-    try {
-      if (recognitionRef.current) {
+    if (recognitionRef.current) {
+      try {
         recognitionRef.current.stop();
+      } catch (error) {
+        console.error('Error stopping speech recognition:', error);
       }
-    } catch (error) {
-      console.error('Error stopping speech recognition:', error);
-    } finally {
-      setIsListening(false);
     }
+    setIsListening(false);
+  }, []);
+
+  const clearTranscript = useCallback(() => {
+    setTranscript('');
   }, []);
 
   return {
     isListening,
+    transcript,
     startListening,
     stopListening,
-    transcript,
+    clearTranscript,
+    language
   };
 }; 

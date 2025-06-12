@@ -41,6 +41,8 @@ export function ChatWidoo() {
     setInput("");
   };
 
+  const token = localStorage.getItem('token');
+
   return (
     <div className="p-4 bg-white rounded shadow">
       <h2 className="text-lg font-semibold mb-2">Chat</h2>

@@ -2,29 +2,30 @@ import mongoose from 'mongoose';
 
 export interface IBusRoute {
   route: string;
-  schedule: string[];
+  schedule: string;
   duration: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
-const busRouteSchema = new mongoose.Schema<IBusRoute>({
+const busRouteSchema = new mongoose.Schema({
   route: {
     type: String,
     required: [true, 'Route name is required'],
     trim: true
   },
-  schedule: [{
+  schedule: {
     type: String,
-    required: [true, 'Schedule times are required']
-  }],
+    required: [true, 'Schedule is required'],
+    trim: true
+  },
   duration: {
     type: String,
-    required: [true, 'Route duration is required'],
+    required: [true, 'Duration is required'],
     trim: true
   }
 }, {
   timestamps: true
 });
 
-export const BusRoute = mongoose.model<IBusRoute>('BusRoute', busRouteSchema); 
+export const BusRoute = mongoose.model('BusRoute', busRouteSchema); 

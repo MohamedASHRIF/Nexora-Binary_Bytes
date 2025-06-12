@@ -1,5 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 export interface IUser extends Document {
   email: string;
@@ -9,9 +10,11 @@ export interface IUser extends Document {
   points: number;
   badges: string[];
   language: 'en' | 'si' | 'ta';
+  degree?: 'IT' | 'AI' | 'Design';
   createdAt: Date;
   updatedAt: Date;
   comparePassword(candidatePassword: string): Promise<boolean>;
+  generateAuthToken: () => string;
 }
 
 const userSchema = new Schema<IUser>({
@@ -49,6 +52,22 @@ const userSchema = new Schema<IUser>({
     type: String,
     enum: ['en', 'si', 'ta'],
     default: 'en'
+  },
+  degree: {
+    type: String,
+    enum: ['IT', 'AI', 'Design'],
+    required: function(this: IUser) {
+      return this.role === 'student';
+    },
+    validate: {
+      validator: function(this: IUser, value: string | undefined) {
+        if (this.role === 'student') {
+          return value !== undefined && ['IT', 'AI', 'Design'].includes(value);
+        }
+        return true;
+      },
+      message: 'Degree is required for students and must be one of: IT, AI, Design'
+    }
   }
 }, {
   timestamps: true

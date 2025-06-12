@@ -147,17 +147,110 @@ export const useChatbot = () => {
     };
   }, []);
 
-  // Initialize with a welcome message
+  // Update suggestions based on language
   useEffect(() => {
-    setMessages([
-      {
-        text: "Hello! I'm your campus assistant. How can I help you today?",
-        isUser: false,
-        timestamp: new Date(),
-        isTampered: false
+    const languageSuggestions = {
+      en: [
+        "What's my class schedule?",
+        "When is the next bus?",
+        "What's on the cafeteria menu today?",
+        "Any events happening today?",
+        "Where is the library?",
+      ],
+      si: [
+        "මගේ පන්ති කාලසටහන කුමක්ද?",
+        "ඊළඟ බස් එක කවදාද?",
+        "අද කෑමෝටුවේ මෙනුව කුමක්ද?",
+        "අද සිදුවන සිදුවීම් තිබේද?",
+        "පුස්තකාලය කොහෙද?",
+      ],
+      ta: [
+        "என் வகுப்பு அட்டவணை என்ன?",
+        "அடுத்த பேருந்து எப்போது?",
+        "இன்று உணவக மெனுவில் என்ன இருக்கிறது?",
+        "இன்று நடக்கும் நிகழ்வுகள் உள்ளதா?",
+        "நூலகம் எங்கே?",
+      ]
+    };
+    
+    setSuggestions(languageSuggestions[language] || languageSuggestions.en);
+  }, [language]);
+
+  // Load chat history when component mounts
+  useEffect(() => {
+    const loadChatHistory = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          // If no token, just show welcome message
+          setMessages([
+            {
+              text: translate('welcome'),
+              isUser: false,
+              timestamp: new Date(),
+              isTampered: false
+            }
+          ]);
+          return;
+        }
+
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+        const response = await fetch(`${apiUrl}/chat/history`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.data.messages && data.data.messages.length > 0) {
+            // Convert server messages to local format
+            const formattedMessages: Message[] = data.data.messages.map((msg: any) => ({
+              text: msg.text,
+              isUser: msg.isUser,
+              timestamp: new Date(msg.timestamp),
+              isTampered: false
+            }));
+            setMessages(formattedMessages);
+          } else {
+            // No history, show welcome message
+            setMessages([
+              {
+                text: translate('welcome'),
+                isUser: false,
+                timestamp: new Date(),
+                isTampered: false
+              }
+            ]);
+          }
+        } else {
+          // Error loading history, show welcome message
+          setMessages([
+            {
+              text: translate('welcome'),
+              isUser: false,
+              timestamp: new Date(),
+              isTampered: false
+            }
+          ]);
+        }
+      } catch (error) {
+        console.error('Error loading chat history:', error);
+        // Error loading history, show welcome message
+        setMessages([
+          {
+            text: translate('welcome'),
+            isUser: false,
+            timestamp: new Date(),
+            isTampered: false
+          }
+        ]);
       }
-    ])
-  }, [])
+    };
+
+    loadChatHistory();
+  }, [translate]);
 
   // Helper function to get random response
   const getRandomResponse = (responses: string[]) => {
@@ -260,132 +353,16 @@ export const useChatbot = () => {
 
   // Modify the processMessage function to handle offline mode
   const processMessage = useCallback(async (text: string): Promise<Message> => {
+    const startTime = Date.now();
     try {
-      const lowerText = text.toLowerCase().trim();
-      let responseText = "";
-      let intent = detectIntent(text);
-      const timeRef = extractTimeReference(lowerText);
+      let responseText = '';
 
-      // Add offline mode message
+      // Check if we're offline
       if (isOffline) {
-        responseText = "You're currently offline. I'll try to use cached data, but some features may be limited.";
-      }
-
-      // Handle compound intents
-      if (intent.includes("_")) {
-        const [primary, secondary] = intent.split("_")
-        if (primary === "bus" && secondary === "schedule") {
-          // Handle bus schedule query
-          const busData = await fetchDataWithCache('bus', getBusData)
-          const nextBuses = busData.nextBuses
-            .filter((b: BusItem) => !timeRef || b.time.includes(timeRef))
-            .slice(0, 5)
-
-          if (nextBuses.length === 0) {
-            responseText = "I couldn't find any bus schedules for the requested time. Here are the main bus routes available:\n\n" +
-              busData.routes.map((route: { name: string; description: string }) => `- ${route.name}: ${route.description}`).join("\n") +
-              "\n\nWould you like to know the schedule for a specific route?"
-          } else {
-            const routeGroups = nextBuses.reduce((groups: { [key: string]: BusItem[] }, bus: BusItem) => {
-              if (!groups[bus.route]) {
-                groups[bus.route] = []
-              }
-              groups[bus.route].push(bus)
-              return groups
-            }, {})
-
-            responseText = "Here are the upcoming bus schedules:\n\n"
-            for (const [route, buses] of Object.entries(routeGroups) as [string, BusItem[]][]) {
-              responseText += `${route}:\n`
-              for (const bus of buses) {
-                responseText += `- ${bus.time} → ${bus.destination}\n`
-              }
-              responseText += "\n"
-            }
-            responseText += "\nWould you like to know more about a specific route or see the full schedule?"
-          }
-        }
+        responseText = translate('offline');
       } else {
-        // Handle single intents
-        switch (intent) {
-          case "greeting":
-            responseText = getRandomResponse(greetingResponses)
-            break
-          case "thanks":
-            responseText = getRandomResponse(thankYouResponses)
-            break
-          case "goodbye":
-            responseText = getRandomResponse(goodbyeResponses)
-            break
-          case "schedule":
-            const scheduleData = await fetchDataWithCache('schedule', getScheduleData)
-            if (scheduleData.classes.length === 0) {
-              responseText = "I couldn't find any classes scheduled for the requested time."
-            } else {
-              responseText = formatSchedule(scheduleData.classes)
-            }
-            break
-          case "bus":
-            const busData = await fetchDataWithCache('bus', getBusData)
-            const nextBuses = busData.nextBuses
-              .filter((b: BusItem) => !timeRef || b.time.includes(timeRef))
-              .slice(0, 5)
-
-            if (nextBuses.length === 0) {
-              responseText = "I couldn't find any bus schedules for the requested time."
-            } else {
-              responseText = "Here are the next buses:\n\n" +
-                nextBuses.map((bus: BusItem) => `- ${bus.time}: ${bus.route} to ${bus.destination}`).join("\n")
-            }
-            break
-          case "food":
-            const menuData = await getCafeteriaData()
-            const menu = timeRef === "tomorrow" ? menuData.tomorrow : menuData.today
-            if (!menu || Object.keys(menu).length === 0) {
-              responseText = "Menu information is not available for the requested time."
-            } else {
-              responseText = `Today's cafeteria menu:\n\n${Object.entries(menu)
-                .map(([meal, items]) => `${meal}: ${Array.isArray(items) ? items.join(", ") : items}`)
-                .join("\n\n")}`
-            }
-            break
-          case "event":
-            const eventData = await getEventData()
-            if (eventData.upcoming.length === 0) {
-              responseText = "No upcoming events found for the requested time."
-            } else {
-              responseText = `Upcoming events:\n\n${eventData.upcoming
-                .map((event: EventType) => `- ${event.name} (${event.date} at ${event.time})\n  Location: ${event.location}`)
-                .join("\n\n")}`
-            }
-            break
-          case "location":
-            responseText = "I can help you find locations on campus. Would you like to see the campus map or get directions to a specific place?"
-            break
-          case "help":
-            responseText = "I can help you with:\n" +
-              "- Class schedules and timetables\n" +
-              "- Bus routes and schedules\n" +
-              "- Cafeteria menus and food options\n" +
-              "- Campus events and activities\n" +
-              "- Location directions and maps\n\n" +
-              "What would you like to know more about?"
-            break
-          default:
-            // Try to find a matching FAQ
-            const faqData = await getFAQData()
-            const matchedFaq = faqData.find((faq: FAQItem) => lowerText.includes(faq.question.toLowerCase()))
-            if (matchedFaq) {
-              responseText = matchedFaq.answer
-            } else {
-              responseText = "I'm not sure I understand. Could you please rephrase your question or try asking about:\n" +
-                "- Class schedules\n" +
-                "- Bus routes\n" +
-                "- Cafeteria menu\n" +
-                "- Campus events\n" +
-                "- Location directions"
-            }
-        }
+        // Process the message and get response
+        responseText = translate('unknown');
       }
 
       // Update suggestions based on the current context
@@ -399,70 +376,129 @@ export const useChatbot = () => {
         lastTime: timeRef
       }))
 
+      // Log the query
+      addQueryLog({
+        query: text,
+        timestamp: new Date(),
+        sentiment: 0,
+        responseTime: Date.now() - startTime
+      });
+
       return {
         text: responseText,
         isUser: false,
         timestamp: new Date(),
         isTampered: false
-      }
+      };
     } catch (error) {
-      console.error('Error processing message:', error)
+      console.error('Error processing message:', error);
       return {
-        text: isOffline 
-          ? "I'm having trouble accessing the data while offline. Please try again when you're back online."
-          : "Sorry, I encountered an error. Please try again.",
+        text: translate('error'),
         isUser: false,
         timestamp: new Date(),
         isTampered: false
-      }
+      };
     }
-  }, [isOffline])
+  }, [isOffline, translate, addQueryLog]);
 
   const sendMessage = async (text: string) => {
-    try {
-      setIsProcessing(true)
+    if (!text.trim()) return;
 
-      // Add user message
-      const userMessage: Message = {
-        text,
-        isUser: true,
+    const userMessage = {
+      text,
+      isUser: true,
+      timestamp: new Date(),
+      isTampered: false
+    };
+    setMessages(prev => [...prev, userMessage]);
+
+    // Make API call to chat endpoint
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No token found');
+      return;
+    }
+
+    try {
+      const startTime = Date.now();
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ message: text })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      const data = await response.json();
+      const botMessage = {
+        text: data.message,
+        isUser: false,
         timestamp: new Date(),
         isTampered: false
-      }
-      setMessages(prev => [...prev, userMessage])
-
-      // Use local processing only
-      const startTime = Date.now()
-      const response = await processMessage(text)
-      setMessages(prev => [...prev, response])
+      };
+      setMessages(prev => [...prev, botMessage]);
 
       // Analyze sentiment and log the query
-      const sentimentScore = analyzeSentiment(text)
+      const sentimentScore = analyzeSentiment(text);
       addQueryLog({
         query: text,
         timestamp: new Date(),
         sentiment: sentimentScore,
         responseTime: Date.now() - startTime
-      })
+      });
+
+      return {
+        text: data.message,
+        isUser: false,
+        timestamp: new Date(),
+        isTampered: false
+      };
     } catch (error) {
-      console.error('Error sending message:', error)
-      const errorMessage: Message = {
-        text: "I'm sorry, I encountered an error while processing your request. Please try again.",
+      console.error('Error sending message:', error);
+      const errorMessage = {
+        text: translate('error'),
+        isUser: false,
+        timestamp: new Date(),
+        isTampered: false
+      };
+      setMessages(prev => [...prev, errorMessage]);
+      return errorMessage;
+    }
+  };
+
+  // Clear chat history
+  const clearChat = useCallback(async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+        await fetch(`${apiUrl}/chat/clear`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Error clearing server chat history:', error);
+    }
+
+    // Clear local messages and context
+    setMessages([
+      {
+        text: translate('welcome'),
         isUser: false,
         timestamp: new Date(),
         isTampered: false
       }
-      setMessages(prev => [...prev, errorMessage])
-    } finally {
-      setIsProcessing(false)
-    }
-  }
-
-  // Clear chat history
-  const clearChat = useCallback(() => {
-    setMessages([])
-    setContext({})
-  }, [])
+    ]);
+    setContext({});
+  }, [translate]);
 
   return {
     messages,

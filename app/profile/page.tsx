@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import { useGamePoints } from '../../hooks/useGamePoints';
 
 interface User {
   _id: string;
@@ -18,6 +19,7 @@ export default function ProfilePage() {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
+  const { points } = useGamePoints();
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -104,6 +106,12 @@ export default function ProfilePage() {
               >
                 Logout
               </button>
+            </div>
+            <div className="mt-6 flex items-center gap-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg px-6 py-3 flex items-center gap-2">
+                <span className="text-lg font-semibold text-blue-700">Points:</span>
+                <span className="text-2xl font-bold text-blue-600" suppressHydrationWarning>{points}</span>
+              </div>
             </div>
           </div>
 

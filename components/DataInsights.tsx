@@ -6,11 +6,31 @@ import { ChatWidoo } from './ChatWidoo';
 
 type InsightView = 'overview' | 'moodmap' | 'chatmap';
 
+interface QueryLog {
+  query: string;
+  sentiment?: number;
+  timestamp?: string;
+}
+
+interface Stats {
+  totalQueries: number;
+  queriesByType: {
+    schedule: number;
+    bus: number;
+    menu: number;
+    events: number;
+    other: number;
+  };
+  averageSentiment: number;
+  sentimentTrend: number[];
+  peakHours: { hour: number; count: number }[];
+}
+
 export const DataInsights: React.FC = () => {
   const { queryLogs } = useQueryLogs();
-  const [selectedView, setSelectedView] = useState<InsightView>('overview');
 
-  const [stats, setStats] = useState({
+  const [selectedView, setSelectedView] = useState<InsightView>('overview');
+  const [stats, setStats] = useState<Stats>({
     totalQueries: 0,
     queriesByType: {
       schedule: 0,
@@ -20,31 +40,42 @@ export const DataInsights: React.FC = () => {
       other: 0,
     },
     averageSentiment: 0,
-    sentimentTrend: [] as number[],
-    peakHours: [] as { hour: number; count: number }[],
+    sentimentTrend: [],
+    peakHours: [],
   });
 
-  const computedStats = useMemo(() => {
+  const computedStats = useMemo<Stats>(() => {
     if (!queryLogs || queryLogs.length === 0) return stats;
 
     const totalQueries = queryLogs.length;
+
+    // Count queries by type with regex matching (case-insensitive)
     const queriesByType = {
       schedule: queryLogs.filter(log => /schedule/i.test(log.query)).length,
-      bus: queryLogs.filter(log => /bus|transport|shuttle|route|stop|station|transit/i.test(log.query)).length,
+      bus: queryLogs.filter(log =>
+        /bus|transport|shuttle|route|stop|station|transit/i.test(log.query)
+      ).length,
       menu: queryLogs.filter(log => /menu|food/i.test(log.query)).length,
       events: queryLogs.filter(log => /event/i.test(log.query)).length,
       other: queryLogs.filter(
         log =>
           log.query &&
-          !/schedule|bus|transport|shuttle|route|stop|station|transit|menu|food|event/i.test(log.query)
+          !/schedule|bus|transport|shuttle|route|stop|station|transit|menu|food|event/i.test(
+            log.query
+          )
       ).length,
     };
 
+    // Calculate average sentiment safely
     const averageSentiment =
-      queryLogs.reduce((sum, log) => sum + (log.sentiment || 0), 0) / totalQueries;
+      queryLogs.reduce((sum, log) => sum + (log.sentiment ?? 0), 0) / totalQueries;
 
-    const sentimentTrend = queryLogs.slice(-7).map(log => log.sentiment || 0);
+    // Get last 7 sentiments for trend
+    const sentimentTrend = queryLogs
+      .slice(-7)
+      .map(log => log.sentiment ?? 0);
 
+    // Count queries per hour
     const hourCounts = new Array(24).fill(0);
     queryLogs.forEach(log => {
       if (log.timestamp) {
@@ -53,6 +84,7 @@ export const DataInsights: React.FC = () => {
       }
     });
 
+    // Get top 5 peak hours sorted descending
     const peakHours = hourCounts
       .map((count, hour) => ({ hour, count }))
       .sort((a, b) => b.count - a.count)
@@ -65,18 +97,20 @@ export const DataInsights: React.FC = () => {
       sentimentTrend,
       peakHours,
     };
-  }, [queryLogs]);
+  }, [queryLogs, stats]);
 
   useEffect(() => {
     setStats(computedStats);
   }, [computedStats]);
 
+  // Helper to assign color classes based on sentiment
   const getSentimentColor = (sentiment: number) => {
     if (sentiment > 0.5) return 'text-green-600';
     if (sentiment < -0.5) return 'text-red-600';
     return 'text-yellow-600';
   };
 
+  // Helper to display emoji based on sentiment
   const getSentimentEmoji = (sentiment: number) => {
     if (sentiment > 0.5) return '😊';
     if (sentiment < -0.5) return '😢';
@@ -91,6 +125,7 @@ export const DataInsights: React.FC = () => {
           className="border border-gray-300 rounded px-3 py-1 text-gray-700"
           value={selectedView}
           onChange={(e) => setSelectedView(e.target.value as InsightView)}
+          aria-label="Select Insight View"
         >
           <option value="overview">Overview</option>
           <option value="moodmap">MoodMap</option>
@@ -100,6 +135,7 @@ export const DataInsights: React.FC = () => {
 
       {selectedView === 'overview' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Query Distribution */}
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-3">Query Distribution</h3>
             <div className="space-y-2">
@@ -112,6 +148,7 @@ export const DataInsights: React.FC = () => {
             </div>
           </div>
 
+          {/* Sentiment Analysis */}
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-3">Sentiment Analysis</h3>
             <div className="space-y-4">
@@ -122,13 +159,16 @@ export const DataInsights: React.FC = () => {
                 </span>
               </div>
               <div>
-                <h4 className="text-sm font-medium text-gray-600 mb-2">Sentiment Trend</h4>
+                <h4 className="text-sm font-medium text-gray-600 mb-2">Sentiment Trend (Last 7)</h4>
                 <div className="flex space-x-2">
                   {stats.sentimentTrend.map((sentiment, index) => (
                     <div
                       key={index}
-                      className={`w-8 h-8 rounded-full flex items-center justify-center ${getSentimentColor(sentiment)}`}
+                      className={`w-8 h-8 rounded-full flex items-center justify-center ${getSentimentColor(
+                        sentiment
+                      )}`}
                       title={`Sentiment: ${sentiment.toFixed(1)}`}
+                      aria-label={`Sentiment for day ${index + 1}: ${sentiment.toFixed(1)}`}
                     >
                       {getSentimentEmoji(sentiment)}
                     </div>
@@ -138,6 +178,7 @@ export const DataInsights: React.FC = () => {
             </div>
           </div>
 
+          {/* Peak Usage Hours */}
           <div className="md:col-span-2">
             <h3 className="text-lg font-semibold text-gray-800 mb-3">Peak Usage Hours</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">

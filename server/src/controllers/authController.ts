@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { User } from '../models/User';
 import { catchAsync } from '../utils/catchAsync';
-import AppError from '../utils/appError';
+import { AppError } from '../middleware/errorHandler';
 import jwt from 'jsonwebtoken';
 import { logger } from '../utils/logger';
 
@@ -16,7 +16,9 @@ interface AuthenticatedRequest extends Request {
 }
 
 export const signup = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password, role, degree } = req.body;
+
+  console.log('Signup request:', { name, email, role, degree });
 
   // Check if user already exists
   const existingUser = await User.findOne({ email });
@@ -28,12 +30,19 @@ export const signup = catchAsync(async (req: Request, res: Response, next: NextF
   }
 
   // Create new user
-  const user = await User.create({
+  const userData = {
     name,
     email,
     password,
-    role: role || 'student'
-  });
+    role: role || 'student',
+    degree: degree || undefined
+  };
+
+  console.log('Creating user with data:', userData);
+
+  const user = await User.create(userData);
+
+  console.log('User created:', { id: user._id, role: user.role, degree: user.degree });
 
   // Generate token
   const token = signToken(String(user._id));
@@ -43,8 +52,11 @@ export const signup = catchAsync(async (req: Request, res: Response, next: NextF
     id: user._id,
     name: user.name,
     email: user.email,
-    role: user.role
+    role: user.role,
+    degree: user.degree
   };
+
+  console.log('User response:', userResponse);
 
   res.status(201).json({
     status: 'success',
@@ -67,6 +79,8 @@ export const login = catchAsync(async (req: Request, res: Response, next: NextFu
     return next(new AppError('Incorrect email or password', 401));
   }
 
+  console.log('User found during login:', { id: user._id, role: user.role, degree: user.degree });
+
   // Generate token
   const token = signToken(String(user._id));
 
@@ -75,8 +89,11 @@ export const login = catchAsync(async (req: Request, res: Response, next: NextFu
     id: user._id,
     name: user.name,
     email: user.email,
-    role: user.role
+    role: user.role,
+    degree: user.degree
   };
+
+  console.log('Login response:', userResponse);
 
   res.status(200).json({
     status: 'success',
