@@ -127,11 +127,12 @@ FRONTEND_URL=http://localhost:3000
 
 ## Test Users
 
-You can use the following demo account to log in and test the application:
+You can use the following demo accounts to log in and test the application:
 
-| Role  | Email                   | Password   |
-|-------|-------------------------|------------|
-| Admin | ashrifnexora@gmail.com  | ashrif123  |
+| Role  | Email                | Password   |
+|-------|----------------------|------------|
+| Admin | admin@nexora.com     | admin123   |
+| User  | ashrif@nexora.com    | ashrif123  |
 
 ## Team
 
