@@ -3645,3 +3645,67 @@
 {"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-06-12T09:54:25.593Z","user":{"__v":0,"_id":"684a88e086f662b4855ce471","badges":[],"createdAt":"2025-06-12T07:59:28.162Z","degree":"AI","email":"nishmy@nexora.com","language":"en","name":"Nishmy","points":0,"role":"student","updatedAt":"2025-06-12T07:59:28.162Z"}}
 {"level":"info","message":"GET /users/insights","timestamp":"2025-06-12T09:54:32.345Z"}
 {"level":"info","message":"GET /users/insights","timestamp":"2025-06-12T09:54:32.550Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-12T09:59:32.216Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-12T09:59:33.463Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-12T10:00:57.923Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-12T10:01:04.813Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-12T10:01:14.500Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-12T10:01:14.509Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-12T10:01:14.516Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-12T10:01:14.521Z"}
+{"language":"en","level":"info","message":"Received chat message: Hello","timestamp":"2025-06-12T10:01:14.602Z","user":{"__v":0,"_id":"684aa55aefa57b78b195f507","badges":[],"createdAt":"2025-06-12T10:00:58.045Z","degree":"AI","email":"mohamed@nexora.com","language":"en","name":"Mohamed","points":0,"role":"student","updatedAt":"2025-06-12T10:00:58.045Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-12T10:01:14.713Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-12T10:01:14.718Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-12T10:01:14.729Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-12T10:01:20.290Z"}
+{"language":"en","level":"info","message":"Received chat message: Hi","timestamp":"2025-06-12T10:01:20.409Z","user":{"__v":0,"_id":"684aa55aefa57b78b195f507","badges":[],"createdAt":"2025-06-12T10:00:58.045Z","degree":"AI","email":"mohamed@nexora.com","language":"en","name":"Mohamed","points":0,"role":"student","updatedAt":"2025-06-12T10:00:58.045Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-12T10:01:30.662Z"}
+{"language":"en","level":"info","message":"Received chat message: Show me my classes","timestamp":"2025-06-12T10:01:30.758Z","user":{"__v":0,"_id":"684aa55aefa57b78b195f507","badges":[],"createdAt":"2025-06-12T10:00:58.045Z","degree":"AI","email":"mohamed@nexora.com","language":"en","name":"Mohamed","points":0,"role":"student","updatedAt":"2025-06-12T10:00:58.045Z"}}
+{"degree":"AI","level":"info","message":"User info:","role":"student","timestamp":"2025-06-12T10:01:30.854Z","userId":"684aa55aefa57b78b195f507"}
+{"count":2,"degree":"AI","level":"info","message":"Found schedules:","schedules":[{"className":"Software Science","degree":"AI"},{"className":"Foundation of ML","degree":"AI"}],"timestamp":"2025-06-12T10:01:30.975Z"}
+{"level":"info","message":"Filtered schedules:","relevant":1,"schedules":[{"className":"Foundation of ML","day":"Thursday","degree":"AI","startTime":"20:00"}],"timestamp":"2025-06-12T10:01:30.978Z","total":2}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-12T10:01:39.594Z"}
+{"language":"en","level":"info","message":"Received chat message: show me the bus routes","timestamp":"2025-06-12T10:01:39.697Z","user":{"__v":0,"_id":"684aa55aefa57b78b195f507","badges":[],"createdAt":"2025-06-12T10:00:58.045Z","degree":"AI","email":"mohamed@nexora.com","language":"en","name":"Mohamed","points":0,"role":"student","updatedAt":"2025-06-12T10:00:58.045Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-12T10:01:59.438Z"}
+{"language":"en","level":"info","message":"Received chat message: current or upcoming events","timestamp":"2025-06-12T10:01:59.546Z","user":{"__v":0,"_id":"684aa55aefa57b78b195f507","badges":[],"createdAt":"2025-06-12T10:00:58.045Z","degree":"AI","email":"mohamed@nexora.com","language":"en","name":"Mohamed","points":0,"role":"student","updatedAt":"2025-06-12T10:00:58.045Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-12T10:02:07.851Z"}
+{"language":"en","level":"info","message":"Received chat message: Im hungry","timestamp":"2025-06-12T10:02:07.957Z","user":{"__v":0,"_id":"684aa55aefa57b78b195f507","badges":[],"createdAt":"2025-06-12T10:00:58.045Z","degree":"AI","email":"mohamed@nexora.com","language":"en","name":"Mohamed","points":0,"role":"student","updatedAt":"2025-06-12T10:00:58.045Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-12T10:02:14.036Z"}
+{"language":"en","level":"info","message":"Received chat message: im tired","timestamp":"2025-06-12T10:02:14.131Z","user":{"__v":0,"_id":"684aa55aefa57b78b195f507","badges":[],"createdAt":"2025-06-12T10:00:58.045Z","degree":"AI","email":"mohamed@nexora.com","language":"en","name":"Mohamed","points":0,"role":"student","updatedAt":"2025-06-12T10:00:58.045Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-12T10:02:26.101Z"}
+{"language":"en","level":"info","message":"Received chat message: Where is IT Faculty","timestamp":"2025-06-12T10:02:26.196Z","user":{"__v":0,"_id":"684aa55aefa57b78b195f507","badges":[],"createdAt":"2025-06-12T10:00:58.045Z","degree":"AI","email":"mohamed@nexora.com","language":"en","name":"Mohamed","points":0,"role":"student","updatedAt":"2025-06-12T10:00:58.045Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-12T10:02:37.286Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-12T10:02:37.289Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-12T10:02:37.292Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-12T10:02:37.500Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-12T10:02:37.507Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-12T10:02:37.511Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-12T10:02:52.190Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-12T10:02:52.464Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-12T10:03:17.841Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-12T10:03:17.845Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-12T10:03:17.848Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-12T10:03:18.119Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-12T10:03:18.128Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-12T10:03:18.140Z"}
+{"level":"info","message":"DELETE /chat/clear","timestamp":"2025-06-12T10:03:22.336Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-12T10:03:31.179Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-12T10:03:31.183Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-12T10:03:31.186Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-12T10:03:31.369Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-12T10:03:31.373Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-12T10:03:31.391Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-12T10:03:38.365Z"}
+{"language":"en","level":"info","message":"Received chat message: show me the bus","timestamp":"2025-06-12T10:03:38.460Z","user":{"__v":0,"_id":"684aa55aefa57b78b195f507","badges":[],"createdAt":"2025-06-12T10:00:58.045Z","degree":"AI","email":"mohamed@nexora.com","language":"en","name":"Mohamed","points":0,"role":"student","updatedAt":"2025-06-12T10:00:58.045Z"}}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-12T10:03:47.896Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-12T10:03:48.116Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-12T10:03:56.039Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-12T10:03:57.417Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-12T10:03:57.624Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-12T10:03:57.630Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-12T10:03:57.837Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-12T10:03:57.842Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-12T10:03:58.035Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-12T10:03:58.040Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-12T10:03:58.228Z"}
+{"level":"info","message":"POST /schedules","timestamp":"2025-06-12T10:04:50.725Z"}
