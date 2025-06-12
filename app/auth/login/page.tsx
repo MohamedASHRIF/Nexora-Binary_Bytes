@@ -63,31 +63,30 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex pt-16">
+    <div className="h-screen flex">
       {/* Left Side - Quote/Image Section */}
-      <div className="w-1/2 bg-gradient-to-br from-[#0f172a] to-[#1e3a8a]
-      text-white flex items-center justify-center p-12">
-        <div className="text-left max-w-md">
-          <h2 className="text-4xl font-semibold mb-4">Welcome Back!</h2>
-          <p className="text-lg leading-relaxed">
+      <div className="w-1/2 bg-gradient-to-br from-[#0f172a] to-[#1e3a8a] text-white flex items-center justify-center p-8">
+        <div className="text-left max-w-sm">
+          <h2 className="text-3xl font-semibold mb-3">Welcome Back!</h2>
+          <p className="text-base leading-relaxed">
             Continue your journey with Nexora — your smart assistant for campus life.
           </p>
         </div>
       </div>
 
       <div className="w-1/2 flex items-center justify-center bg-white">
-        <div className="p-8 w-96">
-          <h1 className="text-2xl font-bold mb-6">Sign In</h1>
+        <div className="p-6 w-80">
+          <h1 className="text-2xl font-bold mb-4">Sign In</h1>
           
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <div className="bg-red-100 border border-red-400 text-red-700 px-3 py-2 rounded mb-3 text-sm">
               {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                 Email
               </label>
               <input
@@ -97,12 +96,12 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                 Password
               </label>
               <input
@@ -112,20 +111,20 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium mt-4"
             >
               {loading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
 
-          <p className="mt-4 text-center text-sm text-gray-600">
+          <p className="mt-3 text-center text-sm text-gray-600">
             Don't have an account?{' '}
             <Link href="/auth/signup" className="text-blue-500 hover:text-blue-600">
               Sign up

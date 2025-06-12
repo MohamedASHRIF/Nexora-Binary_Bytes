@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import OpenAI from 'openai';
 import { Chat } from '../models/Chat';
 import { User } from '../models/User';
 import { AppError } from '../middleware/errorHandler';
@@ -162,21 +161,6 @@ const detectLanguage = (message: string): string => {
   
   return 'en';
 };
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
-
-// System prompt for the chatbot
-const SYSTEM_PROMPT = `You are Nexora, a helpful campus assistant for NovaCore University. 
-Your role is to assist students, staff, and visitors with campus-related queries.
-You can help with:
-- Finding locations on campus
-- Providing information about facilities
-- Answering questions about university services
-- Giving directions
-- Sharing campus news and events
-Always be polite, professional, and accurate in your responses.`;
 
 // Simple sentiment analysis function
 const analyzeSentiment = (text: string): number => {
@@ -471,7 +455,7 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
         botResponse = getTranslation('error_fetching_events', detectedLanguage);
       }
     }
-    // For other messages, use enhanced fallback responses (OpenAI disabled)
+    // For other messages, use enhanced fallback responses
     else {
       console.log('Using enhanced fallback response system...');
       botResponse = getTranslation('fallback_response', detectedLanguage);

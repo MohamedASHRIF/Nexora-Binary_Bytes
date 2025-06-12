@@ -31,7 +31,6 @@ Nexora Campus Copilot is an intelligent AI-powered campus assistant designed to 
 - **Backend**: Node.js, Express.js, TypeScript, Socket.io
 - **Database**: MongoDB with Mongoose ODM
 - **Authentication**: JWT (JSON Web Tokens), bcryptjs
-- **AI Integration**: OpenAI API for natural language processing
 - **Maps**: Google Maps API for campus navigation
 - **State Management**: Zustand for client-side state
 - **UI Components**: Radix UI, Lucide React icons
@@ -46,7 +45,6 @@ Nexora Campus Copilot is an intelligent AI-powered campus assistant designed to 
 - Node.js (v18 or higher)
 - MongoDB (v6 or higher)
 - Google Maps API key
-- OpenAI API key
 
 ### Frontend Setup
 ```bash
@@ -78,7 +76,6 @@ cp .env.example .env
 # Edit .env with your configuration:
 # - MONGODB_URI
 # - JWT_SECRET
-# - OPENAI_API_KEY
 # - GOOGLE_MAPS_API_KEY
 
 # Run development server
@@ -111,7 +108,6 @@ NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/nexora-campus
 JWT_SECRET=your_jwt_secret_key
-OPENAI_API_KEY=your_openai_api_key
 GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 NODE_ENV=development
 ```
