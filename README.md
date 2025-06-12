@@ -2,13 +2,13 @@
 
 ## Project Overview
 
-Nexora Campus Copilot is an intelligent AI-powered campus assistant designed to enhance the university experience for students, staff, and administrators. The application provides real-time information about class schedules, bus timings, campus events, cafeteria menus, and interactive campus navigation. Built with modern web technologies, it offers a seamless, multilingual interface with voice interaction capabilities and personalized user experiences.
+Nexora Campus Copilot is a smart campus assistant designed to enhance the university experience for students, staff, and administrators. The application provides real-time information about class schedules, bus timings, campus events, cafeteria menus, and interactive campus navigation. Built with modern web technologies, it offers a seamless, multilingual interface with voice interaction capabilities and personalized user experiences.
 
 ## Features
 
 ### Core Features
 
-- **Intelligent Chat Interface**: AI-powered chatbot with natural language processing for campus-related queries
+- **Intelligent Chat Interface**: Rule-based chatbot with pattern matching for campus-related queries
 - **Real-time Class Schedules**: Dynamic class schedule management with instructor and location details
 - **Bus Route Management**: Live bus timing updates and route information for campus transportation
 - **Event Management**: Comprehensive event tracking and management system for campus activities
@@ -21,7 +21,7 @@ Nexora Campus Copilot is an intelligent AI-powered campus assistant designed to 
 ### Additional Features
 
 - **Chat History**: Persistent conversation history with user-specific storage and search functionality
-- **Daily Prompt Tracking**: Intelligent prompt history management with date-based organization
+- **Daily Prompt Tracking**: Prompt history management with date-based organization
 - **Admin Dashboard**: Comprehensive administrative interface for content management
 - **Real-time Notifications**: Socket.io integration for live updates and notifications
 - **Responsive Design**: Mobile-first approach with cross-device compatibility
