@@ -109,20 +109,22 @@ Create the following environment files:
 
 **Frontend (.env.local):**
 
-```
-NEXT_PUBLIC_API_URL=http://localhost:5000
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIzaSyCdvsWg1xTYr5VvR5-YiSkGmIMfLVX7lUU
-```
+
 
 **Server (.env):**
 
-```
+# Database Configuration
+# MONGODB_URI=mongodb://localhost:27017/nexora-campus
+MONGODB_URI=mongodb+srv://mohamedashrif325:ashrif123@cluster0.dbgfuuf.mongodb.net/nexora-campus
+
+# JWT Configuration
+JWT_SECRET=nexora-campus-secret-key-2024
+JWT_EXPIRES_IN=90d
+
+# Server Configuration
 PORT=5000
-MONGODB_URI=mongodb://localhost:27017/nexora-campus
-JWT_SECRET=your_jwt_secret_key
-GOOGLE_MAPS_API_KEY=AIzaSyCdvsWg1xTYr5VvR5-YiSkGmIMfLVX7lUU
-NODE_ENV=development
-```
+FRONTEND_URL=http://localhost:3000
 
 ## Team
 
