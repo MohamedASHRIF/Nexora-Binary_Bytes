@@ -115,7 +115,6 @@ NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIzaSyCdvsWg1xTYr5VvR5-YiSkGmIMfLVX7lUU
 **Server (.env):**
 
 # Database Configuration
-# MONGODB_URI=mongodb://localhost:27017/nexora-campus
 MONGODB_URI=mongodb+srv://mohamedashrif325:ashrif123@cluster0.dbgfuuf.mongodb.net/nexora-campus
 
 # JWT Configuration
