@@ -123,6 +123,10 @@ export const ChatInterface: React.FC = () => {
     // Log the query
     const startTime = Date.now();
     try {
+<<<<<<< HEAD
+      const response = await sendMessage(inputText);
+      const responseTime = Date.now() - startTime;
+=======
       console.log('Sending message to chatbot...');
       let response;
       try {
@@ -135,6 +139,7 @@ export const ChatInterface: React.FC = () => {
         console.error('Error in sendMessage call:', sendError);
         throw sendError;
       }
+>>>>>>> f9fcdfec8e609332b4288519f8d492777294fde2
       
       // Check for specific actions to award badges
       if (inputText.toLowerCase().includes('schedule')) {

@@ -54,6 +54,62 @@
 {"level":"error","message":"ValidationError: User validation failed: password: Path `password` (`ashrif`) is shorter than the minimum allowed length (8)., role: `user` is not a valid enum value for path `role`.\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-09T19:33:19.717Z"}
 {"level":"error","message":"Error: Email already in use","timestamp":"2025-06-09T19:34:52.567Z"}
 {"level":"error","message":"Error: Email already in use\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\src\\controllers\\authController.ts:24:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-09T19:34:52.572Z"}
+<<<<<<< HEAD
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T06:48:43.055Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T06:48:43.066Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T06:49:08.640Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T06:49:08.641Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T06:49:10.029Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T06:49:10.031Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T11:57:56.712Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T11:57:56.718Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T11:58:02.864Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T11:58:02.866Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T11:58:04.169Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T11:58:04.171Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T12:53:52.043Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T12:53:52.058Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T12:54:00.818Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T12:54:00.821Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T12:54:01.907Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T12:54:01.909Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T12:55:04.912Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T12:55:04.913Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T12:55:06.476Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T12:55:06.477Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T13:14:01.027Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T13:14:01.038Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T13:14:02.723Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-06-10T13:14:02.728Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T13:14:42.446Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T13:14:42.450Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T13:14:43.918Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T13:14:43.920Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:41.852Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:41.859Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:43.870Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:43.871Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:44.727Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:44.728Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:45.445Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:45.446Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:46.212Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:46.213Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:46.913Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:46.914Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:47.710Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:47.711Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:03:51.649Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:03:51.649Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:44:29.792Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:44:29.793Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-10T17:49:29.463Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-10T17:49:29.464Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-11T14:20:02.908Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-11T14:20:02.912Z"}
+{"level":"error","message":"Error: Incorrect email or password","timestamp":"2025-06-12T01:59:03.743Z"}
+{"level":"error","message":"Error: Incorrect email or password\n    at D:\\new\\lap\\nexora\\Nexora-Binary_Bytes\\server\\src\\controllers\\authController.ts:67:17","timestamp":"2025-06-12T01:59:03.749Z"}
+=======
 {"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-10T06:50:31.940Z"}
 {"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-10T06:51:05.929Z"}
 {"level":"error","message":"Error: Cannot populate path `class` because it is not in your schema. Set the `strictPopulate` option to false to override.","timestamp":"2025-06-10T06:58:22.429Z"}
@@ -180,3 +236,8 @@
 {"level":"error","message":"ValidationError: BusRoute validation failed: route: Route name is required, schedule: Schedule is required, duration: Duration is required\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-11T16:00:30.263Z"}
 {"level":"error","message":"Error: Event validation failed: description: Event description is required","timestamp":"2025-06-12T08:25:54.788Z"}
 {"level":"error","message":"ValidationError: Event validation failed: description: Event description is required\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-12T08:25:54.884Z"}
+>>>>>>> f9fcdfec8e609332b4288519f8d492777294fde2
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-12T13:53:20.162Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-12T13:53:22.631Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-12T13:53:28.702Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-12T14:31:39.131Z"}
