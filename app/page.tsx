@@ -8,9 +8,9 @@ import { SuggestionBar } from '../components/SuggestionBar';
 import { ChatHistory } from '../components/ChatHistory';
 import { useGamePoints } from '../hooks/useGamePoints';
 import { useDailyPromptHistory } from '../hooks/useDailyPromptHistory';
+
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
-// import { MoodMap } from '../components/MoodMap';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('home');
@@ -20,82 +20,124 @@ export default function Home() {
   const [homeQuestion, setHomeQuestion] = useState('');
   const [initialChatMessage, setInitialChatMessage] = useState('');
   const [recentMessages, setRecentMessages] = useState<string[]>([]);
-
+  
+  // Daily prompt history hook
   const { addPrompt } = useDailyPromptHistory();
 
   const handleAsk = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (homeQuestion.trim() === '') return;
+
+    // Add the prompt to daily history
     addPrompt(homeQuestion.trim());
+
     setInitialChatMessage(homeQuestion);
     setActiveTab('chat');
     setHomeQuestion('');
   };
 
+  // Callback when ChatWindow finishes sending the initial message
   const handleInitialMessageSent = () => {
     setInitialChatMessage('');
   };
 
+  // Handle recent messages change from ChatWindow
   const handleRecentMessagesChange = (messages: string[]) => {
     setRecentMessages(messages);
   };
 
+  // Handle suggestion click - this will be passed to ChatWindow to set input
   const handleSuggestionClick = (suggestion: string) => {
+    // We'll need to communicate this to the ChatWindow component
+    // For now, we'll use a custom event
     const event = new CustomEvent('setChatInput', { detail: { text: suggestion } });
     window.dispatchEvent(event);
   };
 
+  // Handle prompt click from ChatHistory
   const handleHistoryPromptClick = (prompt: string) => {
+    // Add the clicked prompt to daily history
     addPrompt(prompt);
+    
+    // Set it as the initial message for the chat
     setInitialChatMessage(prompt);
     setActiveTab('chat');
   };
 
   useEffect(() => {
     setIsMounted(true);
+    // Check for authentication
     const token = Cookies.get('token') || localStorage.getItem('token');
     if (!token) {
       router.push('/auth/login');
     }
 
+    // Listen for map switch events from chatbot
     const handleSwitchToMap = (event: CustomEvent) => {
       console.log('Switching to map tab for location:', event.detail.location);
       setActiveTab('map');
     };
 
     window.addEventListener('switchToMap', handleSwitchToMap as EventListener);
+
     return () => {
       window.removeEventListener('switchToMap', handleSwitchToMap as EventListener);
     };
   }, [router]);
 
-  if (!isMounted) return null;
+  // If not mounted yet, return null to avoid hydration issues
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <div className="h-screen flex flex-col bg-gray-100 dark:bg-slate-900">
+      {/* Fixed Navigation Bar - Below main header */}
       <nav className="fixed top-16 left-0 right-0 z-40 w-full flex items-center bg-white dark:bg-slate-800 justify-end px-8 py-2 gap-6 border-t border-gray-100 dark:border-slate-700 shadow-sm">
-        {['home', 'chat', 'map', 'insights'].map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 rounded font-semibold transition-colors ${
-              activeTab === tab
-                ? 'bg-blue-500 dark:bg-blue-600 text-white'
-                : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
-            }`}
-          >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-          </button>
-        ))}
+        <button
+          onClick={() => setActiveTab('home')}
+          className={`px-4 py-2 rounded font-semibold transition-colors ${
+            activeTab === 'home' ? 'bg-blue-500 dark:bg-blue-600 text-white' : 'bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
+          }`}
+        >
+          Home
+        </button>
+        <button
+          onClick={() => setActiveTab('chat')}
+          className={`px-4 py-2 rounded font-semibold transition-colors ${
+            activeTab === 'chat' ? 'bg-blue-500 dark:bg-blue-600 text-white' : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
+          }`}
+        >
+          Chat
+        </button>
+        <button
+          onClick={() => setActiveTab('map')}
+          className={`px-4 py-2 rounded font-semibold transition-colors ${
+            activeTab === 'map' ? 'bg-blue-500 dark:bg-blue-600 text-white' : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
+          }`}
+        >
+          Map
+        </button>
+        <button
+          onClick={() => setActiveTab('insights')}
+          className={`px-4 py-2 rounded font-semibold transition-colors ${
+            activeTab === 'insights' ? 'bg-blue-500 dark:bg-blue-600 text-white' : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
+          }`}
+        >
+          Insights
+        </button>
       </nav>
 
-      <div className="flex flex-1 pt-28 min-h-0">
+      {/* Main Content Area - Below fixed headers */}
+      <div className="flex flex-1 pt-28 min-h-0"> {/* pt-28 accounts for fixed main header (64px) + navigation height (48px) + gap */}
+        {/* Chat History Sidebar - Fixed to left side when chat tab is active */}
         {activeTab === 'chat' && (
           <div className="fixed left-0 top-28 bottom-0 z-30">
             <ChatHistory onPromptClick={handleHistoryPromptClick} />
           </div>
         )}
-
+        
+        {/* Main Content Area - Adjusted for sidebar when chat is active */}
         <div className={`flex-1 flex flex-col ${activeTab === 'chat' ? 'ml-64' : ''} min-h-0`}>
           {activeTab === 'home' && (
             <div className="flex-1 flex flex-col justify-center items-center p-8">
@@ -120,7 +162,6 @@ export default function Home() {
               </div>
             </div>
           )}
-
           {activeTab === 'chat' && (
             <div className="w-full h-full flex flex-col mx-auto p-2">
               <div className="flex-1 overflow-auto">
@@ -139,7 +180,6 @@ export default function Home() {
               </div>
             </div>
           )}
-
           {activeTab === 'map' && (
             <div className="w-full h-full p-4">
               <div className="w-full h-full bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
@@ -147,17 +187,13 @@ export default function Home() {
               </div>
             </div>
           )}
-
           {activeTab === 'insights' && (
             <div className="w-full h-full p-4 overflow-y-auto">
               <div className="max-w-6xl mx-auto">
                 <DataInsights />
-                {/* 🧠 Only show MoodMap if there's data */}
-                {/* <MoodMap /> */}
               </div>
             </div>
           )}
-
           {badges.length > 0 && activeTab === 'home' && (
             <div className="mt-6 text-center">
               <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Your Badges</h3>

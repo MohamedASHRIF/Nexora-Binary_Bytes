@@ -20,10 +20,9 @@ export const analyzeSentiment = (text: string): SentimentResult => {
   let score = 0;
 
   words.forEach(word => {
-    const cleanWord = word.replace(/[^\w]/g, ''); // remove punctuation
-    if (positiveWords.has(cleanWord)) {
+    if (positiveWords.has(word)) {
       score += 1;
-    } else if (negativeWords.has(cleanWord)) {
+    } else if (negativeWords.has(word)) {
       score -= 1;
     }
   });
@@ -42,3 +41,7 @@ export const analyzeSentiment = (text: string): SentimentResult => {
     label,
   };
 };
+
+// Example usage:
+// const result = analyzeSentiment('This is a great service!');
+// console.log(result); // { score: 1, label: 'positive' } 
