@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDailyPromptHistory, type DailyPrompt } from '../hooks/useDailyPromptHistory';
+import { useChatbot } from '../hooks/use-chatbot';
 import { Trash2, Calendar, Clock, Search, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface ChatHistoryProps {
@@ -7,16 +7,15 @@ interface ChatHistoryProps {
 }
 
 export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
-  const {
-    history,
-    getTodayPrompts,
-    getAvailableDates,
-    getPromptsForDate,
-    deletePrompt,
-    clearHistory,
-    getStats,
-    isInitialized
-  } = useDailyPromptHistory();
+  const { messages, isProcessing } = useChatbot();
+  // Group messages by date
+  const grouped = messages.reduce((acc, msg) => {
+    const date = new Date(msg.timestamp).toISOString().split('T')[0];
+    if (!acc[date]) acc[date] = [];
+    acc[date].push(msg);
+    return acc;
+  }, {} as Record<string, typeof messages>);
+  const availableDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
 
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [expandedDates, setExpandedDates] = useState<Set<string>>(new Set());
@@ -28,15 +27,11 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
   
   // Initialize selected date to today if not set
   React.useEffect(() => {
-    if (!selectedDate && isInitialized) {
+    if (!selectedDate && Object.keys(grouped).length > 0) {
       setSelectedDate(today);
       setExpandedDates(new Set([today]));
     }
-  }, [selectedDate, today, isInitialized]);
-
-  const stats = getStats();
-  const availableDates = getAvailableDates();
-  const todayPrompts = getTodayPrompts();
+  }, [selectedDate, today, Object.keys(grouped).length]);
 
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
@@ -85,18 +80,7 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
     onPromptClick?.(prompt);
   };
 
-  const handleDeletePrompt = (e: React.MouseEvent, promptId: string) => {
-    e.stopPropagation();
-    deletePrompt(promptId);
-  };
-
-  const handleClearHistory = () => {
-    if (window.confirm('Are you sure you want to clear all chat history? This action cannot be undone.')) {
-      clearHistory();
-    }
-  };
-
-  if (!isInitialized) {
+  if (Object.keys(grouped).length === 0) {
     return (
       <div className="w-64 flex-shrink-0 bg-gray-50 dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 p-4 flex flex-col">
         <div className="animate-pulse">
@@ -143,18 +127,6 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
             </button>
           </div>
         </div>
-        
-        {/* Stats */}
-        <div className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
-          <div className="flex justify-between">
-            <span>Today's prompts:</span>
-            <span className="font-medium">{stats.todayPrompts}</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Total prompts:</span>
-            <span className="font-medium">{stats.totalPrompts}</span>
-          </div>
-        </div>
       </div>
 
       {/* Content - Scrollable */}
@@ -172,9 +144,6 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
                   <span className="text-sm font-medium text-gray-900 dark:text-white">
                     Today's Prompts
                   </span>
-                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                    ({todayPrompts.length} prompt{todayPrompts.length !== 1 ? 's' : ''})
-                  </span>
                 </div>
                 {isTodayExpanded ? (
                   <ChevronUp className="h-4 w-4 text-gray-500 dark:text-gray-400" />
@@ -185,39 +154,61 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
               
               {isTodayExpanded && (
                 <div className="border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700 p-3 space-y-2">
-                  {todayPrompts.length === 0 ? (
+                  {Object.keys(grouped).length === 0 ? (
                     <div className="text-center text-gray-400 dark:text-gray-500 py-4">
                       <Search className="h-6 w-6 mx-auto mb-2 opacity-50" />
                       <p className="text-sm">No prompts today</p>
                       <p className="text-xs">Start chatting to see your history here</p>
                     </div>
                   ) : (
-                    todayPrompts.map((prompt) => (
-                      <div
-                        key={prompt.id}
-                        onClick={() => handlePromptClick(prompt.prompt)}
-                        className="p-2 bg-white dark:bg-slate-800 rounded border border-gray-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-sm cursor-pointer transition-all group"
-                      >
-                        <div className="flex items-start justify-between gap-2">
-                          <p className="text-sm text-gray-800 dark:text-gray-200 flex-1 overflow-hidden">
-                            <span className="block truncate" title={prompt.prompt}>
-                              {prompt.prompt}
-                            </span>
-                          </p>
+                    Object.entries(grouped).map(([date, prompts]) => {
+                      const isExpanded = expandedDates.has(date);
+                      
+                      return (
+                        <div key={date} className="border border-gray-200 dark:border-slate-700 rounded-lg overflow-hidden">
                           <button
-                            onClick={(e) => handleDeletePrompt(e, prompt.id)}
-                            className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-100 dark:hover:bg-red-900/20 rounded transition-opacity flex-shrink-0"
-                            title="Delete prompt"
+                            onClick={() => toggleDateExpansion(date)}
+                            className="w-full p-3 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center justify-between text-left transition-colors"
                           >
-                            <Trash2 className="h-3 w-3 text-red-500" />
+                            <div className="flex items-center gap-2">
+                              <Calendar className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                              <span className="text-sm font-medium text-gray-900 dark:text-white">
+                                {formatDate(date)}
+                              </span>
+                            </div>
+                            {isExpanded ? (
+                              <ChevronUp className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                            ) : (
+                              <ChevronDown className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                            )}
                           </button>
+                          
+                          {isExpanded && (
+                            <div className="border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700 p-3 space-y-2">
+                              {prompts.map((msg, idx) => (
+                                <div
+                                  key={idx}
+                                  onClick={() => handlePromptClick && handlePromptClick(msg.text)}
+                                  className="p-2 bg-white dark:bg-slate-800 rounded border border-gray-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-sm cursor-pointer transition-all group"
+                                >
+                                  <div className="flex items-start justify-between gap-2">
+                                    <p className="text-sm text-gray-800 dark:text-gray-200 flex-1 overflow-hidden">
+                                      <span className="block truncate" title={msg.text}>
+                                        {msg.text}
+                                      </span>
+                                    </p>
+                                  </div>
+                                  <div className="flex items-center gap-1 mt-1 text-xs text-gray-500 dark:text-gray-400">
+                                    <Clock className="h-3 w-3" />
+                                    {formatTime(new Date(msg.timestamp))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                        <div className="flex items-center gap-1 mt-1 text-xs text-gray-500 dark:text-gray-400">
-                          <Clock className="h-3 w-3" />
-                          {formatTime(prompt.timestamp)}
-                        </div>
-                      </div>
-                    ))
+                      );
+                    })
                   )}
                 </div>
               )}
@@ -227,14 +218,6 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
           <div className="p-4">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-medium text-gray-900 dark:text-white">All History</h3>
-              {availableDates.length > 0 && (
-                <button
-                  onClick={handleClearHistory}
-                  className="text-xs text-red-500 hover:text-red-700 dark:hover:text-red-400"
-                >
-                  Clear All
-                </button>
-              )}
             </div>
             
             {availableDates.length === 0 ? (
@@ -246,7 +229,7 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
             ) : (
               <div className="space-y-3">
                 {availableDates.map((date) => {
-                  const prompts = getPromptsForDate(date);
+                  const prompts = grouped[date];
                   const isExpanded = expandedDates.has(date);
                   
                   return (
@@ -260,9 +243,6 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
                           <span className="text-sm font-medium text-gray-900 dark:text-white">
                             {formatDate(date)}
                           </span>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">
-                            ({prompts.length} prompt{prompts.length !== 1 ? 's' : ''})
-                          </span>
                         </div>
                         {isExpanded ? (
                           <ChevronUp className="h-4 w-4 text-gray-500 dark:text-gray-400" />
@@ -273,29 +253,22 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
                       
                       {isExpanded && (
                         <div className="border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700 p-3 space-y-2">
-                          {prompts.map((prompt) => (
+                          {prompts.map((msg, idx) => (
                             <div
-                              key={prompt.id}
-                              onClick={() => handlePromptClick(prompt.prompt)}
+                              key={idx}
+                              onClick={() => handlePromptClick && handlePromptClick(msg.text)}
                               className="p-2 bg-white dark:bg-slate-800 rounded border border-gray-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-sm cursor-pointer transition-all group"
                             >
                               <div className="flex items-start justify-between gap-2">
                                 <p className="text-sm text-gray-800 dark:text-gray-200 flex-1 overflow-hidden">
-                                  <span className="block truncate" title={prompt.prompt}>
-                                    {prompt.prompt}
+                                  <span className="block truncate" title={msg.text}>
+                                    {msg.text}
                                   </span>
                                 </p>
-                                <button
-                                  onClick={(e) => handleDeletePrompt(e, prompt.id)}
-                                  className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-100 dark:hover:bg-red-900/20 rounded transition-opacity flex-shrink-0"
-                                  title="Delete prompt"
-                                >
-                                  <Trash2 className="h-3 w-3 text-red-500" />
-                                </button>
                               </div>
                               <div className="flex items-center gap-1 mt-1 text-xs text-gray-500 dark:text-gray-400">
                                 <Clock className="h-3 w-3" />
-                                {formatTime(prompt.timestamp)}
+                                {formatTime(new Date(msg.timestamp))}
                               </div>
                             </div>
                           ))}

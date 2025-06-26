@@ -5,7 +5,6 @@ import { useVoiceInput } from '../hooks/useVoiceInput';
 import { useChatbot } from '../hooks/use-chatbot';
 import { useGamePoints } from '../hooks/useGamePoints';
 import { useLanguage } from '../hooks/useLanguage';
-import { useDailyPromptHistory } from '../hooks/useDailyPromptHistory';
 import { ChatClassSchedule } from './ChatClassSchedule';
 import { ChatBusSchedule } from './ChatBusSchedule';
 import { ChatEvents } from './ChatEvents';
@@ -26,10 +25,9 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
   const [recentUserMessages, setRecentUserMessages] = useState<string[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { isListening, startListening, stopListening, transcript } = useVoiceInput();
-  const { messages, isProcessing, sendMessage, suggestions, clearChat } = useChatbot();
+  const { messages, isProcessing, sendMessage, suggestions, clearChat, setMessages } = useChatbot();
   const { addPoints } = useGamePoints();
   const { language, setLanguage, translate } = useLanguage();
-  const { addPrompt } = useDailyPromptHistory();
   const initialMessageSentRef = useRef(false);
   const [busData, setBusData] = useState<any>(null);
   const [eventsData, setEventsData] = useState<any>(null);
@@ -77,8 +75,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
       initialMessageSentRef.current = true;
       (async () => {
         addPoints(5);
-        // Save the initial message to daily history
-        addPrompt(initialMessage.trim());
         await sendMessage(initialMessage);
         onMessageSent?.();
       })();
@@ -86,7 +82,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
     if (!initialMessage) {
       initialMessageSentRef.current = false;
     }
-  }, [initialMessage, sendMessage, addPoints, onMessageSent, addPrompt]);
+  }, [initialMessage, sendMessage, addPoints, onMessageSent]);
 
   // Fetch real data from database
   useEffect(() => {
@@ -113,16 +109,17 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
     setRecentUserMessages(newRecentMessages);
     onRecentMessagesChange?.(newRecentMessages);
 
-    // Save the prompt to daily history
-    addPrompt(inputText.trim());
-
     addPoints(5);
     await sendMessage(inputText);
     setInputText('');
   };
 
-  const handleClearChat = async () => {
-    await clearChat();
+  const handleClearChat = () => {
+    setInputText('');
+    setRecentUserMessages([]);
+    if (typeof setMessages === 'function') {
+      setMessages([]);
+    }
   };
 
   const handleLanguageChange = (newLanguage: string) => {

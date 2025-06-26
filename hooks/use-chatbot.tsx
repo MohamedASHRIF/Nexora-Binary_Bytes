@@ -545,5 +545,6 @@ export const useChatbot = () => {
     isProcessing,
     suggestions,
     clearChat,
+    setMessages,
   }
 }
