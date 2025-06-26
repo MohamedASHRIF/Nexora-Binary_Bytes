@@ -181,3 +181,21 @@
 {"level":"error","message":"Error: Event validation failed: description: Event description is required","timestamp":"2025-06-12T08:25:54.788Z"}
 {"level":"error","message":"ValidationError: Event validation failed: description: Event description is required\n    at model.Document.invalidate (C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3343:32)\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\document.js:3104:17\n    at C:\\Users\\itsme\\OneDrive\\Desktop\\nexora-campus-copilot\\nexora-campus-copilot\\server\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2025-06-12T08:25:54.884Z"}
 {"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-26T11:08:13.669Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:15:24.271Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:15:24.293Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:17:10.198Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:18:21.553Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:19:05.126Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:19:05.131Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:19:08.622Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:22:18.082Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:22:18.089Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:22:21.417Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:24:50.869Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:24:52.739Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:24:54.688Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:24:54.903Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:26:36.369Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:26:36.400Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-26T17:34:30.879Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-26T17:34:41.186Z"}

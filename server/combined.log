@@ -2,3 +2,144 @@
 {"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T16:40:22.140Z"}
 {"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T16:40:29.933Z"}
 {"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T16:40:30.392Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T16:53:18.355Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T16:53:18.728Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T16:55:44.578Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T16:55:44.889Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T16:57:55.293Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T16:57:55.651Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T16:59:44.045Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T16:59:46.169Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:00:01.302Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:00:01.741Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:01:47.329Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:01:49.120Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:02:09.340Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:02:11.229Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:02:15.442Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:02:15.829Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:02:22.539Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:02:22.548Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:02:47.182Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:02:49.578Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:04:19.349Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:04:21.871Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:05:13.645Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:05:15.331Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:05:21.225Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:05:21.680Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:05:24.792Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:05:24.799Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:05:52.287Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:05:54.544Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:07:00.313Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:07:02.632Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:07:21.955Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:07:22.419Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:07:27.442Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:07:27.452Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:07:34.588Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:08:55.528Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:08:57.527Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:09:16.373Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:09:16.697Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:09:20.413Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:09:20.420Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:09:27.740Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:11:03.838Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:11:05.907Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:11:31.669Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:11:32.251Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:11:34.973Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:11:34.981Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:11:39.878Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:12:01.142Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:12:03.077Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:12:56.595Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:12:57.979Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:15:16.562Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:15:18.544Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:15:19.638Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:15:19.919Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:15:24.267Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:15:24.271Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:15:24.290Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:15:24.293Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:17:10.195Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:17:10.198Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:18:21.552Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:18:21.553Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:18:50.788Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:18:52.882Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:19:00.515Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:19:00.890Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:19:05.125Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:19:05.126Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:19:05.130Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:19:05.131Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:19:08.618Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:19:08.622Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:22:08.477Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:22:12.563Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:22:12.649Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:22:15.009Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:22:18.079Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:22:18.082Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:22:18.087Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:22:18.089Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:22:21.415Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:22:21.417Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:24:19.856Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:24:22.026Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:24:50.865Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:24:50.869Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:24:52.736Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:24:52.739Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:24:54.686Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:24:54.688Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:24:54.901Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:24:54.903Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-26T17:26:27.956Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:26:32.394Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:26:32.700Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:26:36.367Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:26:36.369Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:26:36.398Z"}
+{"level":"error","message":"Operational Error: You are not logged in","timestamp":"2025-06-26T17:26:36.400Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:29:39.966Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:29:42.593Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:29:46.771Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:29:47.241Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:29:50.512Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:29:50.910Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:30:02.098Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:30:12.824Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:30:16.075Z"}
+{"level":"info","message":"PUT /chatwidoo/messages/685d83a85895f4064237f1be","timestamp":"2025-06-26T17:30:23.463Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:30:29.715Z"}
+{"level":"info","message":"PUT /chatwidoo/messages/685d83b55895f4064237f1c3","timestamp":"2025-06-26T17:30:35.620Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:30:40.448Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:30:45.229Z"}
+{"level":"info","message":"POST /chatwidoo/messages","timestamp":"2025-06-26T17:30:53.178Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:31:03.526Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:31:03.871Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:31:18.710Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T17:31:19.078Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:31:21.016Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:31:21.431Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-06-26T17:32:44.914Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T17:32:54.103Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T17:32:55.916Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-26T17:34:30.414Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-26T17:34:30.879Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-26T17:34:40.841Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-26T17:34:41.186Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-26T17:35:02.501Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-26T17:35:04.441Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-26T17:35:04.753Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-26T17:35:04.769Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-26T17:35:05.055Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-26T17:35:05.065Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-26T17:35:05.335Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-26T17:35:05.348Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-26T17:35:05.634Z"}

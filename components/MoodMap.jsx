@@ -1,32 +1,52 @@
 import React, { useEffect, useState } from "react";
+import Cookies from 'js-cookie';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 export function MoodMap() {
   const [stats, setStats] = useState({ positive: 0, neutral: 0, negative: 0 });
+  const [error, setError] = useState("");
 
-  const computeStats = () => {
-    const stored = localStorage.getItem("chatwidooMessages");
-    if (!stored) return;
+  function getAuthHeaders() {
+    const token = localStorage.getItem('token') || Cookies.get('token');
+    return token ? { 'Authorization': `Bearer ${token}` } : {};
+  }
 
+  const fetchAndComputeStats = async () => {
     try {
-      const messages = JSON.parse(stored);
+      const res = await fetch(`${API_URL}/chatwidoo/messages`, {
+        credentials: 'include',
+        headers: {
+          ...getAuthHeaders(),
+        },
+      });
+      if (!res.ok) {
+        setError("Failed to load messages for MoodMap.");
+        setStats({ positive: 0, neutral: 0, negative: 0 });
+        return;
+      }
+      const data = await res.json();
+      const messages = data.data?.messages || [];
       const counts = { positive: 0, neutral: 0, negative: 0 };
-
       messages.forEach((msg) => {
         if (msg.sentiment === "positive") counts.positive++;
         else if (msg.sentiment === "neutral") counts.neutral++;
         else if (msg.sentiment === "negative") counts.negative++;
       });
-
       setStats(counts);
+      setError("");
     } catch (e) {
-      console.error("Error parsing messages for MoodMap:", e);
+      setError("Network error. Please try again later.");
+      setStats({ positive: 0, neutral: 0, negative: 0 });
     }
   };
 
   useEffect(() => {
-    computeStats(); // Initial load
-    window.addEventListener("chatUpdated", computeStats);
-    return () => window.removeEventListener("chatUpdated", computeStats);
+    fetchAndComputeStats();
+    // Optionally, listen for a custom event to refresh stats after chat update
+    const handler = () => fetchAndComputeStats();
+    window.addEventListener("chatUpdated", handler);
+    return () => window.removeEventListener("chatUpdated", handler);
   }, []);
 
   const total = stats.positive + stats.neutral + stats.negative;
@@ -41,7 +61,9 @@ export function MoodMap() {
   return (
     <div className="p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700">
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">MoodMap</h2>
-
+      {error && (
+        <div className="mb-2 p-2 bg-red-100 text-red-700 rounded border border-red-300 text-sm">{error}</div>
+      )}
       <div className="space-y-4">
         <div className="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/30 rounded-lg shadow-sm border border-green-200 dark:border-green-700">
           <span className="text-green-700 dark:text-green-300 font-medium text-lg">😊 Positive</span>

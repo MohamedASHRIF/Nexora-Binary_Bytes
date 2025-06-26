@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { analyzeSentiment } from "../utils/sentimentAnalysis";
+import Cookies from 'js-cookie';
 
 // ✅ Updated function to format timestamp without seconds
 function formatTimestamp(timestamp) {
@@ -14,19 +15,133 @@ function formatTimestamp(timestamp) {
   });
 }
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+
 export function ChatWidoo() {
-  const [messages, setMessages] = useState(() => {
-    const saved = localStorage.getItem("chatwidooMessages");
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
   const [editInput, setEditInput] = useState("");
+  const [error, setError] = useState("");
   const messagesEndRef = useRef(null);
 
+  function getAuthHeaders() {
+    const token = localStorage.getItem('token') || Cookies.get('token');
+    return token ? { 'Authorization': `Bearer ${token}` } : {};
+  }
+
+  async function fetchMessages() {
+    try {
+      const res = await fetch(`${API_URL}/chatwidoo/messages`, {
+        credentials: 'include',
+        headers: {
+          ...getAuthHeaders(),
+        },
+      });
+      if (!res.ok) {
+        if (res.status === 401) {
+          setError("You must be logged in to use the Diary feature.");
+        } else {
+          setError("Failed to load messages. Please try again later.");
+        }
+        return [];
+      }
+      const data = await res.json();
+      if (!data.data || !data.data.messages) {
+        setError("No messages found or server error.");
+        return [];
+      }
+      setError("");
+      return data.data.messages;
+    } catch (err) {
+      setError("Network error. Please try again later.");
+      return [];
+    }
+  }
+
+  async function addMessageAPI({ text, sentiment, score }) {
+    try {
+      const res = await fetch(`${API_URL}/chatwidoo/messages`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...getAuthHeaders(),
+        },
+        credentials: 'include',
+        body: JSON.stringify({ text, sentiment, score })
+      });
+      if (!res.ok) {
+        if (res.status === 401) setError("You must be logged in to add messages.");
+        else setError("Failed to add message.");
+        return null;
+      }
+      const data = await res.json();
+      if (!data.data || !data.data.message) {
+        setError("Server error: could not add message.");
+        return null;
+      }
+      setError("");
+      return data.data.message;
+    } catch (err) {
+      setError("Network error. Please try again later.");
+      return null;
+    }
+  }
+
+  async function editMessageAPI(id, { text, sentiment, score }) {
+    try {
+      const res = await fetch(`${API_URL}/chatwidoo/messages/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          ...getAuthHeaders(),
+        },
+        credentials: 'include',
+        body: JSON.stringify({ text, sentiment, score })
+      });
+      if (!res.ok) {
+        if (res.status === 401) setError("You must be logged in to edit messages.");
+        else setError("Failed to edit message.");
+        return null;
+      }
+      const data = await res.json();
+      if (!data.data || !data.data.message) {
+        setError("Server error: could not edit message.");
+        return null;
+      }
+      setError("");
+      return data.data.message;
+    } catch (err) {
+      setError("Network error. Please try again later.");
+      return null;
+    }
+  }
+
+  async function deleteMessageAPI(id) {
+    try {
+      const res = await fetch(`${API_URL}/chatwidoo/messages/${id}`, {
+        method: "DELETE",
+        credentials: 'include',
+        headers: {
+          ...getAuthHeaders(),
+        },
+      });
+      if (!res.ok) {
+        if (res.status === 401) setError("You must be logged in to delete messages.");
+        else setError("Failed to delete message.");
+        return false;
+      }
+      setError("");
+      return true;
+    } catch (err) {
+      setError("Network error. Please try again later.");
+      return false;
+    }
+  }
+
   useEffect(() => {
-    localStorage.setItem("chatwidooMessages", JSON.stringify(messages));
-  }, [messages]);
+    fetchMessages().then(setMessages);
+  }, []);
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -34,28 +149,20 @@ export function ChatWidoo() {
     }
   }, [messages]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return;
     const { score, label } = analyzeSentiment(input);
-    const newMessage = {
-      text: input,
-      sentiment: label,
-      score,
-      timestamp: new Date().toISOString(),
-    };
-
-    const updated = [...messages, newMessage];
-    setMessages(updated);
-    localStorage.setItem("chatwidooMessages", JSON.stringify(updated));
-    window.dispatchEvent(new Event("chatUpdated"));
-    setInput("");
+    const newMessage = await addMessageAPI({ text: input, sentiment: label, score });
+    if (newMessage) {
+      setMessages([...messages, newMessage]);
+      setInput("");
+    }
   };
 
-  const handleDelete = (index) => {
-    const updated = messages.filter((_, i) => i !== index);
-    setMessages(updated);
-    localStorage.setItem("chatwidooMessages", JSON.stringify(updated));
-    window.dispatchEvent(new Event("chatUpdated"));
+  const handleDelete = async (index) => {
+    const id = messages[index]._id;
+    const success = await deleteMessageAPI(id);
+    if (success) setMessages(messages.filter((_, i) => i !== index));
   };
 
   const handleEdit = (index) => {
@@ -63,22 +170,16 @@ export function ChatWidoo() {
     setEditInput(messages[index].text);
   };
 
-  const handleEditSave = () => {
+  const handleEditSave = async () => {
     if (!editInput.trim()) return;
     const { score, label } = analyzeSentiment(editInput);
-    const updated = [...messages];
-    updated[editingIndex] = {
-      ...updated[editingIndex],
-      text: editInput,
-      sentiment: label,
-      score,
-      timestamp: new Date().toISOString(),
-    };
-    setMessages(updated);
-    localStorage.setItem("chatwidooMessages", JSON.stringify(updated));
-    setEditingIndex(null);
-    setEditInput("");
-    window.dispatchEvent(new Event("chatUpdated"));
+    const id = messages[editingIndex]._id;
+    const updated = await editMessageAPI(id, { text: editInput, sentiment: label, score });
+    if (updated) {
+      setMessages(messages.map((msg, i) => (i === editingIndex ? updated : msg)));
+      setEditingIndex(null);
+      setEditInput("");
+    }
   };
 
   const handleEditCancel = () => {
@@ -88,14 +189,17 @@ export function ChatWidoo() {
 
   return (
     <div className="p-4 bg-white rounded shadow max-w-xl mx-auto">
-      <h2 className="text-lg font-semibold mb-2">Chat</h2>
+      <h2 className="text-lg font-semibold mb-2">Diary</h2>
+      {error && (
+        <div className="mb-2 p-2 bg-red-100 text-red-700 rounded border border-red-300 text-sm">{error}</div>
+      )}
       <div
         ref={messagesEndRef}
         className="h-64 overflow-y-auto border p-2 mb-2 flex flex-col gap-2"
       >
         {messages.map((msg, i) => (
           <div
-            key={i}
+            key={msg._id || i}
             className="flex justify-between items-start border-b pb-2 gap-2"
           >
             <div className="flex-1">

@@ -13,6 +13,7 @@ import cafeteriaRoutes from './routes/cafeteriaRoutes';
 import faqRoutes from './routes/faqRoutes';
 import chatRoutes from './routes/chatRoutes';
 import busTimingRoutes from './routes/busTimingRoutes';
+import chatWidooRoutes from './routes/chatWidooRoutes';
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use('/api/cafeteria', cafeteriaRoutes);
 app.use('/api/faq', faqRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/bus-timings', busTimingRoutes);
+app.use('/api/chatwidoo', chatWidooRoutes);
 
 // Error handling
 app.use(errorHandler);

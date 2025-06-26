@@ -6,6 +6,7 @@ import scheduleRoutes from './scheduleRoutes';
 import eventRoutes from './eventRoutes';
 import busRouteRoutes from './busRouteRoutes';
 import userRoutes from './userRoutes';
+import chatWidooRoutes from './chatWidooRoutes';
 import { logger } from '../utils/logger';
 
 const router = express.Router();
@@ -23,5 +24,6 @@ router.use('/schedules', scheduleRoutes);
 router.use('/events', eventRoutes);
 router.use('/bus-routes', busRouteRoutes);
 router.use('/users', userRoutes);
+router.use('/chatwidoo', chatWidooRoutes);
 
 export default router; 
