@@ -200,6 +200,12 @@ const analyzeSentiment = (text: string): number => {
   return normalizedScore;
 };
 
+// Add at the top:
+const foodKeywords = ['hungry', 'starving', 'food', 'canteen', 'cafeteria', 'menu', 'eat', 'lunch', 'breakfast', 'dinner', 'බඩගිනි', 'කෑම', 'உணவு', 'உணவகம்', 'பசி', 'காஃபி'];
+
+// In-memory state for demo (userId -> { step, canteen, meal })
+const canteenChatState: Record<string, { step: number, canteen?: string, meal?: string }> = {};
+
 export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   try {
     const { message, language: userLanguage } = req.body;
@@ -211,6 +217,7 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       return next(new AppError('User not authenticated', 401));
     }
 
+    const userId = req.user.id;
     // Detect language from message or use user preference
     const detectedLanguage = userLanguage || detectLanguage(message);
     const lowerMessage = message.toLowerCase();
@@ -218,8 +225,62 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
 
     let botResponse = '';
 
+    // --- Canteen-aware chat logic ---
+    // 1. If user is in a canteen flow, continue it
+    if (canteenChatState[userId] && canteenChatState[userId].step > 0) {
+      const state = canteenChatState[userId];
+      if (state.step === 1) {
+        // User should reply with canteen name
+        state.canteen = message.trim();
+        // Fetch all canteens to validate
+        const menus = await require('../models/CanteenMenu').CanteenMenu.find();
+        const canteenNames = [...new Set(menus.map((m: any) => m.canteenName))];
+        if (!canteenNames.includes(state.canteen)) {
+          botResponse = `Sorry, '${state.canteen}' is not a valid canteen. Please choose from: ` + canteenNames.join(', ');
+          // Stay in step 1
+        } else {
+          state.step = 2;
+          botResponse = `For which meal would you like to see the menu at ${state.canteen}? (breakfast, lunch, dinner)`;
+        }
+      } else if (state.step === 2) {
+        // User should reply with meal
+        state.meal = message.trim().toLowerCase();
+        const validMeals = ['breakfast', 'lunch', 'dinner'];
+        if (state.meal && validMeals.includes(state.meal)) {
+          // Fetch menu for canteen and meal
+          const menuDoc = await require('../models/CanteenMenu').CanteenMenu.findOne({ canteenName: state.canteen });
+          if (!menuDoc) {
+            botResponse = `Sorry, I couldn't find a menu for ${state.canteen}.`;
+            delete canteenChatState[userId]; // End flow
+          } else {
+            const mealList = menuDoc.meals[state.meal as 'breakfast' | 'lunch' | 'dinner'];
+            if (!mealList || mealList.length === 0) {
+              botResponse = `No items found for ${state.meal} at ${state.canteen}.`;
+            } else {
+              botResponse = `Menu for ${state.canteen} (${state.meal}):\n- ` + mealList.join('\n- ');
+            }
+            delete canteenChatState[userId]; // End flow
+          }
+        } else {
+          botResponse = `Please specify a valid meal: breakfast, lunch, or dinner.`;
+          // Stay in step 2
+        }
+      }
+    }
+    // 2. If user message is about food/canteen, start flow
+    else if (foodKeywords.some(word => lowerMessage.includes(word))) {
+      // Fetch all canteens
+      const menus = await require('../models/CanteenMenu').CanteenMenu.find();
+      const canteenNames = [...new Set(menus.map((m: any) => m.canteenName))];
+      if (canteenNames.length === 0) {
+        botResponse = 'Sorry, there are no canteens available right now.';
+      } else {
+        canteenChatState[userId] = { step: 1 };
+        botResponse = 'Which canteen would you like to check? Available: ' + canteenNames.join(', ');
+      }
+    }
     // Check for greetings first
-    if (lowerMessage.includes('hi') || lowerMessage.includes('hello') || lowerMessage.includes('hey') ||
+    else if (lowerMessage.includes('hi') || lowerMessage.includes('hello') || lowerMessage.includes('hey') ||
         lowerMessage.includes('good morning') || lowerMessage.includes('good afternoon') || lowerMessage.includes('good evening') ||
         lowerMessage.includes('வணக்கம்') || lowerMessage.includes('ஹலோ') || lowerMessage.includes('ஹாய்') ||
         lowerMessage.includes('ආයුබෝවන්') || lowerMessage.includes('හෙලෝ') || lowerMessage.includes('හායි')) {

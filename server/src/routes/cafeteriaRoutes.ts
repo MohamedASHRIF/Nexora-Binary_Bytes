@@ -1,10 +1,20 @@
 import express from 'express';
 import { protect } from '../middleware/auth';
+import { addMenu, getMenus, getMenuByCanteen, updateMenu, deleteMenu } from '../controllers/canteenMenuController';
 
 const router = express.Router();
 
+router.use(protect);
+
+// Canteen menu CRUD
+router.post('/menu', addMenu);
+router.get('/menu', getMenus);
+router.get('/menu/:canteenName', getMenuByCanteen);
+router.put('/menu/:id', updateMenu);
+router.delete('/menu/:id', deleteMenu);
+
 // Get cafeteria menu
-router.get('/menu', protect, async (req, res) => {
+router.get('/cafeteria/menu', async (req, res) => {
   try {
     // TODO: Implement menu fetching logic
     res.json({
@@ -31,7 +41,7 @@ router.get('/menu', protect, async (req, res) => {
 });
 
 // Get cafeteria hours
-router.get('/hours', protect, async (req, res) => {
+router.get('/cafeteria/hours', async (req, res) => {
   try {
     // TODO: Implement hours fetching logic
     res.json({

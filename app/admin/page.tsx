@@ -47,6 +47,20 @@ interface Event {
   location: string;
 }
 
+interface CanteenMenu {
+  _id: string;
+  canteenName: string;
+  meals: {
+    breakfast: string[];
+    lunch: string[];
+    dinner: string[];
+  };
+  date?: string;
+}
+
+type MealType = 'breakfast' | 'lunch' | 'dinner';
+const mealTypes: MealType[] = ['breakfast', 'lunch', 'dinner'];
+
 export default function AdminPage() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('users');
@@ -85,6 +99,18 @@ export default function AdminPage() {
     time: '',
     location: '' 
   });
+
+  const [canteenMenus, setCanteenMenus] = useState<CanteenMenu[]>([]);
+  const [newMenu, setNewMenu] = useState({
+    canteenName: '',
+    breakfast: [''],
+    lunch: [''],
+    dinner: [''],
+  });
+  const [menuLoading, setMenuLoading] = useState(false);
+  const [expandedCanteens, setExpandedCanteens] = useState<string[]>([]);
+  const [expandedMeals, setExpandedMeals] = useState<{ [canteen: string]: MealType[] }>({});
+  const [editingMenu, setEditingMenu] = useState<CanteenMenu | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -246,6 +272,9 @@ export default function AdminPage() {
           console.error('Failed to fetch events:', eventsResponse.statusText);
           setEvents([]);
         }
+
+        // Fetch canteen menus
+        fetchMenus();
       } catch (error) {
         console.error('Error fetching data:', error);
         setError(error instanceof Error ? error.message : 'An error occurred');
@@ -652,6 +681,80 @@ export default function AdminPage() {
     }
   };
 
+  // Fetch canteen menus
+  const fetchMenus = async () => {
+    setMenuLoading(true);
+    try {
+      const token = Cookies.get('token') || localStorage.getItem('token');
+      const res = await fetch('http://localhost:5000/api/cafeteria/menu', {
+        headers: { 'Authorization': `Bearer ${token}` },
+        credentials: 'include',
+      });
+      const data = await res.json();
+      setCanteenMenus(data.data?.menus || []);
+    } catch (e) {
+      setCanteenMenus([]);
+    } finally {
+      setMenuLoading(false);
+    }
+  };
+
+  // Add menu handler
+  const handleMenuSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setMenuLoading(true);
+    try {
+      const token = Cookies.get('token') || localStorage.getItem('token');
+      const method = editingMenu ? 'PUT' : 'POST';
+      const url = editingMenu
+        ? `http://localhost:5000/api/cafeteria/menu/${editingMenu._id}`
+        : 'http://localhost:5000/api/cafeteria/menu';
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        credentials: 'include',
+        body: JSON.stringify({
+          canteenName: newMenu.canteenName,
+          meals: {
+            breakfast: newMenu.breakfast.filter(Boolean),
+            lunch: newMenu.lunch.filter(Boolean),
+            dinner: newMenu.dinner.filter(Boolean),
+          },
+        }),
+      });
+      if (res.ok) {
+        setNewMenu({ canteenName: '', breakfast: [''], lunch: [''], dinner: [''] });
+        setEditingMenu(null);
+        fetchMenus();
+        toast({ title: editingMenu ? 'Menu updated!' : 'Menu added!' });
+      } else {
+        toast({ title: 'Failed to save menu', variant: 'destructive' });
+      }
+    } finally {
+      setMenuLoading(false);
+    }
+  };
+
+  const handleDeleteMenu = async (id: string) => {
+    setMenuLoading(true);
+    try {
+      const token = Cookies.get('token') || localStorage.getItem('token');
+      const res = await fetch(`http://localhost:5000/api/cafeteria/menu/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` },
+        credentials: 'include',
+      });
+      if (res.ok) {
+        fetchMenus();
+        toast({ title: 'Menu deleted!' });
+      } else {
+        toast({ title: 'Failed to delete menu', variant: 'destructive' });
+      }
+    } finally {
+      setMenuLoading(false);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="container mx-auto p-6">
@@ -692,6 +795,7 @@ export default function AdminPage() {
           <TabsTrigger value="schedules">Class Schedules</TabsTrigger>
           <TabsTrigger value="bus-timings">Bus Timings</TabsTrigger>
           <TabsTrigger value="events">Events</TabsTrigger>
+          <TabsTrigger value="canteen-menus">Canteen Menus</TabsTrigger>
         </TabsList>
 
         <TabsContent value="users">
@@ -1032,6 +1136,137 @@ export default function AdminPage() {
                       ))}
                     </tbody>
                   </table>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="canteen-menus">
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle>Add Canteen Menu</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleMenuSubmit} className="space-y-4">
+                <Input
+                  placeholder="Canteen Name"
+                  value={newMenu.canteenName}
+                  onChange={e => setNewMenu({ ...newMenu, canteenName: e.target.value })}
+                  required
+                />
+                {mealTypes.map((meal: MealType) => (
+                  <div key={meal}>
+                    <label className="block font-medium mb-1 capitalize">{meal}</label>
+                    {newMenu[meal].map((dish: string, idx: number) => (
+                      <div key={idx} className="flex gap-2 mb-1">
+                        <Input
+                          placeholder={`Dish ${idx + 1}`}
+                          value={dish}
+                          onChange={e => {
+                            const arr = [...newMenu[meal]];
+                            arr[idx] = e.target.value;
+                            setNewMenu({ ...newMenu, [meal]: arr });
+                          }}
+                        />
+                        <Button type="button" variant="outline" onClick={() => {
+                          setNewMenu({ ...newMenu, [meal]: newMenu[meal].filter((_: string, i: number) => i !== idx) });
+                        }}>Remove</Button>
+                      </div>
+                    ))}
+                    <Button type="button" variant="secondary" onClick={() => {
+                      setNewMenu({ ...newMenu, [meal]: [...newMenu[meal], ''] });
+                    }}>Add Dish</Button>
+                  </div>
+                ))}
+                <div className="flex gap-2">
+                  <Button type="submit" disabled={menuLoading}>{editingMenu ? 'Update Menu' : 'Add Menu'}</Button>
+                  {editingMenu && (
+                    <Button type="button" variant="outline" onClick={() => {
+                      setEditingMenu(null);
+                      setNewMenu({ canteenName: '', breakfast: [''], lunch: [''], dinner: [''] });
+                    }}>Cancel Edit</Button>
+                  )}
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Canteen Menus</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {canteenMenus.length === 0 ? (
+                <div>No canteen menus found.</div>
+              ) : (
+                <div>
+                  {canteenMenus.map(menu => (
+                    <div key={menu._id} className="mb-4 border-b pb-2">
+                      <div className="flex items-center gap-2">
+                        <Button variant="link" onClick={() => {
+                          setExpandedCanteens(prev =>
+                            prev.includes(menu.canteenName)
+                              ? prev.filter(name => name !== menu.canteenName)
+                              : [...prev, menu.canteenName]
+                          );
+                        }}>
+                          {menu.canteenName}
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            setEditingMenu(menu);
+                            setNewMenu({
+                              canteenName: menu.canteenName,
+                              breakfast: [...menu.meals.breakfast],
+                              lunch: [...menu.meals.lunch],
+                              dinner: [...menu.meals.dinner],
+                            });
+                            setExpandedCanteens([menu.canteenName]);
+                          }}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          variant="destructive"
+                          size="sm"
+                          className="text-xs px-2 py-1"
+                          onClick={() => handleDeleteMenu(menu._id)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                      {expandedCanteens.includes(menu.canteenName) && (
+                        <div className="ml-4 mt-2">
+                          {mealTypes.map((meal: MealType) => (
+                            <div key={meal}>
+                              <Button variant="ghost" onClick={() => {
+                                setExpandedMeals(prev => {
+                                  const meals = prev[menu.canteenName] || [];
+                                  return {
+                                    ...prev,
+                                    [menu.canteenName]: meals.includes(meal)
+                                      ? meals.filter(m => m !== meal)
+                                      : [...meals, meal]
+                                  };
+                                });
+                              }}>
+                                {meal.charAt(0).toUpperCase() + meal.slice(1)}
+                              </Button>
+                              {expandedMeals[menu.canteenName]?.includes(meal) && (
+                                <ul className="ml-4 list-disc">
+                                  {menu.meals[meal].map((dish: string, idx: number) => (
+                                    <li key={idx}>{dish}</li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               )}
             </CardContent>
