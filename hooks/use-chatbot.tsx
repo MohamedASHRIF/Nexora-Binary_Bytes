@@ -368,9 +368,9 @@ export const useChatbot = () => {
       // Log the query
       addQueryLog({
         query: text,
+        response: responseText,
         timestamp: new Date(),
-        sentiment: 0,
-        responseTime: Date.now() - startTime
+        sentiment: 0
       });
 
       return {
@@ -483,9 +483,9 @@ export const useChatbot = () => {
       // Log the query
       addQueryLog({
         query: text,
+        response: botResponse,
         timestamp: new Date(),
-        sentiment: 0,
-        responseTime: Date.now() - startTime
+        sentiment: 0
       });
 
       return {

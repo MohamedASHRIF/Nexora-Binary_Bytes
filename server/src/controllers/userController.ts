@@ -213,37 +213,28 @@ export const getUserInsights = catchAsync(async (req: AuthenticatedRequest, res:
     );
 
     // Calculate insights
-    const totalQueries = filteredMessages.filter(msg => msg.isUser).length;
-    
-    // Calculate queries by type
-    const queriesByType = {
-      schedule: filteredMessages.filter(msg => 
-        msg.isUser && msg.text.toLowerCase().includes('schedule') || msg.text.toLowerCase().includes('class')
-      ).length,
-      bus: filteredMessages.filter(msg => 
-        msg.isUser && msg.text.toLowerCase().includes('bus') || msg.text.toLowerCase().includes('transport')
-      ).length,
-      menu: filteredMessages.filter(msg => 
-        msg.isUser && (msg.text.toLowerCase().includes('menu') || msg.text.toLowerCase().includes('food') || msg.text.toLowerCase().includes('cafeteria'))
-      ).length,
-      events: filteredMessages.filter(msg => 
-        msg.isUser && msg.text.toLowerCase().includes('event')
-      ).length,
-      other: filteredMessages.filter(msg => 
-        msg.isUser && 
-        !msg.text.toLowerCase().includes('schedule') &&
-        !msg.text.toLowerCase().includes('class') &&
-        !msg.text.toLowerCase().includes('bus') &&
-        !msg.text.toLowerCase().includes('transport') &&
-        !msg.text.toLowerCase().includes('menu') &&
-        !msg.text.toLowerCase().includes('food') &&
-        !msg.text.toLowerCase().includes('cafeteria') &&
-        !msg.text.toLowerCase().includes('event')
-      ).length
-    };
+    const userMessages = filteredMessages.filter(msg => msg.isUser);
+    const totalQueries = userMessages.length;
+
+    // Assign each message to only one category (first match)
+    const categoryCounts = { schedule: 0, bus: 0, menu: 0, events: 0, other: 0 };
+    userMessages.forEach(msg => {
+      const text = msg.text.toLowerCase();
+      if (text.includes('schedule') || text.includes('class')) {
+        categoryCounts.schedule++;
+      } else if (text.includes('bus') || text.includes('transport')) {
+        categoryCounts.bus++;
+      } else if (text.includes('menu') || text.includes('food') || text.includes('cafeteria')) {
+        categoryCounts.menu++;
+      } else if (text.includes('event')) {
+        categoryCounts.events++;
+      } else {
+        categoryCounts.other++;
+      }
+    });
+    const queriesByType = categoryCounts;
 
     // Calculate sentiment analysis
-    const userMessages = filteredMessages.filter(msg => msg.isUser);
     const averageSentiment = userMessages.length > 0 
       ? userMessages.reduce((sum, msg) => sum + (msg.sentiment || 0), 0) / userMessages.length 
       : 0;

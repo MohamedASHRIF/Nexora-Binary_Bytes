@@ -1,0 +1,4 @@
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-26T16:40:17.881Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-26T16:40:22.140Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T16:40:29.933Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-26T16:40:30.392Z"}
