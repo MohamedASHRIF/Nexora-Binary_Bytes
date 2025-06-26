@@ -49,9 +49,13 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
 
-    if (dateString === today.toISOString().split('T')[0]) {
+    // Use getLocalDateString for all comparisons
+    const todayStr = getLocalDateString(today);
+    const yesterdayStr = getLocalDateString(yesterday);
+
+    if (dateString === todayStr) {
       return 'Today';
-    } else if (dateString === yesterday.toISOString().split('T')[0]) {
+    } else if (dateString === yesterdayStr) {
       return 'Yesterday';
     } else {
       return date.toLocaleDateString('en-US', { 
