@@ -3709,3 +3709,48 @@
 {"level":"info","message":"GET /events","timestamp":"2025-06-12T10:03:58.040Z"}
 {"level":"info","message":"GET /events","timestamp":"2025-06-12T10:03:58.228Z"}
 {"level":"info","message":"POST /schedules","timestamp":"2025-06-12T10:04:50.725Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-25T16:01:57.426Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-25T16:02:01.064Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-25T16:04:51.526Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-25T16:04:52.188Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-25T16:05:23.595Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-25T16:05:23.604Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-25T16:05:23.612Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-25T16:05:24.010Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-25T16:05:24.017Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-25T16:05:24.060Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-25T16:05:28.991Z"}
+{"language":"en","level":"info","message":"Received chat message: food","timestamp":"2025-06-25T16:05:29.323Z","user":{"__v":0,"_id":"685be0ac40108c3511c8df1d","badges":[],"createdAt":"2025-06-25T11:42:37.001Z","degree":"IT","email":"abd@gmail.com","language":"en","name":"NSS","points":0,"role":"student","updatedAt":"2025-06-25T11:42:37.001Z"}}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-25T16:05:34.539Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-25T16:05:35.457Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-25T16:09:17.784Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-25T16:11:27.914Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-25T16:11:28.390Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-25T16:11:38.325Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-25T16:11:38.331Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-25T16:11:38.338Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-25T16:11:38.619Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-25T16:11:38.655Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-25T16:11:38.660Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-25T16:11:41.211Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-06-25T16:11:41.367Z","user":{"__v":0,"_id":"685be0ac40108c3511c8df1d","badges":[],"createdAt":"2025-06-25T11:42:37.001Z","degree":"IT","email":"abd@gmail.com","language":"en","name":"NSS","points":0,"role":"student","updatedAt":"2025-06-25T11:42:37.001Z"}}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-25T16:11:44.149Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-25T16:11:44.430Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-25T16:16:18.910Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-25T16:16:19.000Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-25T16:16:19.007Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-25T16:16:19.400Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-25T16:16:19.482Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-25T16:16:19.607Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-06-25T16:16:44.035Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-25T16:32:41.931Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-25T16:32:42.028Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-25T16:32:42.036Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-25T16:32:42.369Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-25T16:32:42.374Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-25T16:32:42.380Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-25T16:32:54.490Z"}
+{"language":"en","level":"info","message":"Received chat message: food","timestamp":"2025-06-25T16:32:54.672Z","user":{"__v":0,"_id":"685be0ac40108c3511c8df1d","badges":[],"createdAt":"2025-06-25T11:42:37.001Z","degree":"IT","email":"abd@gmail.com","language":"en","name":"NSS","points":0,"role":"student","updatedAt":"2025-06-25T11:42:37.001Z"}}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-25T16:46:25.858Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-25T17:13:11.204Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-25T17:13:11.587Z"}
