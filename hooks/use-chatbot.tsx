@@ -365,6 +365,17 @@ export const useChatbot = () => {
         responseText = translate('unknown');
       }
 
+      // Update suggestions based on the current context
+      const newSuggestions = getFollowUpSuggestion(intent)
+      setSuggestions(newSuggestions)
+
+      // Update context
+      setContext(prev => ({
+        ...prev,
+        lastTopic: intent,
+        lastTime: timeRef
+      }))
+
       // Log the query
       addQueryLog({
         query: text,
@@ -391,122 +402,72 @@ export const useChatbot = () => {
   }, [isOffline, translate, addQueryLog]);
 
   const sendMessage = async (text: string) => {
-    const startTime = Date.now();
+    if (!text.trim()) return;
+
+    const userMessage = {
+      text,
+      isUser: true,
+      timestamp: new Date(),
+      isTampered: false
+    };
+    setMessages(prev => [...prev, userMessage]);
+
+    // Make API call to chat endpoint
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No token found');
+      return;
+    }
+
     try {
-      setIsProcessing(true);
-
-      // Add user message
-      const userMessage: Message = {
-        text,
-        isUser: true,
-        timestamp: new Date(),
-        isTampered: false
-      };
-      setMessages(prev => [...prev, userMessage]);
-
-      // Make API call to chat endpoint
-      const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error('No authentication token found');
-      }
-
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
-      console.log('Sending request to:', `${apiUrl}/chat`);
-
-      const response = await fetch(`${apiUrl}/chat`, {
+      const startTime = Date.now();
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ 
-          message: text,
-          language: language // Send language preference to server
-        })
+        body: JSON.stringify({ message: text })
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to get response from server');
+        throw new Error('Failed to send message');
       }
 
       const data = await response.json();
-      const botResponse = data.data.message;
-
-      console.log('Received bot response:', botResponse);
-
-      // Check if this is a location redirect
-      if (botResponse.startsWith('LOCATION_REDIRECT:')) {
-        console.log('Location redirect detected, switching to map tab');
-        const parts = botResponse.split(':');
-        if (parts.length >= 3) {
-          const locationName = parts[1];
-          const encodedLocation = parts[2];
-          
-          console.log('Switching to map tab for:', locationName);
-          
-          // Store the location data in localStorage for the map to use
-          localStorage.setItem('highlightedLocation', JSON.stringify({
-            name: locationName,
-            encodedLocation: encodedLocation
-          }));
-          
-          // Switch to map tab by updating URL hash or using a custom event
-          setTimeout(() => {
-            // Use a custom event to communicate with the main page
-            window.dispatchEvent(new CustomEvent('switchToMap', {
-              detail: { location: locationName }
-            }));
-          }, 100);
-          
-          // Return a simple response to avoid errors
-          const redirectMessage = language === 'si' ? 'සිතියම වෙත මාරු වෙමින්...' : 
-                                 language === 'ta' ? 'வரைபடத்திற்கு மாற்றுகிறேன்...' : 
-                                 'Switching to map...';
-          return {
-            type: 'redirected',
-            data: redirectMessage
-          };
-        }
-      }
-
-      console.log('Normal response, adding to messages');
-      // Add bot response to messages only for normal responses
-      const botMessage: Message = {
-        text: botResponse,
+      const botMessage = {
+        text: data.message,
         isUser: false,
         timestamp: new Date(),
         isTampered: false
       };
       setMessages(prev => [...prev, botMessage]);
 
-      // Log the query
+      // Analyze sentiment and log the query
+      const sentimentScore = analyzeSentiment(text);
       addQueryLog({
         query: text,
         timestamp: new Date(),
-        sentiment: 0,
+        sentiment: sentimentScore,
         responseTime: Date.now() - startTime
       });
 
       return {
-        type: 'normal',
-        data: botResponse
+        text: data.message,
+        isUser: false,
+        timestamp: new Date(),
+        isTampered: false
       };
     } catch (error) {
       console.error('Error sending message:', error);
-      const errorMessage: Message = {
+      const errorMessage = {
         text: translate('error'),
         isUser: false,
         timestamp: new Date(),
         isTampered: false
       };
       setMessages(prev => [...prev, errorMessage]);
-      return {
-        type: 'error',
-        data: translate('error')
-      };
-    } finally {
-      setIsProcessing(false);
+      return errorMessage;
     }
   };
 
