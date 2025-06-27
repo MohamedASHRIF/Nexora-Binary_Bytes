@@ -187,31 +187,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
 
   return (
     <div className="flex flex-col h-full" suppressHydrationWarning>
-      {/* Language Selector */}
-      <div className="bg-gray-50 dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 p-3 flex-shrink-0">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              {language === 'en' ? 'Language' : language === 'si' ? 'භාෂාව' : 'மொழி'}:
-            </span>
-            <select
-              value={language}
-              onChange={(e) => handleLanguageChange(e.target.value)}
-              className="px-3 py-1 border border-gray-300 dark:border-slate-600 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
-            >
-              {languageOptions.map((option) => (
-                <option key={option.code} value={option.code}>
-                  {option.flag} {option.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">
-            {language === 'en' ? 'Current' : language === 'si' ? 'වර්තමාන' : 'தற்போதைய'}: {languageOptions.find(opt => opt.code === language)?.name}
-          </div>
-        </div>
-      </div>
-
       {/* Messages Area - Scrollable within chat container */}
       <div className="flex-1 overflow-y-auto p-2 space-y-1 pb-28">
         {messages.length === 0 && (
