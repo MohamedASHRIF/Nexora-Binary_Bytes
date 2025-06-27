@@ -8,6 +8,7 @@ import busRouteRoutes from './busRouteRoutes';
 import userRoutes from './userRoutes';
 import chatWidooRoutes from './chatWidooRoutes';
 import cafeteriaRoutes from './cafeteriaRoutes';
+import quizRoutes from './quizRoutes';
 import { logger } from '../utils/logger';
 
 const router = express.Router();
@@ -27,5 +28,6 @@ router.use('/bus-routes', busRouteRoutes);
 router.use('/users', userRoutes);
 router.use('/chatwidoo', chatWidooRoutes);
 router.use('/cafeteria', cafeteriaRoutes);
+router.use('/quiz', quizRoutes);
 
 export default router; 

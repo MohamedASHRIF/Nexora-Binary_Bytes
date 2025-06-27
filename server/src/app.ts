@@ -14,6 +14,8 @@ import faqRoutes from './routes/faqRoutes';
 import chatRoutes from './routes/chatRoutes';
 import busTimingRoutes from './routes/busTimingRoutes';
 import chatWidooRoutes from './routes/chatWidooRoutes';
+import gameRoutes from './routes/gameRoutes';
+import quizRoutes from './routes/quizRoutes';
 
 const app = express();
 
@@ -41,6 +43,8 @@ app.use('/api/faq', faqRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/bus-timings', busTimingRoutes);
 app.use('/api/chatwidoo', chatWidooRoutes);
+app.use('/api/game', gameRoutes);
+app.use('/api/quiz', quizRoutes);
 
 // Error handling
 app.use(errorHandler);

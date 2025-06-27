@@ -10,6 +10,7 @@ import { ChatBusSchedule } from './ChatBusSchedule';
 import { ChatEvents } from './ChatEvents';
 import type { Message } from '@/types';
 import { getBusData, getEventData } from '../lib/data';
+import Cookies from 'js-cookie';
 
 const API_BASE_URL = 'http://localhost:5000/api'; // Backend server URL
 
@@ -53,6 +54,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
   const [menuLoading, setMenuLoading] = useState(false);
   const [canteenError, setCanteenError] = useState<string | null>(null);
   const [menuError, setMenuError] = useState<string | null>(null);
+  const [showQuiz, setShowQuiz] = useState(false);
+  const [quizList, setQuizList] = useState<any[]>([]);
+  const [quizIndex, setQuizIndex] = useState(0);
+  const [quizSelected, setQuizSelected] = useState('');
+  const [quizScore, setQuizScore] = useState(0);
+  const [quizResult, setQuizResult] = useState(false);
+  const [quizLoading, setQuizLoading] = useState(false);
 
   // Language options
   const languageOptions = [
@@ -294,10 +302,45 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
     }
   };
 
-  const handleQuiz = () => {
-    // Placeholder for quiz functionality
-    alert('Quiz feature coming soon!');
+  const handleQuiz = async () => {
+    setQuizLoading(true);
+    setShowQuiz(true);
+    try {
+      const res = await fetch(`${API_BASE_URL}/quiz`, {
+        headers: (() => {
+          const token = localStorage.getItem('token') || Cookies.get('token');
+          let headers: Record<string, string> = {};
+          if (token) headers['Authorization'] = `Bearer ${token}`;
+          return headers;
+        })(),
+        credentials: 'include',
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setQuizList(data.data);
+        setQuizIndex(0);
+        setQuizSelected('');
+        setQuizScore(0);
+        setQuizResult(false);
+      }
+    } finally {
+      setQuizLoading(false);
+    }
   };
+
+  const handleQuizSelect = (option: string) => setQuizSelected(option);
+  const handleQuizNext = () => {
+    const quiz = quizList[quizIndex];
+    const correct = quiz.questions[0]?.options[quiz.questions[0]?.correctAnswer];
+    if (quizSelected === correct) setQuizScore(quizScore + 1);
+    setQuizSelected('');
+    if (quizIndex + 1 < quizList.length) {
+      setQuizIndex(quizIndex + 1);
+    } else {
+      setQuizResult(true);
+    }
+  };
+  const handleQuizClose = () => setShowQuiz(false);
 
   if (!mounted) {
     return null;
@@ -642,6 +685,51 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
           </button>
         </div>
       </div>
+      {/* Quiz Modal - only render once here */}
+      {showQuiz && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-slate-800 rounded-lg p-6 w-full max-w-md relative">
+            <button onClick={handleQuizClose} className="absolute top-2 right-2 text-gray-500 hover:text-red-500">✖</button>
+            {quizLoading ? (
+              <div>Loading quiz...</div>
+            ) : quizResult ? (
+              <div>
+                <h2 className="text-xl font-bold mb-4">Quiz Result</h2>
+                <p className="mb-2">Your score: {quizScore} / {quizList.length}</p>
+                <button className="bg-blue-600 hover:bg-blue-700 rounded px-3 py-2 mt-2 text-white" onClick={handleQuizClose}>Close</button>
+              </div>
+            ) : quizList.length > 0 ? (
+              <div>
+                <h2 className="text-lg font-semibold mb-2">Q{quizIndex + 1}: {quizList[quizIndex].questions[0]?.question || quizList[quizIndex].title}</h2>
+                <div className="flex flex-col gap-2 mb-4">
+                  {quizList[quizIndex].questions[0]?.options.map((opt: string, idx: number) => (
+                    <label key={idx} className={`p-2 rounded cursor-pointer ${quizSelected === opt ? 'bg-blue-700 text-white' : 'bg-gray-200 dark:bg-gray-700'}`}> 
+                      <input
+                        type="radio"
+                        name="quizOption"
+                        value={opt}
+                        checked={quizSelected === opt}
+                        onChange={() => handleQuizSelect(opt)}
+                        className="mr-2"
+                      />
+                      {opt}
+                    </label>
+                  ))}
+                </div>
+                <button
+                  onClick={handleQuizNext}
+                  className="bg-green-600 hover:bg-green-700 rounded px-3 py-2 mt-2 text-white"
+                  disabled={!quizSelected}
+                >
+                  {quizIndex + 1 === quizList.length ? 'Finish' : 'Next'}
+                </button>
+              </div>
+            ) : (
+              <div>No quizzes available.</div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }; 

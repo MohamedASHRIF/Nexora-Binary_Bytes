@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 interface SentimentsProps {
   averageSentiment: number;
@@ -32,11 +33,57 @@ export const Sentiments: React.FC<SentimentsProps> = ({
     Draws: 0,
   });
 
+  // Fetch score from backend on mount
+  useEffect(() => {
+    const fetchScore = async () => {
+      try {
+        const token = localStorage.getItem('token') || Cookies.get('token');
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/game/score`, {
+          headers: token ? { 'Authorization': `Bearer ${token}` } : {},
+          credentials: 'include',
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setScore({
+            X: data.data.xWins,
+            O: data.data.oWins,
+            Draws: data.data.draws,
+          });
+        }
+      } catch (e) {
+        // ignore
+      }
+    };
+    fetchScore();
+  }, []);
+
   // Helper: map emoji symbol to player key used in scoreboard
   const symbolToPlayer = (symbol: string) => {
     if (symbol === '❌') return 'X';
     if (symbol === '🔵') return 'O';
     return '';
+  };
+
+  // Update score in backend
+  const persistScore = async (newScore: { X: number; O: number; Draws: number }) => {
+    try {
+      const token = localStorage.getItem('token') || Cookies.get('token');
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/game/score`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          xWins: newScore.X,
+          oWins: newScore.O,
+          draws: newScore.Draws,
+        }),
+      });
+    } catch (e) {
+      // ignore
+    }
   };
 
   const checkWinner = (newBoard: string[]) => {
@@ -53,10 +100,12 @@ export const Sentiments: React.FC<SentimentsProps> = ({
         setWinnerCombo(condition);
 
         if (winner === "X" || winner === "O") {
-          setScore(prevScore => ({
-            ...prevScore,
-            [winner]: (prevScore[winner] ?? 0) + 1,
-          }));
+          const newScore = {
+            ...score,
+            [winner]: (score[winner] ?? 0) + 1,
+          };
+          setScore(newScore);
+          persistScore(newScore);
         }
 
         return;
@@ -68,10 +117,12 @@ export const Sentiments: React.FC<SentimentsProps> = ({
       setRunning(false);
 
       // Update draws count safely
-      setScore(prevScore => ({
-        ...prevScore,
-        Draws: (prevScore.Draws ?? 0) + 1,
-      }));
+      const newScore = {
+        ...score,
+        Draws: (score.Draws ?? 0) + 1,
+      };
+      setScore(newScore);
+      persistScore(newScore);
     }
   };
 

@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 const AdminQuizEntry = () => {
   const [question, setQuestion] = useState('');
@@ -7,10 +10,33 @@ const AdminQuizEntry = () => {
   const [options, setOptions] = useState(['', '']);
   const [answer, setAnswer] = useState('');
   const [quizzes, setQuizzes] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const getAuthHeaders = () => {
+    const token = localStorage.getItem('token') || Cookies.get('token');
+    let headers: Record<string, string> = {};
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    return headers;
+  };
+
+  const fetchQuizzes = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/quiz`, {
+        headers: getAuthHeaders(),
+        credentials: 'include',
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setQuizzes(data.data);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const storedQuizzes = JSON.parse(localStorage.getItem('quizzes') || '[]');
-    setQuizzes(storedQuizzes);
+    fetchQuizzes();
   }, []);
 
   const handleOptionCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +44,6 @@ const AdminQuizEntry = () => {
     if (count > 5) count = 5;
     if (count < 2) count = 2;
     setOptionCount(count);
-
     const updatedOptions = [...options];
     while (updatedOptions.length < count) updatedOptions.push('');
     while (updatedOptions.length > count) updatedOptions.pop();
@@ -31,7 +56,7 @@ const AdminQuizEntry = () => {
     setOptions(updatedOptions);
   };
 
-  const handleAddQuiz = () => {
+  const handleAddQuiz = async () => {
     if (!question || !answer || options.some(opt => !opt)) {
       alert('Please fill in all fields.');
       return;
@@ -41,25 +66,56 @@ const AdminQuizEntry = () => {
       return;
     }
     const newQuiz = {
-      question,
-      options,
-      answer: answer.trim(),
-      track
+      title: question,
+      description: track,
+      questions: [
+        {
+          question,
+          options,
+          correctAnswer: options.findIndex(opt => opt === answer.trim()),
+        },
+      ],
     };
-    const storedQuizzes = JSON.parse(localStorage.getItem('quizzes') || '[]');
-    const updatedQuizzes = [...storedQuizzes, newQuiz];
-    localStorage.setItem('quizzes', JSON.stringify(updatedQuizzes));
-    setQuizzes(updatedQuizzes);
-    setQuestion('');
-    setOptions(Array(optionCount).fill(''));
-    setAnswer('');
-    alert(`Quiz for ${track} added successfully!`);
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/quiz`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...getAuthHeaders(),
+        },
+        credentials: 'include',
+        body: JSON.stringify(newQuiz),
+      });
+      if (res.ok) {
+        await fetchQuizzes();
+        setQuestion('');
+        setOptions(Array(optionCount).fill(''));
+        setAnswer('');
+        alert(`Quiz for ${track} added successfully!`);
+      } else {
+        alert('Failed to add quiz.');
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleClearAll = () => {
+  const handleClearAll = async () => {
     if (window.confirm('Are you sure you want to delete all quizzes?')) {
-      setQuizzes([]);
-      localStorage.removeItem('quizzes');
+      setLoading(true);
+      try {
+        for (const quiz of quizzes) {
+          await fetch(`${API_URL}/quiz/${quiz._id}`, {
+            method: 'DELETE',
+            headers: getAuthHeaders(),
+            credentials: 'include',
+          });
+        }
+        setQuizzes([]);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -112,30 +168,32 @@ const AdminQuizEntry = () => {
         <button
           onClick={handleAddQuiz}
           className="bg-green-600 hover:bg-green-700 rounded px-3 py-2 mt-2"
+          disabled={loading}
         >
           ➕ Add Quiz
         </button>
         <button
           onClick={handleClearAll}
           className="bg-red-600 hover:bg-red-700 rounded px-3 py-2 mt-2"
+          disabled={loading}
         >
           🗑️ Clear All Quizzes
         </button>
       </div>
       <div className="mt-6 w-full max-w-2xl">
         <h2 className="text-lg font-semibold mb-2">📚 Existing Quizzes:</h2>
-        {quizzes.length === 0 ? (
+        {loading ? <p>Loading...</p> : quizzes.length === 0 ? (
           <p>No quizzes added yet.</p>
         ) : (
           <ul className="list-disc pl-5 space-y-2">
             {quizzes.map((q, idx) => (
-              <li key={idx} className="mb-2">
-                <span className="font-semibold">{q.question}</span> <span className="text-xs text-gray-400">[{q.track}]</span>
+              <li key={q._id || idx} className="mb-2">
+                <span className="font-semibold">{q.questions[0]?.question || q.title}</span> <span className="text-xs text-gray-400">[{q.description || q.track}]</span>
                 <div className="ml-4 text-sm">
-                  {q.options.map((opt: string, oidx: number) => (
+                  {q.questions[0]?.options?.map((opt: string, oidx: number) => (
                     <div key={oidx}>{oidx + 1}. {opt}</div>
                   ))}
-                  <span className="text-green-400">✅ Answer: {q.answer}</span>
+                  <span className="text-green-400">✅ Answer: {q.questions[0]?.options?.[q.questions[0]?.correctAnswer]}</span>
                 </div>
               </li>
             ))}
