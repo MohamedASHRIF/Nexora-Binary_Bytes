@@ -7,6 +7,7 @@ import { Schedule } from '../models/Schedule';
 import { BusRoute } from '../models/BusRoute';
 import { Event } from '../models/Event';
 import { catchAsync } from '../utils/catchAsync';
+import { foodKeywords } from '../utils/queryKeywords';
 
 interface AuthenticatedRequest extends Request {
   user?: {
@@ -200,9 +201,6 @@ const analyzeSentiment = (text: string): number => {
   return normalizedScore;
 };
 
-// Add at the top:
-const foodKeywords = ['hungry', 'starving', 'food', 'canteen', 'cafeteria', 'menu', 'eat', 'lunch', 'breakfast', 'dinner', 'බඩගිනි', 'කෑම', 'உணவு', 'உணவகம்', 'பசி', 'காஃபி'];
-
 // In-memory state for demo (userId -> { step, canteen, meal })
 const canteenChatState: Record<string, { step: number, canteen?: string, meal?: string }> = {};
 
@@ -268,15 +266,15 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       }
     }
     // 2. If user message is about food/canteen, start flow
-    else if (foodKeywords.some(word => lowerMessage.includes(word))) {
+    else if (foodKeywords.some(keyword => new RegExp(`\\b${keyword}\\b`, 'i').test(lowerMessage))) {
       // Fetch all canteens
       const menus = await require('../models/CanteenMenu').CanteenMenu.find();
       const canteenNames = [...new Set(menus.map((m: any) => m.canteenName))];
       if (canteenNames.length === 0) {
         botResponse = 'Sorry, there are no canteens available right now.';
       } else {
-        canteenChatState[userId] = { step: 1 };
-        botResponse = 'Which canteen would you like to check? Available: ' + canteenNames.join(', ');
+        // Instead of a text prompt, send a special signal for the frontend
+        botResponse = 'SHOW_CANTEEN_TABLE';
       }
     }
     // Check for greetings first
@@ -330,14 +328,8 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       console.log('Happy mood detection triggered for message:', lowerMessage);
       botResponse = getTranslation('mood_happy', detectedLanguage);
     }
-    // Check if the message is about locations/directions
-    else if (lowerMessage.includes('where') || lowerMessage.includes('location') || lowerMessage.includes('directions') || 
-        lowerMessage.includes('how to get to') || lowerMessage.includes('find') || lowerMessage.includes('map') ||
-        lowerMessage.includes('எங்கே') || lowerMessage.includes('இடம்') || lowerMessage.includes('வழி') ||
-        lowerMessage.includes('කොහෙද') || lowerMessage.includes('ස්ථානය') || lowerMessage.includes('මාර්ගය')) {
-      
-      console.log('Location detection triggered for message:', lowerMessage);
-      
+    // Check if the message is about locations/directions OR directly matches a known location
+    else {
       // Define common campus locations
       const campusLocations = [
         { name: 'IT Faculty', keywords: ['it faculty', 'information technology', 'computer science', 'cs faculty', 'ஐடி பீடம்', 'கணினி அறிவியல்', 'IT පීඨය'] },
@@ -348,24 +340,32 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
         { name: 'Main Building', keywords: ['main building', 'main', 'administration', 'admin', 'office', 'முதன்மை கட்டிடம்', 'நிர்வாகம்', 'ප්‍රධාන ගොඩනැගිල්ල'] }
       ];
 
-      // Find matching location
+      // If the message contains any location-related phrase OR matches a location name/keyword directly
+      const locationRelated = lowerMessage.includes('where') || lowerMessage.includes('location') || lowerMessage.includes('directions') || 
+        lowerMessage.includes('how to get to') || lowerMessage.includes('find') || lowerMessage.includes('map') ||
+        lowerMessage.includes('எங்கே') || lowerMessage.includes('இடம்') || lowerMessage.includes('வழி') ||
+        lowerMessage.includes('කොහෙද') || lowerMessage.includes('ස්ථානය') || lowerMessage.includes('මාර්ගය');
+
       let foundLocation = null;
       for (const location of campusLocations) {
-        console.log('Checking location:', location.name, 'with keywords:', location.keywords);
-        if (location.keywords.some(keyword => lowerMessage.includes(keyword))) {
+        if (location.keywords.some(keyword => lowerMessage.includes(keyword)) || lowerMessage.trim() === location.name.toLowerCase()) {
           foundLocation = location;
-          console.log('Found matching location:', foundLocation.name);
           break;
         }
       }
 
-      if (foundLocation) {
-        const encodedLocation = encodeURIComponent(foundLocation.name);
-        botResponse = `LOCATION_REDIRECT:${foundLocation.name}:${encodedLocation}`;
-        console.log('Generated location redirect response:', botResponse);
-      } else {
-        console.log('No location found for message:', lowerMessage);
-        botResponse = getTranslation('location_help', detectedLanguage);
+      if (locationRelated || foundLocation) {
+        if (foundLocation) {
+          const encodedLocation = encodeURIComponent(foundLocation.name);
+          botResponse = `LOCATION_REDIRECT:${foundLocation.name}:${encodedLocation}`;
+        } else {
+          botResponse = getTranslation('location_help', detectedLanguage);
+        }
+        // Return early so other logic doesn't run
+        return res.status(200).json({
+          status: 'success',
+          data: botResponse
+        });
       }
     }
     // Check if the message is about class schedules

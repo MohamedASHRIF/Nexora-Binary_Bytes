@@ -180,23 +180,40 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
 
   const handleSend = async () => {
     if (!inputText.trim()) return;
-    const lower = inputText.toLowerCase();
-    if (lower.includes('food') || lower.includes('hungry') || lower.includes('canteen')) {
-      setShowCanteenTable(true);
+
+    // If canteen table is open and user sends a new message, close the table
+    if (showCanteenTable && !selectedCanteen) {
+      setShowCanteenTable(false);
       setSelectedCanteen(null);
       setCanteenMenu(null);
-      setInputText('');
-      return;
     }
 
-    // Add the message to recent messages
+    // Always add the user message to the chat
+    setMessages(prev => [
+      ...prev,
+      {
+        text: inputText,
+        isUser: true,
+        timestamp: new Date(),
+        isTampered: false
+      }
+    ]);
+
     const newRecentMessages = [...recentUserMessages, inputText].slice(-5); // Keep last 5 messages
     setRecentUserMessages(newRecentMessages);
     onRecentMessagesChange?.(newRecentMessages);
 
     addPoints(5);
-    await sendMessage(inputText);
+    const response = await sendMessage(inputText);
     setInputText('');
+
+    // Intercept SHOW_CANTEEN_TABLE signal from backend
+    if (response && response.data === 'SHOW_CANTEEN_TABLE') {
+      setShowCanteenTable(true);
+      setSelectedCanteen(null);
+      setCanteenMenu(null);
+      return;
+    }
   };
 
   const handleClearChat = () => {
@@ -485,29 +502,19 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
               ) : canteenError ? (
                 <div className="text-red-500">{canteenError}</div>
               ) : (
-                <table className="w-full bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg overflow-hidden">
-                  <thead>
-                    <tr>
-                      <th className="px-4 py-2 border border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-gray-100">Canteen</th>
-                      <th className="px-4 py-2 border border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-gray-100">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {availableCanteens.map((canteen) => (
-                      <tr key={canteen.id} className="bg-white dark:bg-slate-900">
-                        <td className="px-4 py-2 border border-gray-200 dark:border-slate-700 text-gray-900 dark:text-gray-100 font-medium">{canteen.name}</td>
-                        <td className="px-4 py-2 border border-gray-200 dark:border-slate-700">
-                          <button
-                            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                            onClick={() => { setSelectedCanteen(canteen.id); setCanteenMenu(null); }}
-                          >
-                            View Menu
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <div className="space-y-2">
+                  {availableCanteens.map((canteen) => (
+                    <div key={canteen.id} className="flex items-center justify-between bg-gray-50 dark:bg-slate-900 rounded-lg px-4 py-2 shadow-sm">
+                      <span className="text-gray-900 dark:text-gray-100 font-medium">{canteen.name}</span>
+                      <button
+                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                        onClick={() => { setSelectedCanteen(canteen.id); setCanteenMenu(null); }}
+                      >
+                        View Menu
+                      </button>
+                    </div>
+                  ))}
+                </div>
               )}
               <button
                 className="mt-3 bg-red-200 dark:bg-red-900 text-red-700 dark:text-red-200 px-3 py-1 rounded hover:bg-red-300 dark:hover:bg-red-800"

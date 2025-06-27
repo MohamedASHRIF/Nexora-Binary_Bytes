@@ -89,7 +89,9 @@ export const DataInsights: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-purple-600 dark:text-purple-400 text-sm font-medium">Most Popular</p>
-                  <p className="text-xl font-bold text-purple-800 dark:text-purple-200">{popularQueries.length > 0 ? popularQueries[0].text : 'N/A'}</p>
+                  <p className="text-xl font-bold text-purple-800 dark:text-purple-200 truncate max-w-xs" title={popularQueries.length > 0 ? popularQueries[0].text : ''}>
+                    {popularQueries.length > 0 ? (popularQueries[0].text.length > 40 ? popularQueries[0].text.slice(0, 40) + '...' : popularQueries[0].text) : 'N/A'}
+                  </p>
                 </div>
                 <div className="text-purple-400 dark:text-purple-300">
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">

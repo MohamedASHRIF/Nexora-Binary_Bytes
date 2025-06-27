@@ -395,15 +395,6 @@ export const useChatbot = () => {
     try {
       setIsProcessing(true);
 
-      // Add user message
-      const userMessage: Message = {
-        text,
-        isUser: true,
-        timestamp: new Date(),
-        isTampered: false
-      };
-      setMessages(prev => [...prev, userMessage]);
-
       // Make API call to chat endpoint
       const token = localStorage.getItem('token');
       if (!token) {

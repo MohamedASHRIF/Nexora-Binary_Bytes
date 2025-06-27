@@ -6,6 +6,7 @@ import { catchAsync } from '../utils/catchAsync';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { Chat } from '../models/Chat';
+import { foodKeywords, scheduleKeywords, busKeywords, eventKeywords } from '../utils/queryKeywords';
 
 interface AuthenticatedRequest extends Request {
   user?: any;
@@ -220,13 +221,13 @@ export const getUserInsights = catchAsync(async (req: AuthenticatedRequest, res:
     const categoryCounts = { schedule: 0, bus: 0, menu: 0, events: 0, other: 0 };
     userMessages.forEach(msg => {
       const text = msg.text.toLowerCase();
-      if (text.includes('schedule') || text.includes('class')) {
+      if (scheduleKeywords.some(keyword => new RegExp(`\\b${keyword}\\b`, 'i').test(text))) {
         categoryCounts.schedule++;
-      } else if (text.includes('bus') || text.includes('transport')) {
+      } else if (busKeywords.some(keyword => new RegExp(`\\b${keyword}\\b`, 'i').test(text))) {
         categoryCounts.bus++;
-      } else if (text.includes('menu') || text.includes('food') || text.includes('cafeteria')) {
+      } else if (foodKeywords.some(keyword => new RegExp(`\\b${keyword}\\b`, 'i').test(text))) {
         categoryCounts.menu++;
-      } else if (text.includes('event')) {
+      } else if (eventKeywords.some(keyword => new RegExp(`\\b${keyword}\\b`, 'i').test(text))) {
         categoryCounts.events++;
       } else {
         categoryCounts.other++;
