@@ -1,9 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useUserInsights } from '../hooks/use-user-insights';
 import { MoodMap } from './MoodMap'; // Assuming MoodMap is a default export
-import { ChatWidoo } from './ChatWidoo'; // Assuming ChatWidoo is a default export
+import { ChatWidoo } from './ChatWidoo'; 
+import { Sentiments } from './Sentiments';
 
-type InsightView = 'overview' | 'moodmap' | 'chatmap';
+
+type InsightView = 'overview' | 'moodmap' | 'chatmap' | 'sentiment';
 
 interface QueryLog {
   query: string;
@@ -52,6 +54,7 @@ export const DataInsights: React.FC = () => {
           <option value="overview">Overview</option>
           <option value="moodmap">MoodMap</option>
           <option value="chatmap">Chat Map</option>
+          <option value="sentiment">Game</option>
         </select>
       </div>
 
@@ -208,7 +211,17 @@ export const DataInsights: React.FC = () => {
         </div>
       )}
 
-      {queryStats.total === 0 && (
+      {selectedView === 'sentiment' && (
+        <div className="mt-6">
+          <Sentiments 
+          averageSentiment={stats.averageSentiment}
+          sentimentTrend={stats.sentimentTrend}
+          />
+          {/* averageSentiment={stats.averageSentiment} sentimentTrend={stats.sentimentTrend} /> */}
+        </div>
+      )}
+
+      {stats.totalQueries === 0 && (
         <div className="text-center py-12">
           <div className="text-gray-400 dark:text-gray-500 mb-4">
             <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">

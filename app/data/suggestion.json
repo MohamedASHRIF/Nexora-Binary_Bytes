@@ -1,0 +1,73 @@
+{
+    "programming": [
+      {"search": "JavaScript frameworks"},
+      {"search": "React.js tutorial"},
+      {"search": "Node.js frameworks"},
+      {"search": "Python web development frameworks"},
+      {"search": "Ruby on Rails tutorial"},
+      {"search": "PHP best practices"},
+      {"search": "ASP.NET web development"},
+      {"search": "TypeScript"},
+      {"search": "Java Spring Boot"},
+      {"search": "Go programming"},
+      {"search": "Rust programming"},
+      {"search": "Swift development"}
+    ],
+    "web_development": [
+      {"search": "How to learn web development"},
+      {"search": "Front-end vs. Back-end development"},
+      {"search": "Responsive web design"},
+      {"search": "Web performance optimization"},
+      {"search": "GraphQL API design"},
+      {"search": "RESTful API design"},
+      {"search": "Web application architecture"},
+      {"search": "Progressive Web Apps"},
+      {"search": "Web accessibility guidelines"},
+      {"search": "Web security best practices"}
+    ],
+    "engineering": [
+      {"search": "Software engineering principles"},
+      {"search": "System design"},
+      {"search": "Database design for web applications"},
+      {"search": "User authentication and authorization"},
+      {"search": "WebRTC video chat implementation"},
+      {"search": "Debugging web applications"},
+      {"search": "JavaScript design patterns"},
+      {"search": "Microservices architecture"},
+      {"search": "DevOps practices"},
+      {"search": "Cloud computing"}
+    ],
+    "mathematics": [
+      {"search": "Discrete mathematics"},
+      {"search": "Linear algebra for programmers"},
+      {"search": "Calculus applications in CS"},
+      {"search": "Probability and statistics"},
+      {"search": "Graph theory"},
+      {"search": "Number theory"},
+      {"search": "Mathematical optimization"},
+      {"search": "Cryptography fundamentals"},
+      {"search": "Machine learning math"},
+      {"search": "Algorithmic complexity"}
+    ],
+    "tools": [
+      {"search": "How to use Git for web development"},
+      {"search": "Web development tools for Mac"},
+      {"search": "Web scraping tools"},
+      {"search": "JavaScript testing frameworks"},
+      {"search": "CSS preprocessors"},
+      {"search": "Docker for developers"},
+      {"search": "Kubernetes basics"},
+      {"search": "CI/CD pipelines"}
+    ],
+    "design": [
+      {"search": "UI/UX design for the web"},
+      {"search": "CSS grid layouts"},
+      {"search": "CSS flexbox layouts"},
+      {"search": "Web typography best practices"},
+      {"search": "Web animations with CSS and JavaScript"},
+      {"search": "Web animations using SVG"},
+      {"search": "Web design trends in 2023"},
+      {"search": "Responsive images"},
+      {"search": "Bootstrap responsive design"}
+    ]
+  }

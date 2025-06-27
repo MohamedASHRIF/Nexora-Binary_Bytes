@@ -283,6 +283,22 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
     }
   };
 
+  const getQuizButtonText = () => {
+    switch (language) {
+      case 'si':
+        return 'ප්‍රශ්නාවලිය';
+      case 'ta':
+        return 'வினாடி வினா';
+      default:
+        return 'Quiz';
+    }
+  };
+
+  const handleQuiz = () => {
+    // Placeholder for quiz functionality
+    alert('Quiz feature coming soon!');
+  };
+
   if (!mounted) {
     return null;
   }
@@ -616,6 +632,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
             title={language === 'en' ? 'Clear chat history' : language === 'si' ? 'චැට් ඉතිහාසය මකන්න' : 'அரட்டை வரலாற்றை அழி'}
           >
             {getClearButtonText()}
+          </button>
+          <button
+            onClick={handleQuiz}
+            className="p-2 bg-green-600 dark:bg-green-700 text-white rounded-lg hover:bg-green-700 dark:hover:bg-green-800 min-w-[60px]"
+            title={language === 'en' ? 'Take a quiz' : language === 'si' ? 'ප්‍රශ්නාවලියක් කරන්න' : 'வினாடி வினா'}
+          >
+            {getQuizButtonText()}
           </button>
         </div>
       </div>
