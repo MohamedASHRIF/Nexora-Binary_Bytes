@@ -8,6 +8,7 @@ import { SuggestionBar } from '../components/SuggestionBar';
 import { ChatHistory } from '../components/ChatHistory';
 import { useGamePoints } from '../hooks/useGamePoints';
 import { useDailyPromptHistory } from '../hooks/useDailyPromptHistory';
+import { useLanguage } from '../hooks/useLanguage';
 
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
@@ -23,6 +24,7 @@ export default function Home() {
   
   // Daily prompt history hook
   const { addPrompt } = useDailyPromptHistory();
+  const { language, setLanguage } = useLanguage();
 
   const handleAsk = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -94,6 +96,22 @@ export default function Home() {
     <div className="h-screen flex flex-col bg-gray-100 dark:bg-slate-900">
       {/* Fixed Navigation Bar - Below main header */}
       <nav className="fixed top-16 left-0 right-0 z-40 w-full flex items-center bg-white dark:bg-slate-800 justify-end px-8 py-2 gap-6 border-t border-gray-100 dark:border-slate-700 shadow-sm">
+        {/* Language Selector on the left */}
+        <div className="flex items-center gap-2 mr-auto">
+          <span className="text-xs font-medium text-gray-700 dark:text-gray-300">Language</span>
+          <select
+            value={language}
+            onChange={e => setLanguage(e.target.value as 'en' | 'si' | 'ta')}
+            className="border rounded px-2 py-1 text-xs bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+            style={{ minWidth: 80 }}
+            aria-label="Select language"
+          >
+            <option value="en">English</option>
+            <option value="si">සිංහල</option>
+            <option value="ta">தமிழ்</option>
+          </select>
+        </div>
+        {/* Main Nav Buttons */}
         <button
           onClick={() => setActiveTab('home')}
           className={`px-4 py-2 rounded font-semibold transition-colors ${

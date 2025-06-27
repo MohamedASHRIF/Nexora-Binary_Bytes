@@ -94,14 +94,11 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full bg-white dark:bg-slate-900 shadow dark:shadow-slate-800/50">
-      {/* Main Header with Title and Profile */}
+      {/* Main Header with Title, Language Selector, and Profile */}
       <div className="flex items-center justify-between px-6 py-3">
+        {/* Left: Logo/Brand */}
         <Link href="/" className="text-xl font-bold text-blue-600 dark:text-blue-400">Nexora Campus Copilot</Link>
-        {/* Points and Language Switcher */}
-        {!isAuthPage && (
-          <div className="flex items-center gap-4 mr-4">
-          </div>
-        )}
+        {/* Right: Profile/Points/Settings */}
         <div className="relative" ref={dropdownRef}>
           {isLoading ? (
             <div className="h-8 w-8 rounded-full bg-gray-200 dark:bg-slate-700 animate-pulse"></div>
