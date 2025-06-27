@@ -329,7 +329,12 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       botResponse = getTranslation('mood_happy', detectedLanguage);
     }
     // Check if the message is about locations/directions OR directly matches a known location
-    else {
+    else if (
+      lowerMessage.includes('where') || lowerMessage.includes('location') || lowerMessage.includes('directions') || 
+      lowerMessage.includes('how to get to') || lowerMessage.includes('find') || lowerMessage.includes('map') ||
+      lowerMessage.includes('எங்கே') || lowerMessage.includes('இடம்') || lowerMessage.includes('வழி') ||
+      lowerMessage.includes('කොහෙද') || lowerMessage.includes('ස්ථානය') || lowerMessage.includes('මාර්ගය')
+    ) {
       // Define common campus locations
       const campusLocations = [
         { name: 'IT Faculty', keywords: ['it faculty', 'information technology', 'computer science', 'cs faculty', 'ஐடி பீடம்', 'கணினி அறிவியல்', 'IT පීඨය'] },
@@ -339,13 +344,6 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
         { name: 'Cafeteria', keywords: ['cafeteria', 'canteen', 'food', 'lunch', 'dining', 'restaurant', 'உணவகம்', 'உணவு', 'காஃபி', 'කෑමෝටුව'] },
         { name: 'Main Building', keywords: ['main building', 'main', 'administration', 'admin', 'office', 'முதன்மை கட்டிடம்', 'நிர்வாகம்', 'ප්‍රධාන ගොඩනැගිල්ල'] }
       ];
-
-      // If the message contains any location-related phrase OR matches a location name/keyword directly
-      const locationRelated = lowerMessage.includes('where') || lowerMessage.includes('location') || lowerMessage.includes('directions') || 
-        lowerMessage.includes('how to get to') || lowerMessage.includes('find') || lowerMessage.includes('map') ||
-        lowerMessage.includes('எங்கே') || lowerMessage.includes('இடம்') || lowerMessage.includes('வழி') ||
-        lowerMessage.includes('කොහෙද') || lowerMessage.includes('ස්ථානය') || lowerMessage.includes('මාර්ගය');
-
       let foundLocation = null;
       for (const location of campusLocations) {
         if (location.keywords.some(keyword => lowerMessage.includes(keyword)) || lowerMessage.trim() === location.name.toLowerCase()) {
@@ -353,19 +351,34 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
           break;
         }
       }
-
-      if (locationRelated || foundLocation) {
-        if (foundLocation) {
-          const encodedLocation = encodeURIComponent(foundLocation.name);
-          botResponse = `LOCATION_REDIRECT:${foundLocation.name}:${encodedLocation}`;
-        } else {
-          botResponse = getTranslation('location_help', detectedLanguage);
-        }
-        // Return early so other logic doesn't run
-        return res.status(200).json({
-          status: 'success',
-          data: botResponse
-        });
+      if (foundLocation) {
+        const encodedLocation = encodeURIComponent(foundLocation.name);
+        botResponse = `LOCATION_REDIRECT:${foundLocation.name}:${encodedLocation}`;
+      } else {
+        botResponse = getTranslation('location_help', detectedLanguage);
+      }
+    }
+    // Check for direct location name match (user just types 'IT Faculty', etc.)
+    else if ([
+      'it faculty',
+      'engineering faculty',
+      'architecture faculty',
+      'library',
+      'cafeteria',
+      'main building'
+    ].includes(lowerMessage.trim())) {
+      const campusLocations = [
+        { name: 'IT Faculty' },
+        { name: 'Engineering Faculty' },
+        { name: 'Architecture Faculty' },
+        { name: 'Library' },
+        { name: 'Cafeteria' },
+        { name: 'Main Building' }
+      ];
+      const foundLocation = campusLocations.find(loc => lowerMessage.trim() === loc.name.toLowerCase());
+      if (foundLocation) {
+        const encodedLocation = encodeURIComponent(foundLocation.name);
+        botResponse = `LOCATION_REDIRECT:${foundLocation.name}:${encodedLocation}`;
       }
     }
     // Check if the message is about class schedules
