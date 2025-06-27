@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 // Types for the data
 export interface ScheduleItem {
@@ -285,3 +286,10 @@ export async function getFAQData(): Promise<FAQItem[]> {
     return [];
   }
 }
+
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+const data = [
+  { name: "Veg", value: 10 },
+  { name: "Non-Veg", value: 5 },
+  // ...
+];

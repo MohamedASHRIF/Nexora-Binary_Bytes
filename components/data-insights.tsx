@@ -44,8 +44,8 @@ export default function DataInsights() {
   }
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center">
+    <div className="space-y-4 w-screen min-h-screen bg-white dark:bg-slate-900">
+      <div className="flex justify-between items-center px-0">
         <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">Your Data Insights</h2>
         <div className="flex border border-gray-300 dark:border-gray-600 rounded-md overflow-hidden">
           <button
@@ -81,8 +81,8 @@ export default function DataInsights() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="p-4 bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-screen">
+        <Card className="p-4 bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700 w-full h-full">
           <h3 className="text-sm font-medium mb-2 text-gray-900 dark:text-gray-100">Your Query Volume</h3>
           <div className="text-3xl font-bold text-gray-900 dark:text-gray-100">{queryStats.total}</div>
           <div className="text-xs text-gray-500 dark:text-gray-400">
@@ -101,7 +101,7 @@ export default function DataInsights() {
           <div className="text-xs text-center mt-1 text-gray-500 dark:text-gray-400">Hourly distribution</div>
         </Card>
 
-        <Card className="p-4 bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700">
+        <Card className="p-4 bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700 w-full h-full">
           <h3 className="text-sm font-medium mb-2 text-gray-900 dark:text-gray-100">Your Sentiment Analysis</h3>
           <div className="flex justify-between mb-4">
             <div className="text-center">
@@ -144,7 +144,7 @@ export default function DataInsights() {
           </div>
         </Card>
 
-        <Card className="p-4 bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700">
+        <Card className="p-4 bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700 w-full h-full">
           <h3 className="text-sm font-medium mb-2 text-gray-900 dark:text-gray-100">Your Popular Queries</h3>
           <ul className="space-y-2">
             {popularQueries.map((query, index) => (

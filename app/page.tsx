@@ -188,10 +188,8 @@ export default function Home() {
             </div>
           )}
           {activeTab === 'insights' && (
-            <div className="w-full h-full p-4 overflow-y-auto">
-              <div className="max-w-6xl mx-auto">
-                <DataInsights />
-              </div>
+            <div className="w-full h-full p-0 px-4 overflow-y-auto">
+              <DataInsights />
             </div>
           )}
           {badges.length > 0 && activeTab === 'home' && (

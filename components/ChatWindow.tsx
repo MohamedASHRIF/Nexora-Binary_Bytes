@@ -11,12 +11,26 @@ import { ChatEvents } from './ChatEvents';
 import type { Message } from '@/types';
 import { getBusData, getEventData } from '../lib/data';
 
+const API_BASE_URL = 'http://localhost:5000/api'; // Backend server URL
 
 interface ChatWindowProps {
   initialMessage?: string;
   onMessageSent?: () => void;
   onRecentMessagesChange?: (messages: string[]) => void;
   hasSidebar?: boolean;
+}
+
+// Add type for canteen menu
+interface CanteenMenu {
+  breakfast: string[];
+  lunch: string[];
+  dinner: string[];
+}
+
+interface Canteen {
+  id: string;
+  name: string;
+  foodType: string;
 }
 
 export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessageSent, onRecentMessagesChange, hasSidebar = false }) => {
@@ -31,6 +45,14 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
   const initialMessageSentRef = useRef(false);
   const [busData, setBusData] = useState<any>(null);
   const [eventsData, setEventsData] = useState<any>(null);
+  const [availableCanteens, setAvailableCanteens] = useState<Canteen[]>([]);
+  const [selectedCanteen, setSelectedCanteen] = useState<string | null>(null);
+  const [canteenMenu, setCanteenMenu] = useState<CanteenMenu | null>(null);
+  const [showCanteenTable, setShowCanteenTable] = useState(false);
+  const [canteenLoading, setCanteenLoading] = useState(false);
+  const [menuLoading, setMenuLoading] = useState(false);
+  const [canteenError, setCanteenError] = useState<string | null>(null);
+  const [menuError, setMenuError] = useState<string | null>(null);
 
   // Language options
   const languageOptions = [
@@ -101,8 +123,71 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
     fetchData();
   }, []);
 
+  // Fetch available canteens when needed
+  useEffect(() => {
+    if (showCanteenTable && !selectedCanteen) {
+      setCanteenLoading(true);
+      setCanteenError(null);
+      fetch(`${API_BASE_URL}/cafeteria/menu`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+        .then(res => {
+          if (!res.ok) throw new Error('Network response was not ok');
+          return res.json();
+        })
+        .then(data => {
+          const canteens = data.data.menus.map((m: any, idx: number) => ({
+            id: m.canteenName,
+            name: m.canteenName,
+            foodType: m.foodType || 'N/A',
+          }));
+          setAvailableCanteens(canteens);
+          setCanteenLoading(false);
+        })
+        .catch(err => {
+          setCanteenError('Failed to fetch canteens');
+          setCanteenLoading(false);
+        });
+    }
+  }, [showCanteenTable, selectedCanteen]);
+
+  // Fetch menu for selected canteen
+  useEffect(() => {
+    if (showCanteenTable && selectedCanteen) {
+      setMenuLoading(true);
+      setMenuError(null);
+      fetch(`${API_BASE_URL}/cafeteria/menu/${selectedCanteen}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+        .then(res => {
+          if (!res.ok) throw new Error('Network response was not ok');
+          return res.json();
+        })
+        .then(data => {
+          setCanteenMenu(data.data.menu.meals);
+          setMenuLoading(false);
+        })
+        .catch(err => {
+          setMenuError('Failed to fetch menu');
+          setMenuLoading(false);
+        });
+    }
+  }, [showCanteenTable, selectedCanteen]);
+
   const handleSend = async () => {
     if (!inputText.trim()) return;
+    const lower = inputText.toLowerCase();
+    if (lower.includes('food') || lower.includes('hungry') || lower.includes('canteen')) {
+      setShowCanteenTable(true);
+      setSelectedCanteen(null);
+      setCanteenMenu(null);
+      setInputText('');
+      return;
+    }
 
     // Add the message to recent messages
     const newRecentMessages = [...recentUserMessages, inputText].slice(-5); // Keep last 5 messages
@@ -416,6 +501,103 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
             </div>
           );
         })}
+        {showCanteenTable && !selectedCanteen && (
+          <div className="flex justify-start">
+            <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm p-4 w-full max-w-2xl mt-2">
+              <h3 className="font-semibold mb-2 text-gray-900 dark:text-gray-100">Available Canteens</h3>
+              {canteenLoading ? (
+                <div className="text-gray-700 dark:text-gray-200">Loading canteens...</div>
+              ) : canteenError ? (
+                <div className="text-red-500">{canteenError}</div>
+              ) : (
+                <table className="w-full bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                  <thead>
+                    <tr>
+                      <th className="px-4 py-2 border border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-gray-100">Canteen</th>
+                      <th className="px-4 py-2 border border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-gray-100">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {availableCanteens.map((canteen) => (
+                      <tr key={canteen.id} className="bg-white dark:bg-slate-900">
+                        <td className="px-4 py-2 border border-gray-200 dark:border-slate-700 text-gray-900 dark:text-gray-100 font-medium">{canteen.name}</td>
+                        <td className="px-4 py-2 border border-gray-200 dark:border-slate-700">
+                          <button
+                            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                            onClick={() => { setSelectedCanteen(canteen.id); setCanteenMenu(null); }}
+                          >
+                            View Menu
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+              <button
+                className="mt-3 bg-red-200 dark:bg-red-900 text-red-700 dark:text-red-200 px-3 py-1 rounded hover:bg-red-300 dark:hover:bg-red-800"
+                onClick={() => {
+                  setShowCanteenTable(false);
+                  setSelectedCanteen(null);
+                  setCanteenMenu(null);
+                }}
+              >
+                Exit
+              </button>
+            </div>
+          </div>
+        )}
+        {showCanteenTable && selectedCanteen && (
+          <div className="flex justify-start">
+            <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm p-4 w-full max-w-2xl mt-2">
+              <h3 className="font-semibold mb-2 text-gray-900 dark:text-gray-100">{availableCanteens.find(c => c.id === selectedCanteen)?.name} Menu</h3>
+              {menuLoading ? (
+                <div className="text-gray-700 dark:text-gray-200">Loading menu...</div>
+              ) : menuError ? (
+                <div className="text-red-500">{menuError}</div>
+              ) : canteenMenu ? (
+                <table className="w-full bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                  <thead>
+                    <tr>
+                      <th className="px-4 py-2 border border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-gray-100">Meal</th>
+                      <th className="px-4 py-2 border border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-gray-100">Items</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="bg-white dark:bg-slate-900">
+                      <td className="px-4 py-2 border border-gray-200 dark:border-slate-700 text-gray-900 dark:text-gray-100 font-medium">Breakfast</td>
+                      <td className="px-4 py-2 border border-gray-200 dark:border-slate-700 text-gray-900 dark:text-gray-100">{canteenMenu.breakfast.join(', ')}</td>
+                    </tr>
+                    <tr className="bg-white dark:bg-slate-900">
+                      <td className="px-4 py-2 border border-gray-200 dark:border-slate-700 text-gray-900 dark:text-gray-100 font-medium">Lunch</td>
+                      <td className="px-4 py-2 border border-gray-200 dark:border-slate-700 text-gray-900 dark:text-gray-100">{canteenMenu.lunch.join(', ')}</td>
+                    </tr>
+                    <tr className="bg-white dark:bg-slate-900">
+                      <td className="px-4 py-2 border border-gray-200 dark:border-slate-700 text-gray-900 dark:text-gray-100 font-medium">Dinner</td>
+                      <td className="px-4 py-2 border border-gray-200 dark:border-slate-700 text-gray-900 dark:text-gray-100">{canteenMenu.dinner.join(', ')}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              ) : null}
+              <button
+                className="mt-3 bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-gray-200 px-3 py-1 rounded hover:bg-gray-300 dark:hover:bg-slate-600"
+                onClick={() => { setSelectedCanteen(null); setCanteenMenu(null); }}
+              >
+                Back to Canteens
+              </button>
+              <button
+                className="mt-3 ml-2 bg-red-200 dark:bg-red-900 text-red-700 dark:text-red-200 px-3 py-1 rounded hover:bg-red-300 dark:hover:bg-red-800"
+                onClick={() => {
+                  setShowCanteenTable(false);
+                  setSelectedCanteen(null);
+                  setCanteenMenu(null);
+                }}
+              >
+                Exit
+              </button>
+            </div>
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </div>
 
