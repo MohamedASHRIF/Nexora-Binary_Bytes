@@ -214,14 +214,13 @@ export const DataInsights: React.FC = () => {
       {selectedView === 'sentiment' && (
         <div className="mt-6">
           <Sentiments 
-          averageSentiment={stats.averageSentiment}
-          sentimentTrend={stats.sentimentTrend}
+            averageSentiment={insights?.averageSentiment ?? 0}
+            sentimentTrend={insights?.sentimentTrend ?? []}
           />
-          {/* averageSentiment={stats.averageSentiment} sentimentTrend={stats.sentimentTrend} /> */}
         </div>
       )}
 
-      {stats.totalQueries === 0 && (
+      {queryStats.total === 0 && (
         <div className="text-center py-12">
           <div className="text-gray-400 dark:text-gray-500 mb-4">
             <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
