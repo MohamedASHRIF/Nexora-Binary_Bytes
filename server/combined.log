@@ -3754,3 +3754,625 @@
 {"level":"info","message":"POST /auth/login","timestamp":"2025-06-25T16:46:25.858Z"}
 {"level":"info","message":"GET /users/me","timestamp":"2025-06-25T17:13:11.204Z"}
 {"level":"info","message":"GET /users/me","timestamp":"2025-06-25T17:13:11.587Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-26T05:28:39.362Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-26T05:28:39.568Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-26T05:28:39.581Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-26T05:28:41.174Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-26T05:28:41.185Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-26T05:28:41.593Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-26T05:28:57.834Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-26T05:28:57.840Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-26T05:28:57.849Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-26T05:28:58.091Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-26T05:28:58.096Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-26T05:28:58.101Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-26T05:29:00.242Z"}
+{"language":"en","level":"info","message":"Received chat message: menu","timestamp":"2025-06-26T05:29:00.371Z","user":{"__v":0,"_id":"685be0ac40108c3511c8df1d","badges":[],"createdAt":"2025-06-25T11:42:37.001Z","degree":"IT","email":"abd@gmail.com","language":"en","name":"NSS","points":0,"role":"student","updatedAt":"2025-06-25T11:42:37.001Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-26T05:29:14.067Z"}
+{"language":"en","level":"info","message":"Received chat message: food menu","timestamp":"2025-06-26T05:29:14.186Z","user":{"__v":0,"_id":"685be0ac40108c3511c8df1d","badges":[],"createdAt":"2025-06-25T11:42:37.001Z","degree":"IT","email":"abd@gmail.com","language":"en","name":"NSS","points":0,"role":"student","updatedAt":"2025-06-25T11:42:37.001Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-26T05:29:19.899Z"}
+{"language":"en","level":"info","message":"Received chat message: yes","timestamp":"2025-06-26T05:29:20.009Z","user":{"__v":0,"_id":"685be0ac40108c3511c8df1d","badges":[],"createdAt":"2025-06-25T11:42:37.001Z","degree":"IT","email":"abd@gmail.com","language":"en","name":"NSS","points":0,"role":"student","updatedAt":"2025-06-25T11:42:37.001Z"}}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-26T16:50:28.603Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-26T16:50:28.822Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-26T16:50:28.833Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-26T16:50:29.950Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-26T16:50:29.960Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-26T16:50:30.645Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-26T16:50:33.075Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-06-26T16:50:33.191Z","user":{"__v":0,"_id":"685be0ac40108c3511c8df1d","badges":[],"createdAt":"2025-06-25T11:42:37.001Z","degree":"IT","email":"abd@gmail.com","language":"en","name":"NSS","points":0,"role":"student","updatedAt":"2025-06-25T11:42:37.001Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-26T16:50:38.489Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-06-26T16:50:38.687Z","user":{"__v":0,"_id":"685be0ac40108c3511c8df1d","badges":[],"createdAt":"2025-06-25T11:42:37.001Z","degree":"IT","email":"abd@gmail.com","language":"en","name":"NSS","points":0,"role":"student","updatedAt":"2025-06-25T11:42:37.001Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-26T16:50:43.275Z"}
+{"language":"en","level":"info","message":"Received chat message: food","timestamp":"2025-06-26T16:50:43.441Z","user":{"__v":0,"_id":"685be0ac40108c3511c8df1d","badges":[],"createdAt":"2025-06-25T11:42:37.001Z","degree":"IT","email":"abd@gmail.com","language":"en","name":"NSS","points":0,"role":"student","updatedAt":"2025-06-25T11:42:37.001Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-26T16:56:22.858Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-26T16:56:23.002Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-26T16:56:23.009Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-26T16:56:23.254Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-26T16:56:23.290Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-26T16:56:23.296Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-26T16:56:25.670Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-06-26T16:56:25.857Z","user":{"__v":0,"_id":"685be0ac40108c3511c8df1d","badges":[],"createdAt":"2025-06-25T11:42:37.001Z","degree":"IT","email":"abd@gmail.com","language":"en","name":"NSS","points":0,"role":"student","updatedAt":"2025-06-25T11:42:37.001Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-26T16:56:27.702Z"}
+{"language":"en","level":"info","message":"Received chat message: hu","timestamp":"2025-06-26T16:56:27.899Z","user":{"__v":0,"_id":"685be0ac40108c3511c8df1d","badges":[],"createdAt":"2025-06-25T11:42:37.001Z","degree":"IT","email":"abd@gmail.com","language":"en","name":"NSS","points":0,"role":"student","updatedAt":"2025-06-25T11:42:37.001Z"}}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T05:11:36.017Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T05:11:37.541Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T05:13:02.924Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T05:13:02.962Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T05:13:02.969Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T05:13:03.257Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T05:13:03.262Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T05:13:03.269Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T05:16:50.001Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T05:16:50.385Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T05:17:15.245Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T05:17:15.252Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T05:17:15.258Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T05:17:15.594Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T05:17:15.601Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T05:17:15.609Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-27T05:17:19.580Z"}
+{"language":"en","level":"info","message":"Received chat message: bus time","timestamp":"2025-06-27T05:17:19.768Z","user":{"__v":0,"_id":"685be0ac40108c3511c8df1d","badges":[],"createdAt":"2025-06-25T11:42:37.001Z","degree":"IT","email":"abd@gmail.com","language":"en","name":"NSS","points":0,"role":"student","updatedAt":"2025-06-25T11:42:37.001Z"}}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T05:17:24.940Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T05:17:25.356Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T05:20:18.266Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T05:20:18.281Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T05:20:18.291Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T05:20:18.527Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T05:20:18.598Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T05:20:18.683Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T05:22:07.810Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T05:22:07.814Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T05:22:07.825Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T05:22:08.104Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T05:22:08.132Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T05:22:08.174Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T05:24:40.307Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T05:24:40.553Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T05:27:19.771Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-27T05:27:51.319Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-27T05:27:51.681Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-27T05:27:54.724Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T05:30:27.505Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T05:30:27.708Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T05:42:08.487Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T05:48:59.828Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T05:49:18.808Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T05:49:18.989Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T05:49:48.001Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T05:49:48.151Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T05:50:34.477Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T05:50:36.437Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T05:55:10.088Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T05:55:11.584Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T05:57:57.885Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T05:58:46.171Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T05:58:47.823Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:00:41.916Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:00:47.666Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:02:42.440Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:02:43.888Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:06:18.402Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:06:20.351Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:06:24.273Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:06:38.252Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:06:39.835Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:18:58.503Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:19:00.595Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:22:23.471Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T06:22:23.525Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:22:27.004Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T06:22:50.769Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T06:22:51.367Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T06:23:08.938Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T06:23:09.234Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T06:23:27.006Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T06:23:27.235Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T06:23:34.674Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T06:23:34.976Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:24:14.587Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:24:16.369Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:24:36.737Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:24:38.741Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T06:24:53.681Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T06:25:08.060Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T06:25:08.286Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T06:25:12.949Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T06:25:13.147Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:34:29.495Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:34:32.260Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:37:03.688Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:37:06.555Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:37:25.206Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:37:26.771Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:38:46.316Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:38:49.564Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T06:39:13.932Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T06:39:27.852Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T06:39:27.976Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T06:39:37.305Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T06:39:37.450Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T06:39:38.488Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T06:39:38.656Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T06:39:39.791Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T06:39:39.960Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T06:51:49.742Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T06:52:10.408Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T06:55:22.613Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T06:56:06.272Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T06:58:41.803Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T06:58:43.696Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T07:00:59.080Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T11:55:07.551Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T11:55:08.955Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T11:55:20.040Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T11:55:38.326Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T11:55:39.376Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:07:00.475Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:07:02.403Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:07:29.713Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:07:30.722Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:08:09.720Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:08:10.952Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T12:10:12.587Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T12:10:24.155Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T12:10:24.346Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T12:12:12.585Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:31.847Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:31.954Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:33.575Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:33.675Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:35.198Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:35.297Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:35.523Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:35.624Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:36.009Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:36.110Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:36.349Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:36.445Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:36.656Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:36.758Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:36.954Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:37.051Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:37.944Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:38.039Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:40.396Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:40.497Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:40.655Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:40.759Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:40.844Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:40.952Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:41.084Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:41.187Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:41.274Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:41.377Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:41.445Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:41.544Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:41.614Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:41.717Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:41.830Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:41.932Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:42.606Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:42.702Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:43.299Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:43.400Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:43.458Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:43.563Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:43.611Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:43.710Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:43.806Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:43.906Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:43.995Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:44.097Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:44.164Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:44.263Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:44.383Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:44.481Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:12:45.129Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:12:45.233Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:17:18.300Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:17:19.636Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:20:02.106Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:20:03.284Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:20:08.061Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:20:09.079Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:20:28.136Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:20:29.146Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:21:52.227Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:21:53.565Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:22:24.941Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:22:25.980Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T12:22:58.729Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:23:14.302Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:23:14.418Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:23:23.189Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:23:23.286Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:23:32.437Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:23:32.536Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:23:39.663Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:23:39.759Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:23:52.104Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:23:53.815Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:23:54.023Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:23:54.971Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:30:53.276Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:30:54.542Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:33:34.420Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:33:35.572Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:34:16.059Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:34:17.084Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T12:36:29.063Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:36:42.598Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:36:42.712Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:36:45.130Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:36:45.271Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:36:46.438Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:36:46.548Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:36:47.686Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:36:47.787Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T12:45:22.268Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:45:39.272Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:45:40.066Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:47:44.656Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:47:54.119Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:48:15.229Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:48:18.041Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T12:48:25.009Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:48:41.316Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:48:41.472Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:49:54.040Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:50:08.517Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T12:50:08.664Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:50:11.335Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T12:50:29.416Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T12:50:29.621Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:50:53.076Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:51:00.096Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:51:02.012Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:57:17.028Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:57:18.805Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:57:42.881Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:57:44.996Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:58:23.672Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:58:26.604Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T12:58:44.809Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T12:58:47.176Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T13:00:06.554Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T13:00:08.111Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T13:01:31.765Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T13:01:34.055Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T13:01:44.464Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T13:01:45.763Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:02:06.123Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:02:06.350Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:02:07.620Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:02:07.733Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:02:08.044Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:02:08.219Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:02:08.387Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:02:08.500Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:02:08.734Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:02:08.832Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:02:09.059Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:02:09.275Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:02:11.378Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:02:25.568Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:02:25.681Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:02:27.788Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:02:27.903Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:02:29.267Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:02:29.368Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:02:29.801Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:02:29.903Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:02:30.457Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:02:30.568Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:02:31.136Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:02:31.244Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T13:02:49.358Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T13:02:51.095Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T13:03:59.922Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T13:04:01.664Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:04:15.506Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:04:15.665Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:04:19.771Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:04:19.934Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:04:26.352Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:04:26.518Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:05:35.080Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T13:05:35.092Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T13:05:35.100Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:05:35.304Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T13:05:35.377Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T13:05:35.415Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:05:40.471Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T13:05:40.484Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T13:05:40.500Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:05:40.767Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T13:05:40.779Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T13:05:40.790Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-27T13:06:30.450Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-27T13:06:30.707Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-27T13:06:35.230Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:06:43.409Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:06:43.668Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:06:59.516Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:06:59.615Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-27T13:07:33.748Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-27T13:07:33.965Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-27T13:07:38.802Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:07:44.671Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:07:44.898Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:08:05.300Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:08:05.516Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:13:52.273Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:13:52.548Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:14:05.649Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:14:05.772Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:14:09.631Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:14:09.763Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:14:10.896Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:14:11.016Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:14:11.208Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:14:11.428Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:14:11.919Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:14:12.062Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:14:12.418Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:14:12.577Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:14:12.777Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:14:12.892Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:14:13.122Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:14:13.254Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:14:13.497Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:14:13.623Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:19:36.982Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:19:55.745Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:19:56.000Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:20:04.749Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:20:04.905Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T13:21:45.490Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T13:21:47.823Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:22:23.479Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:22:23.599Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:22:28.486Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:22:43.797Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:22:43.897Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:10.466Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:10.629Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:12.529Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:12.714Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:13.411Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:13.539Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:14.221Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:14.384Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:15.397Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:15.509Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:15.814Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:15.949Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:15.978Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:16.080Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:16.149Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:16.278Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:16.334Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:16.439Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:16.836Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:16.974Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:17.213Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:17.411Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:17.565Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:17.675Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:17.746Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:17.861Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:17.950Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:18.054Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:18.134Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:18.243Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:18.294Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:18.396Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:18.515Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:18.623Z"}
+{"level":"info","message":"PUT /users/change-password","timestamp":"2025-06-27T13:27:28.762Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:27:28.865Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:31:18.242Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:32:27.696Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:33:55.692Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:34:51.879Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:40:40.050Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T13:40:40.095Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T13:40:40.105Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T13:40:40.458Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T13:40:40.580Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:40:40.592Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:41:58.189Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:41:59.686Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:42:22.895Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:42:24.875Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:42:27.966Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:42:48.130Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:42:48.844Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:42:52.928Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:45:32.027Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:45:34.116Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:45:34.315Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:46:42.547Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T13:46:42.551Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T13:46:42.555Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T13:46:42.789Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T13:46:42.793Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T13:46:42.801Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:48:26.306Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T13:48:26.508Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T13:53:26.172Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T13:53:26.292Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:53:26.384Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:53:26.390Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-06-27T13:53:54.645Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-06-27T13:53:56.615Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T13:54:00.046Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T13:54:00.096Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:54:00.216Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T13:54:00.227Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T14:01:16.488Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T14:01:17.015Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T14:06:38.830Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T14:06:58.072Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T14:07:36.092Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-27T15:19:57.609Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-27T15:19:58.425Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-27T15:20:01.697Z"}
+{"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-06-27T15:20:01.794Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-27T15:20:55.931Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-27T15:21:07.705Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T15:21:11.622Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T15:21:11.887Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T15:21:23.863Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T15:21:23.868Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T15:21:23.873Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T15:21:24.071Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T15:21:24.699Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T15:21:24.712Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T15:22:21.505Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T15:22:21.508Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T15:22:21.514Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T15:22:21.694Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T15:22:21.710Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T15:22:21.717Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-27T15:22:25.911Z"}
+{"language":"en","level":"info","message":"Received chat message:  bus","timestamp":"2025-06-27T15:22:26.037Z","user":{"__v":0,"_id":"685eb6d874f7bd845af8879b","badges":[],"createdAt":"2025-06-27T15:20:56.116Z","degree":"IT","email":"abc@gmail.com","language":"en","name":"poda","points":0,"role":"student","updatedAt":"2025-06-27T15:20:56.116Z"}}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T15:22:51.452Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T15:22:51.639Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T15:26:44.155Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T15:33:25.904Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:33:37.911Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:33:38.024Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:33:45.564Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:33:45.663Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:39:32.642Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:39:32.760Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:41:36.822Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:41:36.934Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:41:55.326Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:41:55.424Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:41:57.119Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:41:57.218Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:42:03.270Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:42:03.368Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:42:04.752Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:42:04.846Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:42:06.052Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:42:06.147Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:42:08.071Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:42:08.174Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:42:31.720Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:42:31.826Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:42:34.396Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:42:34.495Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:55:50.633Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:55:50.814Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:55:53.392Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:55:53.495Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:55:59.264Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:55:59.370Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:56:07.155Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:56:07.303Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:56:13.657Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:56:13.755Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:57:40.407Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:57:40.505Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:58:38.767Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:58:38.868Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T15:58:48.570Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T15:58:48.678Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T15:59:03.707Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T15:59:03.718Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T15:59:03.741Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T15:59:03.961Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T15:59:03.968Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T15:59:03.986Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T16:04:36.534Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T16:04:36.803Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T16:18:57.572Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:19:15.888Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:19:15.992Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:19:16.095Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:19:16.197Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:20:01.630Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:20:01.730Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:20:04.072Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:20:04.176Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:23:20.339Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:23:20.479Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:23:22.264Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:23:22.378Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:23:26.414Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:23:26.509Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:23:30.031Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:23:30.132Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:23:33.556Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:23:33.656Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:23:35.495Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:23:35.607Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:23:36.928Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:23:37.031Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:23:38.083Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:23:38.180Z"}
+{"level":"info","message":"PUT /users/tags","timestamp":"2025-06-27T16:23:39.335Z"}
+{"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-06-27T16:23:39.433Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T16:38:20.601Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T16:38:20.675Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T16:38:20.682Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T16:38:21.507Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-06-27T16:38:21.521Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-06-27T16:38:21.998Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-27T16:38:33.135Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-06-27T16:38:33.241Z","user":{"__v":0,"_id":"685eb6d874f7bd845af8879b","badges":[],"createdAt":"2025-06-27T15:20:56.116Z","degree":"IT","email":"abc@gmail.com","language":"en","name":"poda","points":0,"role":"student","updatedAt":"2025-06-27T15:20:56.116Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-06-27T16:38:37.313Z"}
+{"language":"en","level":"info","message":"Received chat message: food","timestamp":"2025-06-27T16:38:37.412Z","user":{"__v":0,"_id":"685eb6d874f7bd845af8879b","badges":[],"createdAt":"2025-06-27T15:20:56.116Z","degree":"IT","email":"abc@gmail.com","language":"en","name":"poda","points":0,"role":"student","updatedAt":"2025-06-27T15:20:56.116Z"}}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T16:39:16.671Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T16:39:16.884Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T16:41:33.449Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T16:42:33.495Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-27T16:43:59.151Z"}
+{"level":"info","message":"POST /auth/signup","timestamp":"2025-06-27T16:44:51.457Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-27T16:48:32.226Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T16:50:15.462Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-06-27T16:50:15.703Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-06-27T16:51:19.212Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-27T16:51:22.723Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-27T16:51:23.161Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-27T16:51:23.171Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-27T16:51:23.603Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T16:51:23.622Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T16:51:24.098Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-27T16:51:24.115Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-27T16:51:24.518Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-27T16:56:48.597Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-27T16:56:48.951Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T16:56:49.197Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-27T16:56:49.413Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-27T17:06:18.712Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-27T17:06:18.975Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T17:06:19.190Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-27T17:06:19.419Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-27T17:08:58.928Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-27T17:08:59.203Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T17:08:59.444Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-27T17:08:59.737Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-27T17:20:05.617Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-27T17:20:05.962Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T17:20:06.202Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-27T17:20:06.416Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-27T17:20:26.995Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-27T17:20:27.212Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T17:20:27.433Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-27T17:20:27.643Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-27T17:25:11.377Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-27T17:25:11.707Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T17:25:11.944Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-27T17:25:12.162Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-27T17:25:20.664Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-27T17:25:20.926Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T17:25:21.264Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-27T17:25:21.485Z"}
+{"level":"info","message":"GET /users","timestamp":"2025-06-27T17:25:56.009Z"}
+{"level":"info","message":"GET /schedules","timestamp":"2025-06-27T17:25:56.231Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-06-27T17:25:56.437Z"}
+{"level":"info","message":"GET /events","timestamp":"2025-06-27T17:25:56.645Z"}

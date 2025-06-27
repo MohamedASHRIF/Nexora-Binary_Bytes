@@ -1,9 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useQueryLogs } from '../hooks/use-query-logs';
 import { MoodMap } from './MoodMap'; // Assuming MoodMap is a default export
-import { ChatWidoo } from './ChatWidoo'; // Assuming ChatWidoo is a default export
+import { ChatWidoo } from './ChatWidoo'; 
+import { Sentiments } from './Sentiments';
 
-type InsightView = 'overview' | 'moodmap' | 'chatmap';
+
+type InsightView = 'overview' | 'moodmap' | 'chatmap' | 'sentiment';
 
 interface QueryLog {
   query: string;
@@ -151,6 +153,7 @@ export const DataInsights: React.FC = () => {
           <option value="overview">Overview</option>
           <option value="moodmap">MoodMap</option>
           <option value="chatmap">Chat Map</option>
+          <option value="sentiment">Game</option>
         </select>
       </div>
 
@@ -342,6 +345,16 @@ export const DataInsights: React.FC = () => {
       {selectedView === 'chatmap' && (
         <div className="mt-6">
           <ChatWidoo />
+        </div>
+      )}
+
+      {selectedView === 'sentiment' && (
+        <div className="mt-6">
+          <Sentiments 
+          averageSentiment={stats.averageSentiment}
+          sentimentTrend={stats.sentimentTrend}
+          />
+          {/* averageSentiment={stats.averageSentiment} sentimentTrend={stats.sentimentTrend} /> */}
         </div>
       )}
 
