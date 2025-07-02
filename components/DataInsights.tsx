@@ -27,9 +27,14 @@ interface Stats {
   peakHours: { hour: number; count: number }[];
 }
 
-export const DataInsights: React.FC = () => {
+// Add prop type for initialView
+interface DataInsightsProps {
+  initialView?: 'overview' | 'moodmap' | 'chatmap' | 'sentiment';
+}
+
+export const DataInsights: React.FC<DataInsightsProps> = ({ initialView }) => {
   const { insights, queryStats, sentimentStats, popularQueries, isLoading, error } = useUserInsights();
-  const [selectedView, setSelectedView] = useState<InsightView>('overview');
+  const [selectedView, setSelectedView] = useState<InsightView>(initialView || 'overview');
 
   if (isLoading) {
     return <div>Loading insights...</div>;

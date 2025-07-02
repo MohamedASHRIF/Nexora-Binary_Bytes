@@ -1,4 +1,4 @@
-"use client"
+                                                                                                                            "use client"
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useVoiceInput } from '../hooks/useVoiceInput';
@@ -61,6 +61,24 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
   const [quizScore, setQuizScore] = useState(0);
   const [quizResult, setQuizResult] = useState(false);
   const [quizLoading, setQuizLoading] = useState(false);
+  // Helper: detect boredom
+  const isBoredMessage = (text: string) => {
+    const boredKeywords = [
+      'bored', 'boring', 'nothing to do', 'dull', 'tired', 'not fun', 'no fun', 'uninteresting', 'monotonous', 'tedious', 'drowsy', 'sleepy', 'lazy', 'inactive', 'unexciting', 'unamusing', 'unhappy', 'sad', 'depressed', 'down', 'blue', 'meh'
+    ];
+    const lower = text.toLowerCase();
+    return boredKeywords.some((kw) => lower.includes(kw));
+  };
+
+  // Helper: detect yes
+  const isYesMessage = (text: string) => {
+    const yesKeywords = ['yes', 'yeah', 'yep', 'sure', 'ok', 'okay', 'yup', 'let\'s play', 'play', 'why not', 'of course'];
+    const lower = text.toLowerCase();
+    return yesKeywords.some((kw) => lower.includes(kw));
+  };
+
+  // State to track if we are waiting for play confirmation
+  const [awaitingPlayConfirm, setAwaitingPlayConfirm] = useState(false);
 
   // Language options
   const languageOptions = [
@@ -194,6 +212,49 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
       setShowCanteenTable(false);
       setSelectedCanteen(null);
       setCanteenMenu(null);
+    }
+
+    // Boredom/game logic
+    if (!awaitingPlayConfirm && isBoredMessage(inputText)) {
+      setMessages(prev => [
+        ...prev,
+        { text: inputText, isUser: true, timestamp: new Date(), isTampered: false }
+      ]);
+      setMessages(prev => [
+        ...prev,
+        { text: "You seem bored! Would you like to play Tic-Tac-Toe? (yes/no)", isUser: false, timestamp: new Date(), isTampered: false }
+      ]);
+      setAwaitingPlayConfirm(true);
+      setInputText('');
+      return;
+    }
+    if (awaitingPlayConfirm && isYesMessage(inputText)) {
+      setMessages(prev => [
+        ...prev,
+        { text: inputText, isUser: true, timestamp: new Date(), isTampered: false }
+      ]);
+      setMessages(prev => [
+        ...prev,
+        { text: "Great! Taking you to the game...", isUser: false, timestamp: new Date(), isTampered: false }
+      ]);
+      setAwaitingPlayConfirm(false);
+      setInputText('');
+      // Fire custom event to switch to insights/game
+      window.dispatchEvent(new CustomEvent('switchToInsightsGame'));
+      return;
+    }
+    if (awaitingPlayConfirm && !isYesMessage(inputText)) {
+      setMessages(prev => [
+        ...prev,
+        { text: inputText, isUser: true, timestamp: new Date(), isTampered: false }
+      ]);
+      setMessages(prev => [
+        ...prev,
+        { text: "No problem! Let me know if you change your mind.", isUser: false, timestamp: new Date(), isTampered: false }
+      ]);
+      setAwaitingPlayConfirm(false);
+      setInputText('');
+      return;
     }
 
     // Always add the user message to the chat

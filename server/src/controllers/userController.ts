@@ -289,4 +289,25 @@ export const getUserInsights = catchAsync(async (req: AuthenticatedRequest, res:
     console.error('Error fetching user insights:', error);
     return next(new AppError('Error fetching user insights', 500));
   }
-}); 
+});
+
+// Add updateUserTags controller
+export const updateUserTags = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const userId = req.user?._id || req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ message: 'Not authenticated' });
+    }
+    const { tags } = req.body;
+    if (!Array.isArray(tags)) {
+      return res.status(400).json({ message: 'Tags must be an array' });
+    }
+    const user = await User.findByIdAndUpdate(userId, { tags }, { new: true });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.status(200).json({ data: { user } });
+  } catch (err) {
+    next(err);
+  }
+}; 
