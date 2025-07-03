@@ -11,6 +11,8 @@ import { ChatEvents } from './ChatEvents';
 import type { Message } from '@/types';
 import { getBusData, getEventData } from '../lib/data';
 import Cookies from 'js-cookie';
+import { FaUserCircle } from 'react-icons/fa';
+import { BsRobot } from 'react-icons/bs';
 
 const API_BASE_URL = 'http://localhost:5000/api'; // Backend server URL
 
@@ -86,6 +88,14 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
     { code: 'si', name: 'සිංහල', flag: '🇱🇰' },
     { code: 'ta', name: 'தமிழ்', flag: '🇮🇳' }
   ];
+
+  // Add a typing indicator state
+  const [showTyping, setShowTyping] = useState(false);
+
+  // Show typing indicator when isProcessing is true
+  useEffect(() => {
+    setShowTyping(isProcessing);
+  }, [isProcessing]);
 
   useEffect(() => {
     setMounted(true);
@@ -592,42 +602,71 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
             );
           }
 
-          return (
-            <div
-              key={`${message.timestamp.getTime()}-${index}`}
-              className={`flex ${
-                message.isUser ? 'justify-end' : 'justify-start'
-              } mb-1`}
-            >
-              <div className="flex flex-col max-w-full">
-                {isClassSchedule && classScheduleData ? (
-                  // Render class schedule component
+          if (isClassSchedule && classScheduleData) {
+            return (
+              <div key={index} className="flex justify-start mb-2">
+                <div className="flex items-end gap-2 max-w-[80%]">
+                  <BsRobot className="h-8 w-8 text-gray-700 bg-gray-100 dark:bg-slate-700 rounded-full shadow flex-shrink-0" />
                   <div className="max-w-md">
                     <ChatClassSchedule classes={classScheduleData} />
                   </div>
-                ) : isBusSchedule && busScheduleData ? (
-                  // Render bus schedule component
+                </div>
+              </div>
+            );
+          }
+          if (isBusSchedule && busScheduleData) {
+            return (
+              <div key={index} className="flex justify-start mb-2">
+                <div className="flex items-end gap-2 max-w-[80%]">
+                  <BsRobot className="h-8 w-8 text-gray-700 bg-gray-100 dark:bg-slate-700 rounded-full shadow flex-shrink-0" />
                   <div className="max-w-md">
                     <ChatBusSchedule buses={busScheduleData} />
                   </div>
-                ) : isEvents && eventsDisplayData ? (
-                  // Render events component
+                </div>
+              </div>
+            );
+          }
+          if (isEvents && eventsDisplayData) {
+            return (
+              <div key={index} className="flex justify-start mb-2">
+                <div className="flex items-end gap-2 max-w-[80%]">
+                  <BsRobot className="h-8 w-8 text-gray-700 bg-gray-100 dark:bg-slate-700 rounded-full shadow flex-shrink-0" />
                   <div className="max-w-md">
                     <ChatEvents events={eventsDisplayData} />
                   </div>
-                ) : (
-                  // Render regular text message
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <div key={index} className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} mb-2`}>
+              <div className={`flex items-end gap-2 max-w-[80%] ${message.isUser ? 'flex-row-reverse' : ''}`}>
+                {/* Avatar/Icon */}
+                <div className="flex-shrink-0">
+                  {message.isUser ? (
+                    <FaUserCircle className="h-8 w-8 text-blue-500 bg-white rounded-full shadow" />
+                  ) : (
+                    <BsRobot className="h-8 w-8 text-gray-700 bg-gray-100 dark:bg-slate-700 rounded-full shadow" />
+                  )}
+                </div>
+                {/* Message bubble */}
+                <div>
                   <div
-                    className={`max-w-full rounded-lg p-3 ${
+                    className={`rounded-2xl px-4 py-2 shadow-md relative ${
                       message.isUser
-                        ? 'bg-blue-500 dark:bg-blue-600 text-white'
-                        : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-gray-200'
+                        ? 'bg-blue-600 text-white rounded-br-none'
+                        : 'bg-gray-100 dark:bg-slate-700 text-gray-900 dark:text-gray-100 rounded-bl-none border-l-4 border-blue-400'
                     }`}
                     style={{ wordBreak: 'break-word' }}
                   >
                     {message.text}
                   </div>
-                )}
+                  {/* Timestamp */}
+                  <div className="text-xs text-gray-400 mt-1 ml-1 select-none">
+                    {message.timestamp && new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </div>
+                </div>
               </div>
             </div>
           );
@@ -808,6 +847,17 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
               <div>No quizzes available.</div>
             )}
           </div>
+        </div>
+      )}
+      {/* Typing indicator (below messages, above input) */}
+      {showTyping && (
+        <div className="flex items-center gap-2 mt-2 mb-4">
+          <BsRobot className="h-6 w-6 text-gray-500 animate-bounce" />
+          <span className="text-gray-500 italic animate-pulse">Nexora is typing...</span>
+          <svg className="animate-spin h-5 w-5 text-blue-400 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+          </svg>
         </div>
       )}
     </div>

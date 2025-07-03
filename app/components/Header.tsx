@@ -210,21 +210,7 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Language Settings */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Language
-              </label>
-              <select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value as 'en' | 'si' | 'ta')}
-                className="w-full p-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
-              >
-                <option value="en">English</option>
-                <option value="si">සිංහල (Sinhala)</option>
-                <option value="ta">தமிழ் (Tamil)</option>
-              </select>
-            </div>
+            
 
             <div className="text-gray-600 dark:text-gray-400 text-sm">
               <p>More settings will be available here.</p>

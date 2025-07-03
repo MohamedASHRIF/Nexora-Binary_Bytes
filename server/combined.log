@@ -284,3 +284,229 @@
 {"level":"info","message":"GET /cafeteria/menu/L%20canteen","timestamp":"2025-07-03T06:15:08.079Z"}
 {"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:15:15.980Z"}
 {"language":"en","level":"info","message":"Received chat message: modules","timestamp":"2025-07-03T06:15:16.082Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-07-03T06:16:50.397Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-07-03T06:16:51.682Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-07-03T06:23:44.028Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-07-03T06:23:44.480Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-07-03T06:23:45.276Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-07-03T06:23:46.122Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-07-03T06:23:59.943Z"}
+{"level":"info","message":"GET /chatwidoo/messages","timestamp":"2025-07-03T06:24:00.440Z"}
+{"level":"info","message":"GET /game/score","timestamp":"2025-07-03T06:24:03.035Z"}
+{"level":"info","message":"GET /game/score","timestamp":"2025-07-03T06:24:03.040Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-07-03T06:24:21.635Z"}
+{"level":"info","message":"GET /users/me","timestamp":"2025-07-03T06:24:21.831Z"}
+{"level":"info","message":"POST /auth/login","timestamp":"2025-07-03T06:25:18.174Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:25:19.884Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:25:19.886Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:25:19.889Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:25:20.068Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:25:20.071Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:25:20.196Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:25:20.435Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:25:20.683Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:25:29.999Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-07-03T06:25:30.501Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:25:36.365Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-07-03T06:25:36.822Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-07-03T06:25:37.975Z","userId":"6849a6ed85e0f52942511b35"}
+{"count":1,"degree":"IT","level":"info","message":"Found schedules:","schedules":[{"className":"Software Engineering","degree":"IT"}],"timestamp":"2025-07-03T06:25:38.558Z"}
+{"level":"info","message":"Filtered schedules:","relevant":0,"schedules":[],"timestamp":"2025-07-03T06:25:38.559Z","total":1}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:25:46.700Z"}
+{"language":"en","level":"info","message":"Received chat message: thnaks","timestamp":"2025-07-03T06:25:47.911Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:25:53.032Z"}
+{"language":"en","level":"info","message":"Received chat message: thanks","timestamp":"2025-07-03T06:25:53.125Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:26:27.138Z"}
+{"language":"en","level":"info","message":"Received chat message: வகுப்பு","timestamp":"2025-07-03T06:26:27.231Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-07-03T06:26:27.334Z","userId":"6849a6ed85e0f52942511b35"}
+{"count":1,"degree":"IT","level":"info","message":"Found schedules:","schedules":[{"className":"Software Engineering","degree":"IT"}],"timestamp":"2025-07-03T06:26:27.433Z"}
+{"level":"info","message":"Filtered schedules:","relevant":0,"schedules":[],"timestamp":"2025-07-03T06:26:27.434Z","total":1}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:26:46.312Z"}
+{"language":"en","level":"info","message":"Received chat message:  நிகழ்வு","timestamp":"2025-07-03T06:26:46.409Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:27:04.270Z"}
+{"language":"en","level":"info","message":"Received chat message: සිදුවීම","timestamp":"2025-07-03T06:27:04.361Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:27:10.662Z"}
+{"language":"en","level":"info","message":"Received chat message: siduveema","timestamp":"2025-07-03T06:27:10.757Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:27:22.536Z"}
+{"language":"en","level":"info","message":"Received chat message: siduvīma","timestamp":"2025-07-03T06:27:22.628Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:27:47.842Z"}
+{"language":"en","level":"info","message":"Received chat message: bus\\","timestamp":"2025-07-03T06:27:47.942Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:27:51.665Z"}
+{"language":"en","level":"info","message":"Received chat message: modu;es","timestamp":"2025-07-03T06:27:51.772Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:27:57.328Z"}
+{"language":"en","level":"info","message":"Received chat message: modules","timestamp":"2025-07-03T06:27:57.423Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-07-03T06:28:57.514Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-07-03T06:28:59.350Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:29:55.010Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-07-03T06:29:55.108Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-07-03T06:29:55.200Z","userId":"6849a6ed85e0f52942511b35"}
+{"count":1,"degree":"IT","level":"info","message":"Found schedules:","schedules":[{"className":"Software Engineering","degree":"IT"}],"timestamp":"2025-07-03T06:29:55.301Z"}
+{"level":"info","message":"Filtered schedules:","relevant":0,"schedules":[],"timestamp":"2025-07-03T06:29:55.302Z","total":1}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:29:58.431Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-07-03T06:29:58.519Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:30:04.147Z"}
+{"language":"en","level":"info","message":"Received chat message: event","timestamp":"2025-07-03T06:30:04.235Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-07-03T06:30:14.625Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-07-03T06:30:14.939Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:30:17.617Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:30:17.619Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:30:17.621Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:30:17.804Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:30:17.844Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:30:17.892Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:30:18.090Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:30:18.279Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-07-03T06:30:48.268Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-07-03T06:30:49.493Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:34:10.601Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:34:10.612Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:34:10.614Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:34:10.839Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:34:10.841Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:34:10.905Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:34:11.106Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:34:11.306Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:34:15.364Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:34:15.367Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:34:15.368Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:34:15.574Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:34:15.576Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:34:15.685Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:34:15.896Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:34:16.101Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:35:08.586Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-07-03T06:35:08.679Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:35:36.506Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:37:20.913Z"}
+{"language":"en","level":"info","message":"Received chat message: class","timestamp":"2025-07-03T06:37:21.007Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"degree":"IT","level":"info","message":"User info:","role":"student","timestamp":"2025-07-03T06:37:21.107Z","userId":"6849a6ed85e0f52942511b35"}
+{"count":1,"degree":"IT","level":"info","message":"Found schedules:","schedules":[{"className":"Software Engineering","degree":"IT"}],"timestamp":"2025-07-03T06:37:21.199Z"}
+{"level":"info","message":"Filtered schedules:","relevant":0,"schedules":[],"timestamp":"2025-07-03T06:37:21.200Z","total":1}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:37:24.461Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-07-03T06:37:24.556Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:37:32.651Z"}
+{"language":"en","level":"info","message":"Received chat message: event","timestamp":"2025-07-03T06:37:32.743Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:37:37.279Z"}
+{"language":"en","level":"info","message":"Received chat message: food","timestamp":"2025-07-03T06:37:37.370Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"GET /cafeteria/menu","timestamp":"2025-07-03T06:37:37.895Z"}
+{"level":"info","message":"GET /cafeteria/menu/L%20canteen","timestamp":"2025-07-03T06:37:42.078Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:38:02.703Z"}
+{"language":"en","level":"info","message":"Received chat message: IT Faculty","timestamp":"2025-07-03T06:38:02.840Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:38:23.486Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:38:23.488Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:38:23.490Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:38:23.967Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:38:23.976Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:38:24.503Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:38:25.373Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:38:26.119Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:38:31.309Z"}
+{"language":"en","level":"info","message":"Received chat message: where is IT Faculty","timestamp":"2025-07-03T06:38:31.435Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:38:34.537Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:38:34.540Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:38:34.542Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:38:35.075Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:38:35.080Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:38:36.231Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:38:36.965Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:38:38.130Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:38:41.485Z"}
+{"language":"en","level":"info","message":"Received chat message: im hungry","timestamp":"2025-07-03T06:38:47.522Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"GET /cafeteria/menu","timestamp":"2025-07-03T06:38:50.452Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:39:00.474Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-07-03T06:39:00.566Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:39:20.919Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-07-03T06:39:21.016Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:39:29.495Z"}
+{"language":"en","level":"info","message":"Received chat message: IT Faculty","timestamp":"2025-07-03T06:39:29.589Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:39:34.520Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:39:34.522Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:39:34.523Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:39:34.733Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:39:34.735Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:39:34.934Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:39:35.223Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:39:35.429Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:39:41.214Z"}
+{"language":"en","level":"info","message":"Received chat message: hiiii","timestamp":"2025-07-03T06:39:41.305Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:39:47.124Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-07-03T06:39:47.217Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-07-03T06:40:33.370Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2025-07-03T06:40:34.883Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:40:42.306Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:40:42.317Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:40:42.324Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:40:42.608Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:40:42.610Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:40:42.878Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:40:43.160Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:40:43.585Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:40:49.235Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-07-03T06:40:49.384Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:40:56.048Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-07-03T06:40:56.140Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:41:00.809Z"}
+{"language":"en","level":"info","message":"Received chat message: event","timestamp":"2025-07-03T06:41:00.907Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:41:05.923Z"}
+{"language":"en","level":"info","message":"Received chat message: hungry","timestamp":"2025-07-03T06:41:06.019Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"GET /cafeteria/menu","timestamp":"2025-07-03T06:41:06.786Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:41:10.233Z"}
+{"language":"en","level":"info","message":"Received chat message: lunch","timestamp":"2025-07-03T06:41:10.592Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"GET /cafeteria/menu","timestamp":"2025-07-03T06:41:12.813Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-07-03T06:41:25.298Z"}
+{"level":"info","message":"GET /users/insights","timestamp":"2025-07-03T06:41:25.946Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:41:29.611Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:41:29.613Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:41:29.615Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:41:29.802Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:41:29.838Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:41:30.062Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:41:30.366Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:41:30.656Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:45:50.236Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:45:50.238Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:45:50.240Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:45:50.546Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:45:50.548Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:45:50.887Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:45:51.520Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:45:51.839Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:46:23.712Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-07-03T06:46:23.814Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:46:29.839Z"}
+{"language":"en","level":"info","message":"Received chat message: hi","timestamp":"2025-07-03T06:46:29.929Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:46:40.479Z"}
+{"language":"en","level":"info","message":"Received chat message: bus","timestamp":"2025-07-03T06:46:40.577Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:46:46.610Z"}
+{"language":"en","level":"info","message":"Received chat message: event","timestamp":"2025-07-03T06:46:46.703Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:46:56.491Z"}
+{"language":"en","level":"info","message":"Received chat message: thanks","timestamp":"2025-07-03T06:46:56.583Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:47:12.428Z"}
+{"language":"en","level":"info","message":"Received chat message: where ","timestamp":"2025-07-03T06:47:12.813Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:49:44.436Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:49:44.439Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:49:44.441Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:49:44.617Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:49:44.625Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:49:44.824Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:49:45.202Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:49:45.405Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:49:53.701Z"}
+{"language":"en","level":"info","message":"Received chat message: yes","timestamp":"2025-07-03T06:49:53.820Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:50:09.330Z"}
+{"language":"en","level":"info","message":"Received chat message: event","timestamp":"2025-07-03T06:50:09.911Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:50:25.065Z"}
+{"language":"en","level":"info","message":"Received chat message: food","timestamp":"2025-07-03T06:50:25.157Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"GET /cafeteria/menu","timestamp":"2025-07-03T06:50:26.085Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:50:35.166Z"}
+{"language":"en","level":"info","message":"Received chat message: hello","timestamp":"2025-07-03T06:50:35.257Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:53:56.101Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:53:56.104Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:53:56.106Z"}
+{"level":"info","message":"GET /events/chat","timestamp":"2025-07-03T06:53:56.296Z"}
+{"level":"info","message":"GET /bus-routes","timestamp":"2025-07-03T06:53:56.304Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:53:56.502Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:53:56.893Z"}
+{"level":"info","message":"GET /chat/history","timestamp":"2025-07-03T06:53:57.461Z"}
+{"level":"info","message":"POST /chat","timestamp":"2025-07-03T06:54:10.923Z"}
+{"language":"en","level":"info","message":"Received chat message: සිදුවීම","timestamp":"2025-07-03T06:54:11.026Z","user":{"__v":1,"_id":"6849a6ed85e0f52942511b35","badges":[],"createdAt":"2025-06-11T15:55:25.611Z","degree":"IT","email":"ashrif@nexora.com","language":"en","name":"Mohamed Ashrif","points":0,"role":"student","tags":[],"updatedAt":"2025-07-03T06:07:18.024Z"}}
