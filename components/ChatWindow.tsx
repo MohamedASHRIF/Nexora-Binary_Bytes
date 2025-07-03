@@ -573,6 +573,25 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
             }
           }
 
+          // Render visually appealing module list if message is a module list
+          if (!message.isUser && typeof message.text === 'string' && message.text.startsWith('MODULE_LIST:')) {
+            const modules = message.text.replace('MODULE_LIST:', '').split('|');
+            return (
+              <div className="w-full flex justify-start" key={index}>
+                <div className="bg-white dark:bg-slate-800 border border-blue-200 dark:border-blue-700 rounded-lg shadow-md p-4 mt-2 max-w-xl w-full">
+                  <h3 className="font-semibold text-lg mb-2 text-blue-700 dark:text-blue-300">Your Degree Modules</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {modules.map((mod, idx) => (
+                      <div key={idx} className="bg-blue-50 dark:bg-blue-900 rounded px-3 py-2 text-blue-900 dark:text-blue-100 font-medium shadow-sm">
+                        {mod}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          }
+
           return (
             <div
               key={`${message.timestamp.getTime()}-${index}`}

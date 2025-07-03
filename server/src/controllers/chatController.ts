@@ -8,6 +8,7 @@ import { BusRoute } from '../models/BusRoute';
 import { Event } from '../models/Event';
 import { catchAsync } from '../utils/catchAsync';
 import { foodKeywords } from '../utils/queryKeywords';
+import { containsFuzzy, isSimilar } from '../utils/stringSimilarity';
 
 interface AuthenticatedRequest extends Request {
   user?: {
@@ -40,6 +41,7 @@ interface TranslationKeys {
   error_fetching_bus: string;
   error_fetching_events: string;
   fallback_response: string;
+  acknowledgment_response: string;
 }
 
 const translations: Record<string, TranslationKeys> = {
@@ -64,7 +66,8 @@ const translations: Record<string, TranslationKeys> = {
     error_fetching_schedule: "Sorry, I encountered an error while fetching your schedule. Please try again.",
     error_fetching_bus: "Sorry, I encountered an error while fetching bus routes. Please try again.",
     error_fetching_events: "Sorry, I encountered an error while fetching events. Please try again.",
-    fallback_response: "I understand you're asking about something. I can help you with class schedules, bus routes, campus events, and finding locations. What would you like to know?"
+    fallback_response: "I understand you're asking about something. I can help you with class schedules, bus routes, campus events, and finding locations. What would you like to know?",
+    acknowledgment_response: "You're welcome! If you have more questions, just ask."
   },
   si: {
     greeting_response: "ආයුබෝවන්! 👋 NovaCore විශ්වවිද්‍යාලයට සාදරයෙන් පිළිගනිමු! මම Nexora, ඔබේ විශ්වවිද්‍යාල සහායකයා. අද මට ඔබට කෙසේ උදව් කළ හැකිද? ස්ථාන සොයාගැනීම, පන්ති කාලසටහන් පරීක්ෂා කිරීම, බස් මාර්ග සහ විශ්වවිද්‍යාල සිදුවීම් ගැන මට උදව් කළ හැකිය.",
@@ -87,7 +90,8 @@ const translations: Record<string, TranslationKeys> = {
     error_fetching_schedule: "மன்னிக்கவும், உங்கள் அட்டவணையை பெறும்போது பிழை ஏற்பட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.",
     error_fetching_bus: "மன்னிக்கவும், பேருந்து வழித்தடங்களை பெறும்போது பிழை ஏற்பட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.",
     error_fetching_events: "மன்னிக்கவும், நிகழ்வுகளை பெறும்போது பிழை ஏற்பட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.",
-    fallback_response: "நீங்கள் ஏதாவது கேள்வி கேட்கிறீர்கள் என்பதை நான் புரிந்துகொள்கிறேன். வகுப்பு அட்டவணைகள், பேருந்து வழித்தடங்கள், வளாக நிகழ்வுகள் மற்றும் இடங்களைக் கண்டுபிடிப்பதில் நான் உதவ முடியும். நீங்கள் என்ன தெரிந்துகொள்ள விரும்புகிறீர்கள்?"
+    fallback_response: "நீங்கள் ஏதாவது கேள்வி கேட்கிறீர்கள் என்பதை நான் புரிந்துகொள்கிறேன். வகுப்பு அட்டவணைகள், பேருந்து வழித்தடங்கள், வளாக நிகழ்வுகள் மற்றும் இடங்களைக் கண்டுபிடிப்பதில் நான் உதவ முடியும். நீங்கள் என்ன தெரிந்துகொள்ள விரும்புகிறீர்கள்?",
+    acknowledgment_response: "ඔබට උදව් කළ හැකි වූයේ සතුටකි! තවත් ප්‍රශ්න තිබේ නම්, අහන්න."
   },
   ta: {
     greeting_response: "வணக்கம்! 👋 NovaCore பல்கலைக்கழகத்திற்கு வரவேற்கிறோம்! நான் Nexora, உங்கள் வளாக உதவியாளர். இன்று நான் உங்களுக்கு எப்படி உதவ முடியும்? இடங்களைக் கண்டுபிடிப்பது, வகுப்பு அட்டவணைகளை சரிபார்ப்பது, பேருந்து வழித்தடங்கள் மற்றும் வளாக நிகழ்வுகள் பற்றி நான் உதவ முடியும்.",
@@ -110,7 +114,8 @@ const translations: Record<string, TranslationKeys> = {
     error_fetching_schedule: "மன்னிக்கவும், உங்கள் அட்டவணையை பெறும்போது பிழை ஏற்பட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.",
     error_fetching_bus: "மன்னிக்கவும், பேருந்து வழித்தடங்களை பெறும்போது பிழை ஏற்பட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.",
     error_fetching_events: "மன்னிக்கவும், நிகழ்வுகளை பெறும்போது பிழை ஏற்பட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.",
-    fallback_response: "நீங்கள் ஏதாவது கேள்வி கேட்கிறீர்கள் என்பதை நான் புரிந்துகொள்கிறேன். வகுப்பு அட்டவணைகள், பேருந்து வழித்தடங்கள், வளாக நிகழ்வுகள் மற்றும் இடங்களைக் கண்டுபிடிப்பதில் நான் உதவ முடியும். நீங்கள் என்ன தெரிந்துகொள்ள விரும்புகிறீர்கள்?"
+    fallback_response: "நீங்கள் ஏதாவது கேள்வி கேட்கிறீர்கள் என்பதை நான் புரிந்துகொள்கிறேன். வகுப்பு அட்டவணைகள், பேருந்து வழித்தடங்கள், வளாக நிகழ்வுகள் மற்றும் இடங்களைக் கண்டுபிடிப்பதில் நான் உதவ முடியும். நீங்கள் என்ன தெரிந்துகொள்ள விரும்புகிறீர்கள்?",
+    acknowledgment_response: "You're welcome! If you have more questions, just ask."
   }
 };
 
@@ -204,6 +209,9 @@ const analyzeSentiment = (text: string): number => {
 // In-memory state for demo (userId -> { step, canteen, meal })
 const canteenChatState: Record<string, { step: number, canteen?: string, meal?: string }> = {};
 
+// In-memory fallback count tracker (per user, resets on recognized intent)
+const fallbackCounts: Record<string, number> = {};
+
 export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   try {
     const { message, language: userLanguage } = req.body;
@@ -287,53 +295,33 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       botResponse = getTranslation('greeting_response', detectedLanguage);
     }
     // Check for mood-based responses
-    else if (lowerMessage.includes('tired') || lowerMessage.includes('exhausted') || lowerMessage.includes('sleepy') ||
-             lowerMessage.includes('சோர்வு') || lowerMessage.includes('அலுப்பு') || lowerMessage.includes('தூக்கம்')) {
-      
+    else if (containsFuzzy(lowerMessage, ['tired', 'exhausted', 'sleepy', 'சோர்வு', 'அலுப்பு', 'தூக்கம்'])) {
       console.log('Tired mood detection triggered for message:', lowerMessage);
       botResponse = getTranslation('mood_tired', detectedLanguage);
     }
-    else if (lowerMessage.includes('hungry') || lowerMessage.includes('starving') || lowerMessage.includes('food') ||
-             lowerMessage.includes('பசி') || lowerMessage.includes('உணவு') || lowerMessage.includes('காஃபி') ||
-             lowerMessage.includes('බඩගිනි') || lowerMessage.includes('කෑම')) {
-      
+    else if (containsFuzzy(lowerMessage, ['hungry', 'starving', 'food', 'பசி', 'உணவு', 'உணவகம்', 'காஃபி', 'බඩගිනි', 'කෑම'])) {
       console.log('Hungry mood detection triggered for message:', lowerMessage);
       botResponse = getTranslation('mood_hungry', detectedLanguage);
     }
-    else if (lowerMessage.includes('bored') || lowerMessage.includes('boring') || lowerMessage.includes('nothing to do') ||
-             lowerMessage.includes('சலிப்பு') || lowerMessage.includes('போரடிப்பு') || lowerMessage.includes('எதுவும் செய்ய') ||
-             lowerMessage.includes('බොරු') || lowerMessage.includes('කිසිවක් නැත')) {
-      
+    else if (containsFuzzy(lowerMessage, ['bored', 'boring', 'nothing to do', 'சலிப்பு', 'போரடிப்பு', 'எதுவும் செய்ய', 'බොරු', 'කිසිවක් නැත'])) {
       console.log('Bored mood detection triggered for message:', lowerMessage);
       botResponse = getTranslation('mood_bored', detectedLanguage);
     }
-    else if (lowerMessage.includes('stressed') || lowerMessage.includes('stress') || lowerMessage.includes('anxious') ||
-             lowerMessage.includes('மன அழுத்தம்') || lowerMessage.includes('பதட்டம்') || lowerMessage.includes('கவலை') ||
-             lowerMessage.includes('ආතතිය') || lowerMessage.includes('පීඩනය')) {
-      
+    else if (containsFuzzy(lowerMessage, ['stressed', 'stress', 'anxious', 'மன அழுத்தம்', 'பதட்டம்', 'கவலை', 'ආතතිය', 'පීඨනය'])) {
       console.log('Stressed mood detection triggered for message:', lowerMessage);
       botResponse = getTranslation('mood_stressed', detectedLanguage);
     }
-    else if (lowerMessage.includes('sad') || lowerMessage.includes('depressed') || lowerMessage.includes('unhappy') ||
-             lowerMessage.includes('வருத்தம்') || lowerMessage.includes('மனம் வருந்த') || lowerMessage.includes('சோகம்') ||
-             lowerMessage.includes('දුක්') || lowerMessage.includes('සංවේග')) {
-      
+    else if (containsFuzzy(lowerMessage, ['sad', 'depressed', 'unhappy', 'வருத்தம்', 'மனம் வருந்த', 'சோகம்', 'දුක්', 'සංවේග'])) {
       console.log('Sad mood detection triggered for message:', lowerMessage);
       botResponse = getTranslation('mood_sad', detectedLanguage);
     }
-    else if (lowerMessage.includes('happy') || lowerMessage.includes('excited') || lowerMessage.includes('great') ||
-             lowerMessage.includes('மகிழ்ச்சி') || lowerMessage.includes('சந்தோஷம்') || lowerMessage.includes('நன்றாக') ||
-             lowerMessage.includes('සතුටු') || lowerMessage.includes('උද්වේග')) {
-      
+    else if (containsFuzzy(lowerMessage, ['happy', 'excited', 'great', 'மகிழ்ச்சி', 'சந்தோஷம்', 'நன்றாக', 'සතුටු', 'උද්වේග'])) {
       console.log('Happy mood detection triggered for message:', lowerMessage);
       botResponse = getTranslation('mood_happy', detectedLanguage);
     }
     // Check if the message is about locations/directions OR directly matches a known location
     else if (
-      lowerMessage.includes('where') || lowerMessage.includes('location') || lowerMessage.includes('directions') || 
-      lowerMessage.includes('how to get to') || lowerMessage.includes('find') || lowerMessage.includes('map') ||
-      lowerMessage.includes('எங்கே') || lowerMessage.includes('இடம்') || lowerMessage.includes('வழி') ||
-      lowerMessage.includes('කොහෙද') || lowerMessage.includes('ස්ථානය') || lowerMessage.includes('මාර්ගය')
+      containsFuzzy(lowerMessage, ['where', 'location', 'directions', 'how to get to', 'find', 'map', 'எங்கே', 'இடம்', 'வழி', 'කොහෙද', 'ස්ථානය', 'මාර්ගය'])
     ) {
       // Define common campus locations
       const campusLocations = [
@@ -366,7 +354,7 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       'library',
       'cafeteria',
       'main building'
-    ].includes(lowerMessage.trim())) {
+    ].some(loc => isSimilar(lowerMessage.trim(), loc, 2))) {
       const campusLocations = [
         { name: 'IT Faculty' },
         { name: 'Engineering Faculty' },
@@ -529,10 +517,59 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
         botResponse = getTranslation('error_fetching_events', detectedLanguage);
       }
     }
+    // Respond to gratitude or acknowledgment
+    else if (['thanks', 'thank you', 'ok', 'okay', 'great', 'cool', 'awesome', 'got it', 'alright'].some(phrase => lowerMessage.includes(phrase))) {
+      botResponse = getTranslation('acknowledgment_response', detectedLanguage) || "You're welcome! If you have more questions, just ask.";
+    }
+    // Check if the message is about modules or subjects
+    else if (lowerMessage.includes('module') || lowerMessage.includes('modules') || lowerMessage.includes('subject') || lowerMessage.includes('subjects')) {
+      const user = await User.findById(req.user.id);
+      if (!user) {
+        return next(new AppError('User not found', 404));
+      }
+      if (user.role !== 'student') {
+        botResponse = getTranslation('student_only', detectedLanguage);
+      } else if (!user.degree) {
+        botResponse = getTranslation('degree_not_set', detectedLanguage);
+      } else {
+        // Fetch unique modules/subjects for the user's degree
+        const modules = await Schedule.find({ degree: user.degree }).distinct('className');
+        if (!modules || modules.length === 0) {
+          botResponse = `No modules found for your degree (${user.degree}).`;
+        } else {
+          botResponse = `MODULE_LIST:${modules.join('|')}`;
+        }
+      }
+    }
     // For other messages, use enhanced fallback responses
     else {
       console.log('Using enhanced fallback response system...');
-      botResponse = getTranslation('fallback_response', detectedLanguage);
+      // Try to find partial matches for known topics
+      const topics = [
+        { keywords: ['food', 'menu', 'canteen', 'lunch', 'dinner', 'breakfast', 'eat', 'hungry'], suggestion: "Are you asking about cafeteria menus or food timings?" },
+        { keywords: ['bus', 'transport', 'route', 'timing', 'shuttle'], suggestion: "Do you want to know about bus routes or timings?" },
+        { keywords: ['event', 'activity', 'happening', 'festival', 'workshop'], suggestion: "Are you looking for upcoming campus events?" },
+        { keywords: ['class', 'schedule', 'timetable', 'subject', 'lecture'], suggestion: "Do you want to see your class schedule?" },
+        { keywords: ['map', 'location', 'where', 'find', 'building', 'faculty'], suggestion: "Would you like help finding a location on campus?" }
+      ];
+      let relatedSuggestion = '';
+      for (const topic of topics) {
+        if (topic.keywords.some(kw => lowerMessage.includes(kw))) {
+          relatedSuggestion = topic.suggestion;
+          break;
+        }
+      }
+      // Track fallback count
+      fallbackCounts[userId] = (fallbackCounts[userId] || 0) + 1;
+      // Reset fallback count if user changes topic (recognized intent resets this logic elsewhere)
+      if (relatedSuggestion) {
+        botResponse = relatedSuggestion + " If not, you can ask about class schedules, bus routes, events, or locations.";
+      } else if (fallbackCounts[userId] > 2) {
+        botResponse = "I'm still having trouble understanding. Please try rephrasing your question, or choose one of these options: 'Show class schedule', 'Find bus route', 'Upcoming events', 'Show campus map'.";
+        fallbackCounts[userId] = 0; // Reset after escalation
+      } else {
+        botResponse = getTranslation('fallback_response', detectedLanguage);
+      }
     }
 
     // Save messages to database
