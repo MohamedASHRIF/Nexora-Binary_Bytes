@@ -187,31 +187,35 @@ export const getUserInsights = catchAsync(async (req: AuthenticatedRequest, res:
     }
 
     const userId = req.user.id;
-    const timeRange = req.query.timeRange as string || 'day';
+    const timeRange = req.query.timeRange as string;
     
-    // Calculate time range
-    const now = new Date();
-    let startDate: Date;
-    
-    switch (timeRange) {
-      case 'week':
-        startDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-        break;
-      case 'month':
-        startDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-        break;
-      default: // day
-        startDate = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    // Calculate time range if provided
+    let startDate: Date | null = null;
+    if (timeRange) {
+      const now = new Date();
+      switch (timeRange) {
+        case 'week':
+          startDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+          break;
+        case 'month':
+          startDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+          break;
+        case 'day':
+          startDate = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+          break;
+        default:
+          startDate = null;
+      }
     }
 
     // Get user's chat history
     const chat = await Chat.findOne({ userId });
     const messages = chat?.messages || [];
 
-    // Filter messages by time range
-    const filteredMessages = messages.filter(msg => 
-      new Date(msg.timestamp) >= startDate
-    );
+    // Filter messages by time range if specified
+    const filteredMessages = startDate
+      ? messages.filter(msg => new Date(msg.timestamp) >= startDate)
+      : messages;
 
     // Calculate insights
     const userMessages = filteredMessages.filter(msg => msg.isUser);

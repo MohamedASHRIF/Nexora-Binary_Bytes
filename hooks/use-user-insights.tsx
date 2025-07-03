@@ -28,7 +28,7 @@ interface SentimentStats {
   negative: number;
 }
 
-export const useUserInsights = (timeRange: "day" | "week" | "month" = "day") => {
+export const useUserInsights = (timeRange?: "day" | "week" | "month") => {
   const [insights, setInsights] = useState<UserInsights | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -43,7 +43,12 @@ export const useUserInsights = (timeRange: "day" | "week" | "month" = "day") => 
         throw new Error('No authentication token found');
       }
 
-      const response = await fetch(`http://localhost:5000/api/users/insights?timeRange=${timeRange}`, {
+      // Only add timeRange param if provided
+      const url = timeRange
+        ? `http://localhost:5000/api/users/insights?timeRange=${timeRange}`
+        : `http://localhost:5000/api/users/insights`;
+
+      const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',

@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card"
 import { useUserInsights } from "@/hooks/use-user-insights"
 
 export default function DataInsights() {
-  const [timeRange, setTimeRange] = useState<"day" | "week" | "month">("day")
+  const [timeRange, setTimeRange] = useState<"day" | "week" | "month" | undefined>(undefined)
   const { queryStats, sentimentStats, popularQueries, isLoading, error } = useUserInsights(timeRange)
 
   if (isLoading) {
@@ -48,6 +48,16 @@ export default function DataInsights() {
       <div className="flex justify-between items-center px-0">
         <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">Your Data Insights</h2>
         <div className="flex border border-gray-300 dark:border-gray-600 rounded-md overflow-hidden">
+          <button
+            className={`px-3 py-1 text-sm transition-colors ${
+              timeRange === undefined
+                ? "bg-purple-600 dark:bg-purple-500 text-white"
+                : "bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            }`}
+            onClick={() => setTimeRange(undefined)}
+          >
+            All Time
+          </button>
           <button
             className={`px-3 py-1 text-sm transition-colors ${
               timeRange === "day" 

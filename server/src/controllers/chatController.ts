@@ -591,63 +591,17 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
         sentiment: userSentiment
       });
 
-      // --- Personalized Recommendations Logic ---
-      let recommendation = '';
-      const now = new Date();
-      const hour = now.getHours();
-      // 1. Lunchtime recommendation
-      if (hour >= 12 && hour < 14) {
-        recommendation = "It's lunchtime! Want to check the cafeteria menu?";
-      }
-      // 2. Next class in 30 minutes recommendation
-      if (req.user?.degree) {
-        const today = now.toLocaleDateString('en-US', { weekday: 'long' });
-        const schedules = await Schedule.find({ degree: req.user.degree, day: today }).sort({ startTime: 1 });
-        const currentTime = now.toTimeString().slice(0,5); // 'HH:MM'
-        const nextClass = schedules.find(s => s.startTime > currentTime);
-        if (nextClass) {
-          // Check if next class is within 30 minutes
-          const [h, m] = nextClass.startTime.split(':').map(Number);
-          const classTime = new Date(now);
-          classTime.setHours(h, m, 0, 0);
-          const diff = (classTime.getTime() - now.getTime()) / (60 * 1000);
-          if (diff > 0 && diff <= 30) {
-            recommendation = `You have a class in ${Math.round(diff)} minutes (${nextClass.className}). Need directions?`;
-          }
-        }
-      }
-      // 3. Event interest recommendation (based on previous queries)
-      if (!recommendation && chat.messages.slice(-10).some(msg => /event|activity|workshop|festival|seminar|conference/i.test(msg.text))) {
-        recommendation = "Based on your interests, here are some upcoming events you might like. Just ask!";
-      }
-      // Add recommendation to bot response if available
-      let finalBotResponse = botResponse;
-      if (recommendation) {
-        finalBotResponse += `\n\n🤖 Recommendation: ${recommendation}`;
-      }
-
-      // Add bot response
+      // Add bot response (no recommendations)
       chat.messages.push({
-        text: finalBotResponse,
+        text: botResponse,
         isUser: false,
         timestamp: new Date(),
         sentiment: 0 // Bot responses are neutral
       });
-      // Add recommendation as a separate message if available
-      if (recommendation) {
-        chat.messages.push({
-          text: `🤖 Recommendation: ${recommendation}`,
-          isUser: false,
-          timestamp: new Date(),
-          sentiment: 0
-        });
-      }
 
       await chat.save();
-      console.log('Chat history saved for user:', req.user.id);
-    } catch (error) {
-      console.error('Error saving chat history:', error);
-      // Don't fail the request if chat history saving fails
+    } catch (err) {
+      logger.error('Error saving chat message:', err);
     }
 
     console.log('Sending bot response:', botResponse);
