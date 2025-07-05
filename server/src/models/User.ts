@@ -8,6 +8,7 @@ export interface IUser extends Document {
   role: 'student' | 'staff' | 'admin';
   points: number;
   badges: string[];
+  tags: string[];
   language: 'en' | 'si' | 'ta';
   degree?: 'IT' | 'AI' | 'Design';
   createdAt: Date;
@@ -23,6 +24,7 @@ const userSchema = new Schema<IUser>(
     role: { type: String, enum: ['student', 'staff', 'admin'], default: 'student' },
     points: { type: Number, default: 0 },
     badges: [{ type: String }],
+    tags: [{ type: String, default: [] }],
     language: { type: String, enum: ['en', 'si', 'ta'], default: 'en' },
     degree: {
       type: String,

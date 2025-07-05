@@ -25,6 +25,8 @@ export const Sentiments: React.FC<SentimentsProps> = ({
   const [running, setRunning] = useState(true);
   const [status, setStatus] = useState('X Your Turn');
   const [winnerCombo, setWinnerCombo] = useState<number[] | null>(null);
+  const [isXTurn, setIsXTurn] = useState(true); // Track whose turn it is
+  const [pendingAIMove, setPendingAIMove] = useState(false); // Track if AI should move
 
   // Scoreboard state initialized with keys X, O, Draws
   const [score, setScore] = useState<{ X: number; O: number; Draws: number }>({
@@ -128,30 +130,71 @@ export const Sentiments: React.FC<SentimentsProps> = ({
   };
 
   const handleClick = (index: number) => {
-    if (board[index] || !running) return;
+    if (board[index] || !running || !isXTurn || pendingAIMove) return; // Only allow if cell is empty, game is running, and it's X's turn
 
     const newBoard = [...board];
     newBoard[index] = '❌'; // Player X move
     setBoard(newBoard);
+    setIsXTurn(false);
     setStatus('O Playing...');
     checkWinner(newBoard);
-
-    setTimeout(() => {
-      const emptyIndex = newBoard.findIndex((cell) => cell === '');
-      if (emptyIndex !== -1 && running) {
-        newBoard[emptyIndex] = '🔵'; // Player O move
-        setBoard([...newBoard]);
-        checkWinner(newBoard);
-        if (running) setStatus('X Your Turn');
-      }
-    }, 300);
+    setPendingAIMove(true); // Signal AI to move next
   };
+
+  // AI move: try to win, then block, else random
+  useEffect(() => {
+    if (pendingAIMove && !isXTurn && running) {
+      const emptyIndices = board
+        .map((cell, idx) => (cell === '' ? idx : null))
+        .filter((idx) => idx !== null) as number[];
+      if (emptyIndices.length === 0) {
+        setPendingAIMove(false);
+        return;
+      }
+
+      // Helper to find a move for a given symbol
+      const findBestMove = (symbol: string) => {
+        for (const condition of winConditions) {
+          const [a, b, c] = condition;
+          const line = [board[a], board[b], board[c]];
+          // If two are symbol and one is empty, return the empty index
+          if (
+            line.filter((v) => v === symbol).length === 2 &&
+            line.includes('')
+          ) {
+            const emptyIdx = condition[line.indexOf('')];
+            return emptyIdx;
+          }
+        }
+        return null;
+      };
+
+      // 1. Try to win
+      let aiMove = findBestMove('🔵');
+      // 2. Try to block user
+      if (aiMove === null) aiMove = findBestMove('❌');
+      // 3. Otherwise random
+      if (aiMove === null) aiMove = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+
+      const newBoard = [...board];
+      newBoard[aiMove] = '🔵'; // AI move
+      setTimeout(() => {
+        setBoard(newBoard);
+        setIsXTurn(true);
+        setStatus('X Your Turn');
+        checkWinner(newBoard);
+        setPendingAIMove(false); // AI move done
+      }, 400);
+    }
+  }, [pendingAIMove, isXTurn, running, board]);
 
   const restartGame = () => {
     setBoard(Array(9).fill(''));
     setRunning(true);
     setStatus('X Your Turn');
     setWinnerCombo(null);
+    setIsXTurn(true);
+    setPendingAIMove(false);
   };
 
   const renderCell = (value: string) => {

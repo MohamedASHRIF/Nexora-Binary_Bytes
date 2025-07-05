@@ -40,7 +40,17 @@ const AdminQuizEntry = () => {
   }, []);
 
   const handleOptionCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let count = parseInt(e.target.value);
+    const val = e.target.value;
+    if (val === '' || isNaN(Number(val))) {
+      setOptionCount(2);
+      const updatedOptions = [...options];
+      while (updatedOptions.length < 2) updatedOptions.push('');
+      while (updatedOptions.length > 2) updatedOptions.pop();
+      setOptions(updatedOptions);
+      return;
+    }
+    let count = parseInt(val, 10);
+    if (isNaN(count)) count = 2;
     if (count > 5) count = 5;
     if (count < 2) count = 2;
     setOptionCount(count);

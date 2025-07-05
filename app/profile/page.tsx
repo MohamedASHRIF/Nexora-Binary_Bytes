@@ -299,8 +299,8 @@ export default function ProfilePage() {
         throw new Error('No authentication token found');
       }
 
-      const response = await fetch('http://localhost:5000/api/users/change-password', {
-        method: 'PUT',
+      const response = await fetch('http://localhost:5000/api/auth/change-password', {
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`

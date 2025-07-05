@@ -26,6 +26,9 @@ export default function Home() {
   const { addPrompt } = useDailyPromptHistory();
   const { language, setLanguage } = useLanguage();
 
+  // State to control initial view for DataInsights
+  const [insightsInitialView, setInsightsInitialView] = useState<'overview' | 'moodmap' | 'chatmap' | 'sentiment'>('overview');
+
   const handleAsk = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (homeQuestion.trim() === '') return;
@@ -82,8 +85,16 @@ export default function Home() {
 
     window.addEventListener('switchToMap', handleSwitchToMap as EventListener);
 
+    // Listen for switch to insights/game event
+    const handleSwitchToInsightsGame = () => {
+      setActiveTab('insights');
+      setInsightsInitialView('sentiment');
+    };
+    window.addEventListener('switchToInsightsGame', handleSwitchToInsightsGame as EventListener);
+
     return () => {
       window.removeEventListener('switchToMap', handleSwitchToMap as EventListener);
+      window.removeEventListener('switchToInsightsGame', handleSwitchToInsightsGame as EventListener);
     };
   }, [router]);
 
@@ -206,8 +217,8 @@ export default function Home() {
             </div>
           )}
           {activeTab === 'insights' && (
-            <div className="w-full h-full p-0 px-4 overflow-y-auto">
-              <DataInsights />
+            <div className="w-full h-full flex flex-col mx-auto p-2">
+              <DataInsights initialView={insightsInitialView} />
             </div>
           )}
           {badges.length > 0 && activeTab === 'home' && (
