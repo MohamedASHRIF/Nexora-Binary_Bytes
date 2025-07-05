@@ -9,6 +9,7 @@ import userRoutes from './userRoutes';
 import chatWidooRoutes from './chatWidooRoutes';
 import cafeteriaRoutes from './cafeteriaRoutes';
 import quizRoutes from './quizRoutes';
+import gameRoutes from './gameRoutes';
 import { logger } from '../utils/logger';
 
 const router = express.Router();
@@ -29,5 +30,6 @@ router.use('/users', userRoutes);
 router.use('/chatwidoo', chatWidooRoutes);
 router.use('/cafeteria', cafeteriaRoutes);
 router.use('/quiz', quizRoutes);
+router.use('/game', gameRoutes);
 
 export default router; 

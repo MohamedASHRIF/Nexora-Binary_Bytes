@@ -36,8 +36,9 @@ export const Sentiments: React.FC<SentimentsProps> = ({
   // Fetch score from backend on mount
   useEffect(() => {
     const fetchScore = async () => {
+      const token = localStorage.getItem('token') || Cookies.get('token');
+      if (!token) return; // Only fetch if token is present
       try {
-        const token = localStorage.getItem('token') || Cookies.get('token');
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/game/score`, {
           headers: token ? { 'Authorization': `Bearer ${token}` } : {},
           credentials: 'include',
@@ -45,9 +46,9 @@ export const Sentiments: React.FC<SentimentsProps> = ({
         if (res.ok) {
           const data = await res.json();
           setScore({
-            X: data.data.xWins,
-            O: data.data.oWins,
-            Draws: data.data.draws,
+            X: Number.isFinite(data.data.xWins) ? data.data.xWins : 0,
+            O: Number.isFinite(data.data.oWins) ? data.data.oWins : 0,
+            Draws: Number.isFinite(data.data.draws) ? data.data.draws : 0,
           });
         }
       } catch (e) {
