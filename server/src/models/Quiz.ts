@@ -10,6 +10,7 @@ export interface IQuiz extends Document {
   title: string;
   description?: string;
   questions: IQuizQuestion[];
+  faculty: 'IT' | 'AI' | 'Design';
   createdBy: mongoose.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
@@ -25,6 +26,11 @@ const quizSchema = new Schema<IQuiz>({
   title: { type: String, required: true },
   description: { type: String },
   questions: { type: [quizQuestionSchema], required: true },
+  faculty: { 
+    type: String, 
+    enum: ['IT', 'AI', 'Design'], 
+    required: true 
+  },
   createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 }, {
   timestamps: true

@@ -1,15 +1,20 @@
 import { Router } from 'express';
-import { createQuiz, getQuizzes, getQuizById, updateQuiz, deleteQuiz } from '../controllers/quizController';
+import { 
+  createQuiz, 
+  getQuizzes, 
+  getQuizById, 
+  updateQuiz, 
+  deleteQuiz,
+  debugQuizzes 
+} from '../controllers/quizController';
 import { protect } from '../middleware/auth';
 
 const router = Router();
 
-// Public: get all quizzes, get by id
-router.get('/', getQuizzes);
-router.get('/:id', getQuizById);
-
-// Protected: create, update, delete
+router.get('/', protect, getQuizzes);
 router.post('/', protect, createQuiz);
+router.get('/debug', debugQuizzes); // Debug endpoint (no auth required)
+router.get('/:id', getQuizById);
 router.put('/:id', protect, updateQuiz);
 router.delete('/:id', protect, deleteQuiz);
 

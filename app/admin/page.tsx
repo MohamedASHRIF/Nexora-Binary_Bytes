@@ -59,6 +59,8 @@ interface CanteenMenu {
   date?: string;
 }
 
+
+
 type MealType = 'breakfast' | 'lunch' | 'dinner';
 const mealTypes: MealType[] = ['breakfast', 'lunch', 'dinner'];
 
@@ -112,6 +114,8 @@ export default function AdminPage() {
   const [expandedCanteens, setExpandedCanteens] = useState<string[]>([]);
   const [expandedMeals, setExpandedMeals] = useState<{ [canteen: string]: MealType[] }>({});
   const [editingMenu, setEditingMenu] = useState<CanteenMenu | null>(null);
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -755,6 +759,8 @@ export default function AdminPage() {
       setMenuLoading(false);
     }
   };
+
+
 
   if (isLoading) {
     return (
