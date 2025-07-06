@@ -1,7 +1,6 @@
 'use client';
 
 import { ChatWindow } from '../../components/ChatWindow';
-import { SuggestionBar } from '../../components/SuggestionBar';
 import { ChatHistory } from '../../components/ChatHistory';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -22,10 +21,7 @@ export default function ChatPage() {
     setRecentMessages(messages);
   };
 
-  const handleSuggestionClick = (suggestion: string) => {
-    const event = new CustomEvent('setChatInput', { detail: { text: suggestion } });
-    window.dispatchEvent(event);
-  };
+
 
   const handlePromptClick = (prompt: string) => {
     const event = new CustomEvent('setChatInput', { detail: { text: prompt } });
@@ -43,9 +39,7 @@ export default function ChatPage() {
             hasSidebar={true}
           />
         </div>
-        <div className="flex-shrink-0">
-          <SuggestionBar onSuggestionClick={handleSuggestionClick} recentMessages={recentMessages} />
-        </div>
+
       </div>
     </div>
   );

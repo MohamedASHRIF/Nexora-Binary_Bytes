@@ -780,6 +780,25 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
 
       {/* Input Bar - Constrained within chat area */}
       <div className="flex-shrink-0 border-t border-gray-200 dark:border-slate-700 p-4 bg-white dark:bg-slate-800 shadow-lg">
+        {/* Frequently typed messages */}
+        <div className="flex flex-wrap gap-2 mb-3">
+          {[
+            "What's the weather like?",
+            "Show me my schedule",
+            "Where is the library?",
+            "What's for lunch?",
+            "Help me with homework",
+            "Tell me a joke"
+          ].map((suggestion, index) => (
+            <button
+              key={index}
+              onClick={() => setInputText(suggestion)}
+              className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-sm hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
+            >
+              {suggestion}
+            </button>
+          ))}
+        </div>
         <div className="flex space-x-2 max-w-full">
           <input
             type="text"
