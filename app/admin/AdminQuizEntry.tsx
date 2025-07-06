@@ -57,7 +57,7 @@ const AdminQuizEntry = () => {
     if (field === 'optionCount') {
       let count = parseInt(value, 10);
       if (isNaN(count) || count < 2) count = 2;
-      if (count > 5) count = 5;
+    if (count > 5) count = 5;
       let newOptions = [...form.options];
       while (newOptions.length < count) newOptions.push('');
       while (newOptions.length > count) newOptions.pop();
@@ -261,66 +261,66 @@ const AdminQuizEntry = () => {
           )}
           <div>
             {/* <label className="block mb-1 font-medium">Question<span className="text-red-400">*</span></label> */}
-            <input
-              type="text"
+        <input
+          type="text"
               value={form.question}
               onChange={e => handleFormChange('question', e.target.value)}
-              placeholder="Enter quiz question"
+          placeholder="Enter quiz question"
               className="w-full p-2 rounded bg-white border border-gray-300"
               required
-            />
+        />
           </div>
           <div>
             {/* <label className="block mb-1 font-medium">Faculty<span className="text-red-400">*</span></label> */}
-            <select
+        <select
               value={form.track}
               onChange={e => handleFormChange('track', e.target.value)}
               className="w-full p-2 rounded bg-white border border-gray-300"
               required
-            >
-              <option value="IT">💻 IT</option>
-              <option value="AI">🤖 AI</option>
-              <option value="Design">🎨 Design</option>
-            </select>
+        >
+          <option value="IT">💻 IT</option>
+          <option value="AI">🤖 AI</option>
+          <option value="Design">🎨 Design</option>
+        </select>
           </div>
           <div>
             {/* <label className="block mb-1 font-medium">Number of Options<span className="text-red-400">*</span></label> */}
-            <input
-              type="number"
+        <input
+          type="number"
               value={form.optionCount}
-              min={2}
-              max={5}
+          min={2}
+          max={5}
               onChange={e => handleFormChange('optionCount', e.target.value)}
               className="w-full p-2 rounded bg-white border border-gray-300"
               required
-            />
+        />
           </div>
           <div>
             {/* <label className="block mb-1 font-medium">Options<span className="text-red-400">*</span></label> */}
             <div className="space-y-2">
               {form.options.map((opt, idx) => (
-                                  <input
-                    key={idx}
-                    type="text"
-                    value={opt}
+          <input
+            key={idx}
+            type="text"
+            value={opt}
                     onChange={e => handleFormChange(`option-${idx}`, e.target.value)}
-                    placeholder={`Option ${idx + 1}`}
+            placeholder={`Option ${idx + 1}`}
                     className="w-full p-2 rounded bg-white border border-gray-300"
                     required
-                  />
-              ))}
+          />
+        ))}
             </div>
           </div>
           <div>
             {/* <label className="block mb-1 font-medium">Correct Answer<span className="text-red-400">*</span></label> */}
-            <input
-              type="text"
+        <input
+          type="text"
               value={form.answer}
               onChange={e => handleFormChange('answer', e.target.value)}
-              placeholder="Enter correct answer exactly"
+          placeholder="Enter correct answer exactly"
               className="w-full p-2 rounded bg-white border border-gray-300"
               required
-            />
+        />
           </div>
           <div className="flex gap-2 mt-2">
             <button
@@ -331,24 +331,24 @@ const AdminQuizEntry = () => {
               {editId ? 'Update Quiz' : 'Add Quiz'}
             </button>
             {editId && (
-              <button
+        <button
                 type="button"
                 className="bg-gray-600 hover:bg-gray-700 rounded px-4 py-2 font-semibold"
                 onClick={handleCancelEdit}
                 disabled={loading}
               >
                 Cancel Edit
-              </button>
+        </button>
             )}
-            <button
+        <button
               type="button"
               className="bg-red-600 hover:bg-red-700 rounded px-4 py-2 font-semibold ml-auto"
-              onClick={handleClearAll}
+          onClick={handleClearAll}
               disabled={loading}
-            >
-              🗑️ Clear All Quizzes
-            </button>
-          </div>
+        >
+          🗑️ Clear All Quizzes
+        </button>
+      </div>
         </form>
       </div>
       <div className="w-full max-w-4xl">
@@ -382,7 +382,7 @@ const AdminQuizEntry = () => {
                             <div key={oidx} className="text-gray-700">
                               {oidx + 1}. {opt}
                             </div>
-                          ))}
+                  ))}
                         <span className="text-green-400 font-medium">
                           ✅ Answer: {q.questions[0]?.options?.[q.questions[0]?.correctAnswer]}
                         </span>

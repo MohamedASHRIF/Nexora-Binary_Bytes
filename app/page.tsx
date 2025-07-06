@@ -1,104 +1,38 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import { ChatWindow } from '../components/ChatWindow';
-import { MapView } from '../components/MapView';
-import { DataInsights } from '../components/DataInsights';
-import { SuggestionBar } from '../components/SuggestionBar';
-import { ChatHistory } from '../components/ChatHistory';
 import { useGamePoints } from '../hooks/useGamePoints';
 import { useDailyPromptHistory } from '../hooks/useDailyPromptHistory';
 import { useLanguage } from '../hooks/useLanguage';
-
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Cookies from 'js-cookie';
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('home');
   const { badges } = useGamePoints();
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
   const [homeQuestion, setHomeQuestion] = useState('');
-  const [initialChatMessage, setInitialChatMessage] = useState('');
-  const [recentMessages, setRecentMessages] = useState<string[]>([]);
-  
-  // Daily prompt history hook
   const { addPrompt } = useDailyPromptHistory();
   const { language, setLanguage } = useLanguage();
-
-  // State to control initial view for DataInsights
-  const [insightsInitialView, setInsightsInitialView] = useState<'overview' | 'moodmap' | 'chatmap' | 'sentiment'>('overview');
 
   const handleAsk = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (homeQuestion.trim() === '') return;
-
-    // Add the prompt to daily history
     addPrompt(homeQuestion.trim());
-
-    setInitialChatMessage(homeQuestion);
-    setActiveTab('chat');
     setHomeQuestion('');
-  };
-
-  // Callback when ChatWindow finishes sending the initial message
-  const handleInitialMessageSent = () => {
-    setInitialChatMessage('');
-  };
-
-  // Handle recent messages change from ChatWindow
-  const handleRecentMessagesChange = (messages: string[]) => {
-    setRecentMessages(messages);
-  };
-
-  // Handle suggestion click - this will be passed to ChatWindow to set input
-  const handleSuggestionClick = (suggestion: string) => {
-    // We'll need to communicate this to the ChatWindow component
-    // For now, we'll use a custom event
-    const event = new CustomEvent('setChatInput', { detail: { text: suggestion } });
-    window.dispatchEvent(event);
-  };
-
-  // Handle prompt click from ChatHistory
-  const handleHistoryPromptClick = (prompt: string) => {
-    // Add the clicked prompt to daily history
-    addPrompt(prompt);
-    
-    // Set it as the initial message for the chat
-    setInitialChatMessage(prompt);
-    setActiveTab('chat');
+    // Optionally, redirect to chat page with the question as a query param
+    router.push(`/chat?initialMessage=${encodeURIComponent(homeQuestion.trim())}`);
   };
 
   useEffect(() => {
     setIsMounted(true);
-    // Check for authentication
     const token = Cookies.get('token') || localStorage.getItem('token');
     if (!token) {
       router.push('/auth/login');
     }
-
-    // Listen for map switch events from chatbot
-    const handleSwitchToMap = (event: CustomEvent) => {
-      console.log('Switching to map tab for location:', event.detail.location);
-      setActiveTab('map');
-    };
-
-    window.addEventListener('switchToMap', handleSwitchToMap as EventListener);
-
-    // Listen for switch to insights/game event
-    const handleSwitchToInsightsGame = () => {
-      setActiveTab('insights');
-      setInsightsInitialView('sentiment');
-    };
-    window.addEventListener('switchToInsightsGame', handleSwitchToInsightsGame as EventListener);
-
-    return () => {
-      window.removeEventListener('switchToMap', handleSwitchToMap as EventListener);
-      window.removeEventListener('switchToInsightsGame', handleSwitchToInsightsGame as EventListener);
-    };
   }, [router]);
 
-  // If not mounted yet, return null to avoid hydration issues
   if (!isMounted) {
     return null;
   }
@@ -122,106 +56,61 @@ export default function Home() {
             <option value="ta">தமிழ்</option>
           </select>
         </div>
-        {/* Main Nav Buttons */}
-        <button
-          onClick={() => setActiveTab('home')}
-          className={`px-4 py-2 rounded font-semibold transition-colors ${
-            activeTab === 'home' ? 'bg-blue-500 dark:bg-blue-600 text-white' : 'bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
-          }`}
+        <Link
+          href="/"
+          className="px-4 py-2 rounded font-semibold transition-colors bg-blue-500 dark:bg-blue-600 text-white"
         >
           Home
-        </button>
-        <button
-          onClick={() => setActiveTab('chat')}
-          className={`px-4 py-2 rounded font-semibold transition-colors ${
-            activeTab === 'chat' ? 'bg-blue-500 dark:bg-blue-600 text-white' : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
-          }`}
+        </Link>
+        <Link
+          href="/chat"
+          className="px-4 py-2 rounded font-semibold transition-colors bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600"
         >
           Chat
-        </button>
-        <button
-          onClick={() => setActiveTab('map')}
-          className={`px-4 py-2 rounded font-semibold transition-colors ${
-            activeTab === 'map' ? 'bg-blue-500 dark:bg-blue-600 text-white' : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
-          }`}
+        </Link>
+        <Link
+          href="/map"
+          className="px-4 py-2 rounded font-semibold transition-colors bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600"
         >
           Map
-        </button>
-        <button
-          onClick={() => setActiveTab('insights')}
-          className={`px-4 py-2 rounded font-semibold transition-colors ${
-            activeTab === 'insights' ? 'bg-blue-500 dark:bg-blue-600 text-white' : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600'
-          }`}
+        </Link>
+        <Link
+          href="/insights"
+          className="px-4 py-2 rounded font-semibold transition-colors bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600"
         >
           Insights
-        </button>
+        </Link>
+        <Link
+          href="/forum"
+          className="px-4 py-2 rounded font-semibold transition-colors bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-slate-600"
+        >
+          💬 Forum
+        </Link>
       </nav>
 
       {/* Main Content Area - Below fixed headers */}
-      <div className="flex flex-1 pt-28 min-h-0"> {/* pt-28 accounts for fixed main header (64px) + navigation height (48px) + gap */}
-        {/* Chat History Sidebar - Fixed to left side when chat tab is active */}
-        {activeTab === 'chat' && (
-          <div className="fixed left-0 top-28 bottom-0 z-30">
-            <ChatHistory onPromptClick={handleHistoryPromptClick} />
+      <div className="flex flex-1 pt-28 min-h-0">
+        <div className="flex-1 flex flex-col justify-center items-center p-8">
+          <div className="text-center max-w-2xl">
+            <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Welcome to Nexora Campus Copilot</h1>
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">Ask me anything</p>
+            <form onSubmit={handleAsk} className="flex gap-2 max-w-md mx-auto">
+              <input
+                type="text"
+                value={homeQuestion}
+                onChange={(e) => setHomeQuestion(e.target.value)}
+                placeholder="Type your question here..."
+                className="flex-grow px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+              />
+              <button
+                type="submit"
+                className="bg-blue-500 dark:bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-600 dark:hover:bg-blue-700 transition"
+              >
+                Ask
+              </button>
+            </form>
           </div>
-        )}
-        
-        {/* Main Content Area - Adjusted for sidebar when chat is active */}
-        <div className={`flex-1 flex flex-col ${activeTab === 'chat' ? 'ml-64' : ''} min-h-0`}>
-          {activeTab === 'home' && (
-            <div className="flex-1 flex flex-col justify-center items-center p-8">
-              <div className="text-center max-w-2xl">
-                <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Welcome to Nexora Campus Copilot</h1>
-                <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">Ask me anything</p>
-                <form onSubmit={handleAsk} className="flex gap-2 max-w-md mx-auto">
-                  <input
-                    type="text"
-                    value={homeQuestion}
-                    onChange={(e) => setHomeQuestion(e.target.value)}
-                    placeholder="Type your question here..."
-                    className="flex-grow px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-                  />
-                  <button
-                    type="submit"
-                    className="bg-blue-500 dark:bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-600 dark:hover:bg-blue-700 transition"
-                  >
-                    Ask
-                  </button>
-                </form>
-              </div>
-            </div>
-          )}
-          {activeTab === 'chat' && (
-            <div className="w-full h-full flex flex-col mx-auto p-2">
-              <div className="flex-1 overflow-auto">
-                <ChatWindow
-                  initialMessage={initialChatMessage}
-                  onMessageSent={handleInitialMessageSent}
-                  onRecentMessagesChange={handleRecentMessagesChange}
-                  hasSidebar={true}
-                />
-              </div>
-              <div className="flex-shrink-0">
-                <SuggestionBar 
-                  onSuggestionClick={handleSuggestionClick} 
-                  recentMessages={recentMessages}
-                />
-              </div>
-            </div>
-          )}
-          {activeTab === 'map' && (
-            <div className="w-full h-full p-4">
-              <div className="w-full h-full bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
-                <MapView />
-              </div>
-            </div>
-          )}
-          {activeTab === 'insights' && (
-            <div className="w-full h-full flex flex-col mx-auto p-2">
-              <DataInsights initialView={insightsInitialView} />
-            </div>
-          )}
-          {badges.length > 0 && activeTab === 'home' && (
+          {badges.length > 0 && (
             <div className="mt-6 text-center">
               <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Your Badges</h3>
               <div className="flex flex-wrap gap-2 justify-center">

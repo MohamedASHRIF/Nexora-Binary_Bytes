@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useCallback, useRef } from 'react';
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow, DirectionsRenderer } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow, DirectionsRenderer, Libraries } from '@react-google-maps/api';
 
 // University of Moratuwa coordinates
 const UNIVERSITY_CENTER = {
@@ -52,6 +54,9 @@ const containerStyle = {
   height: '100%'
 };
 
+// Move libraries array outside component to fix performance warning
+const MAP_LIBRARIES: Libraries = ['places'];
+
 interface LocationData {
   id: string;
   name: string;
@@ -86,7 +91,14 @@ export const MapView: React.FC<MapViewProps> = ({
   const { isLoaded, loadError } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
-    libraries: ['places']
+    libraries: MAP_LIBRARIES
+  });
+
+  // Debug logging
+  console.log('MapView Debug:', {
+    apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ? 'Present' : 'Missing',
+    isLoaded,
+    loadError: loadError?.message
   });
 
   const onLoad = useCallback((map: google.maps.Map) => {

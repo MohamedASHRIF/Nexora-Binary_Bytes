@@ -160,9 +160,18 @@ export function ChatWidoo() {
   };
 
   const handleDelete = async (index) => {
-    const id = messages[index]._id;
-    const success = await deleteMessageAPI(id);
-    if (success) setMessages(messages.filter((_, i) => i !== index));
+    const message = messages[index];
+    if (!message || !message._id) {
+      console.error('Message or message ID not found:', message);
+      setError("Cannot delete message: ID not found");
+      return;
+    }
+    
+    const success = await deleteMessageAPI(message._id);
+    if (success) {
+      setMessages(messages.filter((_, i) => i !== index));
+      setError(""); // Clear any previous errors
+    }
   };
 
   const handleEdit = (index) => {
@@ -188,19 +197,31 @@ export function ChatWidoo() {
   };
 
   return (
-    <div className="p-4 bg-white rounded shadow max-w-xl mx-auto">
-      <h2 className="text-lg font-semibold mb-2">Diary</h2>
-      {error && (
-        <div className="mb-2 p-2 bg-red-100 text-red-700 rounded border border-red-300 text-sm">{error}</div>
-      )}
-      <div
-        ref={messagesEndRef}
-        className="h-64 overflow-y-auto border p-2 mb-2 flex flex-col gap-2"
-      >
-        {messages.map((msg, i) => (
+    <div className="h-screen w-full bg-white dark:bg-slate-900 flex flex-col">
+      <div className="p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-white dark:border-slate-700 m-4">
+        <div className="border-b border-gray-200 dark:border-slate-700 pb-4 mb-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Diary</h2>
+          {error && (
+            <div className="mt-2 p-2 bg-red-100 text-red-700 rounded border border-red-300 text-sm">{error}</div>
+          )}
+        </div>
+        <div
+          ref={messagesEndRef}
+          className="flex-1 overflow-y-auto flex flex-col gap-3 max-h-[calc(100vh-200px)] min-h-[400px]"
+        >
+        {messages.length === 0 ? (
+          <div className="flex-1 flex items-center justify-center">
+            <div className="text-center text-gray-500 dark:text-gray-400">
+              <div className="text-6xl mb-4">📝</div>
+              <h3 className="text-xl font-semibold mb-2">No diary entries yet</h3>
+              <p className="text-sm">Start writing your thoughts and feelings below</p>
+            </div>
+          </div>
+        ) : (
+        messages.map((msg, i) => (
           <div
             key={msg._id || i}
-            className="flex justify-between items-start border-b pb-2 gap-2"
+            className="flex justify-between items-start p-4 bg-gray-50 dark:bg-slate-700 rounded-lg shadow-sm border border-gray-200 dark:border-slate-600 gap-3"
           >
             <div className="flex-1">
               {editingIndex === i ? (
@@ -259,21 +280,27 @@ export function ChatWidoo() {
               </div>
             )}
           </div>
-        ))}
+        ))
+        )}
+        </div>
+        <div className="border-t border-gray-200 dark:border-slate-700 pt-4 mt-4">
+          <div className="flex gap-3">
+            <input
+              className="flex-1 border border-gray-300 dark:border-slate-600 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSend()}
+              placeholder="Write your diary entry..."
+            />
+            <button
+              className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition font-medium"
+              onClick={handleSend}
+            >
+              Save
+            </button>
+          </div>
+        </div>
       </div>
-      <input
-        className="border p-2 w-full mb-2 rounded"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && handleSend()}
-        placeholder="Ask me anything..."
-      />
-      <button
-        className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition"
-        onClick={handleSend}
-      >
-        Send
-      </button>
     </div>
   );
 }

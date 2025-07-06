@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useCallback, useEffect } from "react"
-import type { Message } from "@/types"
+import { useState, useCallback, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import type { Message } from '@/types';
 import { analyzeSentiment } from "@/lib/nlp"
 import { detectTampering } from "@/lib/tamper-detection"
 import { useQueryLogs } from "@/hooks/use-query-logs"
@@ -129,6 +130,7 @@ export const useChatbot = () => {
 
   const { addQueryLog } = useQueryLogs()
   const { language, translate } = useLanguage()
+  const router = useRouter();
 
   const [isOffline, setIsOffline] = useState(false);
 
@@ -442,13 +444,8 @@ export const useChatbot = () => {
             encodedLocation: encodedLocation
           }));
           
-          // Switch to map tab by updating URL hash or using a custom event
-          setTimeout(() => {
-            // Use a custom event to communicate with the main page
-            window.dispatchEvent(new CustomEvent('switchToMap', {
-              detail: { location: locationName }
-            }));
-          }, 100);
+          // Redirect to the map page
+          router.push(`/map?locationName=${encodeURIComponent(locationName)}&encodedLocation=${encodeURIComponent(encodedLocation)}`);
           
           // Return a simple response to avoid errors
           const redirectMessage = language === 'si' ? 'සිතියම වෙත මාරු වෙමින්...' : 
@@ -460,6 +457,42 @@ export const useChatbot = () => {
           };
         }
       }
+
+      // Check if this is an insights game redirect
+      if (botResponse.startsWith('INSIGHTS_GAME_REDIRECT:')) {
+        console.log('Insights game redirect detected');
+        
+        // Redirect to the insights page with sentiment view
+        router.push('/insights?view=sentiment');
+        
+        // Return a simple response to avoid errors
+        const redirectMessage = language === 'si' ? 'සංවේදන ක්‍රීඩාව වෙත මාරු වෙමින්...' : 
+                               language === 'ta' ? 'உணர்ச்சி விளையாட்டுக்கு மாற்றுகிறேன்...' : 
+                               'Switching to sentiment game...';
+        return {
+          type: 'redirected',
+          data: redirectMessage
+        };
+      }
+
+      // Check if this is a game redirect
+      if (botResponse.startsWith('GAME_REDIRECT:')) {
+        console.log('Game redirect detected');
+        
+        // Redirect to the game page
+        router.push('/game');
+        
+        // Return a simple response to avoid errors
+        const redirectMessage = language === 'si' ? 'ක්‍රීඩාව වෙත මාරු වෙමින්...' : 
+                               language === 'ta' ? 'விளையாட்டுக்கு மாற்றுகிறேன்...' : 
+                               'Taking you to the game...';
+        return {
+          type: 'redirected',
+          data: redirectMessage
+        };
+      }
+
+
 
       console.log('Normal response, adding to messages');
       // Add bot response to messages only for normal responses

@@ -305,7 +305,13 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
     }
     else if (containsFuzzy(lowerMessage, ['bored', 'boring', 'nothing to do', 'சலிப்பு', 'போரடிப்பு', 'எதுவும் செய்ய', 'බොරු', 'කිසිවක් නැත'])) {
       console.log('Bored mood detection triggered for message:', lowerMessage);
-      botResponse = getTranslation('mood_bored', detectedLanguage);
+      // Ask if they want to play a game instead of immediately redirecting
+      const gameSuggestion = detectedLanguage === 'si' ? 
+        'බොරුද? 😊 ක්‍රීඩාවක් කරන්න ඕනෑද? මට ඔබට විනෝදජනක ක්‍රීඩාවක් පෙන්වන්න පුළුවන්!' :
+        detectedLanguage === 'ta' ? 
+        'சலிப்பா? 😊 விளையாட்டு விளையாட விரும்புகிறீர்களா? நான் உங்களுக்கு வேடிக்கையான விளையாட்டு காட்ட முடியும்!' :
+        'Bored? 😊 Would you like to play a game? I can show you a fun game to pass the time!';
+      botResponse = gameSuggestion;
     }
     else if (containsFuzzy(lowerMessage, ['stressed', 'stress', 'anxious', 'மன அழுத்தம்', 'பதட்டம்', 'கவலை', 'ආතතිය', 'පීඨනය'])) {
       console.log('Stressed mood detection triggered for message:', lowerMessage);
@@ -318,6 +324,25 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
     else if (containsFuzzy(lowerMessage, ['happy', 'excited', 'great', 'மகிழ்ச்சி', 'சந்தோஷம்', 'நன்றாக', 'සතුටු', 'උද්වේග'])) {
       console.log('Happy mood detection triggered for message:', lowerMessage);
       botResponse = getTranslation('mood_happy', detectedLanguage);
+    }
+    // Check if user said 'yes' to game suggestion
+    else if (containsFuzzy(lowerMessage, ['yes', 'yeah', 'sure', 'okay', 'ok', 'yep', 'yup', 'ஆம்', 'சரி', 'ஆமாம்', 'ඔව්', 'හරි', 'ඔව්ව්'])) {
+      // Check if the previous message was a game suggestion
+      const previousChat = await Chat.findOne({ 
+        userId: req.user.id 
+      }).sort({ createdAt: -1 });
+      
+      if (previousChat && previousChat.messages && previousChat.messages.length > 0) {
+        const lastMessage = previousChat.messages[previousChat.messages.length - 1];
+        if (!lastMessage.isUser && 
+            (lastMessage.text.includes('game') || 
+             lastMessage.text.includes('ක්‍රීඩාව') || 
+             lastMessage.text.includes('விளையாட்டு') ||
+             lastMessage.text.includes('play'))) {
+          console.log('Game confirmation detected, redirecting to game');
+          botResponse = 'GAME_REDIRECT:game';
+        }
+      }
     }
     // Check if the message is about locations/directions OR directly matches a known location
     else if (

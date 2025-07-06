@@ -1,10 +1,11 @@
-                                                                                                                            "use client"
+"use client"
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useVoiceInput } from '../hooks/useVoiceInput';
 import { useChatbot } from '../hooks/use-chatbot';
 import { useGamePoints } from '../hooks/useGamePoints';
 import { useLanguage } from '../hooks/useLanguage';
+import { useRouter } from 'next/navigation';
 import { ChatClassSchedule } from './ChatClassSchedule';
 import { ChatBusSchedule } from './ChatBusSchedule';
 import { ChatEvents } from './ChatEvents';
@@ -45,6 +46,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
   const { messages, isProcessing, sendMessage, suggestions, clearChat, setMessages } = useChatbot();
   const { addPoints } = useGamePoints();
   const { language, setLanguage, translate } = useLanguage();
+  const router = useRouter();
   const initialMessageSentRef = useRef(false);
   const [busData, setBusData] = useState<any>(null);
   const [eventsData, setEventsData] = useState<any>(null);
@@ -65,11 +67,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
   const [quizLoading, setQuizLoading] = useState(false);
   // Helper: detect boredom
   const isBoredMessage = (text: string) => {
-    const boredKeywords = [
-      'bored', 'boring', 'nothing to do', 'dull', 'tired', 'not fun', 'no fun', 'uninteresting', 'monotonous', 'tedious', 'drowsy', 'sleepy', 'lazy', 'inactive', 'unexciting', 'unamusing', 'unhappy', 'sad', 'depressed', 'down', 'blue', 'meh'
-    ];
-    const lower = text.toLowerCase();
-    return boredKeywords.some((kw) => lower.includes(kw));
+    // Matches 'bore', 'bored', 'boring', etc. anywhere in the message
+    return /bore|bored|boring|nothing to do|dull|tired|not fun|no fun|uninteresting|monotonous|tedious|drowsy|sleepy|lazy|inactive|unexciting|unamusing|unhappy|sad|depressed|down|blue|meh/i.test(text);
   };
 
   // Helper: detect yes
@@ -224,48 +223,58 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
       setCanteenMenu(null);
     }
 
-    // Boredom/game logic
+    // Boredom/game logic - DISABLED to prevent duplicate responses
+    // Let the backend handle boredom detection and game suggestions
+    /*
     if (!awaitingPlayConfirm && isBoredMessage(inputText)) {
       setMessages(prev => [
         ...prev,
-        { text: inputText, isUser: true, timestamp: new Date(), isTampered: false }
-      ]);
-      setMessages(prev => [
-        ...prev,
+        { text: inputText, isUser: true, timestamp: new Date(), isTampered: false },
         { text: "You seem bored! Would you like to play Tic-Tac-Toe? (yes/no)", isUser: false, timestamp: new Date(), isTampered: false }
       ]);
       setAwaitingPlayConfirm(true);
       setInputText('');
+      
+      // Also save to backend for persistence
+      addPoints(5);
+      await sendMessage(inputText);
       return;
     }
     if (awaitingPlayConfirm && isYesMessage(inputText)) {
       setMessages(prev => [
         ...prev,
-        { text: inputText, isUser: true, timestamp: new Date(), isTampered: false }
-      ]);
-      setMessages(prev => [
-        ...prev,
+        { text: inputText, isUser: true, timestamp: new Date(), isTampered: false },
         { text: "Great! Taking you to the game...", isUser: false, timestamp: new Date(), isTampered: false }
       ]);
+      // Save messages to backend before redirecting
       setAwaitingPlayConfirm(false);
       setInputText('');
-      // Fire custom event to switch to insights/game
-      window.dispatchEvent(new CustomEvent('switchToInsightsGame'));
+      
+      // Also save to backend for persistence
+      addPoints(5);
+      await sendMessage(inputText);
+      
+      // Small delay to ensure messages are saved
+      setTimeout(() => {
+        router.push('/game');
+      }, 500);
       return;
     }
     if (awaitingPlayConfirm && !isYesMessage(inputText)) {
       setMessages(prev => [
         ...prev,
-        { text: inputText, isUser: true, timestamp: new Date(), isTampered: false }
-      ]);
-      setMessages(prev => [
-        ...prev,
+        { text: inputText, isUser: true, timestamp: new Date(), isTampered: false },
         { text: "No problem! Let me know if you change your mind.", isUser: false, timestamp: new Date(), isTampered: false }
       ]);
       setAwaitingPlayConfirm(false);
       setInputText('');
+      
+      // Also save to backend for persistence
+      addPoints(5);
+      await sendMessage(inputText);
       return;
     }
+    */
 
     // Always add the user message to the chat
     setMessages(prev => [
@@ -423,173 +432,173 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
       <div className="pointer-events-none select-none z-0 absolute inset-0 flex items-center justify-center">
         <span className="text-[7vw] font-extrabold text-blue-300 dark:text-blue-900 opacity-20 tracking-widest" style={{letterSpacing: '0.15em', userSelect: 'none', textShadow: '0 2px 8px rgba(0,0,0,0.08)'}}>
           NEXORA
-        </span>
+            </span>
       </div>
       {/* Chat content (messages, input, etc.) in a relative z-10 container */}
       <div className="relative z-10 flex flex-col h-full">
-        {/* Messages Area - Scrollable within chat container */}
-        <div className="flex-1 overflow-y-auto p-2 space-y-1 pb-28">
-          {messages.length === 0 && (
-            <div className="text-center text-gray-500 dark:text-gray-400">
-              {translate('welcome')}
-            </div>
-          )}
-          {messages.map((message, index) => {
-            // Check if message contains class schedule data - look for general pattern
-            const isClassSchedule = !message.isUser && 
-                                   message.text.includes('remaining') && 
-                                   message.text.includes('classes') && 
-                                   message.text.includes('for today') &&
-                                   message.text.includes('with') && // Indicates instructor format
-                                   message.text.includes('to'); // Indicates time range
-            
-            // Check if message contains bus schedule data - make detection extremely specific
-            const isBusSchedule = !message.isUser && 
-                                 message.text.includes('bus') && 
-                                 message.text.includes('available') && 
-                                 message.text.includes('routes') &&
-                                 (message.text.includes('Route') || message.text.includes('route')) &&
-                                 (message.text.includes('Duration:') || message.text.includes('Schedule:'));
-            
-            // Check if message contains events data - make detection more specific
-            const isEvents = !message.isUser && 
-                            message.text.includes('upcoming events') &&
-                            message.text.includes('Date:') &&
-                            message.text.includes('Time:') &&
-                            message.text.includes('Location:');
-            
-            // Extract class data if it's a class schedule message
-            let classScheduleData = null;
-            if (isClassSchedule) {
-              try {
-                // Parse the class schedule from the chatbot response
-                const lines = message.text.split('\n');
-                const classes = [];
-                
-                for (const line of lines) {
-                  const trimmedLine = line.trim();
-                  // Look for lines that start with "- " and contain time, class name, location, and instructor
-                  if (trimmedLine.startsWith('- ') && trimmedLine.includes('to') && trimmedLine.includes('with')) {
-                    // Extract time range (e.g., "15:00 to 17:30")
-                    const timeMatch = trimmedLine.match(/(\d{1,2}:\d{2})\s+to\s+(\d{1,2}:\d{2})/);
-                    if (timeMatch) {
-                      const startTime = timeMatch[1];
-                      const endTime = timeMatch[2];
+      {/* Messages Area - Scrollable within chat container */}
+      <div className="flex-1 overflow-y-auto p-2 space-y-1 pb-28">
+        {messages.length === 0 && (
+          <div className="text-center text-gray-500 dark:text-gray-400">
+            {translate('welcome')}
+          </div>
+        )}
+        {messages.map((message, index) => {
+          // Check if message contains class schedule data - look for general pattern
+          const isClassSchedule = !message.isUser && 
+                                 message.text.includes('remaining') && 
+                                 message.text.includes('classes') && 
+                                 message.text.includes('for today') &&
+                                 message.text.includes('with') && // Indicates instructor format
+                                 message.text.includes('to'); // Indicates time range
+          
+          // Check if message contains bus schedule data - make detection extremely specific
+          const isBusSchedule = !message.isUser && 
+                               message.text.includes('bus') && 
+                               message.text.includes('available') && 
+                               message.text.includes('routes') &&
+                               (message.text.includes('Route') || message.text.includes('route')) &&
+                               (message.text.includes('Duration:') || message.text.includes('Schedule:'));
+          
+          // Check if message contains events data - make detection more specific
+          const isEvents = !message.isUser && 
+                          message.text.includes('upcoming events') &&
+                          message.text.includes('Date:') &&
+                          message.text.includes('Time:') &&
+                          message.text.includes('Location:');
+          
+          // Extract class data if it's a class schedule message
+          let classScheduleData = null;
+          if (isClassSchedule) {
+            try {
+              // Parse the class schedule from the chatbot response
+              const lines = message.text.split('\n');
+              const classes = [];
+              
+              for (const line of lines) {
+                const trimmedLine = line.trim();
+                // Look for lines that start with "- " and contain time, class name, location, and instructor
+                if (trimmedLine.startsWith('- ') && trimmedLine.includes('to') && trimmedLine.includes('with')) {
+                  // Extract time range (e.g., "15:00 to 17:30")
+                  const timeMatch = trimmedLine.match(/(\d{1,2}:\d{2})\s+to\s+(\d{1,2}:\d{2})/);
+                  if (timeMatch) {
+                    const startTime = timeMatch[1];
+                    const endTime = timeMatch[2];
+                    
+                    // Extract class name (between time and location)
+                    const timeEndIndex = trimmedLine.indexOf('to') + 2;
+                    const withIndex = trimmedLine.indexOf('with');
+                    const locationStartIndex = trimmedLine.lastIndexOf('(');
+                    const locationEndIndex = trimmedLine.lastIndexOf(')');
+                    
+                    if (timeEndIndex > 0 && withIndex > timeEndIndex && locationStartIndex > timeEndIndex && locationEndIndex > locationStartIndex) {
+                      const classInfo = trimmedLine.substring(timeEndIndex, locationStartIndex).trim();
+                      const location = trimmedLine.substring(locationStartIndex + 1, locationEndIndex).trim();
+                      const instructor = trimmedLine.substring(withIndex + 4).trim();
                       
-                      // Extract class name (between time and location)
-                      const timeEndIndex = trimmedLine.indexOf('to') + 2;
-                      const withIndex = trimmedLine.indexOf('with');
-                      const locationStartIndex = trimmedLine.lastIndexOf('(');
-                      const locationEndIndex = trimmedLine.lastIndexOf(')');
+                      // Calculate duration
+                      const start = new Date(`2000-01-01T${startTime}:00`);
+                      const end = new Date(`2000-01-01T${endTime}:00`);
+                      const durationMs = end.getTime() - start.getTime();
+                      const durationHours = Math.floor(durationMs / (1000 * 60 * 60));
+                      const durationMinutes = Math.floor((durationMs % (1000 * 60 * 60)) / (1000 * 60));
+                      const duration = durationHours > 0 ? `${durationHours}h ${durationMinutes}m` : `${durationMinutes}m`;
                       
-                      if (timeEndIndex > 0 && withIndex > timeEndIndex && locationStartIndex > timeEndIndex && locationEndIndex > locationStartIndex) {
-                        const classInfo = trimmedLine.substring(timeEndIndex, locationStartIndex).trim();
-                        const location = trimmedLine.substring(locationStartIndex + 1, locationEndIndex).trim();
-                        const instructor = trimmedLine.substring(withIndex + 4).trim();
-                        
-                        // Calculate duration
-                        const start = new Date(`2000-01-01T${startTime}:00`);
-                        const end = new Date(`2000-01-01T${endTime}:00`);
-                        const durationMs = end.getTime() - start.getTime();
-                        const durationHours = Math.floor(durationMs / (1000 * 60 * 60));
-                        const durationMinutes = Math.floor((durationMs % (1000 * 60 * 60)) / (1000 * 60));
-                        const duration = durationHours > 0 ? `${durationHours}h ${durationMinutes}m` : `${durationMinutes}m`;
-                        
-                        classes.push({
-                          time: startTime,
-                          subject: classInfo,
-                          location: location,
-                          instructor: instructor,
-                          duration: duration
-                        });
-                      }
+                      classes.push({
+                        time: startTime,
+                        subject: classInfo,
+                        location: location,
+                        instructor: instructor,
+                        duration: duration
+                      });
                     }
                   }
                 }
-                
-                if (classes.length > 0) {
-                  classScheduleData = classes;
-                }
-              } catch (error) {
-                console.error('Error parsing class schedule from chatbot response:', error);
               }
+              
+              if (classes.length > 0) {
+                classScheduleData = classes;
+              }
+            } catch (error) {
+              console.error('Error parsing class schedule from chatbot response:', error);
             }
+          }
 
-            // Extract bus data if it's a bus schedule message - use real data from database
-            let busScheduleData = null;
-            if (isBusSchedule && busData) {
-              busScheduleData = busData.nextBuses.map((bus: any, idx: number) => ({
-                time: bus.time,
-                route: bus.route,
-                destination: bus.destination,
-                platform: `P${idx + 1}`,
-                capacity: "45 seats",
-                status: idx === 0 ? "on-time" as const : "scheduled" as const
-              }));
-            }
+          // Extract bus data if it's a bus schedule message - use real data from database
+          let busScheduleData = null;
+          if (isBusSchedule && busData) {
+            busScheduleData = busData.nextBuses.map((bus: any, idx: number) => ({
+              time: bus.time,
+              route: bus.route,
+              destination: bus.destination,
+              platform: `P${idx + 1}`,
+              capacity: "45 seats",
+              status: idx === 0 ? "on-time" as const : "scheduled" as const
+            }));
+          }
 
-            // Extract events data if it's an events message - parse from chatbot response
-            let eventsDisplayData = null;
-            if (isEvents) {
-              try {
-                // Parse the events from the chatbot response
-                const lines = message.text.split('\n');
-                const events = [];
-                let currentEvent = null;
-                
-                for (const line of lines) {
-                  const trimmedLine = line.trim();
-                  if (trimmedLine && !trimmedLine.includes('upcoming events') && !trimmedLine.includes('Here are the')) {
-                    if (!trimmedLine.startsWith('Date:') && !trimmedLine.startsWith('Time:') && !trimmedLine.startsWith('Location:')) {
-                      // This is an event title
-                      if (currentEvent) {
-                        events.push(currentEvent);
-                      }
-                      currentEvent = {
-                        title: trimmedLine,
-                        date: '',
-                        time: '',
-                        location: '',
-                        description: '',
-                        attendees: Math.floor(Math.random() * 50) + 10,
-                        category: 'academic' as const,
-                        priority: 'medium' as const
-                      };
-                    } else if (trimmedLine.startsWith('Date:')) {
-                      if (currentEvent) {
-                        currentEvent.date = trimmedLine.replace('Date:', '').trim();
-                      }
-                    } else if (trimmedLine.startsWith('Time:')) {
-                      if (currentEvent) {
-                        currentEvent.time = trimmedLine.replace('Time:', '').trim();
-                      }
-                    } else if (trimmedLine.startsWith('Location:')) {
-                      if (currentEvent) {
-                        currentEvent.location = trimmedLine.replace('Location:', '').trim();
-                        currentEvent.description = `Event at ${currentEvent.location}`;
-                      }
+          // Extract events data if it's an events message - parse from chatbot response
+          let eventsDisplayData = null;
+          if (isEvents) {
+            try {
+              // Parse the events from the chatbot response
+              const lines = message.text.split('\n');
+              const events = [];
+              let currentEvent = null;
+              
+              for (const line of lines) {
+                const trimmedLine = line.trim();
+                if (trimmedLine && !trimmedLine.includes('upcoming events') && !trimmedLine.includes('Here are the')) {
+                  if (!trimmedLine.startsWith('Date:') && !trimmedLine.startsWith('Time:') && !trimmedLine.startsWith('Location:')) {
+                    // This is an event title
+                    if (currentEvent) {
+                      events.push(currentEvent);
+                    }
+                    currentEvent = {
+                      title: trimmedLine,
+                      date: '',
+                      time: '',
+                      location: '',
+                      description: '',
+                      attendees: Math.floor(Math.random() * 50) + 10,
+                      category: 'academic' as const,
+                      priority: 'medium' as const
+                    };
+                  } else if (trimmedLine.startsWith('Date:')) {
+                    if (currentEvent) {
+                      currentEvent.date = trimmedLine.replace('Date:', '').trim();
+                    }
+                  } else if (trimmedLine.startsWith('Time:')) {
+                    if (currentEvent) {
+                      currentEvent.time = trimmedLine.replace('Time:', '').trim();
+                    }
+                  } else if (trimmedLine.startsWith('Location:')) {
+                    if (currentEvent) {
+                      currentEvent.location = trimmedLine.replace('Location:', '').trim();
+                      currentEvent.description = `Event at ${currentEvent.location}`;
                     }
                   }
                 }
-                
-                // Add the last event if exists
-                if (currentEvent) {
-                  events.push(currentEvent);
-                }
-                
-                if (events.length > 0) {
-                  eventsDisplayData = events.map((event, idx) => ({
-                    ...event,
-                    category: idx % 3 === 0 ? "academic" as const : 
-                             idx % 3 === 1 ? "cultural" as const : "workshop" as const,
-                    priority: idx === 0 ? "high" as const : 
-                             idx === 1 ? "medium" as const : "low" as const
-                  }));
-                }
-              } catch (error) {
-                console.error('Error parsing events from chatbot response:', error);
               }
+              
+              // Add the last event if exists
+              if (currentEvent) {
+                events.push(currentEvent);
+              }
+              
+              if (events.length > 0) {
+                eventsDisplayData = events.map((event, idx) => ({
+                  ...event,
+                  category: idx % 3 === 0 ? "academic" as const : 
+                           idx % 3 === 1 ? "cultural" as const : "workshop" as const,
+                  priority: idx === 0 ? "high" as const : 
+                           idx === 1 ? "medium" as const : "low" as const
+                }));
+              }
+            } catch (error) {
+              console.error('Error parsing events from chatbot response:', error);
             }
+          }
 
             // Render visually appealing module list if message is a module list
             if (!message.isUser && typeof message.text === 'string' && message.text.startsWith('MODULE_LIST:')) {
@@ -611,12 +620,12 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
             }
 
             if (isClassSchedule && classScheduleData) {
-              return (
+          return (
                 <div key={index} className="flex justify-start mb-2">
                   <div className="flex items-end gap-2 max-w-[80%]">
                     <BsRobot className="h-8 w-8 text-gray-700 bg-gray-100 dark:bg-slate-700 rounded-full shadow flex-shrink-0" />
-                    <div className="max-w-md">
-                      <ChatClassSchedule classes={classScheduleData} />
+                  <div className="max-w-md">
+                    <ChatClassSchedule classes={classScheduleData} />
                     </div>
                   </div>
                 </div>
@@ -627,8 +636,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
                 <div key={index} className="flex justify-start mb-2">
                   <div className="flex items-end gap-2 max-w-[80%]">
                     <BsRobot className="h-8 w-8 text-gray-700 bg-gray-100 dark:bg-slate-700 rounded-full shadow flex-shrink-0" />
-                    <div className="max-w-md">
-                      <ChatBusSchedule buses={busScheduleData} />
+                  <div className="max-w-md">
+                    <ChatBusSchedule buses={busScheduleData} />
                     </div>
                   </div>
                 </div>
@@ -639,8 +648,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
                 <div key={index} className="flex justify-start mb-2">
                   <div className="flex items-end gap-2 max-w-[80%]">
                     <BsRobot className="h-8 w-8 text-gray-700 bg-gray-100 dark:bg-slate-700 rounded-full shadow flex-shrink-0" />
-                    <div className="max-w-md">
-                      <ChatEvents events={eventsDisplayData} />
+                  <div className="max-w-md">
+                    <ChatEvents events={eventsDisplayData} />
                     </div>
                   </div>
                 </div>
@@ -662,13 +671,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
                   <div>
                     <div
                       className={`rounded-2xl px-4 py-2 shadow-md relative ${
-                        message.isUser
+                      message.isUser
                           ? 'bg-blue-600 text-white rounded-br-none'
                           : 'bg-gray-100 dark:bg-slate-700 text-gray-900 dark:text-gray-100 rounded-bl-none border-l-4 border-blue-400'
-                      }`}
-                      style={{ wordBreak: 'break-word' }}
-                    >
-                      {message.text}
+                    }`}
+                    style={{ wordBreak: 'break-word' }}
+                  >
+                    {message.text}
                     </div>
                     {/* Timestamp */}
                     <div className="text-xs text-gray-400 mt-1 ml-1 select-none">
@@ -766,43 +775,43 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
               </div>
             </div>
           )}
-          <div ref={messagesEndRef} />
-        </div>
+        <div ref={messagesEndRef} />
+      </div>
 
-        {/* Input Bar - Fixed at bottom of viewport (laptop screen) */}
-        <div className={`fixed bottom-0 border-t border-gray-200 dark:border-slate-700 p-4 bg-white dark:bg-slate-800 shadow-lg z-50 ${hasSidebar ? 'left-64 right-0' : 'left-0 right-0'}`}>
-          <div className="flex space-x-2 max-w-full">
-            <input
-              type="text"
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-              placeholder={getPlaceholderText()}
-              className="flex-1 p-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-            />
-            <button
-              onClick={() => (isListening ? stopListening() : startListening())}
-              className={`p-2 rounded-lg ${
-                isListening ? 'bg-red-500 dark:bg-red-600' : 'bg-blue-500 dark:bg-blue-600'
-              } text-white min-w-[60px]`}
-              title={language === 'en' ? 'Voice input' : language === 'si' ? 'හඬ ඇතුළත් කිරීම' : 'குரல் உள்ளீடு'}
-            >
-              {getVoiceButtonText()}
-            </button>
-            <button
-              onClick={handleSend}
-              disabled={isProcessing}
-              className="p-2 bg-blue-500 dark:bg-blue-600 text-white rounded-lg disabled:bg-gray-400 dark:disabled:bg-slate-600 min-w-[60px]"
-            >
-              {getSendButtonText()}
-            </button>
-            <button
-              onClick={handleClearChat}
-              className="p-2 bg-gray-500 dark:bg-slate-600 text-white rounded-lg hover:bg-gray-600 dark:hover:bg-slate-700 min-w-[60px]"
-              title={language === 'en' ? 'Clear chat history' : language === 'si' ? 'චැට් ඉතිහාසය මකන්න' : 'அரட்டை வரலாற்றை அழி'}
-            >
-              {getClearButtonText()}
-            </button>
+      {/* Input Bar - Constrained within chat area */}
+      <div className="flex-shrink-0 border-t border-gray-200 dark:border-slate-700 p-4 bg-white dark:bg-slate-800 shadow-lg">
+        <div className="flex space-x-2 max-w-full">
+          <input
+            type="text"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+            placeholder={getPlaceholderText()}
+            className="flex-1 p-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+          />
+          <button
+            onClick={() => (isListening ? stopListening() : startListening())}
+            className={`p-2 rounded-lg ${
+              isListening ? 'bg-red-500 dark:bg-red-600' : 'bg-blue-500 dark:bg-blue-600'
+            } text-white min-w-[60px]`}
+            title={language === 'en' ? 'Voice input' : language === 'si' ? 'හඬ ඇතුළත් කිරීම' : 'குரல் உள்ளீடு'}
+          >
+            {getVoiceButtonText()}
+          </button>
+          <button
+            onClick={handleSend}
+            disabled={isProcessing}
+            className="p-2 bg-blue-500 dark:bg-blue-600 text-white rounded-lg disabled:bg-gray-400 dark:disabled:bg-slate-600 min-w-[60px]"
+          >
+            {getSendButtonText()}
+          </button>
+          <button
+            onClick={handleClearChat}
+            className="p-2 bg-gray-500 dark:bg-slate-600 text-white rounded-lg hover:bg-gray-600 dark:hover:bg-slate-700 min-w-[60px]"
+            title={language === 'en' ? 'Clear chat history' : language === 'si' ? 'චැට් ඉතිහාසය මකන්න' : 'அரட்டை வரலாற்றை அழி'}
+          >
+            {getClearButtonText()}
+          </button>
             <button
               onClick={handleQuiz}
               className="p-2 bg-green-600 dark:bg-green-700 text-white rounded-lg hover:bg-green-700 dark:hover:bg-green-800 min-w-[60px]"

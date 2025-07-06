@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useMemo, useState } from 'react';
 import { useUserInsights } from '../hooks/use-user-insights';
 import { MoodMap } from './MoodMap'; // Assuming MoodMap is a default export
@@ -125,36 +127,36 @@ export const DataInsights: React.FC<DataInsightsProps> = ({ initialView }) => {
           </div>
 
           {/* Query Distribution */}
-          <div className="bg-gray-50 dark:bg-slate-700 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Your Query Distribution</h3>
-            <div className="space-y-4">
+            <div className="bg-gray-50 dark:bg-slate-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Your Query Distribution</h3>
+              <div className="space-y-4">
               {insights?.queriesByType && Object.entries(insights.queriesByType).map(([type, count]) => {
                 const percentage = queryStats.total > 0 ? (count as number / queryStats.total) * 100 : 0;
-                return (
-                  <div key={type} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-700 dark:text-gray-300 capitalize font-medium">{type}</span>
+                  return (
+                    <div key={type} className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-700 dark:text-gray-300 capitalize font-medium">{type}</span>
                       <span className="font-bold text-gray-800 dark:text-gray-100">{count as number}</span>
+                      </div>
+                      <div className="w-full bg-gray-200 dark:bg-slate-600 rounded-full h-2">
+                        <div
+                          className="bg-blue-500 dark:bg-blue-400 h-2 rounded-full transition-all duration-300"
+                          style={{ width: `${percentage}%` }}
+                        ></div>
+                      </div>
+                      <div className="text-right text-sm text-gray-500 dark:text-gray-400">{percentage.toFixed(1)}%</div>
                     </div>
-                    <div className="w-full bg-gray-200 dark:bg-slate-600 rounded-full h-2">
-                      <div
-                        className="bg-blue-500 dark:bg-blue-400 h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${percentage}%` }}
-                      ></div>
-                    </div>
-                    <div className="text-right text-sm text-gray-500 dark:text-gray-400">{percentage.toFixed(1)}%</div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
 
-          {/* Sentiment Analysis */}
+            {/* Sentiment Analysis */}
           <div className="bg-white dark:bg-slate-600 p-6 rounded-lg mt-8">
-            <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Your Sentiment Analysis</h3>
-            <div className="text-center p-4 bg-white dark:bg-slate-600 rounded-lg">
-              <p className="text-gray-600 dark:text-gray-300 mb-2">Overall Sentiment</p>
-              <div
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Your Sentiment Analysis</h3>
+                <div className="text-center p-4 bg-white dark:bg-slate-600 rounded-lg">
+                  <p className="text-gray-600 dark:text-gray-300 mb-2">Overall Sentiment</p>
+                  <div
                 className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${getSentimentColor(insights?.averageSentiment ?? 0).replace('text-', 'bg-').replace(/-600|-[0-9]+/g, '-100')}`}
               >
                 <span className="text-2xl">{getSentimentEmoji(insights?.averageSentiment ?? 0)}</span>
