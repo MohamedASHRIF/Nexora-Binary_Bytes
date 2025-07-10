@@ -42,7 +42,7 @@ export default function MapPage() {
   }, [searchParams]);
 
   return (
-    <div className="w-full h-screen pt-28 p-4">
+    <div className="w-full h-screen p-4">
       <div className="w-full h-full bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
         <MapView highlightedLocation={highlightedLocation} />
       </div>

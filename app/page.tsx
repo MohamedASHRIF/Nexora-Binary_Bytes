@@ -38,7 +38,7 @@ export default function Home() {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-gray-100 dark:bg-slate-900">
+    <div className="flex flex-col bg-gray-100 dark:bg-slate-900 min-h-0 flex-grow">
       {/* Fixed Navigation Bar - Below main header */}
       <nav className="fixed top-16 left-0 right-0 z-40 w-full flex items-center bg-white dark:bg-slate-800 justify-end px-8 py-2 gap-6 border-t border-gray-100 dark:border-slate-700 shadow-sm">
         {/* Language Selector on the left */}
@@ -89,8 +89,8 @@ export default function Home() {
       </nav>
 
       {/* Main Content Area - Below fixed headers */}
-      <div className="flex flex-1 pt-28 min-h-0">
-        <div className="flex-1 flex flex-col justify-center items-center p-8">
+      <div className="flex flex-1 min-h-0 items-center justify-center">
+        <div className="flex flex-col justify-center items-center p-8 w-full">
           <div className="text-center max-w-2xl">
             <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Welcome to Nexora Campus Copilot</h1>
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">Ask me anything</p>
