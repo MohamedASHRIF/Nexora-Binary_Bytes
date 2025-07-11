@@ -688,6 +688,22 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
               </div>
             );
           })}
+          {showTyping && (
+            <div className="flex justify-start mb-2">
+              <div className="flex items-end gap-2 max-w-[80%]">
+                <BsRobot className="h-8 w-8 text-gray-700 bg-gray-100 dark:bg-slate-700 rounded-full shadow flex-shrink-0" />
+                <div>
+                  <div className="rounded-2xl px-4 py-2 shadow-md relative bg-gray-100 dark:bg-slate-700 text-gray-900 dark:text-gray-100 rounded-bl-none border-l-4 border-blue-400 flex items-center gap-2">
+                    <span className="italic animate-pulse">Nexora is typing...</span>
+                    <svg className="animate-spin h-5 w-5 text-blue-400 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
           {showCanteenTable && !selectedCanteen && (
             <div className="flex justify-start">
               <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm p-4 w-full max-w-2xl mt-2">
@@ -778,8 +794,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Bar - Constrained within chat area */}
-      <div className="flex-shrink-0 border-t border-gray-200 dark:border-slate-700 p-4 bg-white dark:bg-slate-800 shadow-lg">
+      {/* Input Bar - Fixed to bottom */}
+      <div className="absolute bottom-0 left-0 w-full z-10 border-t border-gray-200 dark:border-slate-700 p-4 bg-white dark:bg-slate-800 shadow-lg">
         {/* Frequently typed messages */}
         <div className="flex flex-wrap gap-2 mb-3">
           {[
@@ -885,18 +901,19 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
             </div>
           </div>
         )}
-        {/* Typing indicator (below messages, above input) */}
-        {showTyping && (
-          <div className="flex items-center gap-2 mt-2 mb-4">
-            <BsRobot className="h-6 w-6 text-gray-500 animate-bounce" />
-            <span className="text-gray-500 italic animate-pulse">Nexora is typing...</span>
-            <svg className="animate-spin h-5 w-5 text-blue-400 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      </div>
+      {showTyping && (
+        <div className="absolute right-4 bottom-24 z-20">
+          <div className="flex items-center gap-2 bg-white dark:bg-slate-800 px-3 py-2 rounded shadow border border-blue-200 dark:border-blue-700">
+            <BsRobot className="h-5 w-5 text-blue-400 animate-bounce" />
+            <span className="text-gray-700 dark:text-gray-200 italic animate-pulse">Nexora is typing...</span>
+            <svg className="animate-spin h-4 w-4 text-blue-400 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
             </svg>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }; 

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 import { useChatbot } from '../hooks/use-chatbot';
 import { Trash2, Calendar, Clock, Search, ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -15,14 +16,47 @@ function getLocalDateString(date: Date) {
 }
 
 export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
-  const { messages, isProcessing } = useChatbot();
+  const [historyMessages, setHistoryMessages] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchHistory = async () => {
+      try {
+        setLoading(true);
+        const token = Cookies.get('token') || localStorage.getItem('token');
+        if (!token) return;
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+        const response = await fetch(`${apiUrl}/chat/history`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setHistoryMessages(
+            (data.data.messages || []).map((msg: any) => ({
+              ...msg,
+              timestamp: new Date(msg.timestamp),
+            }))
+          );
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchHistory();
+  }, []);
+
   // Group messages by local date
-  const grouped = messages.reduce((acc, msg) => {
+  const grouped = historyMessages.reduce((acc, msg: any) => {
     const date = getLocalDateString(new Date(msg.timestamp));
     if (!acc[date]) acc[date] = [];
     acc[date].push(msg);
     return acc;
-  }, {} as Record<string, typeof messages>);
+  }, {} as Record<string, typeof historyMessages>);
   const availableDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
 
   const [selectedDate, setSelectedDate] = useState<string>('');
@@ -175,7 +209,7 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
                       <p className="text-xs">Start chatting to see your history here</p>
                     </div>
                   ) : (
-                    todayMessages.map((msg, idx) => (
+                    todayMessages.map((msg: any, idx: number) => (
                       <div
                         key={idx}
                         onClick={() => handlePromptClick && handlePromptClick(msg.text)}
@@ -213,7 +247,7 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
               </div>
             ) : (
               <div className="space-y-3">
-                {availableDates.map((date) => {
+                {availableDates.map((date: string) => {
                   const prompts = grouped[date];
                   const isExpanded = expandedDates.has(date);
                   
@@ -238,7 +272,7 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({ onPromptClick }) => {
                       
                       {isExpanded && (
                         <div className="border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700 p-3 space-y-2">
-                          {prompts.map((msg, idx) => (
+                          {prompts.map((msg: any, idx: number) => (
                             <div
                               key={idx}
                               onClick={() => handlePromptClick && handlePromptClick(msg.text)}

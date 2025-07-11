@@ -1,26 +1,24 @@
 "use client"
 
-import { useState, useEffect } from 'react';
-import { useGamePoints } from '../hooks/useGamePoints';
-import { useDailyPromptHistory } from '../hooks/useDailyPromptHistory';
-import { useLanguage } from '../hooks/useLanguage';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function Home() {
-  const { badges } = useGamePoints();
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
   const [homeQuestion, setHomeQuestion] = useState('');
-  const { addPrompt } = useDailyPromptHistory();
+  const [user, setUser] = useState<any>(null);
+  const [badge, setBadge] = useState('');
+  const [queryCount, setQueryCount] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
   const { language, setLanguage } = useLanguage();
 
   const handleAsk = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (homeQuestion.trim() === '') return;
-    addPrompt(homeQuestion.trim());
-    setHomeQuestion('');
     // Optionally, redirect to chat page with the question as a query param
     router.push(`/chat?initialMessage=${encodeURIComponent(homeQuestion.trim())}`);
   };
@@ -30,10 +28,60 @@ export default function Home() {
     const token = Cookies.get('token') || localStorage.getItem('token');
     if (!token) {
       router.push('/auth/login');
+      return;
     }
+    // Fetch user profile and query count from backend
+    const fetchUserAndStats = async () => {
+      try {
+        setLoading(true);
+        // Fetch user profile
+        const userRes = await fetch('http://localhost:5000/api/users/me', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
+        if (!userRes.ok) throw new Error('Failed to fetch user profile');
+        const userData = await userRes.json();
+        setUser(userData.data.user);
+        // Fetch query count
+        const insightsRes = await fetch('http://localhost:5000/api/users/insights', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
+        if (!insightsRes.ok) throw new Error('Failed to fetch user insights');
+        const insightsData = await insightsRes.json();
+        setQueryCount(insightsData.data.insights.totalQueries || 0);
+      } catch (err) {
+        // Optionally handle error
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUserAndStats();
   }, [router]);
 
-  if (!isMounted) {
+  useEffect(() => {
+    if (!user || queryCount === null) return;
+    const createdAt = new Date(user.createdAt);
+    const now = new Date();
+    const daysSinceRegistration = Math.floor((now.getTime() - createdAt.getTime()) / (1000 * 60 * 60 * 24));
+    let badgeToShow = '';
+    if (daysSinceRegistration >= 1 && daysSinceRegistration <= 15) {
+      badgeToShow = 'New Babi';
+    } else if (daysSinceRegistration > 15 && daysSinceRegistration <= 31 && queryCount < 100) {
+      badgeToShow = 'Regular User';
+    } else if (daysSinceRegistration > 30 && queryCount >= 100) {
+      badgeToShow = 'Expert';
+    }
+    setBadge(badgeToShow);
+  }, [user, queryCount]);
+
+  if (!isMounted || loading) {
     return null;
   }
 
@@ -110,18 +158,13 @@ export default function Home() {
               </button>
             </form>
           </div>
-          {badges.length > 0 && (
+          {badge && (
             <div className="mt-6 text-center">
-              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Your Badges</h3>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Your Badge</h3>
               <div className="flex flex-wrap gap-2 justify-center">
-                {badges.map((badge) => (
-                  <span
-                    key={badge.id}
-                    className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"
-                  >
-                    {badge.name}
-                  </span>
-                ))}
+                <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">
+                  {badge}
+                </span>
               </div>
             </div>
           )}

@@ -178,81 +178,18 @@ export const useChatbot = () => {
     setSuggestions(languageSuggestions[language] || languageSuggestions.en);
   }, [language]);
 
-  // Load chat history when component mounts
+  // Replace the chat history loading useEffect with:
   useEffect(() => {
-    const loadChatHistory = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          // If no token, just show welcome message
-          setMessages([
-            {
-              text: translate('welcome'),
-              isUser: false,
-              timestamp: new Date(),
-              isTampered: false
-            }
-          ]);
-          return;
-        }
-
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
-        const response = await fetch(`${apiUrl}/chat/history`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          if (data.data.messages && data.data.messages.length > 0) {
-            // Convert server messages to local format
-            const formattedMessages: Message[] = data.data.messages.map((msg: any) => ({
-              text: msg.text,
-              isUser: msg.isUser,
-              timestamp: new Date(msg.timestamp),
-              isTampered: false
-            }));
-            setMessages(formattedMessages);
-          } else {
-            // No history, show welcome message
-            setMessages([
-              {
-                text: translate('welcome'),
-                isUser: false,
-                timestamp: new Date(),
-                isTampered: false
-              }
-            ]);
-          }
-        } else {
-          // Error loading history, show welcome message
-          setMessages([
-            {
-              text: translate('welcome'),
-              isUser: false,
-              timestamp: new Date(),
-              isTampered: false
-            }
-          ]);
-        }
-      } catch (error) {
-        console.error('Error loading chat history:', error);
-        // Error loading history, show welcome message
-        setMessages([
-          {
-            text: translate('welcome'),
-            isUser: false,
-            timestamp: new Date(),
-            isTampered: false
-          }
-        ]);
+    setMessages([
+      {
+        text: translate('welcome'),
+        isUser: false,
+        timestamp: new Date(),
+        isTampered: false
       }
-    };
-
-    loadChatHistory();
-  }, [translate]);
+    ]);
+    // Optionally, clear any persisted chat history here if needed
+  }, [translate, setMessages]);
 
   // Helper function to get random response
   const getRandomResponse = (responses: string[]) => {

@@ -31,7 +31,7 @@ export default function ChatPage() {
   return (
     <div className="flex h-[calc(100vh-8rem)]">
       <ChatHistory onPromptClick={handlePromptClick} />
-      <div className="flex-1 w-full h-full flex flex-col mx-auto p-2">
+      <div className="flex-1 w-full h-full flex flex-col mx-auto p-2 relative overflow-hidden">
         <div className="flex-1 overflow-auto">
           <ChatWindow 
             initialMessage={initialMessage}

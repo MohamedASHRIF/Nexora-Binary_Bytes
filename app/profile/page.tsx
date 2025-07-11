@@ -352,15 +352,15 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 space-y-6">
+    <div className="min-h-screen bg-gray-100 dark:bg-slate-900 py-12 px-4 sm:px-6 lg:px-8 space-y-6">
       <div className="max-w-3xl mx-auto">
         {/* Profile Card */}
-        <div className="bg-white shadow rounded-lg">
-          <div className="px-4 py-5 sm:px-6 border-b border-gray-200">
+        <div className="bg-white dark:bg-slate-800 shadow rounded-lg">
+          <div className="px-4 py-5 sm:px-6 border-b border-gray-200 dark:border-slate-700">
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="text-2xl font-bold leading-6 text-gray-900">Profile</h3>
-                <p className="mt-1 max-w-2xl text-sm text-gray-500">Personal details and account information</p>
+                <h3 className="text-2xl font-bold leading-6 text-gray-900 dark:text-white">Profile</h3>
+                <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">Personal details and account information</p>
               </div>
               <button
                 onClick={handleLogout}
@@ -370,9 +370,9 @@ export default function ProfilePage() {
               </button>
             </div>
             <div className="mt-6 flex items-center gap-4">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg px-6 py-3 flex items-center gap-2">
-                <span className="text-lg font-semibold text-blue-700">Points:</span>
-                <span className="text-2xl font-bold text-blue-600" suppressHydrationWarning>{points}</span>
+              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg px-6 py-3 flex items-center gap-2">
+                <span className="text-lg font-semibold text-blue-700 dark:text-blue-300">Points:</span>
+                <span className="text-2xl font-bold text-blue-600 dark:text-blue-400" suppressHydrationWarning>{points}</span>
               </div>
             </div>
           </div>
@@ -380,32 +380,32 @@ export default function ProfilePage() {
           <div className="px-4 py-5 sm:p-6">
             <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
               <div className="sm:col-span-1">
-                <dt className="text-sm font-medium text-gray-500">Full name</dt>
-                <dd className="mt-1 text-sm text-gray-900">{user.name}</dd>
+                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Full name</dt>
+                <dd className="mt-1 text-sm text-gray-900 dark:text-white">{user.name}</dd>
               </div>
               <div className="sm:col-span-1">
-                <dt className="text-sm font-medium text-gray-500">Email address</dt>
-                <dd className="mt-1 text-sm text-gray-900">{user.email}</dd>
+                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Email address</dt>
+                <dd className="mt-1 text-sm text-gray-900 dark:text-white">{user.email}</dd>
               </div>
               <div className="sm:col-span-1">
-                <dt className="text-sm font-medium text-gray-500">Role</dt>
-                <dd className="mt-1 text-sm text-gray-900 capitalize">{user.role}</dd>
+                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Role</dt>
+                <dd className="mt-1 text-sm text-gray-900 dark:text-white capitalize">{user.role}</dd>
               </div>
               <div className="sm:col-span-1">
-                <dt className="text-sm font-medium text-gray-500">Language</dt>
-                <dd className="mt-1 text-sm text-gray-900 uppercase">{user.language}</dd>
+                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Language</dt>
+                <dd className="mt-1 text-sm text-gray-900 dark:text-white uppercase">{user.language}</dd>
               </div>
               <div className="sm:col-span-1">
-                <dt className="text-sm font-medium text-gray-500">Member since</dt>
-                <dd className="mt-1 text-sm text-gray-900">{new Date(user.createdAt).toLocaleDateString()}</dd>
+                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Member since</dt>
+                <dd className="mt-1 text-sm text-gray-900 dark:text-white">{new Date(user.createdAt).toLocaleDateString()}</dd>
               </div>
             </dl>
           </div>
         </div>
 
         {/* Tags Card with Auto-complete */}
-        <div className="bg-white shadow rounded-lg mt-6 p-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">Tags</h3>
+        <div className="bg-white dark:bg-slate-800 shadow rounded-lg mt-6 p-6">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Tags</h3>
           
           {/* Category Filters */}
           <div className="flex flex-wrap gap-2 mb-4">
@@ -416,7 +416,7 @@ export default function ProfilePage() {
                 className={`px-3 py-1 rounded-full text-sm ${
                   activeCategories.includes(category)
                     ? 'bg-blue-500 text-white'
-                    : 'bg-gray-200 text-gray-800'
+                    : 'bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-gray-200'
                 }`}
               >
                 {category.replace('_', ' ')}
@@ -427,11 +427,11 @@ export default function ProfilePage() {
           <div className="relative">
             <div className="flex flex-wrap items-center border rounded p-2 gap-2">
               {tags.map((tag) => (
-                <div key={tag} className="flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm">
+                <div key={tag} className="flex items-center bg-gray-200 dark:bg-slate-700 rounded-full px-3 py-1 text-sm text-gray-800 dark:text-gray-200">
                   <span>{tag}</span>
                   <XCircle
                     size={16}
-                    className="ml-1 text-gray-600 cursor-pointer hover:text-red-500"
+                    className="ml-1 text-gray-600 dark:text-gray-400 cursor-pointer hover:text-red-500 dark:hover:text-red-400"
                     onClick={() => removeTag(tag)}
                   />
                 </div>
@@ -443,18 +443,18 @@ export default function ProfilePage() {
                 onChange={handleInputChange}
                 onKeyUp={handleKeyUp}
                 placeholder="Enter tags and press Enter"
-                className="flex-1 min-w-[120px] border-none outline-none p-1 text-sm"
+                className="flex-1 min-w-[120px] border-none outline-none p-1 text-sm bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
               />
             </div>
             
             {/* Suggestions dropdown */}
             {showSuggestions && suggestions.length > 0 && (
-              <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+              <div className="absolute z-10 w-full mt-1 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-md shadow-lg max-h-60 overflow-y-auto">
                 <ul>
                   {suggestions.map((suggestion, index) => (
                     <li
                       key={`${suggestion.search}-${index}`}
-                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex justify-between"
+                      className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer flex justify-between text-gray-900 dark:text-white"
                       onClick={() => {
                         if (inputRef.current) {
                           inputRef.current.value = suggestion.search;
@@ -479,40 +479,40 @@ export default function ProfilePage() {
         </div>
 
         {/* Change Password Card */}
-        <div className="bg-white shadow rounded-lg mt-6 p-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">Change Password</h3>
+        <div className="bg-white dark:bg-slate-800 shadow rounded-lg mt-6 p-6">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Change Password</h3>
           <form onSubmit={handleChangePassword} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">Current Password</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Current Password</label>
               <input
                 type="password"
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 block w-full border border-gray-300 dark:border-slate-600 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">New Password</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">New Password</label>
               <input
                 type="password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 block w-full border border-gray-300 dark:border-slate-600 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 required
               />
-              <p className="text-xs text-gray-500 mt-1">Must be at least 8 characters.</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Must be at least 8 characters.</p>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Confirm New Password</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Confirm New Password</label>
               <input
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 block w-full border border-gray-300 dark:border-slate-600 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 required
               />
-              <p className="text-xs text-gray-500 mt-1">Must match the new password.</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Must match the new password.</p>
             </div>
             {changeMessage && (
               <div className={`text-sm ${changeMessage.includes('success') ? 'text-green-600' : 'text-red-600'}`}>

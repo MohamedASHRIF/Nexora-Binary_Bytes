@@ -150,24 +150,24 @@ const ForumPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">💬 Campus Q&A Forum</h1>
-            <p className="text-gray-600 mt-2">Ask questions, share knowledge, and help your peers</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">💬 Campus Q&A Forum</h1>
+            <p className="text-gray-600 dark:text-gray-300 mt-2">Ask questions, share knowledge, and help your peers</p>
           </div>
           <Link
             href="/forum/ask"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors dark:bg-blue-500 dark:hover:bg-blue-600"
           >
             Ask Question
           </Link>
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700 p-6 mb-6">
           <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <input
@@ -175,13 +175,13 @@ const ForumPage = () => {
                 placeholder="Search questions..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
               />
             </div>
             <select
               value={facultyFilter}
               onChange={(e) => setFacultyFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
             >
               <option value="all">All Faculties</option>
               <option value="IT">💻 IT</option>
@@ -192,7 +192,7 @@ const ForumPage = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
             >
               <option value="newest">Newest</option>
               <option value="oldest">Oldest</option>
@@ -202,7 +202,7 @@ const ForumPage = () => {
             </select>
             <button
               type="submit"
-              className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors dark:bg-blue-500 dark:hover:bg-blue-600"
             >
               Search
             </button>
@@ -232,7 +232,7 @@ const ForumPage = () => {
             {questions.map((question) => (
               <div
                 key={question._id}
-                className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+                className="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700 p-6 hover:shadow-md transition-shadow"
               >
                 <div className="flex gap-4">
                   {/* Vote Stats */}
@@ -264,7 +264,7 @@ const ForumPage = () => {
                       </span>
                     </div>
                     
-                    <p className="text-gray-700 mb-3 line-clamp-2">
+                    <p className="text-gray-700 dark:text-gray-300 mb-3 line-clamp-2">
                       {question.content}
                     </p>
 

@@ -103,27 +103,27 @@ const AskQuestionPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
           <Link
             href="/forum"
-            className="text-blue-600 hover:text-blue-800 mb-4 inline-flex items-center"
+            className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-4 inline-flex items-center"
           >
             ← Back to Forum
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">Ask a Question</h1>
-          <p className="text-gray-600 mt-2">Share your question with the campus community</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Ask a Question</h1>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">Share your question with the campus community</p>
         </div>
 
         {/* Form */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700 p-6">
           {message && (
             <div className={`mb-6 p-4 rounded-lg ${
               message.type === 'success' 
-                ? 'bg-green-100 text-green-800 border border-green-200' 
-                : 'bg-red-100 text-red-800 border border-red-200'
+                ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-700' 
+                : 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 border border-red-200 dark:border-red-700'
             }`}>
               {message.text}
             </div>
@@ -132,7 +132,7 @@ const AskQuestionPage = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Title */}
             <div>
-              <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Question Title *
               </label>
               <input
@@ -141,18 +141,18 @@ const AskQuestionPage = () => {
                 value={formData.title}
                 onChange={(e) => handleInputChange('title', e.target.value)}
                 placeholder="What's your question? Be specific."
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 maxLength={200}
                 required
               />
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                 {formData.title.length}/200 characters
               </p>
             </div>
 
             {/* Content */}
             <div>
-              <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="content" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Question Details *
               </label>
               <textarea
@@ -161,21 +161,21 @@ const AskQuestionPage = () => {
                 onChange={(e) => handleInputChange('content', e.target.value)}
                 placeholder="Provide more context about your question. Include any relevant details, code snippets, or specific scenarios."
                 rows={8}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-vertical"
                 required
               />
             </div>
 
             {/* Faculty */}
             <div>
-              <label htmlFor="faculty" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="faculty" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Faculty
               </label>
               <select
                 id="faculty"
                 value={formData.faculty}
                 onChange={(e) => handleInputChange('faculty', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
               >
                 <option value="General">📚 General</option>
                 <option value="IT">💻 IT</option>
@@ -186,7 +186,7 @@ const AskQuestionPage = () => {
 
             {/* Tags */}
             <div>
-              <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="tags" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Tags (optional)
               </label>
               <input
@@ -195,10 +195,10 @@ const AskQuestionPage = () => {
                 value={formData.tags}
                 onChange={(e) => handleInputChange('tags', e.target.value)}
                 placeholder="Enter tags separated by commas (e.g., javascript, react, homework)"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
               />
-              <p className="text-sm text-gray-500 mt-1">
-                Tags help others find your question. Separate multiple tags with commas.
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                {formData.tags.length}/100 characters
               </p>
             </div>
 
@@ -207,7 +207,7 @@ const AskQuestionPage = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-8 py-3 rounded-lg font-semibold transition-colors flex items-center"
+                className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-8 py-3 rounded-lg font-semibold transition-colors flex items-center dark:bg-blue-500 dark:hover:bg-blue-600"
               >
                 {loading ? (
                   <>

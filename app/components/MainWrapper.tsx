@@ -14,7 +14,9 @@ export default function MainWrapper({ children }: { children: React.ReactNode })
 
   if (isHomePage) {
     return (
-      <main className="flex flex-col items-center justify-center mt-24 px-4 w-full" style={{ minHeight: 'calc(100vh - 8rem)' }}>{children}</main>
+      <main className="flex flex-col justify-center items-center w-full min-h-screen bg-gray-100 dark:bg-slate-900">
+        {children}
+      </main>
     );
   }
 
