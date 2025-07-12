@@ -57,17 +57,24 @@ const detectIntent = (message: string, learningData: LearningData): Intent => {
     }
   }
   
-  // Fallback to rule-based detection
-  if (lowerMessage.includes('schedule') || lowerMessage.includes('class')) {
+  // Fallback to rule-based detection with comprehensive keywords
+  const scheduleKeywords = ['schedule', 'class', 'classes', 'lecture', 'lectures', 'course', 'courses', 'timetable', 'timetables', 'subject', 'subjects', 'module', 'modules', 'lesson', 'lessons', 'academic', 'study', 'studies'];
+  if (scheduleKeywords.some(keyword => lowerMessage.includes(keyword))) {
     return { type: 'schedule', confidence: 0.8 };
   }
-  if (lowerMessage.includes('bus') || lowerMessage.includes('transport')) {
+  
+  const busKeywords = ['bus', 'buses', 'transport', 'transportation', 'shuttle', 'shuttles', 'route', 'routes', 'timing', 'timings'];
+  if (busKeywords.some(keyword => lowerMessage.includes(keyword))) {
     return { type: 'bus', confidence: 0.8 };
   }
-  if (lowerMessage.includes('food') || lowerMessage.includes('menu') || lowerMessage.includes('cafeteria')) {
+  
+  const foodKeywords = ['food', 'menu', 'menus', 'cafeteria', 'canteen', 'lunch', 'breakfast', 'dinner', 'meal', 'meals', 'dish', 'dishes', 'snack', 'snacks', 'restaurant', 'dining', 'refreshment', 'refreshments', 'beverage', 'beverages', 'drink', 'drinks', 'coffee', 'tea', 'juice', 'milk', 'water', 'eat', 'eating', 'hungry', 'starving', 'thirsty'];
+  if (foodKeywords.some(keyword => lowerMessage.includes(keyword))) {
     return { type: 'menu', confidence: 0.8 };
   }
-  if (lowerMessage.includes('event') || lowerMessage.includes('upcoming')) {
+  
+  const eventKeywords = ['event', 'events', 'upcoming', 'happening', 'happenings', 'activity', 'activities', 'program', 'programs', 'fiesta', 'festival', 'festivals', 'celebration', 'celebrations', 'ceremony', 'ceremonies', 'function', 'functions', 'gathering', 'gatherings', 'meeting', 'meetings', 'conference', 'conferences', 'party', 'parties'];
+  if (eventKeywords.some(keyword => lowerMessage.includes(keyword))) {
     return { type: 'events', confidence: 0.8 };
   }
   

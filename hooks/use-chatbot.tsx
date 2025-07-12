@@ -41,12 +41,12 @@ const patterns = {
   greeting: /^(hi|hello|hey|greetings|good\s(morning|afternoon|evening)|sup|yo|what's\sup|howdy)/i,
   thanks: /^(thanks|thank\syou|thx|appreciate\sit|cheers)/i,
   goodbye: /^(bye|goodbye|see\syou|farewell|take\scare|cya)/i,
-  schedule: /(schedule|class|lecture|course|timetable|when\sis|what\stime)/i,
-  bus: /(bus|shuttle|transport|route|when\sdoes\sthe\sbus|next\sbus)/i,
-  food: /(food|menu|cafeteria|canteen|lunch|breakfast|dinner|meal)/i,
-  event: /(event|activity|program|workshop|seminar|conference)/i,
-  location: /(where\sis|how\sto\sget\sto|directions\sto|map|location)/i,
-  help: /(help|how\sto|what\scan|what\sis|explain|tell\sme\sabout)/i
+  schedule: /(schedule|class|classes|lecture|lectures|course|courses|timetable|timetables|subject|subjects|module|modules|lesson|lessons|academic|study|studies|when\sis|what\stime|next\sclass|today\sclasses|tomorrow\sclasses|my\sschedule|class\stiming|lecture\stiming|course\sschedule)/i,
+  bus: /(bus|buses|transport|transportation|shuttle|shuttles|route|routes|timing|timings|when\sdoes\sthe\sbus|next\sbus|bus\stiming|transport\stiming|shuttle\stiming|bus\sroute|transport\sroute|how\sto\sget|how\sto\sreach|way\sto)/i,
+  food: /(food|menu|menus|cafeteria|canteen|lunch|breakfast|dinner|meal|meals|dish|dishes|snack|snacks|restaurant|dining|refreshment|refreshments|beverage|beverages|drink|drinks|coffee|tea|juice|milk|water|eat|eating|hungry|starving|thirsty)/i,
+  event: /(event|events|upcoming|happening|happenings|activity|activities|program|programs|fiesta|festival|festivals|celebration|celebrations|ceremony|ceremonies|function|functions|gathering|gatherings|meeting|meetings|conference|conferences|party|parties|what\sis\shappening|what\sevents|any\sevents|today\sevents|tomorrow\sevents|this\sweek\sevents|next\sweek\sevents|campus\sevents|university\sevents)/i,
+  location: /(where\sis|how\sto\sget\sto|directions\sto|map|location|locations|place|places|area|areas|zone|zones|section|sections|floor|floors|room|rooms|office|offices|department|departments|building|buildings|faculty|faculties|find|finding|locate|locating|navigate|navigation|way|path|route|routes)/i,
+  help: /(help|how\sto|what\scan|what\sis|explain|tell\sme\sabout|guide|assist|support|information|info|question|questions|query|queries|doubt|doubts|confused|confusion|lost|stuck|problem|problems|issue|issues)/i
 }
 
 interface Event {
@@ -116,9 +116,10 @@ export const useChatbot = () => {
   const [isProcessing, setIsProcessing] = useState(false)
   const [suggestions, setSuggestions] = useState<string[]>([
     "What's my class schedule?",
+    "Show my modules/subjects",
     "When is the next bus?",
     "What's on the cafeteria menu today?",
-    "Any events happening today?",
+    "Any events or programs happening today?",
     "Where is the library?",
   ])
   const [context, setContext] = useState<{
@@ -154,23 +155,26 @@ export const useChatbot = () => {
     const languageSuggestions = {
       en: [
         "What's my class schedule?",
+        "Show my modules/subjects",
         "When is the next bus?",
         "What's on the cafeteria menu today?",
-        "Any events happening today?",
+        "Any events or programs happening today?",
         "Where is the library?",
       ],
       si: [
         "මගේ පන්ති කාලසටහන කුමක්ද?",
+        "මගේ මොඩියුල්/විෂයන් පෙන්වන්න",
         "ඊළඟ බස් එක කවදාද?",
         "අද කෑමෝටුවේ මෙනුව කුමක්ද?",
-        "අද සිදුවන සිදුවීම් තිබේද?",
+        "අද සිදුවන සිදුවීම් හෝ වැඩසටහන් තිබේද?",
         "පුස්තකාලය කොහෙද?",
       ],
       ta: [
         "என் வகுப்பு அட்டவணை என்ன?",
+        "என் பாடப்பிரிவுகள்/பாடங்களை காட்டு",
         "அடுத்த பேருந்து எப்போது?",
         "இன்று உணவக மெனுவில் என்ன இருக்கிறது?",
-        "இன்று நடக்கும் நிகழ்வுகள் உள்ளதா?",
+        "இன்று நடக்கும் நிகழ்வுகள் அல்லது திட்டங்கள் உள்ளதா?",
         "நூலகம் எங்கே?",
       ]
     };
@@ -220,17 +224,17 @@ export const useChatbot = () => {
   const getFollowUpSuggestion = (intent: string): string[] => {
     switch (intent) {
       case "schedule":
-        return ["Show tomorrow's schedule", "When is my next class?", "Show all classes"]
+        return ["Show tomorrow's schedule", "When is my next class?", "Show all classes", "Show my modules", "What subjects do I have?", "Show my assignments"]
       case "bus":
-        return ["Show full bus schedule", "Bus to downtown", "Bus to residential area"]
+        return ["Show full bus schedule", "Bus to downtown", "Bus to residential area", "Next bus timing", "Bus routes", "Transport options"]
       case "food":
-        return ["Show tomorrow's menu", "What's for lunch?", "Show dinner options"]
+        return ["Show tomorrow's menu", "What's for lunch?", "Show dinner options", "Cafeteria hours", "Food options", "Meal timings"]
       case "event":
-        return ["Show all events", "Upcoming workshops", "Event registration"]
+        return ["Show all events", "Upcoming workshops", "Event registration", "Campus programs", "Festivals", "Academic events", "Cultural activities"]
       case "location":
-        return ["Show campus map", "Directions to library", "Find building"]
+        return ["Show campus map", "Directions to library", "Find building", "Where is IT faculty?", "How to reach cafeteria?", "Campus navigation"]
       default:
-        return ["Show schedule", "Bus timings", "Cafeteria menu", "Campus events", "Find location"]
+        return ["Show schedule", "Bus timings", "Cafeteria menu", "Campus events", "Find location", "Show modules"]
     }
   }
 

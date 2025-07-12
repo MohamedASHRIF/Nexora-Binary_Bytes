@@ -136,16 +136,17 @@ export const ChatInterface: React.FC = () => {
         throw sendError;
       }
       
-      // Check for specific actions to award badges
-      if (inputText.toLowerCase().includes('schedule')) {
+      // Check for specific actions to award badges with comprehensive keywords
+      const scheduleKeywords = ['schedule', 'class', 'classes', 'lecture', 'lectures', 'course', 'courses', 'timetable', 'timetables', 'subject', 'subjects', 'module', 'modules', 'lesson', 'lessons', 'academic', 'study', 'studies'];
+      if (scheduleKeywords.some(keyword => inputText.toLowerCase().includes(keyword))) {
         checkAndAwardBadges('check_schedule_morning');
-      } else if (inputText.toLowerCase().includes('bus')) {
+      } else if (['bus', 'transport', 'shuttle', 'route', 'timing'].some(keyword => inputText.toLowerCase().includes(keyword))) {
         checkAndAwardBadges('check_bus');
-      } else if (inputText.toLowerCase().includes('menu') || inputText.toLowerCase().includes('food')) {
+      } else if (['menu', 'food', 'cafeteria', 'canteen', 'lunch', 'breakfast', 'dinner', 'meal', 'eat', 'hungry'].some(keyword => inputText.toLowerCase().includes(keyword))) {
         checkAndAwardBadges('check_menu');
-      } else if (inputText.toLowerCase().includes('event')) {
+      } else if (['event', 'activity', 'program', 'fiesta', 'festival', 'celebration', 'meeting', 'conference', 'party'].some(keyword => inputText.toLowerCase().includes(keyword))) {
         checkAndAwardBadges('check_events');
-      } else if (inputText.toLowerCase().includes('where') || inputText.toLowerCase().includes('location')) {
+      } else if (['where', 'location', 'place', 'find', 'directions', 'map', 'building', 'faculty', 'office', 'room'].some(keyword => inputText.toLowerCase().includes(keyword))) {
         checkAndAwardBadges('check_location');
       }
     } catch (error) {

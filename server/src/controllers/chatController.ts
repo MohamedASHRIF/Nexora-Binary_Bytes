@@ -395,9 +395,20 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       }
     }
     // Check if the message is about class schedules
-    else if (lowerMessage.includes('class') || lowerMessage.includes('schedule') || 
-             lowerMessage.includes('வகுப்பு') || lowerMessage.includes('அட்டவணை') || lowerMessage.includes('vakuppu') ||
-             lowerMessage.includes('පන්තිය') || lowerMessage.includes('කාලසටහන') || lowerMessage.includes('panti')) {
+    else if (containsFuzzy(lowerMessage, [
+      // English keywords
+      'class', 'classes', 'lecture', 'lectures', 'subject', 'subjects', 'module', 'modules', 
+      'course', 'courses', 'lesson', 'lessons', 'academic', 'study', 'studies',
+      'when is my', 'what time is', 'next class', 'today classes', 'tomorrow classes',
+      'my schedule', 'class timing', 'lecture timing', 'course schedule',
+      // Tamil keywords
+      'வகுப்பு', 'வகுப்புகள்', 'vakuppu', 'vakuppukal',
+      'பாடம்', 'பாடங்கள்', 'பாடப்பிரிவு', 'பாடப்பிரிவுகள்',
+      'விரிவுரை', 'விரிவுரைகள்',
+      // Sinhala keywords  
+      'පන්තිය', 'පන්ති', 'panti', 'pantik',
+      'විෂය', 'විෂයන්', 'මොඩියුල', 'මොඩියුල්', 'ඉගැන්වීම', 'ඉගැන්වීම්'
+    ])) {
       try {
         console.log('Chat request user ID:', req.user.id);
         console.log('Chat request user object:', req.user);
@@ -478,9 +489,18 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       }
     }
     // Check if the message is about bus routes
-    else if (lowerMessage.includes('bus') || lowerMessage.includes('transport') ||
-             lowerMessage.includes('பேருந்து') || lowerMessage.includes('போக்குவரத்து') ||
-             lowerMessage.includes('බස්') || lowerMessage.includes('ප්‍රවාහන')) {
+    else if (containsFuzzy(lowerMessage, [
+      // English keywords
+      'bus', 'buses', 'transport', 'transportation', 'shuttle', 'shuttles', 'route', 'routes',
+      'timing', 'timings', 'when does the bus', 'next bus', 'bus timing', 'transport timing', 'shuttle timing',
+      'bus route', 'transport route', 'how to get', 'how to reach', 'way to',
+      // Tamil keywords
+      'பேருந்து', 'பேருந்துகள்', 'போக்குவரத்து', 'போக்குவரத்துகள்', 'வண்டி', 'வண்டிகள்',
+      'எப்படி போக', 'எப்படி செல்ல', 'எப்போது பேருந்து', 'அடுத்த பேருந்து',
+      // Sinhala keywords
+      'බස්', 'බස්ස', 'ප්‍රවාහන', 'ප්‍රවාහනය', 'වාහන', 'වාහනය',
+      'කෙසේ යන්න', 'කවදා බස්', 'ඊළඟ බස්'
+    ])) {
       try {
         const busRoutes = await BusRoute.find().sort({ route: 1 });
         
@@ -503,9 +523,26 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       }
     }
     // Check if the message is about events
-    else if (lowerMessage.includes('event') || lowerMessage.includes('upcoming') ||
-             lowerMessage.includes('நிகழ்வு') || lowerMessage.includes('வரவிருக்கும்') ||
-             lowerMessage.includes('සිදුවීම') || lowerMessage.includes('ඉදිරි')) {
+    else if (containsFuzzy(lowerMessage, [
+      // English keywords
+      'event', 'events', 'upcoming', 'happening', 'happenings', 'activity', 'activities',
+      'program', 'programs', 'fiesta', 'festival', 'festivals', 'celebration', 'celebrations',
+      'ceremony', 'ceremonies', 'function', 'functions', 'gathering', 'gatherings',
+      'meeting', 'meetings', 'conference', 'conferences', 'party', 'parties',
+      'what is happening', 'what events', 'any events', 'today events', 'tomorrow events',
+      'this week events', 'next week events', 'campus events', 'university events',
+      // Tamil keywords
+      'நிகழ்வு', 'நிகழ்வுகள்', 'வரவிருக்கும்', 'நடக்கும்', 'நடப்பு', 'செயல்பாடு', 'செயல்பாடுகள்',
+      'திட்டம்', 'திட்டங்கள்', 'திருவிழா', 'திருவிழாக்கள்', 'பண்டிகை', 'பண்டிகைகள்',
+      'விழா', 'விழாக்கள்', 'சடங்கு', 'சடங்குகள்', 'சந்திப்பு', 'சந்திப்புகள்',
+      'கூட்டம்', 'கூட்டங்கள்', 'விருந்து', 'விருந்துகள்',
+      'என்ன நடக்கிறது', 'என்ன நிகழ்வுகள்', 'இன்று நிகழ்வுகள்', 'நாளை நிகழ்வுகள்',
+      // Sinhala keywords
+      'සිදුවීම', 'සිදුවීම්', 'ඉදිරි', 'සිදුවන', 'සිදුවීම්', 'ක්‍රියාකාරකම්', 'ක්‍රියාකාරකම්',
+      'සැලසුම', 'සැලසුම්', 'පෙරහන්', 'පෙරහන්', 'උත්සව', 'උත්සවයන්', 'සැමරුම', 'සැමරුම්',
+      'විධිය', 'විධි', 'සමුළුව', 'සමුළු', 'පාර්ටිය', 'පාර්ටි',
+      'මොනවද සිදුවෙන්නේ', 'මොනවද සිදුවීම්', 'අද සිදුවීම්', 'හෙට සිදුවීම්'
+    ])) {
       try {
         console.log('Fetching events directly from database...');
         
@@ -547,7 +584,17 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       botResponse = getTranslation('acknowledgment_response', detectedLanguage) || "You're welcome! If you have more questions, just ask.";
     }
     // Check if the message is about modules or subjects
-    else if (lowerMessage.includes('module') || lowerMessage.includes('modules') || lowerMessage.includes('subject') || lowerMessage.includes('subjects')) {
+    else if (containsFuzzy(lowerMessage, [
+      // English keywords
+      'module', 'modules', 'subject', 'subjects', 'course', 'courses', 'unit', 'units',
+      'what modules', 'what subjects', 'my modules', 'my subjects', 'course list', 'module list',
+      // Tamil keywords
+      'பாடப்பிரிவு', 'பாடப்பிரிவுகள்', 'பாடம்', 'பாடங்கள்',
+      'என்ன பாடங்கள்', 'என்ன பாடப்பிரிவுகள்', 'என் பாடங்கள்', 'என் பாடப்பிரிவுகள்',
+      // Sinhala keywords
+      'මොඩියුල', 'මොඩියුල්', 'විෂය', 'විෂයන්',
+      'මොනවද විෂයන්', 'මොනවද මොඩියුල්', 'මගේ විෂයන්', 'මගේ මොඩියුල්'
+    ])) {
       const user = await User.findById(req.user.id);
       if (!user) {
         return next(new AppError('User not found', 404));
@@ -571,11 +618,47 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       console.log('Using enhanced fallback response system...');
       // Try to find partial matches for known topics
       const topics = [
-        { keywords: ['food', 'menu', 'canteen', 'lunch', 'dinner', 'breakfast', 'eat', 'hungry'], suggestion: "Are you asking about cafeteria menus or food timings?" },
-        { keywords: ['bus', 'transport', 'route', 'timing', 'shuttle'], suggestion: "Do you want to know about bus routes or timings?" },
-        { keywords: ['event', 'activity', 'happening', 'festival', 'workshop'], suggestion: "Are you looking for upcoming campus events?" },
-        { keywords: ['class', 'schedule', 'timetable', 'subject', 'lecture'], suggestion: "Do you want to see your class schedule?" },
-        { keywords: ['map', 'location', 'where', 'find', 'building', 'faculty'], suggestion: "Would you like help finding a location on campus?" }
+        { 
+          keywords: [
+            'food', 'menu', 'canteen', 'lunch', 'dinner', 'breakfast', 'eat', 'hungry', 'meal', 'dish', 'snack',
+            'cafeteria', 'restaurant', 'dining', 'refreshment', 'beverage', 'drink', 'coffee', 'tea',
+            'உணவு', 'உணவகம்', 'காஃපி', 'பசி', 'காஃபி', 'කෑම', 'බඩගිනි', 'කෑමෝටුව'
+          ], 
+          suggestion: "Are you asking about cafeteria menus or food timings?" 
+        },
+        { 
+          keywords: [
+            'bus', 'transport', 'route', 'timing', 'shuttle', 'transportation',
+            'பேருந்து', 'போக்குவரத்து', 'බස්', 'ප්‍රවාහන'
+          ], 
+          suggestion: "Do you want to know about bus routes or timings?" 
+        },
+        { 
+          keywords: [
+            'event', 'activity', 'happening', 'festival', 'program', 'fiesta', 'celebration',
+            'ceremony', 'function', 'gathering', 'meeting', 'conference', 'party',
+            'நிகழ்வு', 'செயல்பாடு', 'திட்டம்', 'திருவிழா', 'விழா', 'சந்திப்பு', 'கூட்டம்',
+            'සිදුවීම', 'ක්‍රියාකාරකම්', 'සැලසුම', 'පෙරහන්', 'උත්සව'
+          ], 
+          suggestion: "Are you looking for upcoming campus events?" 
+        },
+        { 
+          keywords: [
+            'class', 'lecture', 'subject', 'module', 'course', 'lesson', 'academic', 'study',
+            'வகுப்பு', 'பாடம்', 'பாடப்பிரிவு', 'விரிவுரை',
+            'පන්තිය', 'විෂය', 'මොඩියුල', 'ඉගැන්වීම'
+          ], 
+          suggestion: "Do you want to see your class schedule?" 
+        },
+        { 
+          keywords: [
+            'map', 'location', 'where', 'find', 'building', 'faculty', 'directions', 'how to get',
+            'place', 'area', 'zone', 'section', 'floor', 'room', 'office', 'department',
+            'இடம்', 'எங்கே', 'கட்டிடம்', 'பீடம்', 'வழி', 'எப்படி போக', 'எப்படி செல்ல',
+            'ස්ථානය', 'කොහෙද', 'ගොඩනැගිල්ල', 'පීඨය', 'මාර්ගය', 'කෙසේ යන්න'
+          ], 
+          suggestion: "Would you like help finding a location on campus?" 
+        }
       ];
       let relatedSuggestion = '';
       for (const topic of topics) {
