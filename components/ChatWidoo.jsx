@@ -155,7 +155,7 @@ export function ChatWidoo() {
     const newMessage = await addMessageAPI({ text: input, sentiment: label, score });
     if (newMessage) {
       setMessages([...messages, newMessage]);
-      setInput("");
+    setInput("");
     }
   };
 
@@ -186,8 +186,8 @@ export function ChatWidoo() {
     const updated = await editMessageAPI(id, { text: editInput, sentiment: label, score });
     if (updated) {
       setMessages(messages.map((msg, i) => (i === editingIndex ? updated : msg)));
-      setEditingIndex(null);
-      setEditInput("");
+    setEditingIndex(null);
+    setEditInput("");
     }
   };
 
@@ -205,8 +205,8 @@ export function ChatWidoo() {
             <div className="mt-2 p-2 bg-red-100 text-red-700 rounded border border-red-300 text-sm">{error}</div>
           )}
         </div>
-        <div
-          ref={messagesEndRef}
+      <div
+        ref={messagesEndRef}
           className="flex-1 overflow-y-auto flex flex-col gap-3 max-h-[calc(100vh-200px)] min-h-[400px]"
         >
         {messages.length === 0 ? (
@@ -282,22 +282,22 @@ export function ChatWidoo() {
           </div>
         ))
         )}
-        </div>
+      </div>
         <div className="border-t border-gray-200 dark:border-slate-700 pt-4 mt-4">
           <div className="flex gap-3">
-            <input
+      <input
               className="flex-1 border border-gray-300 dark:border-slate-600 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSend()}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && handleSend()}
               placeholder="Write your diary entry..."
-            />
-            <button
+      />
+      <button
               className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition font-medium"
-              onClick={handleSend}
-            >
+        onClick={handleSend}
+      >
               Save
-            </button>
+      </button>
           </div>
         </div>
       </div>
