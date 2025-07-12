@@ -137,14 +137,14 @@ export const ChatInterface: React.FC = () => {
       }
       
       // Check for specific actions to award badges with comprehensive keywords
-      const scheduleKeywords = ['schedule', 'class', 'classes', 'lecture', 'lectures', 'course', 'courses', 'timetable', 'timetables', 'subject', 'subjects', 'module', 'modules', 'lesson', 'lessons', 'academic', 'study', 'studies'];
+      const scheduleKeywords = ['schedule', 'class', 'classes', 'clas', 'clases', 'clss', 'clsses', 'lecture', 'lectures', 'lectur', 'lecturs', 'course', 'courses', 'cours', 'cors', 'timetable', 'timetables', 'subject', 'subjects', 'subjct', 'subjcts', 'module', 'modules', 'modul', 'moduls', 'lesson', 'lessons', 'leson', 'lesons', 'academic', 'academc', 'study', 'studies', 'studdy', 'stdy'];
       if (scheduleKeywords.some(keyword => inputText.toLowerCase().includes(keyword))) {
         checkAndAwardBadges('check_schedule_morning');
-      } else if (['bus', 'transport', 'shuttle', 'route', 'timing'].some(keyword => inputText.toLowerCase().includes(keyword))) {
+      } else if (['bus', 'buses', 'bs', 'buss', 'transport', 'transportation', 'transprt', 'transprtn', 'shuttle', 'shuttles', 'shutle', 'shutles', 'route', 'routes', 'rout', 'routs', 'timing', 'timings', 'timng', 'tming'].some(keyword => inputText.toLowerCase().includes(keyword))) {
         checkAndAwardBadges('check_bus');
-      } else if (['menu', 'food', 'cafeteria', 'canteen', 'lunch', 'breakfast', 'dinner', 'meal', 'eat', 'hungry'].some(keyword => inputText.toLowerCase().includes(keyword))) {
+      } else if (['menu', 'menus', 'food', 'fd', 'cafeteria', 'cfetria', 'canteen', 'cntn', 'lunch', 'lch', 'breakfast', 'brkfst', 'dinner', 'dnr', 'meal', 'meals', 'ml', 'eat', 'eating', 'ht', 'hungry', 'hngry'].some(keyword => inputText.toLowerCase().includes(keyword))) {
         checkAndAwardBadges('check_menu');
-      } else if (['event', 'activity', 'program', 'fiesta', 'festival', 'celebration', 'meeting', 'conference', 'party'].some(keyword => inputText.toLowerCase().includes(keyword))) {
+      } else if (['event', 'events', 'evnt', 'evnts', 'evet', 'evets', 'activity', 'activities', 'activty', 'activties', 'program', 'programs', 'progrm', 'progrms', 'fiesta', 'festa', 'festival', 'festivals', 'fstival', 'fstivals', 'celebration', 'celebrations', 'celbration', 'celbrations', 'meeting', 'meetings', 'meting', 'metings', 'conference', 'conferences', 'confrence', 'confrences', 'party', 'parties', 'prty', 'prties'].some(keyword => inputText.toLowerCase().includes(keyword))) {
         checkAndAwardBadges('check_events');
       } else if (['where', 'location', 'place', 'find', 'directions', 'map', 'building', 'faculty', 'office', 'room'].some(keyword => inputText.toLowerCase().includes(keyword))) {
         checkAndAwardBadges('check_location');

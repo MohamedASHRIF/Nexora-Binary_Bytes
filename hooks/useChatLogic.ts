@@ -58,22 +58,22 @@ const detectIntent = (message: string, learningData: LearningData): Intent => {
   }
   
   // Fallback to rule-based detection with comprehensive keywords
-  const scheduleKeywords = ['schedule', 'class', 'classes', 'lecture', 'lectures', 'course', 'courses', 'timetable', 'timetables', 'subject', 'subjects', 'module', 'modules', 'lesson', 'lessons', 'academic', 'study', 'studies'];
+  const scheduleKeywords = ['schedule', 'class', 'classes', 'clas', 'clases', 'clss', 'clsses', 'lecture', 'lectures', 'lectur', 'lecturs', 'course', 'courses', 'cours', 'cors', 'timetable', 'timetables', 'subject', 'subjects', 'subjct', 'subjcts', 'module', 'modules', 'modul', 'moduls', 'lesson', 'lessons', 'leson', 'lesons', 'academic', 'academc', 'study', 'studies', 'studdy', 'stdy'];
   if (scheduleKeywords.some(keyword => lowerMessage.includes(keyword))) {
     return { type: 'schedule', confidence: 0.8 };
   }
   
-  const busKeywords = ['bus', 'buses', 'transport', 'transportation', 'shuttle', 'shuttles', 'route', 'routes', 'timing', 'timings'];
+  const busKeywords = ['bus', 'buses', 'bs', 'buss', 'transport', 'transportation', 'transprt', 'transprtn', 'shuttle', 'shuttles', 'shutle', 'shutles', 'route', 'routes', 'rout', 'routs', 'timing', 'timings', 'timng', 'tming'];
   if (busKeywords.some(keyword => lowerMessage.includes(keyword))) {
     return { type: 'bus', confidence: 0.8 };
   }
   
-  const foodKeywords = ['food', 'menu', 'menus', 'cafeteria', 'canteen', 'lunch', 'breakfast', 'dinner', 'meal', 'meals', 'dish', 'dishes', 'snack', 'snacks', 'restaurant', 'dining', 'refreshment', 'refreshments', 'beverage', 'beverages', 'drink', 'drinks', 'coffee', 'tea', 'juice', 'milk', 'water', 'eat', 'eating', 'hungry', 'starving', 'thirsty'];
+  const foodKeywords = ['food', 'menu', 'menus', 'cafeteria', 'canteen', 'lunch', 'breakfast', 'dinner', 'meal', 'meals', 'dish', 'dishes', 'snack', 'snacks', 'restaurant', 'dining', 'refreshment', 'refreshments', 'beverage', 'beverages', 'drink', 'drinks', 'coffee', 'tea', 'juice', 'milk', 'water', 'eat', 'eating', 'hungry', 'starving', 'thirsty', 'fd', 'mn', 'cntn', 'lch', 'dnr', 'brkfst', 'ht', 'hngry', 'ml', 'dsh', 'snck', 'cfetria', 'rstrnt', 'dnng', 'drnk', 'cfee', 't'];
   if (foodKeywords.some(keyword => lowerMessage.includes(keyword))) {
     return { type: 'menu', confidence: 0.8 };
   }
   
-  const eventKeywords = ['event', 'events', 'upcoming', 'happening', 'happenings', 'activity', 'activities', 'program', 'programs', 'fiesta', 'festival', 'festivals', 'celebration', 'celebrations', 'ceremony', 'ceremonies', 'function', 'functions', 'gathering', 'gatherings', 'meeting', 'meetings', 'conference', 'conferences', 'party', 'parties'];
+  const eventKeywords = ['event', 'events', 'evnt', 'evnts', 'evet', 'evets', 'upcoming', 'upcomng', 'happening', 'happenings', 'hapning', 'hapnng', 'activity', 'activities', 'activty', 'activties', 'program', 'programs', 'progrm', 'progrms', 'fiesta', 'festa', 'festival', 'festivals', 'fstival', 'fstivals', 'celebration', 'celebrations', 'celbration', 'celbrations', 'ceremony', 'ceremonies', 'ceremny', 'ceremnies', 'function', 'functions', 'functon', 'functons', 'gathering', 'gatherings', 'gatherng', 'gatherngs', 'meeting', 'meetings', 'meting', 'metings', 'conference', 'conferences', 'confrence', 'confrences', 'party', 'parties', 'prty', 'prties'];
   if (eventKeywords.some(keyword => lowerMessage.includes(keyword))) {
     return { type: 'events', confidence: 0.8 };
   }

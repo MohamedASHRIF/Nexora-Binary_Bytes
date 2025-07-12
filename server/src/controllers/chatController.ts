@@ -397,8 +397,10 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
     // Check if the message is about class schedules
     else if (containsFuzzy(lowerMessage, [
       // English keywords
-      'class', 'classes', 'lecture', 'lectures', 'subject', 'subjects', 'module', 'modules', 
-      'course', 'courses', 'lesson', 'lessons', 'academic', 'study', 'studies',
+      'class', 'classes', 'clas', 'clases', 'clss', 'clsses', 'lecture', 'lectures', 'lectur', 'lecturs',
+      'subject', 'subjects', 'subjct', 'subjcts', 'module', 'modules', 'modul', 'moduls',
+      'course', 'courses', 'cours', 'cors', 'lesson', 'lessons', 'leson', 'lesons',
+      'academic', 'academc', 'study', 'studies', 'studdy', 'stdy',
       'when is my', 'what time is', 'next class', 'today classes', 'tomorrow classes',
       'my schedule', 'class timing', 'lecture timing', 'course schedule',
       // Tamil keywords
@@ -491,8 +493,9 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
     // Check if the message is about bus routes
     else if (containsFuzzy(lowerMessage, [
       // English keywords
-      'bus', 'buses', 'transport', 'transportation', 'shuttle', 'shuttles', 'route', 'routes',
-      'timing', 'timings', 'when does the bus', 'next bus', 'bus timing', 'transport timing', 'shuttle timing',
+      'bus', 'buses', 'bs', 'buss', 'transport', 'transportation', 'transprt', 'transprtn',
+      'shuttle', 'shuttles', 'shutle', 'shutles', 'route', 'routes', 'rout', 'routs',
+      'timing', 'timings', 'timng', 'tming', 'when does the bus', 'next bus', 'bus timing', 'transport timing', 'shuttle timing',
       'bus route', 'transport route', 'how to get', 'how to reach', 'way to',
       // Tamil keywords
       'பேருந்து', 'பேருந்துகள்', 'போக்குவரத்து', 'போக்குவரத்துகள்', 'வண்டி', 'வண்டிகள்',
@@ -525,10 +528,12 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
     // Check if the message is about events
     else if (containsFuzzy(lowerMessage, [
       // English keywords
-      'event', 'events', 'upcoming', 'happening', 'happenings', 'activity', 'activities',
-      'program', 'programs', 'fiesta', 'festival', 'festivals', 'celebration', 'celebrations',
-      'ceremony', 'ceremonies', 'function', 'functions', 'gathering', 'gatherings',
-      'meeting', 'meetings', 'conference', 'conferences', 'party', 'parties',
+      'event', 'events', 'evnt', 'evnts', 'evet', 'evets', 'upcoming', 'upcomng', 'happening', 'happenings', 'hapning', 'hapnng',
+      'activity', 'activities', 'activty', 'activties', 'program', 'programs', 'progrm', 'progrms',
+      'fiesta', 'festa', 'festival', 'festivals', 'fstival', 'fstivals', 'celebration', 'celebrations', 'celbration', 'celbrations',
+      'ceremony', 'ceremonies', 'ceremny', 'ceremnies', 'function', 'functions', 'functon', 'functons',
+      'gathering', 'gatherings', 'gatherng', 'gatherngs', 'meeting', 'meetings', 'meting', 'metings',
+      'conference', 'conferences', 'confrence', 'confrences', 'party', 'parties', 'prty', 'prties',
       'what is happening', 'what events', 'any events', 'today events', 'tomorrow events',
       'this week events', 'next week events', 'campus events', 'university events',
       // Tamil keywords
@@ -586,7 +591,8 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
     // Check if the message is about modules or subjects
     else if (containsFuzzy(lowerMessage, [
       // English keywords
-      'module', 'modules', 'subject', 'subjects', 'course', 'courses', 'unit', 'units',
+      'module', 'modules', 'modul', 'moduls', 'subject', 'subjects', 'subjct', 'subjcts',
+      'course', 'courses', 'cours', 'cors', 'unit', 'units', 'unt', 'unts',
       'what modules', 'what subjects', 'my modules', 'my subjects', 'course list', 'module list',
       // Tamil keywords
       'பாடப்பிரிவு', 'பாடப்பிரிவுகள்', 'பாடம்', 'பாடங்கள்',
@@ -620,23 +626,28 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
       const topics = [
         { 
           keywords: [
-            'food', 'menu', 'canteen', 'lunch', 'dinner', 'breakfast', 'eat', 'hungry', 'meal', 'dish', 'snack',
-            'cafeteria', 'restaurant', 'dining', 'refreshment', 'beverage', 'drink', 'coffee', 'tea',
+            'food', 'menu', 'menus', 'canteen', 'lunch', 'dinner', 'breakfast', 'eat', 'eating', 'hungry', 'meal', 'meals', 'dish', 'dishes', 'snack', 'snacks',
+            'cafeteria', 'restaurant', 'dining', 'refreshment', 'refreshments', 'beverage', 'beverages', 'drink', 'drinks', 'coffee', 'tea',
+            'fd', 'mn', 'cntn', 'lch', 'dnr', 'brkfst', 'ht', 'hngry', 'ml', 'dsh', 'snck',
+            'cfetria', 'rstrnt', 'dnng', 'drnk', 'cfee', 't',
             'உணவு', 'உணவகம்', 'காஃපி', 'பசி', 'காஃபி', 'කෑම', 'බඩගිනි', 'කෑමෝටුව'
           ], 
           suggestion: "Are you asking about cafeteria menus or food timings?" 
         },
         { 
           keywords: [
-            'bus', 'transport', 'route', 'timing', 'shuttle', 'transportation',
+            'bus', 'buses', 'transport', 'transportation', 'route', 'routes', 'timing', 'timings', 'shuttle', 'shuttles',
+            'bs', 'buss', 'transprt', 'transprtn', 'rout', 'routs', 'timng', 'tming', 'shutle', 'shutles',
             'பேருந்து', 'போக்குவரத்து', 'බස්', 'ප්‍රවාහන'
           ], 
           suggestion: "Do you want to know about bus routes or timings?" 
         },
         { 
           keywords: [
-            'event', 'activity', 'happening', 'festival', 'program', 'fiesta', 'celebration',
-            'ceremony', 'function', 'gathering', 'meeting', 'conference', 'party',
+            'event', 'events', 'activity', 'activities', 'happening', 'happenings', 'festival', 'festivals', 'program', 'programs', 'fiesta', 'celebration', 'celebrations',
+            'ceremony', 'ceremonies', 'function', 'functions', 'gathering', 'gatherings', 'meeting', 'meetings', 'conference', 'conferences', 'party', 'parties',
+            'evnt', 'evnts', 'evet', 'evets', 'activty', 'activties', 'hapning', 'hapnng', 'fstival', 'fstivals', 'progrm', 'progrms', 'festa', 'celbration', 'celbrations',
+            'ceremny', 'ceremnies', 'functon', 'functons', 'gatherng', 'gatherngs', 'meting', 'metings', 'confrence', 'confrences', 'prty', 'prties',
             'நிகழ்வு', 'செயல்பாடு', 'திட்டம்', 'திருவிழா', 'விழா', 'சந்திப்பு', 'கூட்டம்',
             'සිදුවීම', 'ක්‍රියාකාරකම්', 'සැලසුම', 'පෙරහන්', 'උත්සව'
           ], 
@@ -644,7 +655,8 @@ export const chat = catchAsync(async (req: AuthenticatedRequest, res: Response, 
         },
         { 
           keywords: [
-            'class', 'lecture', 'subject', 'module', 'course', 'lesson', 'academic', 'study',
+            'class', 'classes', 'lecture', 'lectures', 'subject', 'subjects', 'module', 'modules', 'course', 'courses', 'lesson', 'lessons', 'academic', 'study', 'studies',
+            'clas', 'clases', 'clss', 'clsses', 'lectur', 'lecturs', 'subjct', 'subjcts', 'modul', 'moduls', 'cours', 'cors', 'leson', 'lesons', 'academc', 'studdy', 'stdy',
             'வகுப்பு', 'பாடம்', 'பாடப்பிரிவு', 'விரிவுரை',
             'පන්තිය', 'විෂය', 'මොඩියුල', 'ඉගැන්වීම'
           ], 
