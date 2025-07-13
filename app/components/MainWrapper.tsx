@@ -7,6 +7,7 @@ export default function MainWrapper({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const isAuthPage = pathname === '/auth/login' || pathname === '/auth/signup';
   const isHomePage = pathname === '/';
+  const isAdminPage = pathname.startsWith('/admin');
 
   if (isAuthPage) {
     return <main>{children}</main>;
@@ -18,6 +19,10 @@ export default function MainWrapper({ children }: { children: React.ReactNode })
         {children}
       </main>
     );
+  }
+
+  if (isAdminPage) {
+    return <main className="w-full min-h-screen flex flex-col px-0">{children}</main>;
   }
 
   // For all other pages, add top padding to offset header+nav, fill viewport

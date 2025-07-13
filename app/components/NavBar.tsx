@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useLanguage } from '../../hooks/useLanguage';
 
 export default function NavBar() {
   const pathname = usePathname();
@@ -9,6 +10,8 @@ export default function NavBar() {
   const isAdminPage = pathname.startsWith('/admin');
 
   if (isAuthPage || isAdminPage) return null;
+
+  const { language, setLanguage } = useLanguage();
 
   return (
     <nav className="fixed top-16 left-0 right-0 z-40 w-full flex items-center bg-white dark:bg-slate-800 justify-end px-8 py-2 gap-6 border-t border-gray-100 dark:border-slate-700 shadow-sm">
@@ -19,7 +22,8 @@ export default function NavBar() {
           className="border rounded px-2 py-1 text-xs bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
           style={{ minWidth: 80 }}
           aria-label="Select language"
-          defaultValue="en"
+          value={language}
+          onChange={e => setLanguage(e.target.value)}
         >
           <option value="en">English</option>
           <option value="si">සිංහල</option>
