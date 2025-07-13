@@ -6,8 +6,9 @@ import { usePathname } from 'next/navigation';
 export default function NavBar() {
   const pathname = usePathname();
   const isAuthPage = pathname === '/auth/login' || pathname === '/auth/signup';
+  const isAdminPage = pathname.startsWith('/admin');
 
-  if (isAuthPage) return null;
+  if (isAuthPage || isAdminPage) return null;
 
   return (
     <nav className="fixed top-16 left-0 right-0 z-40 w-full flex items-center bg-white dark:bg-slate-800 justify-end px-8 py-2 gap-6 border-t border-gray-100 dark:border-slate-700 shadow-sm">

@@ -2,3 +2,4 @@
 {"level":"error","message":"Operational Error: You do not have permission to perform this action","timestamp":"2025-07-03T06:04:59.727Z"}
 {"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-07-03T06:07:32.953Z"}
 {"level":"error","message":"Operational Error: Incorrect email or password","timestamp":"2025-07-03T06:07:39.926Z"}
+{"level":"error","message":"Operational Error: Invalid or expired token","timestamp":"2025-07-13T14:18:25.343Z"}
