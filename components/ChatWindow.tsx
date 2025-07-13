@@ -902,18 +902,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ initialMessage, onMessag
           </div>
         )}
       </div>
-      {showTyping && (
-        <div className="absolute right-4 bottom-24 z-20">
-          <div className="flex items-center gap-2 bg-white dark:bg-slate-800 px-3 py-2 rounded shadow border border-blue-200 dark:border-blue-700">
-            <BsRobot className="h-5 w-5 text-blue-400 animate-bounce" />
-            <span className="text-gray-700 dark:text-gray-200 italic animate-pulse">Nexora is typing...</span>
-            <svg className="animate-spin h-4 w-4 text-blue-400 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
-            </svg>
-          </div>
-        </div>
-      )}
     </div>
   );
 }; 
